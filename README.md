@@ -1,4 +1,7 @@
 # docs
+<p align="center">
+    <img src="src/assets/logo.png" alt="Bug's Bunny logo" width="220">
+</p>
 
 ## Prerequisiti
 ### Latex
