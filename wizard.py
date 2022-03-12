@@ -73,9 +73,29 @@ class DocTemplate:
         return path
 
 
-def main():
-    with open(TEMPLATES_FILE, 'r') as f:
+def parse_templates(templates_file: Path) -> dict:
+    with open(templates_file, 'r') as f:
         templates = load(f, Loader)
+
+    for index, t in enumerate(templates):
+        base = t.get('from')
+        if base:
+            base = next(filter(lambda x: x['id'] == base, templates))
+
+            derived = base.copy()
+            derived.update(t)
+
+            if t.get('extra_vars') and base.get('extra_vars'):
+                derived['extra_vars'] += base['extra_vars']
+
+            derived['show'] = True
+            templates[index] = derived
+
+    return [t for t in templates if t.get('show', True)]
+
+
+def main():
+    templates = parse_templates(TEMPLATES_FILE)
 
     template_name = Bullet('Select a template: ', choices=[t['title'] for t in templates]).launch()
     template = next(filter(lambda t: t['title'] == template_name, templates))

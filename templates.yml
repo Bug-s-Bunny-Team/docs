@@ -1,14 +1,16 @@
-- verbale_interno:
+- id: verbale
+  show: false
+  template: templates/verbale.tex
+  extra_vars:
+    - timestart: '15.00'
+    - timeend: '17.00'
+
+- id: verbale_interno
+  from: verbale
   title: Verbale interno
   prefix: vi
-  template: templates/verbale.tex
-  extra_vars:
-    - timestart: '15.00'
-    - timeend: '17.00'
-- verbale_esterno:
+
+- id: verbale_esterno
+  from: verbale
   title: Verbale esterno
   prefix: ve
-  template: templates/verbale.tex
-  extra_vars:
-    - timestart: '15.00'
-    - timeend: '17.00'
