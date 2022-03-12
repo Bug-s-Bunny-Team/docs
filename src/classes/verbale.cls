@@ -10,13 +10,7 @@
 \RequirePackage{fancyhdr}
 
 \input{common/variables}
-
-\pagestyle{fancy}
-\fancyhead[R]{\@title}
-\fancyhead[L]{
-    \includegraphics[width=0.8cm]{assets/logo}
-}
-\fancyfoot[C]{\thepage}
+\input{common/headfoot}
 
 \renewcommand{\maketitle}{
     \input{common/titlepage}
