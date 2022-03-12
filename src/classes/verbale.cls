@@ -19,26 +19,5 @@
 \fancyfoot[C]{\thepage}
 
 \renewcommand{\maketitle}{
-    \begin{titlepage}
-        \begin{center}
-            \vspace*{\fill}
-            
-            \includegraphics[width=5cm]{assets/logo}
-            
-            \Huge{\textbf{\teamname}}
-            
-            \vspace{3cm}
-            
-            \Huge
-            \textbf{\@title}
-            
-            \Large{\@date}
-    
-            \vspace{3cm}
-            
-            \textbf{Redattore:} \@author
-            
-            \vfill	
-        \end{center}
-    \end{titlepage}    
+    \input{common/titlepage}
 }
