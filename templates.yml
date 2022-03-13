@@ -8,9 +8,9 @@
 - id: verbale_interno
   from: verbale
   title: Verbale interno
-  prefix: vi
+  filename_template: vi_[[ date | dateformat ]].tex
 
 - id: verbale_esterno
   from: verbale
   title: Verbale esterno
-  prefix: ve
+  filename_template: ve_[[ date | dateformat ]].tex
