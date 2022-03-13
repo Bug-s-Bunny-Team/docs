@@ -98,7 +98,7 @@ class DocTemplate:
 ###############################################################
 
 
-def parse_templates(templates_file: Path) -> dict:
+def parse_templates(templates_file: Path) -> list:
     with open(templates_file, 'r') as f:
         templates = load(f, Loader)
 
