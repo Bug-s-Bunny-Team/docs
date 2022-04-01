@@ -1,7 +1,17 @@
 \begin{titlepage}
+    \makeatletter
+    
+    \begin{minipage}[]{0.3\textwidth}
+       	\includegraphics[width=3cm]{assets/unipd}
+   	\end{minipage}
+    \begin{minipage}[]{0.7\textwidth}
+       	\color[HTML]{B5121B}{
+       		\textbf{Università degli Studi di Padova} \\
+       		Ingegneria del Software \\
+       		Anno Accademico: 2021/2022
+       	}
+    \end{minipage}
     \begin{center}
-        \makeatletter
-        \vspace*{\fill}
         
         \includegraphics[width=5cm]{assets/logo}
         
@@ -10,15 +20,20 @@
         
         \vspace{3cm}
         
-        \Huge
         \textbf{\@title}
 
-        \Large
-        \@date
+		\vspace{1cm}
+		
+		\small
+		\texttt{bugsbunnyteam@protonmail.com}
 
-        \vspace{3cm}
+        \vspace{1.5cm}
+        \Large
         
-        \textbf{Redattore:} \@author
+        \textbf{Redattore:} \redattore \\
+        \textbf{Verificatore:} \verificatore \\
+        \textbf{Approvatore:} \approvatore \\
+        \textbf{Uso:} \uso \\
         
         \vfill
         \makeatother

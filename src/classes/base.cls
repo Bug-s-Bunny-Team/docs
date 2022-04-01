@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{verbale}
+\ProvidesClass{base}
 
 \LoadClass[12pt]{article}
 
