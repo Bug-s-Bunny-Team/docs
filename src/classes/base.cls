@@ -8,6 +8,7 @@
 \RequirePackage[sfdefault]{quattrocento}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
+\RequirePackage{xcolor}
 
 \input{common/variables}
 \input{common/headfoot}
