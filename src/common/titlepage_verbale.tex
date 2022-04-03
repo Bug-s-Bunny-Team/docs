@@ -3,8 +3,28 @@
         \makeatletter
         \vspace*{\fill}
         
-        \includegraphics[width=5cm]{assets/logo}
+        %\includegraphics[width=2.5cm]{assets/unipd}
+        %\subsection*{Università degli Studi di Padova}
+        %\vspace{2cm}
         
+        \begin{minipage}[]{0.3\textwidth}
+            \centering
+            \includegraphics[width=3cm]{assets/unipd}
+            \bigskip
+        \end{minipage}
+        \begin{minipage}[]{0.7\textwidth}
+            \centering
+            \color[HTML]{B5121B}{
+                \textbf{Università degli Studi di Padova} \\
+                Ingegneria del Software \\
+                Anno Accademico: 2021/2022 \\
+                }
+                \vspace*{2cm}
+        \end{minipage}
+        
+
+        \includegraphics[width=5cm]{assets/logo}
+
         \Huge
         \textbf{\teamname}
         
@@ -18,7 +38,9 @@
 
         \vspace{3cm}
         
-        \textbf{Redattore:} \@author
+        \textbf{Redazione:} \@author\\
+        \textbf{Verifica:}\\
+        \textbf{Approvazione:}\\
         
         \vfill
         \makeatother
