@@ -5,7 +5,7 @@
 
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[a4paper,margin=2.5cm,headheight=32pt]{geometry}
-\RequirePackage[sfdefault]{quattrocento}
+%\RequirePackage[sfdefault]{quattrocento}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
 \RequirePackage{xcolor}
