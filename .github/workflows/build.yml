@@ -30,11 +30,11 @@ jobs:
           for pdf in $(find src -iname "*.pdf"); do
             filename=$(basename "$pdf")
             if [[ "$filename" == vi_*.pdf ]]; then
-              cp "$pdf" docs/Verbali/Interni
+              mv "$pdf" docs/Verbali/Interni
             elif [[ "$filename" == ve_*.pdf ]]; then
-              cp "$pdf" docs/Verbali/Esterni
+              mv "$pdf" docs/Verbali/Esterni
             else
-              cp "$pdf" docs/
+              mv "$pdf" docs/
             fi
           done
 
