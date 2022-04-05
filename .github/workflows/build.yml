@@ -1,0 +1,52 @@
+name: Build Latex documents
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - src/*
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Compile documents
+        uses: marcovolpato00/latex-action@master
+        with:
+          root_file: |
+            src/*.tex
+            src/!(common|classes|assets)/*.tex
+          glob_root_file: true
+          work_in_root_file_dir: true
+      
+      - name: Move to docs directory
+        run: |
+          mkdir -p docs/Verbali/Interni docs/Verbali/Esterni
+          for pdf in $(find src -iname "*.pdf"); do
+            filename=$(basename "$pdf")
+            if [[ "$filename" == vi_*.pdf ]]; then
+              cp "$pdf" docs/Verbali/Interni
+            elif [[ "$filename" == ve_*.pdf ]]; then
+              cp "$pdf" docs/Verbali/Esterni
+            else
+              cp "$pdf" docs/
+            fi
+          done
+
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/
+          git commit -m "add compiled documents"
+      
+      - name: Push to repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
