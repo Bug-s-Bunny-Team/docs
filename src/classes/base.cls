@@ -1,11 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{base}
-
 \LoadClass[12pt]{article}
 
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[a4paper,margin=2.5cm,headheight=32pt]{geometry}
-\RequirePackage[sfdefault]{quattrocento}
+%\RequirePackage[sfdefault]{quattrocento}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
 \RequirePackage{xcolor}
@@ -16,3 +15,6 @@
 \renewcommand{\maketitle}{
     \input{common/titlepage}
 }
+
+\newcommand*{\verificatore}[1]{\gdef\@verificatore{#1}}
+\newcommand*{\approvatore}[1]{\gdef\@approvatore{#1}}
