@@ -1,4 +1,8 @@
 \documentclass{classes/base}
+\usepackage{graphicx}
+\usepackage{eurosym}
+\usepackage{tabularx} %tabelle larghe
+\usepackage{float} %per poter usare l'opzione [H] nelle figure
 
 \title{Verbale interno}
 \date{2022/03/31}
@@ -32,13 +36,36 @@
     \textit{Ore settimanali: 10}.\\
     Il gruppo pensa di dover assegnare più ore a questi ruolo perché deve gestire due repository (quello interno di AWS e quello pubblico) e i molteplici strumenti tecnologici di Amazon AWS (Comprehend, Rekognition, API Gateway, Lambda).
     \subsection*{Analista e Progettista}
-    \textit{Ore settimanali : 20}.\\
+    \textit{Ore settimanali : 20 cadauno}.\\
     Abbiamo voluto dare la maggioranza delle ore alle figure dell'analista e del progettista perchè il progetto consiste, più che nella creazione di algoritmi e strumenti da zero, nel prendere tecnologie già esistenti e capire come usarle e farle comunicare al meglio al fine di raggiungere lo scopo. 
     \subsection*{Programmatore}
     \textit{Ore settimanali: 7}.\\
     Abbiamo voluto dare meno importanza alla figura del programmatore perchè in questo progetto si tratta di utilizzare per lo più strumenti esterni, pertanto il programmatore ha il solo compito di connettere queste tecnologie.\\ Non riteniamo che questo sia un lavoro che occuperà molto tempo se e solo se le figure di analisti e progettisti svolgono un lavoro completo nella fase precedente alla scrittura vera e propria del codice.
     \subsection*{Verificatore}
     \textit{Ore settimanali: 9}.\\
-    Il verificatore ha un monte ore leggermente superiore a quella del programmatore perché abbiamo ritenuto di fondamentale importanza garantire la qualità del codice visto che la comunicazione tra tecnologie diverse può essere ostica e grande fonte di errori.
+    Il verificatore ha un monte ore leggermente superiore a quella del programmatore perché abbiamo ritenuto di fondamentale importanza garantire la qualità del codice visto che la comunicazione tra tecnologie diverse può essere ostica e grande fonte di errori.\\\\
+    
+    Di seguito si riporta la tabella dei costi sul totale ore/ruoli:
+    \begin{table}[!h]
+        \begin{center}
+            \setlength{\extrarowheight}{.75ex}
+            \begin{tabular}{ | c | c | c | c | }
+                \hline 	
+                \textbf{Ruoli} & \textbf{Costo} & \textbf{Ore} & \textbf{Totale}\\
+                \hline 			
+                
+                Responsabile{} & 30{} & 40{} & 1.200{} \\
+                Amministratore{} & 20{} & 100{} & 2.000{} \\
+                Analista{} & 25{} & 200{} & 5.000{} \\
+                Progettista{} & 25{} & 200{} & 5.000{}  \\
+                Programmatore{} & 15{} & 70{} & 1.050{}  \\
+                Verificatore{} & 15{} & 90{} & 1.350{}  \\
+                TOTALE{} & -{} & 700{} & 15.600{}  \\	
+                
+                \hline 
+            \end{tabular}
+        \end{center}
+    \end{table}
+   
 
 \end{document}
