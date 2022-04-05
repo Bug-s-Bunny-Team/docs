@@ -1,6 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{base}
-
 \LoadClass[12pt]{article}
 
 \RequirePackage[utf8]{inputenc}
@@ -16,3 +15,6 @@
 \renewcommand{\maketitle}{
     \input{common/titlepage}
 }
+
+\newcommand*{\verificatore}[1]{\gdef\@verificatore{#1}}
+\newcommand*{\approvatore}[1]{\gdef\@approvatore{#1}}
