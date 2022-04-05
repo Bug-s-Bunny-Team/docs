@@ -15,3 +15,6 @@
 \renewcommand{\maketitle}{
     \input{common/titlepage}
 }
+
+\newcommand*{\verificatore}[1]{\gdef\@verificatore{#1}}
+\newcommand*{\approvatore}[1]{\gdef\@approvatore{#1}}
