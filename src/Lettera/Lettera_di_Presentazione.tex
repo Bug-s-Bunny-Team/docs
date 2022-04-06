@@ -1,0 +1,86 @@
+\documentclass{articoletteracdp}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+\usepackage{eurosym}
+\usepackage{tabularx} %tabelle larghe
+
+\input{common/variables}
+\signature{\textit{\teamname}}
+\date{8 aprile 2022}
+
+\address{
+	\begin{figure}[t!]
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=.5\linewidth]{assets/unipd}
+		\end{minipage}%
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=.5\linewidth]{assets/logo}
+		\end{minipage}
+	\end{figure}
+	\vspace{0.2cm}
+	Ingegneria del Software\\
+	Gruppo: \textit{\teamname} \\
+	Email: \href{mailto:bugsbunnyteam@protonmail.com}{\textit{\email}}
+}
+
+\begin{document}
+	\begin{letter}{
+			Prof. Tullio Vardanega \\
+			Prof. Riccardo Cardin \\
+			Università degli Studi di Padova \\
+			Dipartimento di Matematica \\
+			Via Trieste, 63 \\
+			35121 Padova
+		}
+
+		\opening{Egregio Professore Tullio Vardanega, \newline Egregio Professore Riccardo Cardin,}
+
+		\begin{quotation}
+			\noindent
+			Con la presente il gruppo \textit{\teamname} intende comunicarVi ufficialmente l'impegno alla realizzazione del prodotto da Voi commissionato, denominato \textit{\progetto}, proposto dall'azienda \textit{\proponente}. \newline
+			Al seguente link: \href{\github}{\textit{\github}} è presente la documentazione relativa alla valutazione dei capitolati e ai verbali interni ed esterni. \newline
+			%magari inserire lista file che si trovano
+			Di seguito si riportano i nomi dei componenti del gruppo e i rispettivi numeri di matricola:
+
+			\def\arraystretch{1}
+			\begin{table}
+				\begin{center}
+					\setlength{\extrarowheight}{.75ex}
+					\begin{tabular}{ c | c }
+						\textbf{Nominativo}           & \textbf{Matricola} \\
+						\hline
+
+						Arena Angela{}                & 1226299{}          \\
+						Bellò Marco{}                 & 1142874{}          \\
+						Bousapnamene Ruth Genevieve{} & 1192088{}          \\
+						Di Fant Tommaso{}             & 1217932{}          \\
+						Tossuto Matteo{}              & 1193493{}          \\
+						Volpato Marco{}               & 1224826{}          \\
+						Zanatta Giulio{}              & 1163163{}          \\
+
+						\hline
+					\end{tabular}
+				\end{center}
+			\end{table}
+			
+			\newpage
+
+			\textbf{Scelta capitolato:}
+			\input{sezioni/Scelta}
+		\end{quotation}
+
+		\begin{quotation}
+			\textbf{Impegni:}
+			\input{sezioni/Impegni}
+		\end{quotation}
+
+		\vspace{0.5cm}
+		Rimaniamo a Vostra completa disposizione per qualsiasi chiarimento.
+
+		\vspace{0.5cm}
+		\closing{ Cordiali Saluti,}
+
+	\end{letter}
+\end{document}
