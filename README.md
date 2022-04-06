@@ -28,9 +28,19 @@ In alternativa allo script, si possono creare nuovi documenti prendendo spunto d
 ## Struttura
 | Cartella                | Contenuto                      |
 |-------------------------|--------------------------------|
-| [docs](docs/)           | Documenti in formato **PDF**   |
+| [docs](docs/)           | Documenti in formato *PDF*   |
 | [src](src/)             | Sorgenti dei documenti *Latex* |
 | [templates](templates/) | Sorgenti dei template *Latex*  |
+
+## Workflow consigliato
+- Creare un branch specifico per il documento che si vuole creare. Nel caso dei verbali, ad esempio, è già disponibile il branch *verbali*.
+- Creare il documento nella cartella [src](src/), con il *wizard* sopra menzionato oppure manualmente. Nel caso di documenti complessi, che necessitano di una cartella a sè, ricordarsi di creare all'interno della cartella i link simbolici alle cartelle [assets](src/assets), [classes](src/classes) e [common](src/common) (se servono). Dentro la cartella del nuovo documento:
+    ```sh
+    ln -s ../assets assets
+    ln -s ../classes classes
+    ln -s ../common common
+    ```
+- Finito di redigere il documento, fare il merge del branch in *master*. Prestare attenzione ad eventuali conflitti, è buona norma fare il pull da *master* di tanto in tanto mentre si lavora al documento. Non è necessario includere manualmente il file *PDF* del documento compilato, ci pensa automagicamente il [workflow *build*](.github/workflows/build.yml) quando viene effetuato il merge.
 
 ## Strumenti consigliati
 - [VSCode](https://code.visualstudio.com/Download)
