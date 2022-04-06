@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Compile documents
-        uses: marcovolpato00/latex-action@master
+        uses: xu-cheng/latex-action@v2
         with:
           root_file: |
             src/*.tex
