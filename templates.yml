@@ -4,6 +4,8 @@
   extra_vars:
     - timestart: '15.00'
     - timeend: '17.00'
+    - verificatore: 'Nome o comando Latex'
+    - approvatore: 'Nome o comando Latex'
 
 - id: verbale_interno
   from: verbale

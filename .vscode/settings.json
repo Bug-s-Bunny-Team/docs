@@ -1,4 +1,7 @@
 {
     "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/build",
-    "latex-workshop.latex.autoBuild.run": "never"
+    "latex-workshop.latex.autoBuild.run": "never",
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": "file://${workspaceFolder}/.github/workflows/build.yml"
+    }
 }

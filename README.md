@@ -3,6 +3,8 @@
     <img src="src/assets/logo.png" alt="Bug's Bunny logo" width="220">
 </p>
 
+[![Build Latex documents](https://github.com/Bug-s-Bunny-Team/docs/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/Bug-s-Bunny-Team/docs/actions/workflows/build.yml)
+
 ## Prerequisiti
 ### Latex
 È necessario installare una [distribuzione Latex](https://www.latex-project.org/get/) prima di poter compilare i documenti. Per esempio, su Windows (🤢), usando [Chocolatey](https://chocolatey.org/install#individual):
