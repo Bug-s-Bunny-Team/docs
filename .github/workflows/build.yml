@@ -38,16 +38,16 @@ jobs:
             fi
           done
 
-      - name: Upload to GDrive with rclone
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: sync build/ bb-shared:master -P
-
       - name: Upload as artifacts
         uses: actions/upload-artifact@v3
         with:
           name: documents
           path: build/
           retention-days: 7
+      
+      - name: Upload to GDrive with rclone
+        uses: wei/rclone@v1
+        env:
+          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+        with:
+          args: sync build/ bb-shared:master -P
