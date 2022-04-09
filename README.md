@@ -28,7 +28,7 @@ In alternativa allo script, si possono creare nuovi documenti prendendo spunto d
 ## Struttura
 | Cartella                | Contenuto                      |
 |-------------------------|--------------------------------|
-| [docs](docs/)           | Documenti in formato *PDF*   |
+| [~~docs~~](docs/)           | ~~Documenti in formato *PDF*~~   |
 | [src](src/)             | Sorgenti dei documenti *Latex* |
 | [templates](templates/) | Sorgenti dei template *Latex*  |
 
@@ -40,7 +40,7 @@ In alternativa allo script, si possono creare nuovi documenti prendendo spunto d
     ln -s ../classes classes
     ln -s ../common common
     ```
-- Finito di redigere il documento, fare il merge del branch in *master*. Prestare attenzione ad eventuali conflitti, è buona norma fare il pull da *master* di tanto in tanto mentre si lavora al documento. Non è necessario includere manualmente il file *PDF* del documento compilato, ci pensa automagicamente il [workflow *build*](.github/workflows/build.yml) quando viene effetuato il merge.
+- Finito di redigere il documento, fare il merge del branch in *master*. Prestare attenzione ad eventuali conflitti, è buona norma fare il pull da *master* di tanto in tanto mentre si lavora al documento. ~~Non è necessario includere manualmente il file *PDF* del documento compilato, ci pensa automagicamente il [workflow *build*](.github/workflows/build.yml) quando viene effetuato il merge.~~ Il documento verrà compilato e caricato automaticamente nella cartella condivisa su *Drive*.
 
 ## Strumenti consigliati
 - [VSCode](https://code.visualstudio.com/Download)
