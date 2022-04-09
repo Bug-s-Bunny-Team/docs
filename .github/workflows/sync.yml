@@ -13,12 +13,6 @@ jobs:
       - name: Sync with rclone
         uses: wei/rclone@v1
         env:
-          RCLONE_CONFIG_BB_TYPE: drive
-          RCLONE_CONFIG_BB_CLIENT_ID: ${{ secrets.GDRIVE_CLIENT_ID  }}
-          RCLONE_CONFIG_BB_CLIENT_SECRET: ${{ secrets.GDRIVE_CLIENT_SECRET }}
-          RCLONE_CONFIG_BB_SCOPE: drive.file
-          RCLONE_CONFIG_ROOT_FOLDER_ID: ${{ secrets.BB_SHARED_ID }}
-          RCLONE_CONFIG_BB_TOKEN: ${{ secrets.BB_SHARED_TOKEN }}
-          RCLONE_CONFIG_BB_TEAM_DRIVE: ''
+          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: sync docs/ bb:master -P
+          args: sync docs/ bb-shared:master -P
