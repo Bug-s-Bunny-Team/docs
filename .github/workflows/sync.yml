@@ -1,0 +1,23 @@
+name: Sync to GDrive shared
+
+on:
+  push:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Sync with rclone
+        uses: wei/rclone@v1
+        env:
+          RCLONE_CONFIG_BB_TYPE: drive
+          RCLONE_CONFIG_BB_CLIENT_ID: ${{ secrets.GDRIVE_CLIENT_ID  }}
+          RCLONE_CONFIG_BB_CLIENT_SECRET: ${{ secrets.GDRIVE_CLIENT_SECRET }}
+          RCLONE_CONFIG_BB_SCOPE: drive.file
+          RCLONE_CONFIG_ROOT_FOLDER_ID: ${{ secrets.BB_SHARED_ID }}
+          RCLONE_CONFIG_BB_TOKEN: ${{ secrets.BB_SHARED_TOKEN }}
+        with:
+          args: sync docs/ bb:master -P
