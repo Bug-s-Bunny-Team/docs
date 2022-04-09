@@ -2,6 +2,7 @@ name: Sync to GDrive shared
 
 on:
   push:
+  workflow_dispatch:
 
 jobs:
   sync:
