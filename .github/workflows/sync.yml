@@ -19,5 +19,6 @@ jobs:
           RCLONE_CONFIG_BB_SCOPE: drive.file
           RCLONE_CONFIG_ROOT_FOLDER_ID: ${{ secrets.BB_SHARED_ID }}
           RCLONE_CONFIG_BB_TOKEN: ${{ secrets.BB_SHARED_TOKEN }}
+          RCLONE_CONFIG_BB_TEAM_DRIVE: ''
         with:
           args: sync docs/ bb:master -P
