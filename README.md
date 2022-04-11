@@ -48,4 +48,3 @@ In alternativa allo script, si possono creare nuovi documenti prendendo spunto d
 
 ## Strumenti consigliati
 - [VSCode](https://code.visualstudio.com/Download)
-- [TeXstudio](https://www.texstudio.org/#download)
