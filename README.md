@@ -5,6 +5,10 @@
 
 [![Build Latex documents](https://github.com/Bug-s-Bunny-Team/docs/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/Bug-s-Bunny-Team/docs/actions/workflows/build.yml)
 
+## Introduzione
+Questo repository mantiene gli strumenti e i sorgenti *Latex* per compilare la documentazione. 
+I documenti compilati in formato *PDF*, e in versione stabile, si trovano nella [cartella condivisa](https://drive.google.com/drive/folders/10DP1cbC-0y9jEtLmrsuktEG1M7PgSoOk).
+
 ## Prerequisiti
 ### Latex
 È necessario installare una [distribuzione Latex](https://www.latex-project.org/get/) prima di poter compilare i documenti. Per esempio, su Windows (🤢), usando [Chocolatey](https://chocolatey.org/install#individual):
