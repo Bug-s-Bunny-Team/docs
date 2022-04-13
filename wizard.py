@@ -54,7 +54,7 @@ class DocTemplate:
         self.variables = {
             'title': title,
             'date': datetime.date.today().isoformat().replace('-', '/'),
-            'author': 'Nomone Cognomone'
+            'author': 'Nome Cognome'
         }
         if extra_vars:
             for v in extra_vars:
