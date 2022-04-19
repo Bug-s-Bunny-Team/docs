@@ -1,4 +1,4 @@
-name: Build Latex documents
+name: Build and upload Latex documents
 
 on:
   push:
@@ -24,30 +24,30 @@ jobs:
           glob_root_file: true
           work_in_root_file_dir: true
       
-      - name: Move to docs directory
+      - name: Move to build directory
         run: |
-          mkdir -p docs/Verbali/Interni docs/Verbali/Esterni
+          mkdir -p build/Verbali/Interni build/Verbali/Esterni
           for pdf in $(find src -iname "*.pdf"); do
             filename=$(basename "$pdf")
             if [[ "$filename" == vi_*.pdf ]]; then
-              mv "$pdf" docs/Verbali/Interni
+              mv "$pdf" build/Verbali/Interni
             elif [[ "$filename" == ve_*.pdf ]]; then
-              mv "$pdf" docs/Verbali/Esterni
+              mv "$pdf" build/Verbali/Esterni
             else
-              mv "$pdf" docs/
+              mv "$pdf" build/
             fi
           done
 
-      - name: Commit files
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add docs/
-          git commit -m "add compiled documents"
-      
-      - name: Push to repo
-        uses: ad-m/github-push-action@master
+      - name: Upload as artifacts
+        uses: actions/upload-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-
+          name: documents
+          path: build/
+          retention-days: 7
+      
+      - name: Upload to GDrive with rclone
+        uses: wei/rclone@v1
+        env:
+          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+        with:
+          args: sync build/ bb-shared:master -P
