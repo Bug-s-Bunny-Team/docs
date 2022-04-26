@@ -9,6 +9,9 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{xcolor}
 
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5} 
+
 \input{common/variables}
 \input{common/headfoot}
 

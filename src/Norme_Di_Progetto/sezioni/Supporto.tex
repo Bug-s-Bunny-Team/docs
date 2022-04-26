@@ -1,0 +1,179 @@
+\subsection{Documentazione}
+	\subsubsection{Scopo}
+	Il processo di documentazione comprende le attività di stesura e aggiornamento di tutti i documenti creati durante il ciclo di vita del \emph{software} in modo da renderli formalmente concordi. In particolare, in questa sezione ne vengono normate le attività, comprendenti stesura, \emph{verifica} e \emph{validazione}. 
+	
+	\subsubsection{Aspettative}
+	Durante questo processo il \emph{team} ha le seguenti aspettative:
+		\begin{itemize}
+			\item Ideare una struttura ben organizzata comune a tutti i documenti;
+			\item Stesura di norme per facilitare tale processo.
+		\end{itemize}
+	
+	\subsubsection{Documenti prodotti}
+		I documenti prodotti saranno di due tipi:
+			\begin{itemize}
+				\item \textbf{Formali}:
+				\begin{itemize}
+					\item \textbf{interni}: riguardanti le dinamiche del gruppo;
+					\item \textbf{esterni}: di interesse ai committenti e al \emph{proponente}.
+				\end{itemize} 
+				In particolare, i documenti formali prodotti saranno:
+					\begin{itemize}
+						\item \textbf{\NdP}: Contiene tutte le regole stabilite dai membri alle quali attenersi durante l'intera durata del progetto (Interno);
+						\item \textbf{\VdC}: Contiene l'analisi dei capitolati messi a disposizione, evidenziandone pregi e difetti. Contiene, inoltre, il capitolato scelto dal gruppo (Interno);
+						\item \textbf{\AdR}: Descrive i \emph{requisiti} che il prodotto dovrà possedere per essere in linea con le richieste dei committenti (Esterno);
+						\item \textbf{\PdP}: Contiene la pianificazione di tutte le attività previste, comprendente il preventivo delle spese e una previsione dell'impegno in ore per ogni membro del gruppo (Esterno);
+						\item \textbf{\PdQ}: Descrive i criteri di valutazione della qualità impiegate dal gruppo (Esterno).
+					\end{itemize}
+		
+			\item \textbf{Informali}: 
+			In particolare, i documenti informali prodotti saranno:
+				\begin{itemize}
+					\item \textbf{Verbali interni}: Contengono le informazioni e le decisioni prese durante gli incontri tra i membri del gruppo;
+					\item \textbf{Verbali esterni}: Comprendono le informazioni ed i chiarimenti ricevuti durante gli incontri tra i membri ed il committente o tra i membri ed il \emph{proponente};
+				\end{itemize}
+		\end{itemize}
+	
+	\subsubsection{Ciclo di vita di un documento} %da rivedere
+		Ogni documento passa per le seguenti fasi:
+			\begin{itemize}
+				\item \textbf{Stesura}: Il documento viene creato, aggiornato e modificato fino ad \emph{Approvazione};
+				\item  \textbf{Verifica}: Il documento viene verificato sia dal punto di vista grammaticale che contenutistico; la verifica viene effettuata da una o più persone diverse dall'autore del documento;
+				\item \textbf{Approvazione}: Il documento viene approvato quando tutti i verificatori concordano che sia tutto corretto. %Non mi convince molto
+			\end{itemize}
+	\subsubsection{Struttura dei documenti}
+		%Magari spiegare nome dei verbali
+		\paragraph{Frontespizio}    
+			La prima pagina di ogni documento sarà così strutturata:
+				\begin{itemize}
+					\item \textbf{Logo Università e didascalia}: Posizionato in alto a sinistra e al suo fianco, al centro, la scritta "Università degli studi di Padova", corso del progetto e anno accademico;
+					\item \textbf{Logo gruppo e nome}: Entrambi al centro, il nome del gruppo è sotto il logo;
+					\item \textbf{Titolo del documento};
+					\item \textbf{Recapito email del gruppo};
+					\item \textbf{Informazioni del documento}: Redattore, Verificatore, Approvatore ed Uso(interno od esterno).
+				\end{itemize}
+	
+		\paragraph{Corpo del documento}       
+			Tutte le pagine del corpo del documento contengono un intestazione composta da:
+				\begin{itemize}
+					\item \textbf{Logo Gruppo}: a sinistra;
+					\item \textbf{Titolo Documento}: a destra;
+				\end{itemize}
+			e un piè di pagina al cui centro c'è la pagina corrente del documento.
+	
+	\subsubsection{Norme tipografiche}
+		\paragraph{Convenzioni di denominazione}   
+			%Aggiungere Introduzione
+		\paragraph{Stili di testo} %Ha senso?
+			\begin{itemize}
+				\item \textbf{Grassetto}
+				\item \textbf{Corsivo}
+			\end{itemize}
+	
+		%Aggiungere Paragrafo Tabelle e Paragrafo Formato Data e Ora?
+						
+		%Elementi grafici ? Come tabelle ed immagini
+		
+		\subsubsection{Strumenti} %Aggiungere descrizione e utilizzo
+			\begin{itemize}
+				\item \textbf{LaTeX}
+				\item \textbf{Visual Studio Code}
+				\item \textbf{Google Docs}
+			\end{itemize}
+		
+	\subsection{Processo di Configurazione}
+		%Scopo e aspettative ?
+		\paragraph{Tecnologie adottate}
+			Per la gestione delle versioni è stato scelto di utilizzare il sistema di versionamento distribuito \emph{Git} con un \emph{repository} remoto presente su \emph{GitHub}. %Aggiungere link ??
+		\paragraph{Struttura del repository}
+			Per il \emph{repository}, esiste una versione \emph{locale} sul computer di ogni membro ed una versione \emph{remota} su \emph{GitHub}.\newline
+			Il \emph{repository} è strutturato nel seguente modo:
+			\begin{itemize}
+				\item \textbf{docs:} cartella contenente tutti i file pdf delle versioni finali dei documenti; 
+				\item \textbf{src:} cartella contenente i file in linguaggio \emph{LateX}, immagini e classi per la stesura e compilazione dei vari documenti;
+				\item \textbf{templates}: cartella contenente template di base da cui partire per la stesura dei documenti in \emph{LateX}.
+			\end{itemize}
+		%Magari dare motivaione della suddivisione
+		\paragraph{Tipi di file}	%altri file?
+			Nelle singole cartelle dei documenti sono inclusi:
+			\begin{itemize}
+				\item File \textbf{README.md};
+				\item File \textbf{.tex} per i sorgenti in \LaTeX; 
+				\item File \textbf{.cs} %per cosa
+				\item File \textbf{.png} per le immagini da inserire nei documenti;
+				\item File \textbf{.pdf}. %per cosa
+			\end{itemize}
+			Il file \emph{.gitignore} contiene al suo interno un riferimento a tutti i file che non verranno versionati; il file è posizionato al livello più esterno del \emph{repository}.
+		\paragraph{Norme di branching}
+			Il \emph{repository} inerente alla documentazione sarà composto da diversi \emph{branch}:
+			\begin{itemize}
+				\item \textbf{Master:} \emph{branch} principale che viene aggiornato quando un documento è approvato o per introdurre nuove funzionalità; 
+				\item un \textbf{branch} per ogni documento. %Aggiungere altro?
+			\end{itemize}
+		
+		\subsubsection{Strumenti}
+			Per la gestione della configurazione o versionamento il gruppo utilizza \emph{Visual Studio Code} o i seguenti client \emph{Git}:
+				
+				\begin{itemize}
+					\item \textbf{GitHub Desktop}: Client ufficiale di \emph{GitHub} utilizzato per la gestione delle \emph{repository} \emph{Git};
+					\item \textbf{GitKraken}.
+				\end{itemize}\
+		
+		\subsection{Gestione della qualità}
+			\subsubsection{Scopo}
+				Per la gestione della qualità è dedicato il documento \PdQ{}: il documento fissa i \emph{requisiti} qualitativi individuati dagli \emph{stakeholder} e le metriche per la \emph{verifica} e \emph{validazione} per garantire la qualità del prodotto finale.
+		
+			\subsubsection{Aspettative}
+				 Le aspettative di questo processo sono:
+					\begin{itemize}
+						\item conseguimento della qualità nel prodotto, secondo le richieste del \emph{proponente};
+						\item prova oggettiva della qualità del prodotto;						
+						\item conseguimento della qualità nell'organizzazione delle attività del gruppo e dei processi;
+						\item raggiungimento della piena soddisfazione del \emph{proponente}.
+					\end{itemize}
+		
+			%Magari subsubsection per norme e regole per facilitare gestione della qualità da parte del gruppo: come continua comunicazione, lavoro costante, rispetto delle norme e cosi via
+	
+		\subsection{Verifica}
+			\subsubsection{Scopo}
+				Il processo di \emph{verifica} viene applicato per individuare eventuali errori introdotti nel prodotto durante la fase di sviluppo di un processo. La \emph{verifica} viene applicata sia alla documentazione che al codice. %in futuro
+			\subsubsection{Aspettative}
+				Le aspettative di questo processo sono:
+					\begin{itemize}
+						\item seguire procedure definite con criteri chiari ed affidabili;
+						\item verificare ad ogni fase;
+						\item la verifica deve garantire che il prodotto si trovi in uno stato stabile;
+						\item la verifica deve risultare più automatica possibile.
+					\end{itemize}
+				
+			\subsubsection{Attività}
+				\paragraph{Analisi}
+					Il processo di analisi si suddivide in Analisi statica e Analisi dinamica:
+						\subparagraph{Analisi statica}
+							L'analisi statica permette di effettuare controlli su documenti e codice, verificando così l'assenza di errori e difetti. Esistono due metodologie per applicarla:
+								\begin{itemize}
+									\item \textbf{Walkthrough:} consiste nella lettura da parte del \emph{team} dell'intero documento o codice in cerca di anomalie. Viene applicata quando non si conosce in modo chiaro la sorgente dei difetti. Questa tecnica risulta molto onerosa in termini di efficienza ed efficacia.
+									\item \textbf{Inspection:} consiste in una lettura mirata del documento o del codice nei punti in cui si sa già che possano essere presenti degli errori. Risulta meno dispendiosa in termini di tempo ma richiede una buona conoscenza della situazione.
+								\end{itemize}
+						\subparagraph{Analisi dinamica}
+							L'analisi dinamica prevede l'esecuzione del prodotto \emph{software} e la sua analisi tramite l'utilizzo di \emph{test} che verificano se il prodotto funziona o se vi sono presenti anomalie
+						\subparagraph{Test}
+							L'attività di testing è la base dell'analisi dinamica. I \emph{test} permettono di individuare tutti i possibili errori che possono essere stati commessi e tutti i casi limite che possono risultare problematici. \newline
+							I test sono ben progettati e scritti se e solo se:
+								\begin{itemize}
+									\item Sono ripetibili;
+									\item Sono automatici;
+									\item Forniscono informazioni tramite file di log;
+									%Magari Aggiungere altro
+								\end{itemize}
+							
+							%Magari aggiungere i vari tipi di test: Unità, Integrazione, sistema, regressione ed collaudo
+		
+		\subsection{Processo di validazione} % Terminare
+			\subsubsection{Scopo}
+				Il processo di \emph{validazione} prende in esame il prodotto ottenuto dalla fase di \emph{verifica} e stabilisce se esso rispetti i requisiti e le aspettative del \emph{committente}.
+			\subsubsection{Aspettative}
+				Le aspettative di questo processo sono:
+					\begin{itemize}
+						\item Help%Aggiungere aspettative
+					\end{itemize}
