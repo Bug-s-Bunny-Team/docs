@@ -1,0 +1,82 @@
+\subsection{Fornitura}
+\subsubsection{Scopo}
+Il processo di fornitura viene svolto al fine di comprendere al meglio la richiesta di appalto del \emph{proponente}: il documento che verrà creato include le norme a cui i membri del gruppo \teamname{} devono fare riferimento al fine di rivestire in modo adeguato il ruolo di \emph{fornitore} dell'azienda \proponente{} e dei committenti \textit{Prof. Tullio Vardanega} e \textit{Prof. Riccardo Cardin}.
+\subsubsection{Aspettative} %Da rivedere
+Durante lo svolgimento del progetto il gruppo intende mantenere un rapporto di costante collaborazione con il \emph{proponente} in modo da facilitare il lavoro svolto.
+In particolare, si vuole:
+\begin{itemize}
+	\item Stimare costi e tempistiche del lavoro;
+	\item Determinare aspetti chiave che il prodotto dovrà soddisfare;
+	\item Determinare vincoli e requisiti sui processi;
+	\item Accordarsi sulla qualifica del prodotto.
+\end{itemize}
+
+\subsubsection{Valutazione dei capitolati}
+L'attività di Studio di fattibilità, che sfocia nell'omonimo documento, serve a spiegare le motivazioni per la scelta di un capitolato tra quelli proposti.
+Il documento \VdC{} viene redatto dopo un'attenta analisi svolta dai membri.
+Per ogni capitolato sono indicate:
+\begin{itemize}
+	\item \textbf{Informazioni generali}: nome del progetto, il \emph{proponente} e il committente;
+	\item \textbf{Descrizione}: sintesi del prodotto, caratteristiche principali e obiettivi del progetto;
+	\item \textbf{Tecnologie utilizzate}: elenco delle tecnologie richieste;
+	\item \textbf{Vincoli Generali}: vincoli imposti dal \emph{proponente} e da rispettare durante il progetto;
+	\item \textbf{Aspetti positivi, criticità e fattori di rischio}: considerazioni fatte dal gruppo riguardanti gli aspetti positivi e sulle criticità del capitolato;
+	\item \textbf{Conclusioni}: ragioni per le quali il gruppo accetta o rifiuta il capitolato.
+\end{itemize}
+
+\subsubsection{Documentazione fornita} %Magari fare tabella con Nome, Descrizione e Uso(Interno od esterno)
+Il gruppo fornisce all'azienda \proponente{} e ai committenti \textit{Prof. Tullio Vardanega} e \textit{Prof. Riccardo Cardin} i seguenti documenti, essenziali per tracciare le attività svolte e per iniziare la fase di implementazione:
+\begin{itemize}
+	\item \AdR{}: Documento che contiene l'analisi approfondita del capitolato scelto, comprendente tutti i \emph{requisiti} e i \emph{casi d'uso} individuati;
+	\item \PdP{}: Documento nel quale viene pianificato nel dettaglio il modo di lavorare del gruppo, contenente un preventivo riguardante tempistiche, l'analisi dei rischi, la pianificazione delle attività e il consuntivo;
+	\item \PdQ{}: Documento dove vengono stabilite e descritte le modalità di \emph{verifica} e \emph{validazione}, in modo da garantire la qualità del prodotto.  \\
+\end{itemize}
+I seguenti documenti, invece, sono forniti solo all'azienda \proponente{}:	%verificare che non siano già presenti nei documenti sopra
+\begin{itemize}
+	\item Piano di test di unità;
+	\item Documentazione dettagliata di tutte le API usate;
+	\item Schema Design relativo alla base dati;
+	\item Diagrammi UML relativi agli Use Cases di progetto. %forse già presenti in uno dei documenti sopra
+\end{itemize}
+
+\subsubsection{Strumenti} %Creare Lista o tabella con nome e descrizione dei vari strumenti utilizzati
+
+\subsection{Sviluppo}
+\subsubsection{Descrizione e aspettative}
+Lo scopo del processo di Sviluppo è descrivere i compiti e le attività da svolgere relative al prodotto \emph{software} da sviluppare al meglio richiesto dal \emph{proponente}.
+Le attività coinvolte riguardano l'\AdR{}, la progettazione e la codifica.
+Le aspettative sono le seguenti:
+\begin{itemize}
+	\item stabilire gli obiettivi di sviluppo;
+	\item stabilire i vincoli tecnologici e di design;
+	\item realizzare un prodotto finale che superi i \emph{test}, che soddisfi i \emph{requisiti} e le richieste del \emph{proponente}. 
+\end{itemize}
+
+\subsubsection{Analisi dei requisiti}
+L'analisi dei requisiti è un'attività, che sfocia nell'omonimo documento, dove vengono individuati tutti i \emph{requisiti} che il \emph{proponente} richiede per la realizzazione del prodotto.\newline{}
+Il documento \AdR{} va steso in maniera efficace ed è molto importante in quanto coinvolto in diverse fasi della realizzazione del prodotto: oltre che definire funzionalità e \emph{requisiti} individuati e concordati col cliente, fornisce ai \progrs{} riferimenti precisi e affidabili, ai \verf{} riferimenti per il processo di \emph{verifica} ed è la base dalla quale partire per eventuali raffinamenti successivi, garantendo un continuo miglioramento del prodotto. 
+Ogni requisito può essere ricavato da diverse fonti: %Implementare
+
+%Casi d'uso
+
+\subsubsection{Progettazione} %Da implementare e finire descrizione
+L'attività di progettazione definisce le caratteristiche che il prodotto richiesto deve avere in modo da fornire una soluzione che soddisfa i requisiti specificati nell'\AdR{}.
+
+%Diagrammi e test
+
+\subsubsection{Codifica} %Da implementare convenzioni
+La codifica ha lo scopo di normare l'effettiva realizzazione del prodotto richiesto. I \progrs{} dovranno attenersi a queste norme durante la fase di programmazione e implementazione. L'uso di norme e convenzioni è fondamentale per permettere la generazione di codice leggibile e uniforme, agevolare la manutenzione e i processi di \emph{verifica} e \emph{validazione}.
+
+\subsubsection{Strumenti e linguaggi}
+Di seguito vengono elencati e descritti i vari strumenti e linguaggi utilizzati durante il progetto, che siano essi richiesti dal \emph{proponente} o scelti autonomamente:
+\begin{itemize}
+	%strumenti
+	%inserire i vari servizi AWS
+	\item \emph{AWS fargate}: servizio serverless per gestione container;
+	\item \emph{AWS appsync}: ervizio gestito per lo sviluppo rapido di API GraphQL;
+	\item \emph{Neptune}: database a grafo ideale per tracciare le relazioni tra i dati; \\
+	%magari fare due liste diverse
+	%linguaggi
+	\item \emph{NodeJS}: per lo sviluppo di API Restful JSON a supporto dell'applicativo;
+	\item \emph{React/Angular}: per lo sviluppo dell'interafaccia web. 
+\end{itemize}
