@@ -1,14 +1,24 @@
 \section*{Registro delle modifiche}
 {
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\newlength{\freewidth}
+\setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
 \renewcommand{\arraystretch}{1.5}
 \centering
-\begin{longtable}{C{1.7cm} C{2.5cm} C{3.2cm} C{2.7cm} C{4.8cm}}
-\rowcolor{coloreRosso}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\begin{longtable}{C{.13\freewidth} C{.15\freewidth} C{.26\freewidth} C{.18\freewidth} C{.282379\freewidth}}
+	\toprule
+\rowcolor{Rosso}
 \textcolor{white}{\textbf{Versione}}&
 \textcolor{white}{\textbf{Data}}&
 \textcolor{white}{\textbf{Nominativo}}&
 \textcolor{white}{\textbf{Ruolo}}&
 \textcolor{white}{\textbf{Descrizione}}\\	
+\toprule
 \endhead
 
 %1.0.0 & 10-12-2020 & \BM{} & Responsabile & Approvazione del documento\\  
@@ -22,6 +32,7 @@
 %0.0.4 & 19-11-2020 & \ZM{}, \SP{} & Analista & Redazione studio di fattibilità C2\\
 %0.0.3 & 19-11-2020 & \ZM{}, \SP{} & Analista & Redazione studio di fattibilità C1\\		
 %0.0.2 & 18-11-2020 & \PA{} & Analista & Redazione studio di fattibilità C3\\
-0.0.1 & 16-11-2020 & \Gruppo{} & Analisti & Creazione bozza documento, introduzione e paragrafi. \\	
+0.0.1 & 16-11-2020 & \teamname{} & Analisti & Creazione bozza documento, introduzione e paragrafi. \\	
+\bottomrule
 \end{longtable}
 }
