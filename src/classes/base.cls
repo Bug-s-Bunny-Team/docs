@@ -7,7 +7,16 @@
 %\RequirePackage[sfdefault]{quattrocento}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
-\RequirePackage{xcolor}
+\RequirePackage[table]{xcolor}
+\RequirePackage{tabularx} %tabelle larghe
+\RequirePackage{longtable} %una tabella può continuare su più pagine
+\RequirePackage{booktabs} %toprule e midrule usati al posto di hline
+\RequirePackage{multirow} %utile per visualizzare una cella su più righe
+\RequirePackage{float}
+\RequirePackage{array}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5} 
 
 \input{common/variables}
 \input{common/headfoot}
