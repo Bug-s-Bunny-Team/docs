@@ -45,10 +45,7 @@ jobs:
       - name: Move to build directory
         run: |
           mkdir build
-          cp --parents src/**/*.pdf build/
-          cp --parents src/*.pdf build/
-          mv build/src/* build/
-          rm -rf build/src
+          rsync -am --include "*.pdf"  --include "*/" --exclude "*"  src/ build/
 
       - name: Upload as artifacts
         uses: actions/upload-artifact@v3
