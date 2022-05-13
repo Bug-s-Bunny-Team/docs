@@ -22,8 +22,8 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-            src/Esterni/Verbali/*.tex
-            src/Interni/Verbali/*.tex
+            src/Esterni/**/*.tex
+            src/Interni/**/*.tex
             src/!(common|classes|assets)/*.tex
           glob_root_file: true
           work_in_root_file_dir: true
@@ -42,7 +42,7 @@ jobs:
       #       fi
       #     done
 
-      - name: Move to build directory
+      - name: Copy to build directory
         run: |
           mkdir build
           rsync -am --include "*.pdf"  --include "*/" --exclude "*"  src/ build/
