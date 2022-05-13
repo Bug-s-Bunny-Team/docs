@@ -1,11 +1,14 @@
 name: Build and upload Latex documents
 
 on:
+  # push:
+  #   branches:
+  #     - master
+  #   paths:
+  #     - src/**/*
   push:
     branches:
-      - master
-    paths:
-      - src/**/*
+      - ci-testing
   workflow_dispatch:
     
 jobs:
@@ -25,19 +28,19 @@ jobs:
           glob_root_file: true
           work_in_root_file_dir: true
       
-      - name: Move to build directory
-        run: |
-          mkdir -p build/Verbali/Interni build/Verbali/Esterni
-          for pdf in $(find src -iname "*.pdf"); do
-            filename=$(basename "$pdf")
-            if [[ "$filename" == vi_*.pdf ]]; then
-              mv "$pdf" build/Verbali/Interni
-            elif [[ "$filename" == ve_*.pdf ]]; then
-              mv "$pdf" build/Verbali/Esterni
-            else
-              mv "$pdf" build/
-            fi
-          done
+      # - name: Move to build directory
+      #   run: |
+      #     mkdir -p build/Verbali/Interni build/Verbali/Esterni
+      #     for pdf in $(find src -iname "*.pdf"); do
+      #       filename=$(basename "$pdf")
+      #       if [[ "$filename" == vi_*.pdf ]]; then
+      #         mv "$pdf" build/Verbali/Interni
+      #       elif [[ "$filename" == ve_*.pdf ]]; then
+      #         mv "$pdf" build/Verbali/Esterni
+      #       else
+      #         mv "$pdf" build/
+      #       fi
+      #     done
 
       - name: Upload as artifacts
         uses: actions/upload-artifact@v3
@@ -46,9 +49,9 @@ jobs:
           path: build/
           retention-days: 7
       
-      - name: Upload to GDrive with rclone
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: sync build/ bb-shared:master -P
+      # - name: Upload to GDrive with rclone
+      #   uses: wei/rclone@v1
+      #   env:
+      #     RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+      #   with:
+      #     args: sync build/ bb-shared:master -P
