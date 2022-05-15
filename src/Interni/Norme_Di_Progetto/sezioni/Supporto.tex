@@ -145,12 +145,23 @@
 			\end{itemize}
 		
 	\subsection{Processo di Configurazione}
-		%Scopo e aspettative ?
+	\subsubsection{Scopo}
+		Il processo di gestione della configurazione ha come scopo il gestire in maniera ordinata e sistematica la produzione di documenti. %codice in futuro
+		 In particolare, un elemento sottoposto a configurazione ha una collocazione, una denominazione e uno stato definiti, oltre a norme e versionamento. 
+ 	
+	\subsubsection{Versionamento}
 		\paragraph{Tecnologie adottate}
 		\aCapo{}  
-			Per gestire il versionamento del codice sorgente, viene utilizzato il sistema di versionamento distribuito \emph{Git}, con un \emph{repository} remoto presente su \emph{GitHub}. %Aggiungere link ??
+			Per gestire il versionamento del codice sorgente, viene utilizzato il sistema di versionamento distribuito \emph{Git}, con un \emph{repository} remoto presente su \emph{GitHub}.
+			
+		\paragraph{Repository}
+		\aCapo{}
+			Il gruppo \teamname{} ha scelto di creare i seguenti \emph{repository} per il progetto:
+			\begin{itemize}
+				\item \href{https://github.com/Bug-s-Bunny-Team/docs}{\textbf{docs}}: per il versionamento dei documenti.
+			\end{itemize}
 
-		\paragraph{Struttura dei repository}
+		\paragraph{Struttura dei repository} %inserire struttura cartelle e disposizione file
 		\aCapo{}  
 		Il gruppo mantiene diversi repository separati, ognuno con struttura e fini propri.
 		Di base, ogni repository conterrà i seguenti file:
@@ -203,21 +214,19 @@
 						\item la verifica deve risultare più automatica possibile.
 					\end{itemize}
 				
-			\subsubsection{Attività}
-				\paragraph{Analisi}
-				\aCapo{}  
+				\subsubsection{Analisi}
 					Il processo di analisi si suddivide in Analisi statica e Analisi dinamica:
-						\subparagraph{Analisi statica}
+						\paragraph{Analisi statica}
 						\aCapo{}  
 							L'analisi statica permette di effettuare controlli su documenti e codice, verificando così l'assenza di errori e difetti. Esistono due metodologie per applicarla:
 								\begin{itemize}
 									\item \textbf{Walkthrough:} consiste nella lettura da parte del \emph{team} dell'intero documento o codice in cerca di anomalie. Viene applicata quando non si conosce in modo chiaro la sorgente dei difetti. Questa tecnica risulta molto onerosa in termini di efficienza ed efficacia.
 									\item \textbf{Inspection:} consiste in una lettura mirata del documento o del codice nei punti in cui si sa già che possano essere presenti degli errori. Risulta meno dispendiosa in termini di tempo ma richiede una buona conoscenza della situazione.
 								\end{itemize}
-						\subparagraph{Analisi dinamica}
+						\paragraph{Analisi dinamica}
 						\aCapo{}  
 							L'analisi dinamica prevede l'esecuzione del prodotto \emph{software} e la sua analisi tramite l'utilizzo di \emph{test} che verificano se il prodotto funziona o se vi sono presenti anomalie
-						\subparagraph{Test}
+						\paragraph{Test}
 						\aCapo{}  
 							L'attività di testing è la base dell'analisi dinamica. I \emph{test} permettono di individuare tutti i possibili errori che possono essere stati commessi e tutti i casi limite che possono risultare problematici. \newline
 							I test sono ben progettati e scritti se e solo se:
@@ -227,7 +236,7 @@
 									\item Forniscono informazioni tramite artefatti di vario genere, quali file di log;
 								\end{itemize}
 		
-		\subsection{Processo di validazione} % Terminare
+		\subsection{Processo di validazione}
 			\subsubsection{Scopo}
 				Il processo di \emph{validazione} prende in esame il prodotto ottenuto dalla fase di \emph{verifica} e stabilisce se esso rispetti i requisiti e le aspettative del \emph{committente}.
 			\subsubsection{Aspettative}
