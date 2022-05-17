@@ -1,3 +1,5 @@
+import os
+import sys
 from typing import Optional, List
 from pathlib import Path
 import datetime
@@ -49,6 +51,7 @@ class DocTemplate:
         template: Path,
         filename_template: str,
         path: Path,
+        create_dir: bool = False,
         extra_vars: Optional[dict] = None
     ):
         self.filename_template = filename_template
@@ -62,6 +65,7 @@ class DocTemplate:
                 self.variables.update(v)
         self.template = template
         self.path = path
+        self.create_dir = create_dir
 
     def ask_variables(self):
         _variables = {}
@@ -86,12 +90,31 @@ class DocTemplate:
         template = jinja_env.from_string(self.filename_template)
         return template.render(variables)
 
-    def create_new(self, variables: dict, filename: Optional[str] = None) -> Optional[Path]:
-        if not filename:
-            filename = self.render_filename(variables)
-        path = SRC_PATH / self.path / filename
+    def create_symlinks(self, path: Path):
+        links = ['assets', 'classes', 'common']
+        try:
+            for l in links:
+                src = f'../../{l}'
+                dest = path / l
+                os.symlink(src, dest)
+        except OSError as e:
+            print(e)
+            print('Are you on Windows? Try enabling Developer Mode or running this script with admin privileges')
+            sys.exit(1)
+
+    def create_new(self, variables: dict) -> Optional[Path]:
+        filename = self.render_filename(variables)
+
+        if self.create_dir:
+            path = SRC_PATH / self.path / slugify(self.variables['title']) / filename
+            path.parent.mkdir(parents=True, exist_ok=True)
+            self.create_symlinks(path.parent)
+        else:
+            path = SRC_PATH / self.path / filename
+
         if path.is_file():
             return None
+
         rendered = self.render_template(variables)
         with open(path, 'w') as f:
             f.write(rendered)
@@ -135,7 +158,8 @@ def main():
         template=Path(template['template']),
         filename_template=template['filename_template'],
         extra_vars=template.get('extra_vars'),
-        path=Path(template['path'])
+        path=Path(template['path']),
+        create_dir=template.get('create_dir', False)
     )
 
     variables = template.ask_variables()

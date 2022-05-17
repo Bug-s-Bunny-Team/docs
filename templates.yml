@@ -1,3 +1,12 @@
+- id: complex
+  show: false
+  create_dir: true
+  template: templates/complex.tex
+  filename_template: '[[ title | slugify ]].tex'
+  extra_vars:
+    - verificatore: 'Nome o comando Latex'
+    - approvatore: 'Nome o comando Latex'
+
 - id: verbale
   show: false
   template: templates/verbale.tex
@@ -6,6 +15,8 @@
     - timeend: '17.00'
     - verificatore: 'Nome o comando Latex'
     - approvatore: 'Nome o comando Latex'
+
+###############################################################
 
 - id: verbale_interno
   from: verbale
@@ -18,3 +29,17 @@
   title: Verbale esterno
   path: Esterni/Verbali
   filename_template: ve_[[ date | dateformat ]].tex
+
+- id: complex_interno
+  from: complex
+  title: Documento complesso interno
+  path: Interni/
+  extra_vars:
+    - uso: Interno
+
+- id: complex_esterno
+  from: complex
+  title: Documento complesso esterno
+  path: Esterni/
+  extra_vars:
+    - uso: Esterno
