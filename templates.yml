@@ -10,9 +10,11 @@
 - id: verbale_interno
   from: verbale
   title: Verbale interno
+  path: Interni/Verbali
   filename_template: vi_[[ date | dateformat ]].tex
-
+  
 - id: verbale_esterno
   from: verbale
   title: Verbale esterno
+  path: Esterni/Verbali
   filename_template: ve_[[ date | dateformat ]].tex

@@ -48,6 +48,7 @@ class DocTemplate:
         title: str,
         template: Path,
         filename_template: str,
+        path: Path,
         extra_vars: Optional[dict] = None
     ):
         self.filename_template = filename_template
@@ -60,6 +61,7 @@ class DocTemplate:
             for v in extra_vars:
                 self.variables.update(v)
         self.template = template
+        self.path = path
 
     def ask_variables(self):
         _variables = {}
@@ -87,7 +89,7 @@ class DocTemplate:
     def create_new(self, variables: dict, filename: Optional[str] = None) -> Optional[Path]:
         if not filename:
             filename = self.render_filename(variables)
-        path = SRC_PATH.joinpath(filename)
+        path = SRC_PATH / self.path / filename
         if path.is_file():
             return None
         rendered = self.render_template(variables)
@@ -132,7 +134,8 @@ def main():
         title=template['title'],
         template=Path(template['template']),
         filename_template=template['filename_template'],
-        extra_vars=template.get('extra_vars')
+        extra_vars=template.get('extra_vars'),
+        path=Path(template['path'])
     )
 
     variables = template.ask_variables()
