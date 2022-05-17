@@ -33,7 +33,7 @@ In alternativa allo script, si possono creare nuovi documenti prendendo spunto d
 | Cartella                | Contenuto                      |
 |-------------------------|--------------------------------|
 | [~~docs~~](docs/)           | ~~Documenti in formato *PDF*~~ (la cartella e il contenuto vengono mantenuti solo per retrocompatibilità)  |
-| [src](src/)             | Sorgenti dei documenti *Latex* |
+| [src](src/)             | Sorgenti dei documenti *Latex*, con suddivisione fra [interni](src/Interni/) ed [esterni](src/Esterni/) |
 | [templates](templates/) | Sorgenti dei template *Latex*  |
 
 ## Workflow consigliato
