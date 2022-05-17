@@ -33,12 +33,12 @@ In alternativa allo script, si possono creare nuovi documenti prendendo spunto d
 | Cartella                | Contenuto                      |
 |-------------------------|--------------------------------|
 | [~~docs~~](docs/)           | ~~Documenti in formato *PDF*~~ (la cartella e il contenuto vengono mantenuti solo per retrocompatibilità)  |
-| [src](src/)             | Sorgenti dei documenti *Latex* |
+| [src](src/)             | Sorgenti dei documenti *Latex*, con suddivisione fra [interni](src/Interni/) ed [esterni](src/Esterni/) |
 | [templates](templates/) | Sorgenti dei template *Latex*  |
 
 ## Workflow consigliato
 - Creare un branch specifico per il documento che si vuole creare. Nel caso dei verbali, ad esempio, è già disponibile il branch *verbali*.
-- Creare il documento nella cartella [src](src/), con il *wizard* sopra menzionato oppure manualmente. Nel caso di documenti complessi, che necessitano di una cartella a sè, ricordarsi di creare all'interno della cartella i link simbolici alle cartelle [assets](src/assets), [classes](src/classes) e [common](src/common) (se servono). Dentro la cartella del nuovo documento:
+- Creare il documento nella cartella [src](src/), con il *wizard* sopra menzionato oppure manualmente. Nel caso di documenti complessi, se non si utilizza il *wizard*, che necessitano di una cartella a sè, ricordarsi di creare all'interno della cartella i link simbolici alle cartelle [assets](src/assets), [classes](src/classes) e [common](src/common) (se servono). Dentro la cartella del nuovo documento:
     ```sh
     ln -s ../assets assets
     ln -s ../classes classes
