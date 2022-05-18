@@ -21,21 +21,23 @@
 
     \section*{Resoconto}
     Le predizioni che andremo a fare non avranno bisogno di essere precise al 100\% (ovviamente sarebbe impossibile).\\
-    Consiglio (dell’esperto) per apprendere gli strumenti di AWS: cercare di apprendere iterativamente, non tutto subito, perchè sono strumenti molto complessi.\\
+    Consiglio (dell'esperto) per apprendere gli strumenti di AWS: cercare di apprendere iterativamente, non tutto subito, perchè sono strumenti molto complessi.\\
 
     \section*{Rekognition}
-    Non necessita di esperienza nell’ambito Machine Learning per poterlo usare, è tutto già pronto (training e quant’altro) nel caso in cui si usino modelli già pronti.
+    Non necessita di esperienza nell'ambito Machine Learning per poterlo usare, è tutto già pronto (training e quant'altro) nel caso in cui si usino modelli già pronti.
     Se si vuole costruire un modello custom è richiesta tanta più esperienza quanto si vuole "deviare" dallo standard.\\
     Ha la caratteristica di scalare automaticamente (come lambda praticamente) e di integrarsi con tutti gli altri servizi di AWS.\\
     Fornisce molti tipi di analisi: oggetti e scene, comparazione e riconoscimento volti, ricerca volti in una collezione, riconoscimento celebrità, moderazione di immagini, ecc… \\
     È possibile fare binding per vari linguaggi, la demo sarà in Python (usando boto3).
 
     \subsection*{Labels}
-    I labels vengono forniti come risultato testo facilmente comprensibile, e hanno una struttura di massima simile a questa: \\
-    \textit{'Name' : 'Vehicle' 
-    'Confidence' : 0.something 
-    'Istances' : [ ]}  
-    \\
+    I labels vengono forniti come risultato testo facilmente comprensibile, e hanno una struttura di massima simile a questa:
+    \begin{lstlisting}
+    'Name' : 'Vehicle',
+    'Confidence' : 0.something,
+    'Istances' : [...]
+    \end{lstlisting}
+
     \textit{Istances} è vuoto se il label è
                         riguardante l'intera immagine, altrimenti 
                         contiene le coordinate del/dei bounding box.\\
@@ -72,16 +74,25 @@
     Codice S3 + Bytes $\rightarrow$ Arn è il codice univoco fornito da Amazon per identificare un nuovo modello (che idealmente ho fatto io). \\
     Quante immagini servono? Almeno 50 per ogni label, e devono essere quanto più diversificate possibile. \\ \\
     \textbf{S3 + Rekognition standard} \\
-    \textit{client = boto3.client('rekognition') \\
-    response = client.detect\_labels\{ \\
-                                Image = \{'S3 Object' : \{ 'Bucket' : bucket,\\
-                                                        'Name' : photo\}\},\\
-                                                    MaxLables = 10\} } \\ 
-    Posso settare un upper limit del numero di labels che voglio (MaxLabels), inoltre posso settare anche una MinConfidence per scremare risultati dei quali il modello non è molto sicuro.\\ \\
+    \begin{lstlisting}[language=Python]
+    client = boto3.client('rekognition')
+    response = client.detect_labels\{
+        Image = {'S3 Object' : {
+            'Bucket' : bucket,
+            'Name' : photo}
+        },
+        MaxLables = 10
+    }
+    \end{lstlisting}
+    Posso settare un upper limit del numero di labels che voglio (MaxLabels), inoltre posso settare anche una MinConfidence per scremare risultati dei quali il modello non è molto sicuro.
+    \newpage
+
     \textbf{Bytes + Rekognition} \\
-    \textit{import boto3 \\
-    client = boto3.client('rekognition') \\
-    response = client.detect\_labels(Image = \{'Bytes': image.read()\})}
+    \begin{lstlisting}[language=Python]
+    import boto3
+    client = boto3.client('rekognition')
+    response = client.detect_labels(Image = {'Bytes': image.read()})
+    \end{lstlisting}
 
     \subsection*{Console}
     Region $\rightarrow$ cerco di prendere un server che sia quanto più vicino possibile al mio S3. \\
@@ -97,15 +108,15 @@
     Le operazioni di AWS Rekognition possono analizzare immagini salvate in S3 Bucket oppure passate tramite bytes (e quindi salvate localmente).
 
     \subsection*{Best Practices}
-    Best practice: se l’immagine è già presente in S3, logicamente sarà più veloce di Bytes.
-    In caso contrario, nel quale non sia presente in S3, non è conveniente fare l’upload di quest’ultima e poi l’analisi, conviene utilizzare Bytes.
+    Best practice: se l'immagine è già presente in S3, logicamente sarà più veloce di Bytes.
+    In caso contrario, nel quale non sia presente in S3, non è conveniente fare l'upload di quest'ultima e poi l'analisi, conviene utilizzare Bytes.
     La Region Zone va scelta opportunamente in base alla locazione dei servizi che si andranno ad utilizzare per ottimizzare le prestazioni degli algoritmi.
     Infine sarebbe meglio spegnere il modello quando non è in uso.
 
     \section*{Comprehend}
     Lavora sui testi, in particolare permette di eseguire task di sentiment analisys tramite NLP.
-    Come rekognition, gestisce automaticamente le risorse e non necessita di conoscenze nell’area.
-    Ricerca all’interno di testi di: entità (nomi, oggetti, luoghi,…), key phrases (info rilevanti nel contesto del documento), dati identificativi detti PII (indirizzi, numeri di telefono,…), lingua dominante, sentiment (positivo, negativo, neutro o misto), sentiment per ogni entity, sintassi. \\
+    Come rekognition, gestisce automaticamente le risorse e non necessita di conoscenze nell'area.
+    Ricerca all'interno di testi di: entità (nomi, oggetti, luoghi,…), key phrases (info rilevanti nel contesto del documento), dati identificativi detti PII (indirizzi, numeri di telefono,…), lingua dominante, sentiment (positivo, negativo, neutro o misto), sentiment per ogni entity, sintassi. \\
     \textbf{Nota:} non tutte queste cose sono disponibili in tutte le lingue. \\
     Come per rekognition, permette di definire classificazioni e entity custom.
 
@@ -121,22 +132,22 @@
         \item Sincrono singolo documento
         \item Sincrono multi documento
         \item Asincrono in batch, con molti documenti
-        \item Sentiment analysis
     \end{itemize}
-    Quando viene fatta l’analisi, viene ritornata una risposta contenete la probabilità (sentiment score) per mixed, neutral, positive e negative. 
+    Quando viene fatta l'analisi, viene ritornata una risposta contenete la probabilità (sentiment score) per mixed, neutral, positive e negative. 
     La somma delle probabilità è (ovviamente) 1. \\
-    \textit{import boto3 \\
-    comprehend = boto3.client ( service\_name = 'comprehend', region\_name = 'region') \\
-    . \\
-    . \\
-    comprehend.detect\_sentiment (Text = text, LanguageCode = 'en') \\
-    Output: \\
-    "Sentiment score" : \{ \\
-                "Mixed" : [0,1] \\
-                . \\      
-                "Negative" : [0,1] \\
-                \} \\
-    "Sentiment" : "NEUTRAL" } \\
+    \begin{lstlisting}[language=Python]
+    import boto3
+    comprehend = boto3.client(service_name='comprehend', region_name='region')
+    comprehend.detect_sentiment(Text = text, LanguageCode = 'en')
+    \end{lstlisting}
+    Output:
+    \begin{lstlisting}[language=Python]
+    "Sentiment score": {
+        "Mixed" : [0,1]
+        "Negative" : [0,1]
+    }
+    "Sentiment" : "NEUTRAL"
+    \end{lstlisting}
     Dove Sentiment è il valore più alto tra tutti, ogni Sentiment ha valore tra 0 e 1, i quali sommati danno 1.\\
     
     \subsection*{Console}
