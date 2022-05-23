@@ -56,10 +56,120 @@ Il documento \AdR{} va steso in maniera efficace ed è molto importante in quant
 Ogni requisito può essere ricavato da diverse fonti:
 \begin{itemize}
 	\item \textbf{Capitolato d'Appalto}: attraverso la lettura del capitolato;
+	\item \textbf{Casi d'uso}: estrapolati da uno o più casi d'uso; 
 	\item \textbf{Verbali}: attraverso riunioni interne o incontri con l'azienda \emph{proponente}.
 \end{itemize}
 
-%Struttura documento analisi dei requissiti
+\paragraph*{Struttura}
+\aCapo
+La struttura del documento \AdR{} è la seguente:
+\begin{itemize}
+	\item \textbf{Introduzione}: contiene scopo del documento, introduzione al progetto e riferimenti;
+	\item \textbf{Descrizione}: contiene informazioni riguardanti il prodotto, la piattaforma d'esecuzione e la descrizione degli utenti interessati;
+	\item \textbf{Casi d'uso}: vengono identificati gli attori che interagiscono con le componenti del sistema e le interazioni tra sistema, attori ed elementi esterni;
+	\item \textbf{Requisiti}: rappresentati in tabelle che riportano le seguenti informazioni:
+		\begin{itemize}
+			\item \textbf{Codifica}: codice di riferimento del requisito;
+			\item \textbf{Classificazione}: obbligatorio o desiderabile;
+			\item \textbf{Descrizione}: breve descrizione del requisito;
+			\item \textbf{Fonti}: da dove è stato ricavato il requisito.
+		\end{itemize}
+\end{itemize}
+
+\paragraph*{Classificazione dei requisiti}
+\aCapo
+La classificazione requisiti verrà effettuata mediante la seguente codifica:\newline \newline
+\centerline{\textbf{R[Tipo][Numero]}}
+
+{
+	
+	\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
+	\renewcommand{\arraystretch}{1.5}
+	\setlength{\aboverulesep}{0pt}
+	\setlength{\belowrulesep}{0pt}
+	\rowcolors{2}{Arancione!10}{white}
+	\begin{longtable}{L{.15\freewidth} L{.6\freewidth} L{.080\freewidth}}
+		\toprule
+		\rowcolor{Arancione}
+		\textcolor{white}{\textbf{Nome}}&
+		\textcolor{white}{\textbf{Descrizione}}\\	
+		\toprule
+		\endhead
+		
+		\textbf{R} & Abbrevia "Requisito" \\
+		\multirow{4}*\textbf{Tipo}
+		&  \textbf{F}: requisito funzionale, ossia la definizione di una particolare caratteristica che deve essere inclusa nel software \\
+		\cline{2-2}
+		&\textbf{V}: requisito di vincolo che rappresenta dei vincoli avanzati dal \emph{proponente} \\
+		\cline{2-2} 
+		&\textbf{Q}: requisito di qualità, relativo alle regole di qualità del software (efficienza ed efficacia) \\
+		\cline{2-2} 
+		&\textbf{P}: requisito di prestazione, relativo alle prestazioni del software \\
+		\textbf{Numero} & Codice identificativo \\
+		\bottomrule
+		\caption*{Descrizione elementi che classificano i requisiti}
+	\end{longtable}
+}
+
+\paragraph*{Classificazione dei casi d'uso}
+\aCapo{}
+La codifica scelta per la rappresentazione dei casi d'uso è la seguente: \newline \newline
+\centerline{\textbf{UC[CodiceCaso][CodiceSottoCaso]}}
+
+{
+	
+	\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
+	\renewcommand{\arraystretch}{1.5}
+	\setlength{\aboverulesep}{0pt}
+	\setlength{\belowrulesep}{0pt}
+	\rowcolors{2}{Arancione!10}{white}
+	\begin{longtable}{L{.22\freewidth} L{.6\freewidth} L{.080\freewidth}}
+		\toprule
+		\rowcolor{Arancione}
+		\textcolor{white}{\textbf{Nome}}&
+		\textcolor{white}{\textbf{Descrizione}}\\	
+		\toprule
+		\endhead
+		
+		\textbf{UC} & Acronimo di "Use Case" \\
+		\textbf{CodiceCaso} & Identificativo del caso d'uso generico \\
+		\textbf{CodiceSottoCaso} & Identificativo opzionale per gli eventuali sotto casi del caso d'uso \\
+		
+		\bottomrule
+		\caption*{Descrizione elementi che classificano i casi d'uso}
+	\end{longtable}
+}
+
+\paragraph*{Struttura dei casi d'uso}
+{
+	
+	\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
+	\renewcommand{\arraystretch}{1.5}
+	\setlength{\aboverulesep}{0pt}
+	\setlength{\belowrulesep}{0pt}
+	\rowcolors{2}{Arancione!10}{white}
+	\begin{longtable}{L{.22\freewidth} L{.6\freewidth} L{.080\freewidth}}
+		\toprule
+		\rowcolor{Arancione}
+		\textcolor{white}{\textbf{Nome}}&
+		\textcolor{white}{\textbf{Descrizione}}\\	
+		\toprule
+		\endhead
+		
+		\textbf{Codifica} & Identificativo del caso d'uso generico \\
+		\textbf{Nome} & Nome descrittivo del caso d'uso \\
+		\textbf{Descrizione Grafica} & Realizzata con UML \\
+		\textbf{Attore} & Interagisce col sistema per il raggiungimento di un obiettivo \\
+		\textbf{Descrizione} & Breve descrizione dell'obiettivo \\
+		\textbf{Scenario} & Rappresentato attraverso elenco numerato degli eventi \\
+		\textbf{Estensioni} & Opzionali, per modellare scenari alternativi. Se si verifica, il caso d'uso ad essa collegata si interrompe \\
+		\textbf{Precondizioni} & Condizioni del sistema prima del verificarsi del caso d'uso \\
+		\textbf{Postcondizioni} & Condizioni del sistema dopo il verificarsi del caso d'uso \\
+		
+		\bottomrule
+		\caption*{Descrizione struttura dei casi d'uso}
+	\end{longtable}
+}
 
 \subsubsection{Progettazione} %Da implementare e finire descrizione
 L'attività di progettazione definisce le caratteristiche che il prodotto richiesto deve avere in modo da fornire una soluzione che soddisfa i requisiti specificati nell'\AdR{}.

@@ -80,7 +80,7 @@
 				\item \textbf{Approvazione}: Il documento viene approvato da un \emph{Approvatore} che ne consente il rilascio.
 			\end{itemize}
 	\subsubsection{Struttura dei documenti}
-		\paragraph{Frontespizio}
+		\paragraph*{Frontespizio}
 		\aCapo{}    
 			La prima pagina di ogni documento sarà così strutturata:
 				\begin{itemize}
@@ -91,7 +91,7 @@
 					\item \textbf{Informazioni del documento}: Redattore, Verificatore, Approvatore ed Uso(interno od esterno).
 				\end{itemize}
 			
-		\paragraph{Registro delle modifiche}
+		\paragraph*{Registro delle modifiche}
 		\aCapo{}  
 			Ogni documento formale presenta subito dopo il frontespizio il registro modifiche. 
 			Esso è una tabella che traccia tutte le modifiche significative apportate al documento durante il suo ciclo di vita. Ogni voce della tabella riporta:
@@ -103,7 +103,7 @@
 					\item \textbf{Descrizione}: sintetica descrizione delle modifiche apportate;
 				\end{itemize}
 	
-		\paragraph{Corpo del documento}      
+		\paragraph*{Corpo del documento}      
 		\aCapo{}   
 			Tutte le pagine del corpo del documento contengono un intestazione composta da:
 				\begin{itemize}
@@ -112,7 +112,7 @@
 				\end{itemize}
 			e un piè di pagina al cui centro c'è la pagina corrente del documento.
 			
-		\paragraph{Verbali} %spiegare nomenclatura
+		\paragraph*{Verbali} %spiegare nomenclatura
 		\aCapo{}  
 			I verbali, sia interni che esterni, presentano una struttura fissa e a differenza degli altri documenti, essendo informali, non sono soggetti a versionamento e non riportano il registro delle modifiche.
 			La struttura sarà quindi la seguente:
@@ -126,10 +126,10 @@
 				\end{itemize}
 	
 	\subsubsection{Norme tipografiche}
-		\paragraph{Convenzioni di denominazione}   % serve ?
+		\paragraph*{Convenzioni di denominazione}   % serve ?
 		\aCapo{}  
 			I nomi dei file relativi alla documentazione presentano l'iniziale della prime e terza parola che lo compone in maiuscolo e presenta separazione tra le parole. 
-		\paragraph{Stili di testo} % Ha senso?
+		\paragraph*{Stili di testo} % Ha senso?
 			\begin{itemize}
 				\item \textbf{Grassetto}: viene usato nei titoli delle sezioni e dei paragrafi, per enfatizzare parole, per indicare gli elementi di un elenco puntato;
 				\item \textbf{Corsivo}: viene usato per i nomi propri (membri del gruppo,  proponente e committenti), per citare il nome di un documento e per i termini che fanno parte del glossario
@@ -150,18 +150,18 @@
 		 In particolare, un elemento sottoposto a configurazione ha una collocazione, una denominazione e uno stato definiti, oltre a norme e versionamento. 
  	
 	\subsubsection{Versionamento}
-		\paragraph{Tecnologie adottate}
+		\paragraph*{Tecnologie adottate}
 		\aCapo{}  
 			Per gestire il versionamento del codice sorgente, viene utilizzato il sistema di versionamento distribuito \emph{Git}, con un \emph{repository} remoto presente su \emph{GitHub}.
 			
-		\paragraph{Repository}
+		\paragraph*{Repository}
 		\aCapo{}
 			Il gruppo \teamname{} ha scelto di creare i seguenti \emph{repository} per il progetto:
 			\begin{itemize}
 				\item \href{https://github.com/Bug-s-Bunny-Team/docs}{\textbf{docs}}: per il versionamento dei documenti.
 			\end{itemize}
 
-		\paragraph{Struttura dei repository} %inserire struttura cartelle e disposizione file
+		\paragraph*{Struttura dei repository} %inserire struttura cartelle e disposizione file
 		\aCapo{}  
 		Il gruppo mantiene diversi repository separati, ognuno con struttura e fini propri.
 		Di base, ogni repository conterrà i seguenti file:
@@ -171,7 +171,7 @@
 			\item \verb#.editorconfig#: descrive regole di formattazione, quali indentazione e stile dei fine riga. Viene utilizzato dai formattatori automatici degli \textit{IDE} ed editor di testo. Segue il formato \href{https://editorconfig.org/}{\textit{EditorConfig}}.
 		\end{itemize}
 
-		\paragraph{Norme di branching}
+		\paragraph*{Norme di branching}
 		\aCapo{}  
 			Il \emph{repository} inerente alla documentazione sarà composto da diversi \textit{branch}:
 			\begin{itemize}
@@ -216,17 +216,17 @@
 				
 				\subsubsection{Analisi}
 					Il processo di analisi si suddivide in Analisi statica e Analisi dinamica:
-						\paragraph{Analisi statica}
+						\paragraph*{Analisi statica}
 						\aCapo{}  
 							L'analisi statica permette di effettuare controlli su documenti e codice, verificando così l'assenza di errori e difetti. Esistono due metodologie per applicarla:
 								\begin{itemize}
 									\item \textbf{Walkthrough:} consiste nella lettura da parte del \emph{team} dell'intero documento o codice in cerca di anomalie. Viene applicata quando non si conosce in modo chiaro la sorgente dei difetti. Questa tecnica risulta molto onerosa in termini di efficienza ed efficacia.
 									\item \textbf{Inspection:} consiste in una lettura mirata del documento o del codice nei punti in cui si sa già che possano essere presenti degli errori. Risulta meno dispendiosa in termini di tempo ma richiede una buona conoscenza della situazione.
 								\end{itemize}
-						\paragraph{Analisi dinamica}
+						\paragraph*{Analisi dinamica}
 						\aCapo{}  
 							L'analisi dinamica prevede l'esecuzione del prodotto \emph{software} e la sua analisi tramite l'utilizzo di \emph{test} che verificano se il prodotto funziona o se vi sono presenti anomalie
-						\paragraph{Test}
+						\paragraph*{Test}
 						\aCapo{}  
 							L'attività di testing è la base dell'analisi dinamica. I \emph{test} permettono di individuare tutti i possibili errori che possono essere stati commessi e tutti i casi limite che possono risultare problematici. \newline
 							I test sono ben progettati e scritti se e solo se:
