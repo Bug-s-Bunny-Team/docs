@@ -15,6 +15,14 @@
 \RequirePackage{float}
 \RequirePackage{array}
 \RequirePackage{listings}   % formattazione e highlight codice
+\RequirePackage[hidelinks]{hyperref}
+
+% colorazione e sottolineatura url
+% \hypersetup{
+%     colorlinks=false,
+% 	urlbordercolor=Arancione,
+% 	pdfborderstyle={/S/U/W 1}
+% }
 
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5} 
@@ -50,3 +58,5 @@
     tabsize=2
 }
 \lstset{style=style}
+
+\renewcommand*\contentsname{Indice}

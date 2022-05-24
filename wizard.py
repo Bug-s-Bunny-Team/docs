@@ -106,7 +106,7 @@ class DocTemplate:
         filename = self.render_filename(variables)
 
         if self.create_dir:
-            path = SRC_PATH / self.path / slugify(self.variables['title']) / filename
+            path = SRC_PATH / self.path / slugify(variables['title']) / filename
             path.parent.mkdir(parents=True, exist_ok=True)
             self.create_symlinks(path.parent)
         else:
