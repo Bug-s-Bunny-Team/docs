@@ -3,6 +3,7 @@
 \LoadClass[12pt]{article}
 
 \RequirePackage[utf8]{inputenc}
+\RequirePackage[italian]{babel}	%rende figure -> figura o table -> tabella; per i caption
 \RequirePackage[a4paper,margin=2.5cm,headheight=32pt]{geometry}
 %\RequirePackage[sfdefault]{quattrocento}
 \RequirePackage{graphicx}
@@ -12,7 +13,7 @@
 \RequirePackage{longtable} %una tabella può continuare su più pagine
 \RequirePackage{booktabs} %toprule e midrule usati al posto di hline
 \RequirePackage{multirow} %utile per visualizzare una cella su più righe
-\RequirePackage{float}
+\RequirePackage{float} %per poter usare l'opzione [H] nelle figure
 \RequirePackage{array}
 
 \setcounter{secnumdepth}{5}
