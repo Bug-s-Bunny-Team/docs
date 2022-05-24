@@ -7,7 +7,7 @@ come delle potenziali funzionalità dell'applicazione.
     \item \textbf{Utente non registrato}: 
     è un utente che non ha ancora effettuato la registrazione presso l'applicativo. 
     Non possiede credenziali per effettuare l'autenticazione presso la piattaforma e non ha accesso a nessuna funzionalità dell'applicazione  
-    \item \textbf{Utente non autenticato}
+    \item \textbf{Utente non autenticato}: 
     è un utente che ancora deve autenticarsi nell'applicazione. Può essere in possesso di credenziali di accesso oppure no.
     \item \textbf{Utente autenticato}
     è un utente che ha effettuato l'autenticazione della piattaforma ed ha accesso alle funzionalità di essa.
@@ -40,10 +40,12 @@ come delle potenziali funzionalità dell'applicazione.
         \item l’utente inserisce una password \textbf{(UC 1.3)};
         \item l’utente conferma i dati inseriti per proseguire.
     \end{enumerate}
-    \item \textbf{Estensioni}:\\
-        - l’utente inserisce una mail non valida  \textbf{(UC 2)};\\
-        - l’utente inserisce il nome utente non valido \textbf{(UC 3)};\\
-        - l’utente inserisce una password non valida \textbf{(UC 4)};\\
+    \item \textbf{Estensioni}: 
+        \begin{enumerate}
+            \item l’utente inserisce una mail non valida  \textbf{(UC 2)};
+            \item l’utente inserisce il nome utente non valido \textbf{(UC 3)};
+            \item l’utente inserisce una password non valida \textbf{(UC 4)};
+        \end{enumerate}
 
     \item \textbf{Precondizioni}: l’utente non è ancora registrato nel sistema.
     \item \textbf{Postcondizioni}: l’utente è registrato nel sistema.
@@ -72,7 +74,6 @@ come delle potenziali funzionalità dell'applicazione.
         \item l’utente seleziona il campo relativo il nuovo nome utente;
         \item l’utente crea il proprio nuovo nome utente.
     \end{enumerate}
-
     \item \textbf{Precondizioni}: l’utente effettua l’attività di registrazione.
     \item \textbf{Postcondizioni}: l’utente ha compilato il campo relativo il nuovo nome utente.
 \end{itemize}
@@ -102,7 +103,7 @@ come delle potenziali funzionalità dell'applicazione.
 \begin{itemize}
     \item \textbf{Attore}: utente non registrato.
     \item \textbf{Descrizione}: l’utente deve essere notificato con un errore nel caso in cui le informazioni inserite nel campo email siano invalide.
-    \item \textbf{Scenario}: L’utente visualizza un messaggio di errore.
+    \item \textbf{Scenario}: l’utente visualizza un messaggio di errore.
     \item \textbf{Precondizioni}: l’utente inserisce una mail non valida nell'apposito input box.
     \item \textbf{Postcondizioni}: l’utente riceve il messaggio di errore.
 \end{itemize}
@@ -111,7 +112,7 @@ come delle potenziali funzionalità dell'applicazione.
 \begin{itemize}
     \item \textbf{Attore}: utente non registrato.
     \item \textbf{Descrizione}: l’utente deve essere notificato con un errore nel caso in cui venga inserito un nome utente non valido.
-    \item \textbf{Scenario}: L’utente visualizza un messaggio di errore.
+    \item \textbf{Scenario}: l’utente visualizza un messaggio di errore.
     \item \textbf{Precondizioni}: l’utente inserisce un nome utente non valido nell'apposito input box.
     \item \textbf{Postcondizioni}: l’utente riceve il messaggio di errore.
 \end{itemize}
@@ -120,7 +121,7 @@ come delle potenziali funzionalità dell'applicazione.
 \begin{itemize}
     \item \textbf{Attore}: utente non registrato.
     \item \textbf{Descrizione}: l’utente deve essere notificato con un errore nel caso in cui inserisca una password non valida durante la fase di registrazione.
-    \item \textbf{Scenario}: L’utente visualizza un messaggio di errore.
+    \item \textbf{Scenario}: l’utente visualizza un messaggio di errore.
     \item \textbf{Precondizioni}: l’utente inserisce una password non valida nell'apposito input box.
     \item \textbf{Postcondizioni}: l’utente riceve il messaggio di errore.
 \end{itemize}
@@ -145,9 +146,11 @@ come delle potenziali funzionalità dell'applicazione.
         \item l’utente decide se memorizzare la sessione \textbf{(UC 5.3 )};
         \item l’utente clicca il pulsante di conferma per proseguire.
     \end{enumerate}
-    \item \textbf{Estensioni}:\\
-        - l’utente inserisce il nome utente non valido e viene segnalato con un messaggio d’errore \textbf{(UC 6)};\\
-        - l’utente inserisce la password non valida e viene segnalato con un messaggio d’errore \textbf{(UC 7)};\\
+    \item \textbf{Estensioni}:
+        \begin{enumerate}
+            \item l’utente inserisce il nome utente non valido e viene segnalato con un messaggio d’errore \textbf{(UC 6)};
+            \item l’utente inserisce la password non valida e viene segnalato con un messaggio d’errore \textbf{(UC 7)};
+        \end{enumerate}
 
     \item \textbf{Precondizioni}: l’utente non è ancora autenticato.
     \item \textbf{Postcondizioni}: l’utente si è autenticato al sistema.
@@ -168,7 +171,6 @@ come delle potenziali funzionalità dell'applicazione.
         \item l’utente seleziona il campo relativo al nome utente;
         \item l’utente inserisce il nome utente.
     \end{enumerate}
-
     \item \textbf{Precondizioni}: l’utente effettua l’attività di autenticazione.
     \item \textbf{Postcondizioni}: l’utente ha compilato il campo relativo il nome utente.
 \end{itemize}
@@ -287,6 +289,7 @@ come delle potenziali funzionalità dell'applicazione.
 
     \item \textbf{Precondizioni}: l’utente svolge la sessione di modifica password.
     \item \textbf{Postcondizioni}: l’utente ha inserito la propria password attuale.
+
 \end{itemize}
 
 \subsubsection{UC 10.2 - Inserimento nuova password}
@@ -303,7 +306,7 @@ come delle potenziali funzionalità dell'applicazione.
     \item \textbf{Postcondizioni}: l’utente ha inserito la nuova password.
 \end{itemize}
 
-\subsubsection{UC 10.3 Inserimento ripetizione nuova password}
+\subsubsection{UC 10.3 - Inserimento ripetizione nuova password}
 \begin{itemize}
     \item \textbf{Attore}: l’utente è autenticato.
     \item \textbf{Descrizione}: durante l’attività di modifica password l’utente deve poter inserire la ripetizione della nuova password.
@@ -342,6 +345,7 @@ come delle potenziali funzionalità dell'applicazione.
     \item \textbf{Scenario}: l’utente legge un messaggio d’errore. 
     \item \textbf{Precondizioni}: l’utente svolge la sessione di modifica password e la nuova password inserita non è valida.
     \item \textbf{Postcondizioni}: l’utente ha ricevuto un messaggio d’errore.
+
 \end{itemize}
 
 \subsection{UC 13 - Visualizzazione errore di ripetizione nuova password}
@@ -401,6 +405,7 @@ come delle potenziali funzionalità dell'applicazione.
 
     \item \textbf{Precondizioni}: %da inserire.
     \item \textbf{Postcondizioni}: %da inserire.
+
 \end{itemize}
 
 \subsubsection{UC 14.3 - Visualizzazione mappa personalizzata}
@@ -432,7 +437,6 @@ come delle potenziali funzionalità dell'applicazione.
 \end{itemize}
 
 \subsection{UC 15 - Inserimento profili social da seguire}
-
 \begin{figure}[!h]
     \includegraphics[width=10cm]{sezioni/Images/UC15.png}
     \centering
@@ -554,6 +558,7 @@ come delle potenziali funzionalità dell'applicazione.
     \item \textbf{Scenario}: l’utente sceglie mappa come vista predefinita.
     \item \textbf{Precondizioni}: l’utente vuole scegliere mappa come vista predefinita.
     \item \textbf{Postcondizioni}: mappa viene impostata come vista predefinita.
+
 \end{itemize}
 
 \subsubsection{UC 20.2 - Impostazione lista come vista predefinita}
