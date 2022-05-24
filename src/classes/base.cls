@@ -15,6 +15,14 @@
 \RequirePackage{multirow} %utile per visualizzare una cella su più righe
 \RequirePackage{float} %per poter usare l'opzione [H] nelle figure
 \RequirePackage{array}
+\RequirePackage[hidelinks]{hyperref}
+
+% colorazione e sottolineatura url
+% \hypersetup{
+%     colorlinks=false,
+% 	urlbordercolor=Arancione,
+% 	pdfborderstyle={/S/U/W 1}
+% }
 
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5} 
@@ -29,3 +37,5 @@
 \newcommand*{\verificatore}[1]{\gdef\@verificatore{#1}}
 \newcommand*{\approvatore}[1]{\gdef\@approvatore{#1}}
 \newcommand*{\uso}[1]{\gdef\@uso{#1}}
+
+\renewcommand*\contentsname{Indice}
