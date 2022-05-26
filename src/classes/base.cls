@@ -15,6 +15,7 @@
 \RequirePackage{multirow} %utile per visualizzare una cella su più righe
 \RequirePackage{float} %per poter usare l'opzione [H] nelle figure
 \RequirePackage{array}
+\RequirePackage{listings}   % formattazione e highlight codice
 \RequirePackage[hidelinks]{hyperref}
 
 % colorazione e sottolineatura url
@@ -37,5 +38,26 @@
 \newcommand*{\verificatore}[1]{\gdef\@verificatore{#1}}
 \newcommand*{\approvatore}[1]{\gdef\@approvatore{#1}}
 \newcommand*{\uso}[1]{\gdef\@uso{#1}}
+
+% creazione e applicazione stile per formattazione e highlight codice
+\lstdefinestyle{style}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=false,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=style}
 
 \renewcommand*\contentsname{Indice}
