@@ -153,3 +153,65 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       \end{longtable}
 }
 \subsection{Tracciamento}
+\subsubsection{Fonte - Requisiti}
+{
+      \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
+      \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
+
+      %\newlength{\freewidth}
+      \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+      \renewcommand{\arraystretch}{1.5}
+      \centering
+      \setlength{\aboverulesep}{0pt}
+      \setlength{\belowrulesep}{0pt}
+      \rowcolors{2}{Arancione!10}{white}
+      \begin{longtable}{C{.257\freewidth} C{.257\freewidth} C{.257\freewidth} C{.257\freewidth}}
+         \toprule
+      \rowcolor{Arancione}
+      \textcolor{white}{\textbf{Fonte}}&
+      \textcolor{white}{\textbf{Requisiti}}\\
+      \toprule
+      \endhead
+      
+      Capitolato & RV1, RV2, RV3, RV4, RV5, RV6, RV7, RV8, RV9, RV10,
+                   RQ3, RQ4, RQ5, RQ6, RQ7, RQ8, RQ9, RQ10,
+                   RP2\\
+      UC1 & RF1\\
+      UC1.1 & RF4\\
+      UC1.2 & RF5\\
+      UC1.3 & RF6\\
+      %UC2 & BOH\\
+      %UC3 & BOH\\
+      %UC4 & BOH\\	
+      UC5 & RF2, RF7, RF8\\
+      UC5.1 & RF7\\
+      UC5.2 & RF8\\
+      %UC5.3 & BOH\\
+      %UC6 & BOH\\
+      UC7 & RF13\\
+      %UC8 & BOH\\
+      UC9 & RF3\\
+      UC10 & RF9\\
+      %UC10.1 & BOH\\
+      %UC10.2 & BOH\\
+      %UC10.3 & BOH\\
+      %UC10.4 & BOH\\
+      UC11 & RF10\\
+      UC12 & RF11\\
+      UC13 & RF12\\
+      UC14 & RF14, RF15, RF16, RF17\\
+      UC14.1 & RF14, RF15\\
+      UC14.2 & RF14, RF15\\
+      UC14.3 & RF14, RF17\\
+      UC14.4 & RF14, RF16\\
+      UC15 & RF18\\
+      UC16 & RF19\\
+      UC17 & RF20\\
+      UC18 & RF21\\
+      UC19 & RF22\\
+      UC20 & RF23, RF24, RF25\\
+      UC20.1 & RF24\\
+      UC20.2 & RF25\\		
+      \bottomrule
+      \end{longtable}
+}
