@@ -1,6 +1,4 @@
-Il progetto è partizionato in 8 incrementi, ognuno dei quali viene associato a una milestone e prevede dei risultati attesi, in modo da poter confrontare con quanto ipotizzato. 
-Ogni incremento  serve a creare una baseline per quello successivo. 
-Ogni revisione, tre totali, comprende degli incrementi che vengono suddivisi nel modo seguente:
+Il progetto viene partizionato in 8 incrementi, raggruppati dentro le 3 fasi corrispondenti alle revisioni obbligatorie. Ogni incremento funge da baseline per quello successivo. Fasi ed incrementi vengono descritti in dettaglio nelle sezioni a seguire.
 \begin{enumerate}
     \item Requirements and Technology Baseline:
     \begin{itemize} 
@@ -21,32 +19,110 @@ Ogni revisione, tre totali, comprende degli incrementi che vengono suddivisi nel
     \end{itemize}
 \end{enumerate}
 
-\subsection{Periodi} 
+\subsection{Fasi} 
 {    
-    \textbf{Periodo 1: Candidatura} \\
-    \textbf{Inizio:} 4 Marzo \\
-    \textbf{Fine:} 10 Aprile \\
-    In questo periodo è stato scelto il nome e il logo del gruppo ed è stata creata la mail di riferimento. 
-    Maggior tempo è stato dedicato alla scelta del capitolato, individuando le preferenze di ogni membro. 
-    Sono stati svolti due incontri esterni online con 2 aziende, per poi scegliere definitivamente la nostra preferenza. 
-    Successivamente è stata presentata una candidatura per tale capitolato, la quale poi è stata valutata positivamente.
-    Stesura dei seguenti documenti, da consegnare per la candidatura:
-    \begin{itemize}
-        \item Lettera di Presentazione
-        \item Valutazione dei Capitolati
-    \end{itemize} 
-    \textbf{Periodo 2: Preparazione RTB} \\
+    \subsubsection{Requirements and Technology Baseline} 
+    {
     \textbf{Inizio:} 11 Aprile \\
-    \textbf{Fine:} revisione RTB - data \\
-    In questa prima fase il gruppo, appena formato, definisce il proprio way of working, stendendo tali documenti:
-    \begin{itemize} 
-        \item Norme di Progetto: (vengono specificate le procedure e gli strumenti per i processi e le metriche di qualità)
-        \item Piano di Progetto: (contiene i rischi riscontrabili nel gruppo, il modello di sviluppo che verrà utilizzato, i costi attesi e osservati e gli obiettivi che sono stati raggiungi e che devono essere ancora completati )
-        \item Piano di Qualifica: (contiene la specifica e la misurazione degli obiettivi quantitativi di qualità di prodotto e di processo, con eventuali proposte di miglioramento)
-        \item Analisi dei Requisiti
-        \item Glossario
+    \textbf{Fine:} \\ \\ %data da inserire
+    \textbf{Incremento 1 - Baseline dei documenti} \\ 
+    In questo primo incremento, il gruppo appena formato, definisce il proprio way of working, stendendo tali documenti:
+    \begin{itemize}
+        \item Norme di Progetto:
+            \begin{itemize}
+                \item strumenti per la documentazione: è necessario per poter proseguire con gli altri documenti
+                \item vengono specificate i processi: primari, di supporto e organizzativi 
+            \end{itemize}
+        Entrambe vengono svolte dagli Amministratori.
+        \item Piano di Progetto: 
+            \begin{itemize}
+                \item analisi dei rischi riscontrabili nel gruppo
+                \item il modello di sviluppo che verrà utilizzato
+                \item pianificazione generale delle attività: viene fatta una stima dei costi attesi e osservati
+                \item descrizione degli obiettivi che sono stati raggiungi e che devono essere ancora completati     
+            \end{itemize}
+        \item Piano di Qualifica: 
+            \begin{itemize}
+                \item specifica e misurazione degli obiettivi quantitativi di qualità di prodotto e di processo
+                \item verifica e approvazione: svolte dai Verificatori e Responsabili
+            \end{itemize}
+        \item Glossario: 
+            \begin{itemize}
+                \item contiene le definizioni di alcune parole che si trovano nei documenti, dunque sarà aggiornato molto spesso.
+            \end{itemize}
+    \end{itemize}
+    \textbf{Incremento 2 - Baseline dei requisiti} \\
+    Per questo incremento, il gruppo si occupa nella stesura dei seguenti documenti:
+    \begin{itemize}
+        \item Analisi dei Requisiti:
+            \begin{itemize}
+                \item Casi d’uso: analisti
+                \item Acquisizione dei Requisiti: formulazione in linguaggio naturale dei requisiti primari derivanti da capitolato e incontri con il proponente (analisti)
+                \item Incontro con l’azienda proponente: discussione dei requisiti acquisiti con le aspettative del proponente, acquisizione di nuovi requisiti discussi con l’azienda
+                \item Specifica dei requisiti: traduzione in linguaggio formale e redazione dei requisiti all’interno del documenti AdR (analisti)
+                \item Verifica: verifica e approvazione dei requisiti (verificatori)
+            \end{itemize}
+    \item Piano di Progetto: 
+        \begin{itemize}
+            \item Estensione della Pianificazione: grazie ai nuovi requisiti la pianificazione può essere aggiustata e migliorata
+        \end{itemize} 
+    \end{itemize}
+    \textbf{Incremento 3 - Baseline delle tecnologie} \\
+    Il gruppo produce un PoC che dimostra la fattibilità del prodotto concordato con gli stakeholders. \\
+    \begin{itemize}
+        \item Documento (interno) di specifica e progettazione del PoC:
+            \begin{itemize}
+                \item scelta delle tecnologie: rapido resoconto delle tecnologie testate con motivazione della scelta delle stesse, svolto dai Progettisti 
+                \item progettazione PoC: descrizione generale del PoC, svolto dai progettisti
+                \item verifica e approvazione: a carico dei Verificatori e del Responsabile
+            \end{itemize}
+        \item PoC: 
+            \begin{itemize}
+                \item Formazione: 
+                    \begin{itemize}
+                        \item Studio delle tecnologie scelte, tramite documentazione e risorse fornite dall’azienda Zero12
+                    \end{itemize}
+                \item Implementazione: 
+                    \begin{itemize}
+                        \item Codifica prototipo funzionante delle componenti software principali
+                        \item Uso di dati fittizi per la dimostrazione del funzionamento del sistema composto dai componenti codificati
+                    \end{itemize}
+                \item Verifica: a carico dei Verificatori e del Responsabile
+            \end{itemize}
+    \end{itemize}
+    
+    \subsubsection{Product Baseline} {
+    \textbf{Incremento 4 - Baseline architetturale} \\
+    I componenti si occupano della stesura della Specifica Architetturale: 
+    \begin{itemize}
+        \item contiene i diagrammi delle classi e di sequenza e avviene una contestualizzazione al prodotto rispetto ai design pattern che vengono adottati (backend).
+        \item struttura e funzionamento del crawler (backend)
+        \item struttura pipeline di analisi dati tramite servizi AWS (backend)
+        \item struttura dell'interfaccia della webapp (frontend)
+    \end{itemize}
+    Inoltre vengono aggiornati e redatti i documenti precedenti e la verifica è a carico dei Verificatori e del Responsabile.\\ \\
+    \textbf{Incremento 5 - Baseline del prodotto} \\
+    Questo incremento è fondamentale per la codifica del prodotto e si concentra sui seguenti punti:
+    \begin{itemize}
+        \item Implementazione dell'interfaccia: codifica di fronte-end e back-end, verifica e approvazione 
+        \item Manuale d'uso: stesura a carico degli Amministratori
+    \end{itemize}
+    }
+
+    \subsubsection{Customer Acceptance} {
+    \textbf{Incremento 6 - Baseline funzionalità obbligatorie} \\
+    Questo incremento include tutti i requisiti obbligatori che il sistema deve soddisfare.\\ \\
+    %non so che altro scrivere
+    \textbf{Incremento 7 - Baseline funzionalità desiderabili} \\ 
+    Questo incremento è relativo all'implementazione dei requisiti desiderabili e opzionali. Ogni requisito che viene aggiunto deve essere incrementato nella Specifica Architetturale e nella definizione dei vari test che si eseguono. \\ \\
+    \textbf{Incremento 8 - Test} \\ 
+    Il gruppo si occupa di eseguire i  seguenti test  per correggere bug ed errori e per permettere una buona esecuzione della piattaforma. Vengono eseguiti:
+    \begin{itemize}
+        \item Collaudo o test di accettazione 
+        \item Test di sistema per accertare la copertura dei requisiti
+        \item Test di integrazione per verificare il sistema in modo incrementale
+        \item Test di unità per verificare la correttezza del codice
     \end{itemize} 
-    Si precisa che tali documenti vengono costantemente aggiornati e modificati, ovvero redatti in maniera just in time, 
-    questo perché si cerca di renderli migliori e più efficaci possibili. 
-    Viene inoltre realizzato il Proof of Concept.
+    }
+
 }
