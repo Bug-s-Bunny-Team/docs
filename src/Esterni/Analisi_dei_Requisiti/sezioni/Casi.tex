@@ -50,6 +50,12 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
     \item \textbf{Postcondizioni}: l'utente è registrato nel sistema.
 \end{itemize}
 
+\begin{figure}[!h]
+    \includegraphics[width=15cm]{sezioni/Images/UC1_s.png}
+    \centering
+    \caption{Registrazione manuale}
+\end{figure}
+
 \subsubsection{UC1.1 - Inserimento email}
 \begin{itemize}
     \item \textbf{Attore}: utente non registrato.
@@ -90,13 +96,6 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
     \item \textbf{Precondizioni}: l'utente effettua l'attività di registrazione.
     \item \textbf{Postcondizioni}: l'utente ha compilato il campo relativo la nuova password.
 \end{itemize}
-
-
-\begin{figure}[!h]
-    \includegraphics[width=15cm]{sezioni/Images/UC1_s.png}
-    \centering
-    \caption{Registrazione manuale}
-\end{figure}
 
 \subsection{UC2 - Visualizzazione errore di inserimento email in registrazione}
 \begin{itemize}
@@ -245,7 +244,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
 
 \subsection{UC10 - Modifica password}
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \includegraphics[width=15cm]{sezioni/Images/UC10.png}
     \centering
     \caption{Modifica password}
@@ -261,10 +260,12 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
         \item Conferma nuova password;
         \item Conferma modifica password.
     \end{enumerate}
-    \item \textbf{Estensioni}:\\
-        - l'utente inserisce l'attuale password e non coincide con quella attuale, viene visualizzato un messaggio di errore \textbf{(UC11)};\\
-        - l'utente inserisce la nuova password ma essa non rispetta determinate condizioni quindi viene visualizzato un messaggio di errore \textbf{(UC12)};\\
-        - l'utente non inserisce in modo corretto la nuova password nella conferma della stessa, quindi viene visualizzato un messaggio di errore \textbf{(UC13)};\\
+    \textbf{Estensioni}:
+    \begin{enumerate}
+        \item l'utente inserisce l'attuale password e non coincide con quella attuale, viene visualizzato un messaggio di errore \textbf{(UC11)};
+        \item l'utente inserisce la nuova password ma essa non rispetta determinate condizioni quindi viene visualizzato un messaggio di errore \textbf{(UC12)};
+        \item l'utente non inserisce in modo corretto la nuova password nella conferma della stessa, quindi viene visualizzato un messaggio di errore \textbf{(UC13)};
+    \end{enumerate}
 
     \item \textbf{Precondizioni}: l'utente è autenticato con una determinata password.
     \item \textbf{Postcondizioni}: l'utente è autenticato con una nuova password.
@@ -358,7 +359,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
 
 \subsection{UC14 - Visualizzazione guida}
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \includegraphics[width=10cm]{sezioni/Images/UC14.png}
     \centering
     \caption{Visualizzazione guida}
@@ -372,7 +373,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
     \item \textbf{Postcondizioni}: l'utente visualizza la guida.
 \end{itemize}
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \includegraphics[width=13cm]{sezioni/Images/UC14_s.png}
     \centering
     \caption{Visualizzazione guida}
@@ -388,8 +389,8 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
         \item l'utente visualizza la mappa globale nella home.
     \end{enumerate}
 
-    \item \textbf{Precondizioni}: %da inserire.
-    \item \textbf{Postcondizioni}: %da inserire.
+    \item \textbf{Precondizioni}: l'utente vuole visualizzare la mappa globale.
+    \item \textbf{Postcondizioni}: l'utente visualizza la mappa globale.
 \end{itemize}
 
 \subsubsection{UC14.2 - Visualizzazione lista globale}
@@ -402,9 +403,8 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
         \item l'utente visualizza la lista globale nella home.
     \end{enumerate}
 
-    \item \textbf{Precondizioni}: %da inserire.
-    \item \textbf{Postcondizioni}: %da inserire.
-
+    \item \textbf{Precondizioni}: l'utente vuole visualizzare la lista globale.
+    \item \textbf{Postcondizioni}: l'utente visualizza la lista globale.
 \end{itemize}
 
 \subsubsection{UC14.3 - Visualizzazione mappa personalizzata}
@@ -417,8 +417,8 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
         \item l'utente visualizza la mappa personalizzata nella home.
     \end{enumerate}
 
-    \item \textbf{Precondizioni}: %da inserire.
-    \item \textbf{Postcondizioni}: %da inserire.
+    \item \textbf{Precondizioni}: l'utente vuole visualizzare la mappa personalizzata.
+    \item \textbf{Postcondizioni}: l'utente visualizza la mappa personalizzata.
 \end{itemize}
 
 \subsubsection{UC14.4 - Visualizzazione lista personalizzata}
@@ -431,12 +431,12 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
         \item l'utente visualizza la lista personalizzata nella home.
     \end{enumerate}
 
-    \item \textbf{Precondizioni}: %da inserire.
-    \item \textbf{Postcondizioni}: %da inserire.
+    \item \textbf{Precondizioni}: l'utente vuole visualizzare la lista personalizzata.
+    \item \textbf{Postcondizioni}: l'utente visualizza la lista personalizzata.
 \end{itemize}
 
 \subsection{UC15 - Inserimento profili social da seguire}
-\begin{figure}[!h]
+\begin{figure}[H]
     \includegraphics[width=15cm]{sezioni/Images/UC15.png}
     \centering
     \caption{Inserimento profili social da seguire}
@@ -540,8 +540,8 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
         \item l'utente sceglie la voce “Vista predefinita”.
     \end{enumerate}
 
-    \item \textbf{Precondizioni}: %da inserire.
-    \item \textbf{Postcondizioni}: %da inserire.
+    \item \textbf{Precondizioni}: l'utente vuole poter sceglie la vista predefinita.
+    \item \textbf{Postcondizioni}: la scelta della lista predefinita è stata salvata.
 \end{itemize}
 
 \begin{figure}[!h]
