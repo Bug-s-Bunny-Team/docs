@@ -2,10 +2,11 @@ name: Build and upload Latex documents
 
 on:
   push:
-    branches:
-      - master
-    paths:
-      - src/**/*
+    # branches:
+    #   - master
+    #   - dev
+    # paths:
+    #   - src/**/*
   workflow_dispatch:
     
 jobs:
@@ -13,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       
       - name: Compile documents
         uses: xu-cheng/latex-action@v2
@@ -40,6 +41,11 @@ jobs:
       - name: Upload to GDrive with rclone
         uses: wei/rclone@v1
         env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+          RCLONE_CONFIG_SHARED_TYPE: drive
+          RCLONE_CONFIG_SHARED_CLIENT_ID: ${{ secrets.DRIVE_CLIENT_ID }}
+          RCLONE_CONFIG_SHARED_CLIENT_SECRET: ${{ secrets.DRIVE_CLIENT_SECRET }}
+          RCLONE_CONFIG_SHARED_SCOPE: drive.file
+          RCLONE_CONFIG_SHARED_ROOT_FOLDER_ID: ${{ secrets.DRIVE_ROOT_ID }}
+          RCLONE_CONFIG_SHARED_TOKEN: ${{ secrets.DRIVE_TOKEN }}
         with:
-          args: sync build/ bb-shared:master -P
+          args: 'sync build/ "shared:${GITHUB_REF_NAME}" -P'
