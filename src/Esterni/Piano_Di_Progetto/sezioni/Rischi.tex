@@ -17,8 +17,125 @@ seguenti sezioni:
       \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
       \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
       \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
+      \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+      \renewcommand{\arraystretch}{1.5}
+      \centering
+      \setlength{\aboverulesep}{0pt}
+      \setlength{\belowrulesep}{0pt}
+      \rowcolors{2}{Arancione!10}{white}
+      \begin{longtable}{C{.14\freewidth} C{.30\freewidth} C{.25\freewidth} C{.18\freewidth} C{.282379\freewidth}}
+         \toprule
+      \rowcolor{Arancione}
+      \textcolor{white}{\textbf{Codice}}&
+      \textcolor{white}{\textbf{Descrizione}}&
+      \textcolor{white}{\textbf{Notifica}}&
+      \textcolor{white}{\textbf{Grado pericolo}}&
+      \textcolor{white}{\textbf{Gestione}}\\	
+      \toprule
+      \endhead
 
-      %\newlength{\freewidth}
+      RT1 - scarsa esperienza & Quasi nessuno dei membri ha affrontato un progetto di questa ampiezza e complessità o utilizzato i tools AWS necessari & Ogni membro si impegna a comunicare con trasparenza le difficoltà incontrate
+      & Occorenza: elevata Pericolosità: elevata & Il responsabile si occuperà di dividere i compiti onerosi su più membri, dividendo lo studio della documentazione, aiutando i componenti più in difficoltà \\	   
+      RT2 - tecnologie impiegate & La documentazione disponibile per la suite AWS è estremamente ampia, e lo studio della stessa potrebbe comportare una dilatazione delle tempistiche 
+      & Ogni membro si assume la responsabilità di essere al passo con il resto del gruppo o notificare una difficoltà in tal senso. Gli altri membri monitorano passivamente la preparazione degli altri & Occorrenza: elevata Pericolosità: elevata & Il responsabile si dovrà occupare di spronare i membri in deficit, mediando col gruppo per fornire un aiuto in tal senso \\
+      RT3 - strumenti software & Il team si affida a strumenti software di terze parti (es: vsc) o piattaforme online (es: Drive, GitHub) per svolgere il progetto. Problemi di/con questi servizi si tradurrebbero in rallentamenti 
+      & Posto che ogni membro deve evitare per quanto possibile di causare tali problemi, in caso occorrano la persona ha il compito di notificare il gruppo & Occorenza: media Pericolosità: bassa & I membri del gruppo si impegnano a fornire supporto tecnico quanto più completo e repentino possibile, entro i limiti delle proprie competenze \\
+      RT4 - problemi hardware & Tutti i membri lavorano al progetto con dispositivi personali, quindi per la maggior parte sprovvisti di assistenza tecnica. Un guasto causerebbe non pochi disagi & Posto che ogni membro deve evitare per quanto possibile di causare tali problemi, in caso occorrano la persona ha il compito di notificare il gruppo 
+      & Occorenza: bassa Pericolosità: alta & L'utilizzo di repository online permette perlomeno l'assenza di perdita dati, tuttavia per la mancanza di strumento lavorativo causa guasto non esiste una soluzione immediata, oltre la sostituzione \\
+      RT5 - servizi di terze parti & Una delle parti cruciali del progetto consiste nel reperire informazioni da servizi di terze parti, quali Instragram e TikTok i quali potrebbero in qualsiasi momento interrompere o impedire azioni di scraping e crawling. Ciò porterebbe all’impossibilità di svolgere test che fanno affidamento alla disponibilità di tali servizi e inoltre metterebbe a repentaglio la conclusione del progetto stesso & Ogni membro si impegna a comunicare il prima possibile eventuali problematiche in questo ambito, in modo da attuare celermente contromisure, anche in collaborazione con il proponente 
+      & Occorrenza: ?speriamo mai Pericolosità: alta & Essendo problematiche esterne al team e totalmente fuori il controllo di esso, è necessario un confronto con il proponente per valutare soluzioni alternative o mitigazioni da mettere in atto \\
+      \bottomrule 
+      \rowcolor{white}
+      \\
+      \rowcolor{white}
+      \caption{Tabella dei rischi tecnologici}
+      \end{longtable}
+}
+    \newpage
+   \subsection{Rischi Organizzativi}
+   {
+      \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
+      \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
+      \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
+
+      
+      \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+      \renewcommand{\arraystretch}{1.5}
+      \centering
+      \setlength{\aboverulesep}{0pt}
+      \setlength{\belowrulesep}{0pt}
+      \rowcolors{2}{Arancione!10}{white}
+      \begin{longtable}{C{.13\freewidth} C{.24\freewidth} C{.22\freewidth} C{.18\freewidth} C{.282379\freewidth}}
+      \toprule
+      \rowcolor{Arancione}
+      \textcolor{white}{\textbf{Codice}}&
+      \textcolor{white}{\textbf{Descrizione}}&
+      \textcolor{white}{\textbf{Notifica}}&
+      \textcolor{white}{\textbf{Grado pericolo}}&
+      \textcolor{white}{\textbf{Gestione}}\\	
+      \toprule
+      \endhead
+
+      ROR1 - collaborazione a distanza & Per motivi logistici il grosso del lavoro di organizzazione dei processi avviene a distanza, presentando quindi uno scoglio & Un qualsiasi membro del gruppo può chiedere un incontro in presenza se lo ritenesse necessario
+      & Pericolosità: bassa Occorrenza:  & Il gruppo può decidere di trovarsi in presenza per risolvere problemi di questo tipo \\
+      ROR2 - impegni & A causa di impegni universitari o altri, i componenti del gruppo potrebbero rallentare la stesura del progetto & Ogni componente è giusto che dichiari se ha  impegni che non gli consentono una buona dedizione al progetto
+      & Occorrenza: media Pericolosità: bassa & Ogni membro ad inizio settimana conosce il suo incarico e quello degli altri componenti, con relative scadenze degli obiettivi \\
+      ROR3- analisi Requisiti & Parte fondamentale del progetto è l’analisi dei requisiti. Errori durante questo processo possono portare a gravi problemi del progetto & Ogni membro deve comunicare eventuali dubbi repentinamente 
+      & Occorrenza: bassa Pericolosità: elevata & Per risolvere tale problema sarà necessario organizzare un incontro con l’azienda proponente \\
+      \bottomrule
+        \rowcolor{white}
+      \\
+      \rowcolor{white}
+      \caption{Tabella dei rischi organizzativi}
+      \end{longtable}
+   }
+
+   \newpage
+   \subsection{Rischi Interpersonali}
+   {
+      \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
+      \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
+      \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
+      \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+      \renewcommand{\arraystretch}{1.5}
+      \centering
+      \setlength{\aboverulesep}{0pt}
+      \setlength{\belowrulesep}{0pt}
+      \rowcolors{2}{Arancione!10}{white}
+      \begin{longtable}{C{.13\freewidth} C{.25\freewidth} C{.24\freewidth} C{.18\freewidth} C{.282379\freewidth}}
+         \toprule
+      \rowcolor{Arancione}
+      \textcolor{white}{\textbf{Codice}}&
+      \textcolor{white}{\textbf{Descrizione}}&
+      \textcolor{white}{\textbf{Notifica}}&
+      \textcolor{white}{\textbf{Grado pericolo}}&
+      \textcolor{white}{\textbf{Gestione}}\\	
+      \toprule
+      \endhead
+
+      RI1 - Collaborazione a distanza & A causa della distanza geografica tra i membri del gruppo, è sicuro che molti incontri saranno a distanza & Il gruppo si impegna a rivedere criticamente le modalità di collaborazione del gruppo e discutere trasparentemente di eventuali problemi
+      & Occorrenza: alta Pericolosità: media & Partecipazione attiva agli incontri del gruppo \\
+      RI2 - conflitti decisionali & Potrebbero esserci idee non condivise e in disaccordo tra i membri, provocando situazioni di dibattito & Ogni membro deve sentirsi libero di esprimere il proprio disaccordo se un’idea non lo convince 
+      & Pericolosità: media Occorrenza: media & Ogni proposta è giusto che sia valuta da ciascun componente e verrà scelta quella ritenuta più corretta dal gruppo \\
+      RI3 - condotta interna & Potrebbe essere che uno o più componenti non siano reperibili o che non abbiano rispettato le scadenze prefissate & Ogni componente deve avvisare anticipatamente se non è riuscito a svolgere un lavoro o se non sarà disponibile per dei giorni 
+      & Pericolosità: media Occorrenza: media & Settimanalmente ci sono degli incontri che servono per allinearsi tra noi membri per la stesura dei nostri compiti \\
+      \bottomrule
+      \rowcolor{white}
+      \\
+      \rowcolor{white}
+      \caption{Tabella dei rischi interpersonali}
+      \end{longtable}
+   }
+
+
+   \newpage
+   \subsection{Rischi Operativi}
+   {
+      \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
+      \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
+      \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
+
+      
       \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
       \renewcommand{\arraystretch}{1.5}
       \centering
@@ -36,120 +153,13 @@ seguenti sezioni:
       \toprule
       \endhead
 
-      RT1 - scarsa esperienza & Quasi nessuno dei membri ha affrontato un progetto di questa ampiezza e complessità o utilizzato i tools AWS necessari & Ogni membro si impegna a comunicare con trasparenza le difficoltà incontrate
-      & Occorenza: elevata Pericolosità: elevata & Il responsabile si occuperà di dividere i compiti onerosi su più membri, dividendo lo studio della documentazione, aiutando i componenti più in difficoltà \\	   
-      \bottomrule
-      RT2 - tecnologie impiegate & La documentazione disponibile per la suite AWS è estremamente ampia, e lo studio della stessa potrebbe comportare una dilatazione delle tempistiche 
-      & Ogni membro si assume la responsabilità di essere al passo con il resto del gruppo o notificare una difficoltà in tal senso. Gli altri membri monitorano passivamente la preparazione degli altri & Occorrenza: elevata Pericolosità: elevata & Il responsabile si dovrà occupare di spronare i membri in deficit, mediando col gruppo per fornire un aiuto in tal senso \\
-      \bottomrule
-      RT3 - strumenti software & Il team si affida a strumenti software di terze parti (es: vsc) o piattaforme online (es: Drive, GitHub) per svolgere il progetto. Problemi di/con questi servizi si tradurrebbero in rallentamenti 
-      & Posto che ogni membro deve evitare per quanto possibile di causare tali problemi, in caso occorrano la persona ha il compito di notificare il gruppo & Occorenza: media Pericolosità: bassa & I membri del gruppo si impegnano a fornire supporto tecnico quanto più completo e repentino possibile, entro i limiti delle proprie competenze \\
-      \bottomrule
-      RT4 - problemi hardware & Tutti i membri lavorano al progetto con dispositivi personali, quindi per la maggior parte sprovvisti di assistenza tecnica. Un guasto causerebbe non pochi disagi & Posto che ogni membro deve evitare per quanto possibile di causare tali problemi, in caso occorrano la persona ha il compito di notificare il gruppo 
-      & Occorenza: bassa Pericolosità: alta & L'utilizzo di repository online permette perlomeno l'assenza di perdita dati, tuttavia per la mancanza di strumento lavorativo causa guasto non esiste una soluzione immediata, oltre la sostituzione \\
-      \bottomrule
-      RT5 - servizi di terze parti & Una delle parti cruciali del progetto consiste nel reperire informazioni da servizi di terze parti, quali Instragram e TikTok i quali potrebbero in qualsiasi momento interrompere o impedire azioni di scraping e crawling. Ciò porterebbe all’impossibilità di svolgere test che fanno affidamento alla disponibilità di tali servizi e inoltre metterebbe a repentaglio la conclusione del progetto stesso & Ogni membro si impegna a comunicare il prima possibile eventuali problematiche in questo ambito, in modo da attuare celermente contromisure, anche in collaborazione con il proponente 
-      & Occorrenza: ?speriamo mai Pericolosità: alta & Essendo problematiche esterne al team e totalmente fuori il controllo di esso, è necessario un confronto con il proponente per valutare soluzioni alternative o mitigazioni da mettere in atto \\
-      \bottomrule 
-      \end{longtable}
-}
-
-   \subsection{Rischi Organizzativi}
-   {
-      \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
-      \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
-      \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
-
-      
-      \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
-      \renewcommand{\arraystretch}{1.5}
-      \centering
-      \setlength{\aboverulesep}{0pt}
-      \setlength{\belowrulesep}{0pt}
-      \begin{longtable}{C{.13\freewidth} C{.18\freewidth} C{.22\freewidth} C{.18\freewidth} C{.282379\freewidth}}
-         \toprule
-      \rowcolor{Arancione}
-      \textcolor{white}{\textbf{Codice}}&
-      \textcolor{white}{\textbf{Descrizione}}&
-      \textcolor{white}{\textbf{Notifica}}&
-      \textcolor{white}{\textbf{Grado pericolo}}&
-      \textcolor{white}{\textbf{Gestione}}\\	
-      \toprule
-      \endhead
-
-      ROR1 - collaborazione a distanza & Per motivi logistici il gArancione del lavoro di organizzazione dei processi avviene a distanza, presentando quindi uno scoglio & Un qualsiasi membro del gruppo può chiedere un incontro in presenza se lo ritenesse necessario
-      & Pericolosità: bassa Occorrenza:  & Il gruppo può decidere di trovarsi in presenza per risolvere problemi di questo tipo \\
-      \bottomrule
-      ROR2 - impegni & A causa di impegni universitari o altri, i componenti del gruppo potrebbero rallentare la stesura del progetto & Ogni componente è giusto che dichiari se ha  impegni che non gli consentono una buona dedizione al progetto
-      & Occorrenza: media Pericolosità: bassa & Ogni membro ad inizio settimana conosce il suo incarico e quello degli altri componenti, con relative scadenze degli obiettivi \\
-      \bottomrule
-      ROR3- analisi Requisiti & Parte fondamentale del progetto è l’analisi dei requisiti. Errori durante questo processo possono portare a gravi problemi del progetto & Ogni membro deve comunicare eventuali dubbi repentinamente 
-      & Occorrenza: bassa Pericolosità: elevata & Per risolvere tale problema sarà necessario organizzare un incontro con l’azienda proponente \\
-      \bottomrule
-      \end{longtable}
-   }
-
-   \subsection{Rischi Interpersonali}
-   {
-      \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
-      \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
-      \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
-
-      
-      \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
-      \renewcommand{\arraystretch}{1.5}
-      \centering
-      \setlength{\aboverulesep}{0pt}
-      \setlength{\belowrulesep}{0pt}
-      \begin{longtable}{C{.13\freewidth} C{.18\freewidth} C{.22\freewidth} C{.18\freewidth} C{.282379\freewidth}}
-         \toprule
-      \rowcolor{Arancione}
-      \textcolor{white}{\textbf{Codice}}&
-      \textcolor{white}{\textbf{Descrizione}}&
-      \textcolor{white}{\textbf{Notifica}}&
-      \textcolor{white}{\textbf{Grado pericolo}}&
-      \textcolor{white}{\textbf{Gestione}}\\	
-      \toprule
-      \endhead
-
-      RI1 - Collaborazione a distanza & A causa della distanza geografica tra i membri del gruppo, è sicuro che molti incontri saranno a distanza & Il gruppo si impegna a rivedere criticamente le modalità di collaborazione del gruppo e discutere trasparentemente di eventuali problemi
-      & Occorrenza: alta Pericolosità: media & Partecipazione attiva agli incontri del gruppo \\
-      \bottomrule
-      RI2 - conflitti decisionali & Potrebbero esserci idee non condivise e in disaccordo tra i membri, provocando situazioni di dibattito & Ogni membro deve sentirsi libero di esprimere il proprio disaccordo se un’idea non lo convince 
-      & Pericolosità: media Occorrenza: media & Ogni proposta è giusto che sia valuta da ciascun componente e verrà scelta quella ritenuta più corretta dal gruppo \\
-      \bottomrule
-      RI3 - condotta interna & Potrebbe essere che uno o più componenti non siano reperibili o che non abbiano rispettato le scadenze prefissate & Ogni componente deve avvisare anticipatamente se non è riuscito a svolgere un lavoro o se non sarà disponibile per dei giorni 
-      & Pericolosità: media Occorrenza: media & Settimanalmente ci sono degli incontri che servono per allinearsi tra noi membri per la stesura dei nostri compiti \\
-      \bottomrule
-      \end{longtable}
-   }
-
-   \subsection{Rischi Operativi}
-   {
-      \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
-      \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
-      \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
-
-      
-      \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
-      \renewcommand{\arraystretch}{1.5}
-      \centering
-      \setlength{\aboverulesep}{0pt}
-      \setlength{\belowrulesep}{0pt}
-      \begin{longtable}{C{.13\freewidth} C{.18\freewidth} C{.22\freewidth} C{.18\freewidth} C{.282379\freewidth}}
-         \toprule
-      \rowcolor{Arancione}
-      \textcolor{white}{\textbf{Codice}}&
-      \textcolor{white}{\textbf{Descrizione}}&
-      \textcolor{white}{\textbf{Notifica}}&
-      \textcolor{white}{\textbf{Grado pericolo}}&
-      \textcolor{white}{\textbf{Gestione}}\\	
-      \toprule
-      \endhead
-
-      ROP1 - collaborazione a distanza & Collaborare su analisi / stesura di un documento, o decidere come procedere operativamente nei successivi slot di tempo risulta più complesso a distanza piuttosto che in presenza & Rischio più generale che personale, notifica non richiesta (a meno che un membro specifico del gruppo abbia difficoltà particolari) & 
+      ROP1 - collaborazione a distanza & Collaborare su analisi o stesura di un documento, o decidere come procedere operativamente nei successivi slot di tempo risulta più complesso a distanza piuttosto che in presenza & Rischio più generale che personale, notifica non richiesta (a meno che un membro specifico del gruppo abbia difficoltà particolari) & 
       Occorrenza: elevata Pericolosità: bassa & L'impiego di strumenti come Docs e Discord è la soluzione per ora adottata al fine di arginare il problema il più possibile \\
       \bottomrule
+      \rowcolor{white}
+      \\
+      \rowcolor{white}
+      \caption{Tabella dei rischi operativi}
       \end{longtable}
    }
 
