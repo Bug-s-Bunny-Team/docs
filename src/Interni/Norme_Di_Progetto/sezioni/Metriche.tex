@@ -42,6 +42,10 @@ Alcuni parametri per comprendere le tabelle:
 Alcuni parametri per comprendere le tabelle:
 \begin{itemize}
     \item NdF / NdL / NdP : Numero di Frasi / Lettere / Parole
+    \item \# : Numero, inteso come "quantità", di una certa collezione di elementi 
+    \item T\textsubscript{pos} : numero tests eseguiti sul programma che rilevano errori
+    \item  T\textsubscript{neg} : numero tests eseguiti sul programma che non rilevano errori
+    \item T\textsubscript{tot} : numero di tests eseguiti sul programma
 \end{itemize}
 {
     \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{1pt}}m{#1}}
@@ -63,26 +67,26 @@ Alcuni parametri per comprendere le tabelle:
     \textcolor{white}{\textbf{Ottenimento}}\\	
     \toprule
     \endhead
-    
+
     
     MPR1 & Indice di Gulpease & Indice di leggibilità del testo & $89+\frac{300\cdot NdF-10\cdot NdL}{NdP}$  \\
     MPR2 & Percentuale Requisiti Obbligatori Soddisfatti & Autoesplicativo & $100\cdot \frac{\# \: requisiti \: soddisfatti}{\# \: requisiti \: totali}$ \\
     MPR3 & Code Coverage & \% linee codice percorse dai tests & $100\cdot \frac{linee \: codice \: percorse}{linee \: codice \: totali}$ \\
     MPR4 & Branch Coverage & \% rami condizionali coperti dai tests  & $100\cdot \frac{rami \: condizionali \: percorsi}{rami \: condizionali \: totali}$ \\
-    MPR5 & Accoppiamento tra Classi & $\leq$ 4 & $\leq$ 2 \\
-    MPR6 & Profondità Gerarchie & $\leq$ 5 & $\leq$ 3 \\
-    MPR7 & Numero Attributi per Classe & $\leq$ 10 & $\leq$ 6 \\
-    MPR8 & Numero Parametri per Metodo & $\leq$ 8 & $\leq$ 4 \\
-    MPR9 & Linee Codice per Metodo & $\leq$ 50 & $\leq$ 20 \\
-    MPR10 & Linee Commento per Codice & $\geq$ 0.2 & $\geq$ 0.4 \\
-    MPR11 & Densità Errori & $\leq$ 20\% & 0\% \\
-    MPR12 & Facilità Utilizzo  & $\leq$ 3 & 1 \\
-    MPR13 & Errori Ortografici & 5\% & 0\% \\
-    MPR14 & Complessità Ciclomatica Media & $\leq$ 20 & $\leq$ 10 \\
-    MPR15 & Tempo medio risposta WebApp & $\leq$ 3 s & $\leq$ 1 s \\
-    MPR16 & Percentuale test passati & $\geq$ 80\% & 100\% \\
-    MPR17 & Percentuale test falliti & $\leq$ 10\% & 0\% \\
-    MPR18 & Metriche di qualità soddisfatte & $\geq$ 80\% & 100\% \\	   
+    MPR5 & Accoppiamento tra Classi & Numero di dipendenze per classe & Numero Intero \\
+    MPR6 & Profondità Gerarchie & Rappresenta la quantità di super classi & Numero Intero \\
+    MPR7 & Numero Attributi per Classe & Autoesplicativo & Numero Intero \\
+    MPR8 & Numero Parametri per Metodo & Autoesplicativo & Numero Intero \\
+    MPR9 & Linee Codice per Metodo & Autoesplicativo & Numero Intero \\
+    MPR10 & Linee Commento per Codice & Autoesplicativo & $\frac{\# \: linee \: codice}{\# \: linee \: commento}$ \\
+    MPR11 & Densità Errori & Percentuale che rappresenta la solidità del prodotto & $100\cdot \frac{T\textsubscript{pos}}{T\textsubscript{tot}}$ \\
+    MPR12 & Facilità Utilizzo  & Numero di input necessari all'utente per ottenere il risultato voluto & Numero Intero \\
+    MPR13 & Errori Ortografici & Autoesplicativo & PdF checker e simili \\
+    MPR14 & Complessità Ciclomatica Media & Numero cammini linearmente indipendenti nel programma & Grafo controllo di flusso \\
+    MPR15 & Tempo medio risposta WebApp & Autoesplicativo & Misurato in secondi \\
+    MPR16 & Percentuale test passati & Autoesplicativo & $100\cdot \frac{T\textsubscript{neg}}{ T\textsubscript{tot}}$ \\
+    MPR17 & Percentuale test falliti & Autoesplicativo & MPR11 \\
+    MPR18 & Metriche di qualità soddisfatte & Percentuale di metriche che rientrano nei valori accettabili & $100\cdot \frac{\# \: metriche \: soddisfatte}{\# \: metriche \: totali}$ \\	   
     \bottomrule
     \end{longtable}
 }
