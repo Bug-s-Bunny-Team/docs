@@ -3,6 +3,7 @@
 \LoadClass[12pt]{article}
 
 \RequirePackage[utf8]{inputenc}
+\RequirePackage[italian]{babel}	%rende figure -> figura o table -> tabella; per i caption
 \RequirePackage[a4paper,margin=2.5cm,headheight=32pt]{geometry}
 %\RequirePackage[sfdefault]{quattrocento}
 \RequirePackage{graphicx}
