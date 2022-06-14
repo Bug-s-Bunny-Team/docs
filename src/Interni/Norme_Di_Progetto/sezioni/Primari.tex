@@ -171,9 +171,46 @@ La codifica scelta per la rappresentazione dei casi d'uso è la seguente: \newli
 	\end{longtable}
 }
 
-\subsubsection{Progettazione} %Da implementare e finire descrizione
-L'attività di progettazione definisce le caratteristiche che il prodotto richiesto deve avere in modo da fornire una soluzione che soddisfa i requisiti specificati nell'\AdR{}.
+\paragraph*{Metriche}
+\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\rowcolors{2}{Arancione!10}{white}
+\begin{longtable}{L{.22\freewidth} L{.6\freewidth} L{.080\freewidth}}
+	\toprule
+	\rowcolor{Arancione}
+	\textcolor{white}{\textbf{Metrica}}&
+	\textcolor{white}{\textbf{Descrizione}}\\	
+	\toprule
+	\endhead
+	
+	\textbf{MPR2} & Percentuale Requisiti Obbligatori Soddisfatti \\
+	
+	\bottomrule
+	\caption*{Metriche utilizzate per la valutazione di analisi dei requisiti.}
+\end{longtable}
 
+\subsubsection{Progettazione} 
+L'attività di progettazione definisce le caratteristiche che il prodotto richiesto deve avere in modo da fornire una soluzione che soddisfa i requisiti specificati nell'\AdR{}.
+Il procedimento è infatti l'opposto rispetto a quello utilizzato nell'Analisi dei Requisiti, in quest'ultimo avviene una suddivisione del problema in parti
+per poter comprendere al meglio il dominio applicativo, mentre nella progettazione si ricostruisce il problema specificando ogni funzionalità di ogni parte.
+
+\paragraph*{Technology Baseline}
+Misura le specifiche della progettazione nelle tecnologie indivduate per realizzare l'architettura del prodotto. Vengono rese note:
+\begin{itemize}
+	\item Tecnologie adottate;
+	\item Relazioni e interazioni tra i vari componenti;
+	\item \glo{\textit{Proof of Concept}}, un prototipo per dimostrare in modo pratico la corretta compatibilità  dellle tecnologie utilizzate.
+\end{itemize}
+
+\paragraph*{Product Baseline}
+Rappresenta la base architetturale definita coerentemente nella Technology Baseline. Deve comprendere:
+\begin{itemize}
+	\item \glo{Design Pattern} che sono stati utilizzati e una loro descrizione;
+	\item Diagrammi UML, in particolare diagrammi delle classi, sequenza, package;
+	\item Tracciamento dei requisiti che devono essere soddisfatti da una classe.
+\end{itemize}
 %Diagrammi e test
 
 \subsubsection{Codifica} %Da implementare convenzioni future
