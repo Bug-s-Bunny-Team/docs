@@ -28,6 +28,16 @@
 \newcommand{\PdP}{\emph{Piano di Progetto}}
 \newcommand{\PdQ}{\emph{Piano di Qualifica}}
 
+% commandi presi da package tabularx, serve a impostare le varie opzioni delle tabelle senza doverle riscrivere ogni volta;
+% anche se basterebbe la colonna centrale si scrivono comunque tutte e tre per buona norma;
+% \raggedright, \centering o \raggedleft per avere l'allineamento orizzontale voluto;
+% Dichiara \let\newline\\ per consentire l'uso di \newline per interruzioni di riga manuali; all'interno di una cella in modo coerente con il resto ( da notare che \centering e simili cambiano il significato di \\ );
+% \arraybackslash per consentire di utilizzare \\ per le righe finali nelle tabelle;
+% m{} serve a specificare larghezza colonna, in questo modo si può modificare 
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash}m{#1}}
+
 \definecolor{Arancione}{RGB}{245,100,0}
 
 % colori per highlighting
