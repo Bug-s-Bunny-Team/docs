@@ -201,16 +201,38 @@ Misura le specifiche della progettazione nelle tecnologie indivduate per realizz
 \begin{itemize}
 	\item Tecnologie adottate;
 	\item Relazioni e interazioni tra i vari componenti;
-	\item \glo{\textit{Proof of Concept}}, un prototipo per dimostrare in modo pratico la corretta compatibilità  dellle tecnologie utilizzate.
+	\item {\textit{Proof of Concept}}, un prototipo per dimostrare in modo pratico la corretta compatibilità  dellle tecnologie utilizzate.
 \end{itemize}
 
 \paragraph*{Product Baseline}
 Rappresenta la base architetturale definita coerentemente nella Technology Baseline. Deve comprendere:
 \begin{itemize}
-	\item \glo{Design Pattern} che sono stati utilizzati e una loro descrizione;
+	\item {\textit{Design Pattern}} che sono stati utilizzati e una loro descrizione;
 	\item Diagrammi UML, in particolare diagrammi delle classi, sequenza, package;
 	\item Tracciamento dei requisiti che devono essere soddisfatti da una classe.
 \end{itemize}
+
+\paragraph*{Metriche}
+\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\rowcolors{2}{Arancione!10}{white}
+\begin{longtable}{L{.22\freewidth} L{.6\freewidth} L{.080\freewidth}}
+	\toprule
+	\rowcolor{Arancione}
+	\textcolor{white}{\textbf{Metrica}}&
+	\textcolor{white}{\textbf{Descrizione}}\\	
+	\toprule
+	\endhead
+	
+	\textbf{MPR5} & Accoppiamento tra classi \\
+	\textbf{MPR6} & Profondità delle gerarchie \\
+	\textbf{MPR12} & Facilità di utilizzo \\
+	
+	\bottomrule
+	\caption*{Metriche utilizzate per la valutazione della progettazione.}
+\end{longtable}
 %Diagrammi e test
 
 \subsubsection{Codifica} %Da implementare convenzioni future
