@@ -60,7 +60,7 @@ Ogni requisito può essere ricavato da diverse fonti:
 	\item \textbf{Verbali}: attraverso riunioni interne o incontri con l'azienda \emph{proponente}.
 \end{itemize}
 
-\subsection{Struttura}
+\paragraph{Struttura}
 La struttura del documento \AdR{} è la seguente:
 \begin{itemize}
 	\item \textbf{Introduzione}: contiene scopo del documento, introduzione al progetto e riferimenti;
@@ -75,7 +75,7 @@ La struttura del documento \AdR{} è la seguente:
 		\end{itemize}
 \end{itemize}
 
-\subsubsection{Classificazione dei requisiti}
+\paragraph{Classificazione dei requisiti}
 La classificazione requisiti verrà effettuata mediante la seguente codifica:\newline \newline
 \centerline{\textbf{R[Tipo][Numero]}}
 
@@ -109,7 +109,7 @@ La classificazione requisiti verrà effettuata mediante la seguente codifica:\ne
 	\end{longtable}
 }
 
-\subsubsection{Classificazione dei casi d'uso}
+\paragraph{Classificazione dei casi d'uso}
 La codifica scelta per la rappresentazione dei casi d'uso è la seguente: \newline \newline
 \centerline{\textbf{UC[CodiceCaso][CodiceSottoCaso]}}
 
@@ -137,7 +137,7 @@ La codifica scelta per la rappresentazione dei casi d'uso è la seguente: \newli
 	\end{longtable}
 }
 
-\subsubsection{Struttura dei casi d'uso}
+\paragraph{Struttura dei casi d'uso}
 {
 	\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
 	\renewcommand{\arraystretch}{1.5}
@@ -167,21 +167,23 @@ La codifica scelta per la rappresentazione dei casi d'uso è la seguente: \newli
 	\end{longtable}
 }
 
-\paragraph*{Metriche}
+\paragraph{Metriche}
 \setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
 \renewcommand{\arraystretch}{1.5}
 \setlength{\aboverulesep}{0pt}
 \setlength{\belowrulesep}{0pt}
 \rowcolors{2}{Arancione!10}{white}
-\begin{longtable}{L{.22\freewidth} L{.6\freewidth} L{.080\freewidth}}
+\begin{longtable}{L{.22\freewidth} L{.4\freewidth} L{.2\freewidth}}
 	\toprule
 	\rowcolor{Arancione}
 	\textcolor{white}{\textbf{Metrica}}&
-	\textcolor{white}{\textbf{Descrizione}}\\	
+	\textcolor{white}{\textbf{Descrizione}}&	
+	\textcolor{white}{\textbf{Riferimento}}\\	
 	\toprule
 	\endhead
 	
-	\textbf{MPR2} & Percentuale Requisiti Obbligatori Soddisfatti \\
+	\textbf{MPR2} & Percentuale Requisiti Obbligatori Soddisfatti & \S 6.2 MPR2 \\
+	\textbf{MPP6} & Requirements Stabilty Index & \S 6.1 MPP6 \\
 	
 	\bottomrule
 	\caption*{Metriche utilizzate per la valutazione di analisi dei requisiti.}
@@ -192,7 +194,7 @@ L'attività di progettazione definisce le caratteristiche che il prodotto richie
 Il procedimento è infatti l'opposto rispetto a quello utilizzato nell'Analisi dei Requisiti, in quest'ultimo avviene una suddivisione del problema in parti
 per poter comprendere al meglio il dominio applicativo, mentre nella progettazione si ricostruisce il problema specificando ogni funzionalità di ogni parte.
 
-\paragraph*{Technology Baseline}
+\paragraph{Technology Baseline}
 Misura le specifiche della progettazione nelle tecnologie indivduate per realizzare l'architettura del prodotto. Vengono rese note:
 \begin{itemize}
 	\item Tecnologie adottate;
@@ -200,7 +202,7 @@ Misura le specifiche della progettazione nelle tecnologie indivduate per realizz
 	\item {\textit{Proof of Concept}}, un prototipo per dimostrare in modo pratico la corretta compatibilità  dellle tecnologie utilizzate.
 \end{itemize}
 
-\paragraph*{Product Baseline}
+\paragraph{Product Baseline}
 Rappresenta la base architetturale definita coerentemente nella Technology Baseline. Deve comprendere:
 \begin{itemize}
 	\item {\textit{Design Pattern}} che sono stati utilizzati e una loro descrizione;
@@ -208,23 +210,24 @@ Rappresenta la base architetturale definita coerentemente nella Technology Basel
 	\item Tracciamento dei requisiti che devono essere soddisfatti da una classe.
 \end{itemize}
 
-\paragraph*{Metriche}
+\paragraph{Metriche}
 \setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
 \renewcommand{\arraystretch}{1.5}
 \setlength{\aboverulesep}{0pt}
 \setlength{\belowrulesep}{0pt}
 \rowcolors{2}{Arancione!10}{white}
-\begin{longtable}{L{.22\freewidth} L{.6\freewidth} L{.080\freewidth}}
+\begin{longtable}{L{.22\freewidth} L{.4\freewidth} L{.2\freewidth}}
 	\toprule
 	\rowcolor{Arancione}
 	\textcolor{white}{\textbf{Metrica}}&
-	\textcolor{white}{\textbf{Descrizione}}\\	
+	\textcolor{white}{\textbf{Descrizione}}&	
+	\textcolor{white}{\textbf{Riferimento}}\\	
 	\toprule
 	\endhead
 	
-	\textbf{MPR5} & Accoppiamento tra classi \\
-	\textbf{MPR6} & Profondità delle gerarchie \\
-	\textbf{MPR12} & Facilità di utilizzo \\
+	\textbf{MPR5} & Accoppiamento tra classi & \S 6.2 MPR5 \\
+	\textbf{MPR6} & Profondità delle gerarchie & \S 6.2 MPR6 \\
+	\textbf{MPR12} & Facilità di utilizzo & \S 6.2 MPR12 \\
 	
 	\bottomrule
 	\caption*{Metriche utilizzate per la valutazione della progettazione.}
@@ -232,7 +235,46 @@ Rappresenta la base architetturale definita coerentemente nella Technology Basel
 %Diagrammi e test
 
 \subsection{Codifica} %Da implementare convenzioni future
-La codifica ha lo scopo di normare l'effettiva realizzazione del prodotto richiesto. I \progrs{} dovranno attenersi a queste norme durante la fase di programmazione e implementazione. L'uso di norme e convenzioni è fondamentale per permettere la generazione di codice leggibile e uniforme, agevolare la manutenzione e i processi di \emph{verifica} e \emph{validazione}.
+La codifica ha lo scopo di normare l'effettiva realizzazione del prodotto richiesto. I \progrs{} dovranno attenersi a queste norme durante la fase di programmazione e implementazione.
+L'uso di norme e convenzioni è fondamentale per permettere la generazione di codice leggibile e uniforme, agevolare la manutenzione e i processi di \emph{verifica} e \emph{validazione}.
+
+\subsubsection{Stile della codifica}
+\begin{itemize}
+	\item \textbf{Classi}: il nome di una classe deve iniziare con una lettera maiuscola;
+	\item \textbf{Indentazione}: i blocchi di codice scritti dovranno avere una indentazione di 4 spazi (tab);
+	\item \textbf{Parentesi}: le parentesi devono essere sempre utilizzate alla dichiarazione di un costrutto e all'inizio di esso, anche se esso è vuoto o contiene un'istruzione sola;
+	\item \textbf{Variabili}: il nome delle variabili può essere scritto in inglese e in minuscolo, ad eccezione di un nome composto che dovrà avere il primo nome minuscolo e l'iniziale del secondo maisucola;
+	\item \textbf{Costanti}: il nome delle costanti deve essere scritto in inglese e in maiuscolo;
+	\item \textbf{Univocità dei nomi}: classi, variabili, metodi e qualsiasi costrutto deve avere un nome significativo ed essere univocamente identificabile; 
+	\item \textbf{Commenti}: i commenti possono essere scritti in inglese o italiano, all'inizio di un blocco di codice;
+	\item \textbf{Ricorsione}: Per facilitare la verifica ed evitare una eccessiva occupazione della memoria è preferibile, onde possibile, utilizzare la ricorsione.
+\end{itemize}
+
+\subsubsection{Metriche}
+\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\rowcolors{2}{Arancione!10}{white}
+\begin{longtable}{L{.22\freewidth} L{.4\freewidth} L{.2\freewidth}}
+	\toprule
+	\rowcolor{Arancione}
+	\textcolor{white}{\textbf{Metrica}}&
+	\textcolor{white}{\textbf{Descrizione}}&	
+	\textcolor{white}{\textbf{Riferimento}}\\
+	\toprule
+	\endhead
+
+	\textbf{MPR6} & Profondità Gerarchie &  \S6.2 MPR6 \\
+	\textbf{MPR7} & Numero Attributi per Classe & \S 6.2 MPR7 \\
+	\textbf{MPR8} & Numero Parametri per Metodo & \S 6.2 MPR8 \\
+	\textbf{MPR9} & Linee Codice per Metodo & \S 6.2 MPR9 \\
+	\textbf{MPR10} & Linee Commento per Codice & \S 6.2 MPR10 \\
+	\textbf{MPR14} & Complessità Ciclomatica Media & \S 6.2 MPR14 \\
+
+	\bottomrule
+	\caption*{Metriche utilizzate per la valutazione della codifica.}
+\end{longtable}
 
 \subsection{Strumenti e linguaggi di programmazione}
 Di seguito vengono elencati e descritti i vari strumenti e linguaggi di programmazione utilizzati durante il progetto, siano essi richiesti dal \emph{proponente} o scelti autonomamente:
