@@ -1,14 +1,16 @@
 
-Questa sezione  espone il piano di testing che garantisce la correttezza finale del prodotto.
-Come definito nelle Norme di Progetto ,il piano segue il modello a V,
-il quale ad ogni fase di sviluppo è associato ad  un diverso tipo di testing.
-Questi test sono suddivisi in:
+Onde garantire la qualità di un prodotto software, è indispensabile stilare una suite di test
+mirati a verificarne la correttezza. \\
+Per questo motivo il gruppo \textit{Bug's Bunny} ha strutturato i test che si trovano a seguire, e ha deciso 
+di svolgere l'attività di verifica parallelamente a quella di sviluppo adottando il modello a V, 
+come definito nelle \NdP. \\
+I test si suddividono in quattro categorie:
 
 \begin{itemize}
-	\item \textbf{Test di unità}:viene effettuato per verificare che il comportamento di ogni singola unità sia corretto. Un'unità rappresenta un elemento atomico ed indipendente del sistema.
-	\item \textbf{Test di integrazione}:viene effettuato per verificare  il corretto funzionamento di più unità cooperanti che svolgono uno specifico compito.
-	\item \textbf{Test di sistema}:viene effettuato per verificare che l’intero sistema funzioni correttamente.I vincoli identificati nell'Analisi dei Requisiti devono essere tutti rispettati.
-	\item \textbf{Test di accettazione}:viene effettuato  insieme al  committente durante la fase di collaudo e il loro superamento permette di procedere con il rilascio del prodotto. 
+	\item \textbf{Test di unità}:  verificano la correttezza degli elementi atomici del sistema, come ad esempio singoli metodi o classi;
+	\item \textbf{Test di integrazione}: verificano che le parti del sistema cooperino correttamente, generalmente controllando il comportamento di gruppi omogenei di unità (che contribuiscono ad un obiettivo comune);
+	\item \textbf{Test di sistema}: verificano che l'intero prodotto software funzioni come voluto. Detto in altri termini si verifica che tutti i requisiti obbligatori siano soddisfatti. Vengono svolti alla fine dello sviluppo;
+	\item \textbf{Test di accettazione}: effettuati assieme al committente, servono a verificare che il sistema sia conforme alle aspettative. In caso di esito positivo il prodotto viene rilasciato.
 \end{itemize}
 
 \subsection{Test di accettazione}
