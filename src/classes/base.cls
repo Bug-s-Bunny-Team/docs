@@ -13,7 +13,7 @@
 \RequirePackage{longtable} %una tabella può continuare su più pagine
 \RequirePackage{booktabs} %toprule e midrule usati al posto di hline
 \RequirePackage{multirow} %utile per visualizzare una cella su più righe
-\RequirePackage{float}
+\RequirePackage{float} %per poter usare l'opzione [H] nelle figure
 \RequirePackage{array}
 \RequirePackage{listings}   % formattazione e highlight codice
 \RequirePackage[hidelinks]{hyperref}
