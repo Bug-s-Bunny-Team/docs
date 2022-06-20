@@ -16,6 +16,7 @@
 \RequirePackage{float}
 \RequirePackage{array}
 \RequirePackage[hidelinks]{hyperref}
+\RequirePackage{eurosym}
 
 % colorazione e sottolineatura url
 % \hypersetup{
