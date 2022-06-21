@@ -138,6 +138,50 @@
 			\end{itemize}
 	
 		%Aggiungere Paragrafo Tabelle?
+		\paragraph*{Convenzioni scrittura liste puntante} \aCapo{}
+		In una lista senza ulteriori liste innestate gli elementi si scrivono con la prima lettera
+		maiuscola, sia che siano in \textbf{grassetto}, sia che siano in \textit{corsivo}, sia che non
+		abbiano alcun tipo di formattazione. Gli elementi vanno separati con un \textit{punto e virgola}, e 
+		l'ultimo segna la fine della lista con un \textit{punto}. La descrizione va anticipata dai \textit{due punti}.\\
+		Per quanto riguarda le liste innestate le differenze risiedono in due fattori: la lista
+		a maggiore profondità ha gli elementi con la prima lettera in minuscolo, e gli elementi padre
+		di una lista innestata trattano la suddetta lista come una descrizione, quindi introducendola
+		con i \textit{due punti}.\\
+		Con "maggiore profondità" si intende localmente, cioè si intende il blocco di elementi di una
+		lista che non ha, per nessuno dei suoi elementi, una lista figlia. Nell'esempio sottostante ciò
+		è reso in maniera più chiara, per capirne il funzionamento si può immaginare che la divisione 
+		dei blocchi della lista avvenga similmente all'indentazione del codice sorgente.\\
+		Possono esistere dei casi nei quali è accettato deviare da queste convenzioni per questioni di 
+		leggibilità o comprensione (ne sono un esempio le liste dei riferimenti normativi e informativi),
+		si lascia quindi a discrezione di relatori e verificatori un certo grado di libertà.\\
+		Di seguito viene mostrato un esempio per chiarezza. 
+		\paragraph*{Lista senza nested lists, diverse formattazioni}
+		\begin{itemize}
+			\item \textbf{Elemento Livello 1 Grassetto}: descrizione;
+			\item \textit{Elemento Livello 1 Corsivo}: descrizione;
+			\item Elemento Livello 1: descrizione.
+		\end{itemize}
+		\paragraph*{Lista con nested list}
+		\begin{itemize}
+			\item Primo elemento livello 1:
+			\begin{itemize}
+				\item Primo Elemento livello 2:
+				\begin{itemize}
+					\item primo elemento  livello 3;
+					\item secondo elemento livello 3;
+					\item terzo elemento livello 3.
+				\end{itemize}
+				\item Secondo elemento livello 2;
+				\item Terzo elemento livello 2.
+			\end{itemize}
+			\item Secondo elemento livello 1;
+			\item Terzo elemento livello 1:
+			\begin{itemize}
+				\item quarto elemento livello 2;
+				\item quinto elemento livello 2.
+			\end{itemize}
+			\item Quarto elemento livello 1.
+		\end{itemize}
 		
 		\subsubsection{Strumenti}
 			\begin{itemize}
