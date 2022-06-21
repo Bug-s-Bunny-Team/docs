@@ -27,16 +27,16 @@ Per ogni capitolato sono indicate:
 \subsubsection{Documentazione fornita}
 Il gruppo fornisce all'azienda \proponente{} e ai committenti \textit{Prof. Tullio Vardanega} e \textit{Prof. Riccardo Cardin} i seguenti documenti, essenziali per tracciare le attività svolte e per iniziare la fase di implementazione:
 \begin{itemize}
-	\item \AdR{}: Documento che contiene l'analisi approfondita del capitolato scelto, comprendente tutti i \emph{requisiti} e i \emph{casi d'uso} individuati;
+	\item \AdR{}: Documento che contiene l'analisi approfondita del capitolato scelto, comprendente tutti i \emph{requisiti} e i \emph{casi d'uso\G{}} individuati;
 	\item \PdP{}: Documento nel quale viene pianificato nel dettaglio il modo di lavorare del gruppo, contenente un preventivo riguardante tempistiche, l'analisi dei rischi, la pianificazione delle attività e il consuntivo;
 	\item \PdQ{}: Documento dove vengono stabilite e descritte le modalità di \emph{verifica} e \emph{validazione}, in modo da garantire la qualità del prodotto.  \\
 \end{itemize}
 I seguenti documenti, invece, sono forniti solo all'azienda \proponente{}:
 \begin{itemize}
 	\item Piano di test di unità;
-	\item Documentazione dettagliata di tutte le API usate;
-	\item Schema Design relativo alla base dati;
-	\item Diagrammi UML relativi agli Use Cases di progetto.
+	\item Documentazione dettagliata di tutte le API\G{} usate;
+	\item Schema Design\G{} relativo alla base dati;
+	\item Diagrammi UML\G{} relativi agli Use Cases\G{} di progetto.
 \end{itemize}
 
 \subsection{Sviluppo}
@@ -46,7 +46,7 @@ Le attività coinvolte riguardano l'\AdR{}, la progettazione e la codifica. \\
 Le aspettative sono le seguenti:
 \begin{itemize}
 	\item stabilire gli obiettivi di sviluppo;
-	\item stabilire i vincoli tecnologici e di design;
+	\item stabilire i vincoli tecnologici e di design\G;
 	\item realizzare un prodotto finale che superi i \emph{test}, che soddisfi i \emph{requisiti} e le richieste del \emph{proponente}. 
 \end{itemize}
 
@@ -56,7 +56,7 @@ Il documento \AdR{} va steso in maniera efficace ed è molto importante in quant
 Ogni requisito può essere ricavato da diverse fonti:
 \begin{itemize}
 	\item \textbf{Capitolato d'Appalto}: attraverso la lettura del capitolato;
-	\item \textbf{Casi d'uso}: estrapolati da uno o più casi d'uso; 
+	\item \textbf{Casi d'uso}: estrapolati da uno o più casi d'uso\G; 
 	\item \textbf{Verbali}: attraverso riunioni interne o incontri con l'azienda \emph{proponente}.
 \end{itemize}
 
@@ -110,7 +110,7 @@ La classificazione requisiti verrà effettuata mediante la seguente codifica:\ne
 }
 
 \paragraph{Classificazione dei casi d'uso}
-La codifica scelta per la rappresentazione dei casi d'uso è la seguente: \newline \newline
+La codifica scelta per la rappresentazione dei casi d'uso\G{} è la seguente: \newline \newline
 \centerline{\textbf{UC[CodiceCaso][CodiceSottoCaso]}}
 
 {
@@ -193,8 +193,8 @@ La codifica scelta per la rappresentazione dei casi d'uso è la seguente: \newli
 \end{longtable}
 
 \subsubsection{Progettazione} 
-L'attività di progettazione definisce le caratteristiche che il prodotto richiesto deve avere in modo da fornire una soluzione che soddisfa i requisiti specificati nell'\AdR{}.
-Il procedimento è infatti l'opposto rispetto a quello utilizzato nell'Analisi dei Requisiti, in quest'ultimo avviene una suddivisione del problema in parti
+L'attività di progettazione definisce le caratteristiche che il prodotto richiesto deve avere in modo da fornire una soluzione che soddisfa i requisiti specificati nell'\AdR{}\textit{\G}.
+Il procedimento è infatti l'opposto rispetto a quello utilizzato nell'Analisi dei Requisiti\G, in quest'ultimo avviene una suddivisione del problema in parti
 per poter comprendere al meglio il dominio applicativo, mentre nella progettazione si ricostruisce il problema specificando ogni funzionalità di ogni parte.
 
 \paragraph{Technology Baseline}
@@ -208,8 +208,8 @@ Misura le specifiche della progettazione nelle tecnologie indivduate per realizz
 \paragraph{Product Baseline}
 Rappresenta la base architetturale definita coerentemente nella Technology Baseline. Deve comprendere:
 \begin{itemize}
-	\item {\textit{Design Pattern}} che sono stati utilizzati e una loro descrizione;
-	\item Diagrammi UML, in particolare diagrammi delle classi, sequenza, package;
+	\item {\textit{Design Pattern\G{}}} che sono stati utilizzati e una loro descrizione;
+	\item Diagrammi UML\G, in particolare diagrammi delle classi, sequenza, package;
 	\item Tracciamento dei requisiti che devono essere soddisfatti da una classe.
 \end{itemize}
 
@@ -284,10 +284,10 @@ L'uso di norme e convenzioni è fondamentale per permettere la generazione di co
 Di seguito vengono elencati e descritti i vari strumenti e linguaggi di programmazione utilizzati durante il progetto, siano essi richiesti dal \emph{proponente} o scelti autonomamente:
 \paragraph*{AWS}
 \begin{itemize}
-	\item \href{https://aws.amazon.com/fargate/}{\emph{Fargate}}: servizio serverless per la gestione di container
-	\item \href{https://aws.amazon.com/rds/}{\emph{RDS}}: database relazionale in modalità serverless
-	\item \href{https://aws.amazon.com/lambda/}{\emph{Lambda}}: servizio di calcolo serverless, basato sugli eventi
-	\item \href{https://aws.amazon.com/fargate/}{\emph{API Gateway}}: servizio gestito che semplifica creazione, pubblicazione, manutenzione, monitoraggio e protezione delle API dei vari microservizi sviluppati
+	\item \href{https://aws.amazon.com/fargate/}{\emph{Fargate}}: servizio serverless\G{} per la gestione di container
+	\item \href{https://aws.amazon.com/rds/}{\emph{RDS}}: database\G{} relazionale in modalità serverless\G
+	\item \href{https://aws.amazon.com/lambda/}{\emph{Lambda}}: servizio di calcolo serverless\G, basato sugli eventi
+	\item \href{https://aws.amazon.com/fargate/}{\emph{API Gateway}}: servizio gestito che semplifica creazione, pubblicazione, manutenzione, monitoraggio e protezione delle API\G{} dei vari microservizi sviluppati
 	\item \href{https://aws.amazon.com/rekognition/}{\emph{Rekognition}}: servizio per l'estrazione di informazioni da immagini e video tramite tecniche di Machine Learning
 	\item \href{https://aws.amazon.com/comprehend/}{\emph{Comprehend}}: servizio per l'estrazione di informazione da testi, tramite tecniche di Natural Language Processing
 	\item \href{https://aws.amazon.com/cognito/}{\emph{Cognito}}: servizio che permette di aggiungere strumenti di registrazione degli utenti, accesso e controllo degli accessi 
@@ -301,5 +301,5 @@ Di seguito vengono elencati e descritti i vari strumenti e linguaggi di programm
 \paragraph*{Librerie e framework}
 % al momento non si sa cosa andremo ad usare effettivamente
 \begin{itemize}
-	\item \href{https://reactjs.org/}{\emph{React}}: libreria per lo sviluppo web frontend
+	\item \href{https://reactjs.org/}{\emph{React}}: libreria per lo sviluppo web frontend\G
 \end{itemize}

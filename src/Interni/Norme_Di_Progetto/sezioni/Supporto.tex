@@ -141,8 +141,8 @@
 		
 		\subsubsection{Strumenti}
 			\begin{itemize}
-				\item \textbf{LaTeX:} stesura in bella copia dei documenti caricati poi sul repository del gruppo;
-				\item \textbf{Visual Studio Code:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub;
+				\item \textbf{\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
+				\item \textbf{Visual Studio Code\G:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub\G;
 				\item \textbf{Google Docs:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live;
 			\end{itemize}
 
@@ -177,29 +177,29 @@
 	\subsubsection{Versionamento}
 		\paragraph*{Tecnologie adottate}
 		\aCapo{}  
-			Per gestire il versionamento del codice sorgente, viene utilizzato il sistema di versionamento distribuito \emph{Git}, con un \emph{repository} remoto presente su \emph{GitHub}.
+			Per gestire il versionamento del codice sorgente, viene utilizzato il sistema di versionamento distribuito \emph{Git\G}, con un \emph{repository} remoto presente su \emph{GitHub\G}.
 			
 		\paragraph*{Repository}
 		\aCapo{}
-			Il gruppo \teamname{} ha scelto di creare i seguenti \emph{repository} per il progetto:
+			Il gruppo \teamname{} ha scelto di creare i seguenti \emph{repository\G{}} per il progetto:
 			\begin{itemize}
 				\item \href{https://github.com/Bug-s-Bunny-Team/docs}{\textbf{docs}}: per il versionamento dei documenti.
-				\item \href{https://github.com/Bug-s-Bunny-Team/poc}{\textbf{docs}}: per la gestione e il versionamento del \textit{POC}.
+				\item \href{https://github.com/Bug-s-Bunny-Team/poc}{\textbf{docs}}: per la gestione e il versionamento del \textit{POC\G}.
 			\end{itemize}
 
 		\paragraph*{Struttura dei repository} %inserire struttura cartelle e disposizione file
 		\aCapo{}  
-		Il gruppo mantiene diversi repository separati, ognuno con struttura e fini propri.
-		Di base, ogni repository conterrà i seguenti file:
+		Il gruppo mantiene diversi repository\G{} separati, ognuno con struttura e fini propri.
+		Di base, ogni repository\G{} conterrà i seguenti file:
 		\begin{itemize}
-			\item \verb#README.md#: contiene istruzioni d'uso, installazione, e sviluppo proprie del repository. Ne viene inoltre descritta la struttura nel dettaglio. Redatto in formato \textit{Markdown}.
+			\item \verb#README.md#: contiene istruzioni d'uso, installazione, e sviluppo proprie del repository\G. Ne viene inoltre descritta la struttura nel dettaglio. Redatto in formato \textit{Markdown}.
 			\item \verb#.gitignore#: descrive quali file ignorare dal sistema di versionamento, deve essere utilizzato per evitare la proliferazione di file inutili e che non necessitano di versionamento. È consigliato utilizzare \href{https://www.toptal.com/developers/gitignore}{servizi di generazione} per generare le regole.
 			\item \verb#.editorconfig#: descrive regole di formattazione, quali indentazione e stile dei fine riga. Viene utilizzato dai formattatori automatici degli \textit{IDE} ed editor di testo. Segue il formato \href{https://editorconfig.org/}{\textit{EditorConfig}}.
 		\end{itemize}
 
 		\paragraph*{Norme di branching}
 		\aCapo{}  
-			Il \emph{repository} inerente alla documentazione sarà composto da diversi \textit{branch}:
+			Il \emph{repository\G{}} inerente alla documentazione sarà composto da diversi \textit{branch\G}:
 			\begin{itemize}
 				\item \verb#master#: \emph{branch} principale che viene aggiornato quando un documento è approvato o per introdurre nuove funzionalità; 
 				\item un \textit{branch} per ogni documento o tipologia di documento.
@@ -209,20 +209,20 @@
 		\aCapo{}  
 		Tutti i membri del gruppo possono apportare modifiche ai file elaborati, salvo quelli presenti nel ramo \textit{master} o nel ramo \textit{dev}. \\
 		 Il ramo \textit{master} verrà aggiornato alle ultime modifiche prima di una delle revisioni tramite merge dal ramo \textit{dev}. \\
-		Mentre il ramo \textit{dev} verrà aggiornato con le ultime modifiche tramite merge dagli altri rami di lavoro, dopo la chiusura di una \textit{Issue} o al raggiungimento di una versione avanzata di un documento. \\
+		Mentre il ramo \textit{dev} verrà aggiornato con le ultime modifiche tramite merge dagli altri rami di lavoro, dopo la chiusura di una \textit{Issue\G{}} o al raggiungimento di una versione avanzata di un documento. \\
 		Per entrambi i rami i merge vanno effettuati tramite \textit{Pull Request}, aperta dall'autore delle modifiche, con conseguente verifica di almeno un altro elemento del gruppo e approvazione di un altro elemento del gruppo che chiuderà la \textit{Pull Request} e farà il merge, preferibilmente tramite sistema \textit{"Squash and Merge"}.
 		
 		\subsubsection{Strumenti}
-			Per la gestione della configurazione o versionamento il gruppo utilizza \emph{Visual Studio Code} o i seguenti client \emph{Git}:
+			Per la gestione della configurazione o versionamento il gruppo utilizza \emph{Visual Studio Code\G{}} o i seguenti client \emph{Git}:
 				
 				\begin{itemize}
-					\item \textbf{GitHub Desktop}: Client ufficiale di \emph{GitHub} utilizzato per la gestione delle \emph{repository} \emph{Git};
+					\item \textbf{GitHub Desktop}: Client ufficiale di \emph{GitHub\G{}} utilizzato per la gestione delle \emph{repository} \emph{Git};
 					\item \textbf{GitKraken}.
 				\end{itemize}\
 		
 		\subsection{Gestione della qualità}
 			\subsubsection{Scopo}
-				Per la gestione della qualità è dedicato il documento \PdQ{}: il documento fissa i \emph{requisiti} qualitativi individuati dagli \emph{stakeholder} e le metriche per la \emph{verifica} e \emph{validazione} per garantire la qualità del prodotto finale.
+				Per la gestione della qualità è dedicato il documento \PdQ{}: il documento fissa i \emph{requisiti} qualitativi individuati dagli \emph{stakeholder\G{}} e le metriche\G{} per la \emph{verifica} e \emph{validazione} per garantire la qualità del prodotto finale.
 		
 			\subsubsection{Attività di processo}
 				Si possono individuare delle attività principali nel processo di gestione della qualità:
@@ -245,8 +245,8 @@
 
 			\subsubsection{Strumenti}
 			\begin{itemize}
-				\item \textbf{LaTeX:} stesura in bella copia dei documenti caricati poi sul repository del gruppo;
-				\item \textbf{Visual Studio Code:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub;
+				\item \textbf{LaTeX\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
+				\item \textbf{Visual Studio Code\G:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub\G;
 				\item \textbf{Google Docs:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live;
 			\end{itemize}
 
@@ -330,7 +330,7 @@
 						\textbf{MPR4} & Branch Coverage & \S 6.2 MPR4 \\
 						\textbf{MPR16} & Percentuale test passati & \S 6.2 MPR16 \\
 						\textbf{MPR17} & Percentuale test falliti & \S 6.2 MPR17 \\
-						\textbf{MPP1} & Schedule variance & \S 6.1 MPP1 \\
+						\textbf{MPP1} & Schedule\G{} variance & \S 6.1 MPP1 \\
 						\textbf{MPP2} & Budget variance & \S 6.1 MPP2 \\
 						\textbf{MPP3} & Budgeted Cost of Work Performed & \S 6.1 MPP3 \\
 						\textbf{MPP4} & Budgeted Cost of Work Scheduled & \S 6.1 MPP4 \\
