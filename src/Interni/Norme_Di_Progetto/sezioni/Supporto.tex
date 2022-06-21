@@ -77,17 +77,17 @@
 	\subsubsection{Ciclo di vita di un documento}
 		Ogni documento passa per le seguenti fasi:
 			\begin{itemize}
-				\item \textbf{Stesura}: Il documento viene creato, aggiornato e modificato fino ad \emph{Approvazione};
-				\item  \textbf{Verifica}: Il documento viene verificato sia dal punto di vista grammaticale che contenutistico; la verifica viene effettuata da uno o più \verf{};
-				\item \textbf{Approvazione}: Il documento viene approvato da un \emph{Approvatore} che ne consente il rilascio.
+				\item \textbf{Stesura}: il documento viene creato, aggiornato e modificato fino ad \emph{Approvazione};
+				\item  \textbf{Verifica}: il documento viene verificato sia dal punto di vista grammaticale che contenutistico; la verifica viene effettuata da uno o più \verf{};
+				\item \textbf{Approvazione}: il documento viene approvato da un \emph{Approvatore} che ne consente il rilascio.
 			\end{itemize}
 	\subsubsection{Struttura dei documenti}
 		\paragraph*{Frontespizio}
 		\aCapo{}    
 			La prima pagina di ogni documento sarà così strutturata:
 				\begin{itemize}
-					\item \textbf{Logo Università e didascalia}: Posizionato in alto a sinistra e al suo fianco, al centro, la scritta "Università degli studi di Padova", corso del progetto e anno accademico;
-					\item \textbf{Logo gruppo e nome}: Entrambi al centro, il nome del gruppo è sotto il logo;
+					\item \textbf{Logo Università e didascalia}: posizionato in alto a sinistra e al suo fianco, al centro, la scritta "Università degli studi di Padova", corso del progetto e anno accademico;
+					\item \textbf{Logo gruppo e nome}: entrambi al centro, il nome del gruppo è sotto il logo;
 					\item \textbf{Titolo del documento};
 					\item \textbf{Recapito email del gruppo};
 					\item \textbf{Informazioni del documento}: Redattore, Verificatore, Approvatore ed Uso(interno od esterno).
@@ -95,7 +95,7 @@
 			
 		\paragraph*{Registro delle modifiche}
 		\aCapo{}  
-			Ogni documento formale presenta subito dopo il frontespizio il registro modifiche., dove ogni componente del gruppo è tenuto alla stesura, pressochè immediata, delle modifiche apportate.
+			Ogni documento formale presenta subito dopo il frontespizio il registro modifiche, dove ogni componente del gruppo è tenuto alla stesura, pressochè immediata, delle modifiche apportate.
 			Esso è una tabella che traccia tutte le modifiche significative apportate al documento durante il suo ciclo di vita. Ogni voce della tabella riporta:
 				\begin{itemize}
 					\item \textbf{Versione}: numero versione documento dopo la modifica;
@@ -119,29 +119,29 @@
 			I verbali, sia interni che esterni, presentano una struttura fissa e a differenza degli altri documenti, essendo informali, non sono soggetti a versionamento e non riportano il registro delle modifiche.
 			La struttura sarà quindi la seguente:
 				\begin{itemize}
-					\item \textbf{Logo Università e logo gruppo}
+					\item \textbf{Logo Università e logo gruppo};
 					\item \textbf{Uso}: indica se il verbale è esterno o interno;
 					\item \textbf{Data}: data della riunione;
 					\item \textbf{Informazioni del documento}: Redattore, Verificatore ed Approvatore;
-					\item \textbf{Orari:} ora di inizio e ora di fine della riunione
-					\item \textbf{Resoconto della riunione:} Riporta l'esito della discussione dei singoli argomenti trattati; per i verbali esterni, questa sezione è organizzata secondo il pattern domanda-risposta.								
+					\item \textbf{Orari:} ora di inizio e ora di fine della riunione;
+					\item \textbf{Resoconto della riunione:} Riporta l'esito della discussione dei singoli argomenti trattati.								
 				\end{itemize}
 	
 	\subsubsection{Norme tipografiche}
 		\paragraph*{Convenzioni di denominazione}   % serve ?
 		\aCapo{}  
-			I nomi dei file relativi alla documentazione presentano l'iniziale della prime e terza parola che lo compone in maiuscolo e presenta separazione tra le parole. 
+			I nomi dei file relativi alla documentazione presentano l'iniziale della prima e terza parola che lo compone in maiuscolo e presenta separazione tra le parole. 
 		\paragraph*{Stili di testo} % Ha senso?
 			\begin{itemize}
-				\item \textbf{Grassetto}: viene usato nei titoli delle sezioni e dei paragrafi, per enfatizzare parole, per indicare gli elementi di un elenco puntato;
-				\item \textbf{Corsivo}: viene usato per i nomi propri (membri del gruppo,  proponente e committenti), per citare il nome di un documento e per i termini che fanno parte del glossario
+				\item \textbf{Grassetto}: viene usato nei titoli delle sezioni e dei paragrafi e per enfatizzare parole;
+				\item \textbf{Corsivo}: viene usato per i nomi propri (membri del gruppo,  proponente e committenti) e per citare il nome di un documento.
 			\end{itemize}
 	
 		%Aggiungere Paragrafo Tabelle?
 		
 		\subsubsection{Strumenti}
 			\begin{itemize}
-				\item \textbf{\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
+				\item \textbf{\LaTeX\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
 				\item \textbf{Visual Studio Code\G:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub\G;
 				\item \textbf{Google Docs:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live;
 			\end{itemize}
@@ -171,13 +171,13 @@
 			
 	\subsection{Processo di Configurazione}
 	\subsubsection{Scopo}
-		Il processo di gestione della configurazione ha come scopo il gestire in maniera ordinata e sistematica la produzione di documenti. %codice in futuro
+		Il processo di gestione della configurazione ha lo scopo di gestire in maniera ordinata e sistematica la produzione di documenti. %codice in futuro
 		 In particolare, un elemento sottoposto a configurazione ha una collocazione, una denominazione e uno stato definiti, oltre a norme e versionamento. 
  	
 	\subsubsection{Versionamento}
 		\paragraph*{Tecnologie adottate}
 		\aCapo{}  
-			Per gestire il versionamento del codice sorgente, viene utilizzato il sistema di versionamento distribuito \emph{Git\G}, con un \emph{repository} remoto presente su \emph{GitHub\G}.
+			Per gestire il versionamento del codice sorgente, viene utilizzato il sistema di versionamento distribuito \emph{Git\G}, con un \emph{repository\G{}} remoto presente su \emph{GitHub\G}.
 			
 		\paragraph*{Repository}
 		\aCapo{}
@@ -210,13 +210,13 @@
 		Tutti i membri del gruppo possono apportare modifiche ai file elaborati, salvo quelli presenti nel ramo \textit{master} o nel ramo \textit{dev}. \\
 		 Il ramo \textit{master} verrà aggiornato alle ultime modifiche prima di una delle revisioni tramite merge dal ramo \textit{dev}. \\
 		Mentre il ramo \textit{dev} verrà aggiornato con le ultime modifiche tramite merge dagli altri rami di lavoro, dopo la chiusura di una \textit{Issue\G{}} o al raggiungimento di una versione avanzata di un documento. \\
-		Per entrambi i rami i merge vanno effettuati tramite \textit{Pull Request}, aperta dall'autore delle modifiche, con conseguente verifica di almeno un altro elemento del gruppo e approvazione di un altro elemento del gruppo che chiuderà la \textit{Pull Request} e farà il merge, preferibilmente tramite sistema \textit{"Squash and Merge"}.
+		Per entrambi i rami i merge vanno effettuati tramite \textit{Pull Request}, aperta dall'autore delle modifiche, con conseguente verifica di almeno un altro elemento del gruppo e approvazione da parte di un ulteriore elemento del gruppo che chiuderà la \textit{Pull Request} e farà il merge, preferibilmente tramite sistema \textit{"Squash and Merge"}.
 		
 		\subsubsection{Strumenti}
-			Per la gestione della configurazione o versionamento il gruppo utilizza \emph{Visual Studio Code\G{}} o i seguenti client \emph{Git}:
+			Per la gestione della configurazione o versionamento il gruppo utilizza \emph{Visual Studio Code\G{}} o i seguenti client \emph{Git\G}:
 				
 				\begin{itemize}
-					\item \textbf{GitHub Desktop}: Client ufficiale di \emph{GitHub\G{}} utilizzato per la gestione delle \emph{repository} \emph{Git};
+					\item \textbf{GitHub Desktop}: Client ufficiale di \emph{GitHub\G{}} utilizzato per la gestione delle \emph{repository} \emph{Git\G};
 					\item \textbf{GitKraken}.
 				\end{itemize}\
 		
@@ -228,7 +228,7 @@
 				Si possono individuare delle attività principali nel processo di gestione della qualità:
 				\begin{itemize}
 					\item \textbf{Pianificazione}: attività volta a definire gli obiettivi e i metodi con i quali raggiungerli;
-					\item \textbf{Esecuzione}: attività che si occupa dell'esecuzione di ciò che è stato pianificato nell'attività precedente.ì;
+					\item \textbf{Esecuzione}: attività che si occupa dell'esecuzione di ciò che è stato pianificato nell'attività precedente;
 					\item \textbf{Controllo}: attività per analizzare i risultati ottenuti con lo scopo di misurarli e capire se l'obiettivo è stato raggiunto.
 				\end{itemize}
 				Queste attività mirano soprattutto all'\emph{Auto-Miglioramento} del processo, facendo un'analisi dei risultati ottenuti con lo scopo di migliorare e/o correggere eventuali attività
@@ -237,17 +237,17 @@
 			\subsubsection{Aspettative}
 				 Le aspettative di questo processo sono:
 					\begin{itemize}
-						\item conseguimento della qualità nel prodotto, secondo le richieste del \emph{proponente};
-						\item prova oggettiva della qualità del prodotto;						
-						\item conseguimento della qualità nell'organizzazione delle attività del gruppo e dei processi;
-						\item raggiungimento della piena soddisfazione del \emph{proponente}.
+						\item Conseguimento della qualità nel prodotto, secondo le richieste del \emph{proponente};
+						\item Prova oggettiva della qualità del prodotto;						
+						\item Conseguimento della qualità nell'organizzazione delle attività del gruppo e dei processi;
+						\item Raggiungimento della piena soddisfazione del \emph{proponente}.
 					\end{itemize}
 
 			\subsubsection{Strumenti}
 			\begin{itemize}
 				\item \textbf{LaTeX\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
 				\item \textbf{Visual Studio Code\G:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub\G;
-				\item \textbf{Google Docs:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live;
+				\item \textbf{Google Docs:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live.
 			\end{itemize}
 
 			\subsubsection{Metriche}
@@ -282,10 +282,10 @@
 			\subsubsection{Aspettative}
 				Le aspettative di questo processo sono:
 					\begin{itemize}
-						\item seguire procedure definite con criteri chiari ed affidabili;
-						\item verificare ad ogni fase;
-						\item la verifica deve garantire che il prodotto si trovi in uno stato stabile;
-						\item la verifica deve risultare più automatica possibile.
+						\item Seguire procedure definite con criteri chiari ed affidabili;
+						\item Verificare ad ogni fase;
+						\item La verifica deve garantire che il prodotto si trovi in uno stato stabile;
+						\item La verifica deve risultare più automatica possibile.
 					\end{itemize}
 				
 				\subsubsection{Analisi}
@@ -307,7 +307,7 @@
 								\begin{itemize}
 									\item Sono ripetibili;
 									\item Sono automatici;
-									\item Forniscono informazioni tramite artefatti di vario genere, quali file di log;
+									\item Forniscono informazioni tramite artefatti di vario genere, quali file di log.
 								\end{itemize}
 
 								
@@ -348,5 +348,5 @@
 					\begin{itemize}
 						\item Identificazione oggetti da validare;
 						\item Valutazione dei risultati rispetto alle attese;
-						\item Rendere tale processo automatico e riutilizzabile;
+						\item Rendere tale processo automatico e riutilizzabile.
 					\end{itemize}
