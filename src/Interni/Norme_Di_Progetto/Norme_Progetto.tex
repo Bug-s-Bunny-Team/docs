@@ -1,19 +1,22 @@
 \documentclass{classes/base}
 \usepackage{hyperref}
+\usepackage{titlesec}
 
 \title{Norme di Progetto}
-\author{\matteo}
-\verificatore{\marcov}
-\approvatore{\giulio}
+\author{\matteo, \\ \marcov, \\ \giulio, \\ \marcob}
+\verificatore{\marcob, \\ \marcov, \\ \matteo}
+\approvatore{\angela}
 \uso{Esterno}
 
 \begin{document}
 	\maketitle
 	\newpage
-	\input{sezioni/registro_mod}
+	\input{sezioni/Registro_Mod}
 	\newpage
 	\tableofcontents
-	
+	\newpage
+	\listoftables
+
 	\newpage
 	\section{Introduzione}
 	\input{sezioni/Intro}
@@ -29,5 +32,26 @@
 	\newpage
 	\section{Processi Organizzativi}
 	\input{sezioni/Organizzativi}
+
+	\newpage
+	\section{V-Model}
+	\input{sezioni/V_Model}
+	
+	\newpage
+	\section{Metriche}
+	\input{sezioni/Metriche}
+	
+	\newpage
+	\section{Standard ISO/IEC 12207 - Software life cycle processes}
+	\input{sezioni/Ciclo_Vita}
+	
+	\newpage
+	\section{Standard ISO/IEC 15504 - SPICE}
+	\input{sezioni/Spice}
+	
+	\newpage
+	\section{Standard ISO/IEC 25000 - SQuaRE: Systems and software Quality
+		Requirements and Evaluation} % https://iso25000.com/index.php/en/iso-25000-standards
+	\input{sezioni/Square}
 	
 \end{document}
