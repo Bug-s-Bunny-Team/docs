@@ -2,8 +2,8 @@
 \usepackage{hyperref}
 
 \title{Glossario}
-\author{\giulio}
-\verificatore{\marcov}
+\author{\giulio, \\ \angela, \\ \marcob}
+\verificatore{\marcov, \\ \marcob}
 \approvatore{\matteo}
 \uso{Esterno}
 
@@ -19,7 +19,11 @@
         Application Program Interface, è un'interfaccia che offre servizi a computer o software (non ha quindi interazione con utenti).
        
         \subsection*{AWS}
+        \label{sec:AWS}
         Amazon Web Services, è una suite di applicativi amazon dedicati alla gestione e sviluppo di applicativi web.
+
+        \subsection*{Analisi dei Requisiti (Adr)}
+        Il documento descrive in maniera dettagliata i casi d’uso e i requisiti del progetto.
 
         \subsection*{Amazon API Gateway}
         Amazon API Gateway è un servizio AWS per la creazione, la pubblicazione, la gestione, il monitoraggio e la protezione di API.
@@ -49,10 +53,14 @@
         Amazon Relational Database Service (Amazon RDS) è un servizio Web che semplifica la configurazione, l'uso e il dimensionamento di un database relazionale in AWS Cloud.
 
         \subsection*{Amazon Rekognition}
-        Servizio di AWS che semplifica l’aggiunta di analisi delle immagini nelle applicazioni. Può rilevare molteplici cose tra cui oggetti, scene e volti.
+        Servizio di AWS che semplifica l'aggiunta di analisi delle immagini nelle applicazioni. Può rilevare molteplici cose tra cui oggetti, scene e volti.
 
         \subsection*{Amazon S3}
+        \label{sec:S3}
         Servizio di AWS per l'archiviazione di oggetti che offre notevole scalabilità, disponibilità dei dati sicurezza e prestazioni. Offre la possibilità di archiviare facilmente qualsiasi quantità di dati per qualsiasi caso d'uso.
+        
+        \subsection*{Amazon Secret Manager}
+        Servizio di AWS per i sostituire le credenziali hardcoded nel codice, incluse le password, con una chiamata API al servizio stesso per recuperare le credenziali a livello di programmazione. Inoltre permette un rinnovo automatico e pianificato delle credenziali.
 
         \subsection*{Amazon VPC}
         Amazon Virtual Private Cloud (Amazon VPC) offre il pieno controllo sull' ambiente di reti virtuali, inclusi posizionamento della risorsa, connettività e sicurezza.
@@ -65,16 +73,29 @@
     
         \newpage  
     \section{B}
+    
+    	\subsection*{Back-end}
+    	Parte non visibile all'utente del programma, che riceve i dati dal Front-end ed elabora/esegue le richieste.
+    
+    	\subsection*{Baseline}
+    	Punto di riferimento, per l'attivita di monitoraggio, rispetto al quale calcolare gli scostamenti delle principali variabili implicate nella gestione di un progetto.
         
         \subsection*{Best practices} 
         Si tratta delle pratiche, abitudini e comportamenti che è buona norma seguire per svolgere un lavoro.
 
+        \subsection*{Bounding box}
+        Regione rettangolare di un'immagine, solitamente identificata con le coordinate del sistema di riferimento.
+
         \subsection*{Branch} 
         Letteralmente “ramo”. Viene usato per isolare il lavoro di sviluppo senza influire su altri nel repository. 
         
+        \subsection*{Bucket}
+        Termine relativo all'ambito di utilizzo del servizio \hyperref[sec:S3]{\emph{Amazon S3}}.\\
+        È un container per caricare i dati (foto, video, documenti ecc.) su \hyperref[sec:S3]{\emph{Amazon S3}} per poi poter essere usato anche da altri servizi \hyperref[sec:AWS]{\emph{AWS}}. 
+        
         \newpage  
     \section{C}
-        \subsection*{Casi d’uso} 
+        \subsection*{Casi d'uso} 
         E' un tecnica utilizzata per raccogliere requisiti, in maniera esaustiva e dettagliata, al fine di produrre software qualitativo.
 
         \subsection*{CDN}
@@ -93,10 +114,18 @@
         Un cluster è un insieme di computer connessi tra di loro tramite una rete, con lo scopo di distribuire un'elaborazione molto complessa tra i vari computer, aumentando la potenza di calcolo del sistema e/o garantendo una maggiore disponibilità di servizio.
     
         \subsection*{Commit}
-        Una serie di modifiche ad un documento. 
+        Una serie di modifiche ad un documento.
+        
+        \subsection*{Crawler}
+        Software o bot per analizzare i contenuti di una rete in modo automatico.
         
         \newpage  
     \section{D}
+        \subsection*{DataBase}
+        Un database è un insieme di informazioni (o dati) strutturate in genere archiviate elettronicamente in un sistema informatico.
+
+        \subsection*{Dataset}
+        Letteralmente insieme di dati, cioè una collezione di dati più o meno ordinati e di varia natura che servono ad un preciso scopo, per esempio l'addestramento di un modello di apprendimento automatico.
        
         \subsection*{Discord}
         Piattaforma di VoIp, progettata per la comunicazione. Gli utenti possono comunicare tramite chiamate vocali, videochiamate, messaggi di testo, media e file in chat privata come membri di un server Discord.
@@ -110,14 +139,20 @@
         \subsection*{Design}
         Il termine design in informatica si riferisce al processo di progettazione di un applicazione software.
 
-        \subsection*{DataBase}
-        Un database è un insieme di informazioni (o dati) strutturate in genere archiviate elettronicamente in un sistema informatico.
+        \subsection*{Design Pattern}
+        in informatica e specialmente nell'ambito dell'ingegneria del software, è un concetto che può essere definito "una soluzione progettuale generale ad un problema ricorrente".
+        Si tratta di una descrizione o modello logico da applicare per la risoluzione di un problema che può presentarsi in diverse situazioni durante le fasi di progettazione e sviluppo del software.
+
         \newpage  
     \section{E}
     
         \newpage  
     \section{F}
         \subsection*{Framework}
+        È un'architettura logica di supporto sulla quale un software può essere progettato e realizzato, facilitandone lo sviluppo.
+        
+        \subsection*{Front-end}
+        Parte visibile all'utente di un programma (interfaccia) che permette l'interazioni con esso.
         
         \newpage  
     \section{G}
@@ -132,37 +167,78 @@
         È la base per gli sviluppatori che cercano un'interfaccia più adatta a Git, con interazioni a GitHub. 
 
         \subsection*{Git}
-        Git è un software per il controllo di versione distribuito utilizzabile da interfaccia a riga di comando, creato da Linus Torvalds
+        Git è un software per il controllo di versione distribuito utilizzabile da interfaccia a riga di comando, creato da Linus Torvalds.
+        
+        \subsection*{Google Docs}
+        Servizio web di Google per la elaborazione di testi, fogli di calcolo, presentazioni e sondaggi (suite per ufficio).
+        
+        \subsection*{Google Drive}
+        Servizio web di Google per la memorizzazione e sincronizzazione su cloud.
 
         \subsection*{GraphQL}
         Linguaggio per interrogare lato server per API, è in grado di fornire ai client solo idati di cui si ha bisogno.
 
         \subsection*{Guida Michelin} 
-        Insieme di pubblicazioni annuali rivolte all’enogastronomia di un determinato paese. È un riferimento per la valutazione della qualità dei ristoranti.
+        Insieme di pubblicazioni annuali rivolte all'enogastronomia di un determinato paese. È un riferimento per la valutazione della qualità dei ristoranti.
         \newpage  
     \section{H}
     \newpage  
     \section{I}
         \subsection*{Issue}
-        Compito da svolgere all'interno del repo
-
+        Compito, questione o semplice domanda relativa al repository di riferimento.
+        
+        \subsection*{Instagram}
+        Servizio di rete sociale statunitense che permette agli utenti, tra le varie features, di scattare foto, applicarvi filtri e condividerle via Internet.
+        
         \subsection*{Interfaccia}
         Collegamento tra sistemi diversi per permettere loro lo scambio di informazioni.
+
         \subsection*{IP}
         Internet Protocol, protocollo di rete TCP/IP che si occupa dell'instradamento delle informazioni.
+
+        \subsection*{Istanza}
+        in informatica, una determinata esecuzione di un processo, solitamente caratterizzata da una propria configurazione. In pratica, si tratta di una specifica installazione o implementazione di un programma di sistema.
+        
+        \subsection*{ISO/IEC 12207:1995}   
+        ISO 12207 è uno standard dell'ISO per la gestione del ciclo di vita del software. 
+        Si propone di diventare lo standard di riferimento definendo tutte le attività svolte nel processo di sviluppo e mantenimento del software. 
+
+        \subsection*{ISO/IEC 15504}
+        ISO/IEC 15504, anche conosciuta come SPICE (Software Process improvement and Capability Determination),
+        è un insieme di nove documenti di standard tecnici relativi ai processi di sviluppo del software e relative funzioni di business e, in particolare, alla loro valutazione.
+        
+        \subsection*{ISO/IEC 25000:2005}
+        ISO 25000/IEC vuole dare un contributo alla sicurezza, alla funzionalità e manutenibilità del prodotto software, alla accuratezza dei dati, al raggiungimento della soddisfazione dell'utente, che usa servizi, in un'ottica preventiva e di qualità misurabile.
+        
         \newpage  
     \section{J}
     \newpage  
     \section{K}
     \newpage  
     \section{L}
+        \subsection*{Label (classificazione)}
+        Letteralmente etichetta, cioè la classe a cui appartiene un'istanza di un dataset.
+        
+        \subsection*{LaTeX}
+        Sistema software per la preparazione dei documenti in alta qualità.
+
     \newpage  
     \section{M} 
         \subsection*{Metrica}
+        Qualsiasi tipo di misura correlata a un sistema, un processo software  o  documentazione  di  un  prodotto  SW. 
 
         \subsection*{Milestone}
         In inglese significa pietra miliare, ed indica un traguardo/obbiettivo presente nello svolgimento del progetto.
-        \subsection*{Multi AZ} 
+        
+        \subsection*{Modello a V}
+        Modello di sviluppo del software che, dopo la fase di programmazione (discesa), risale creando una forma a V. Il modello dimostra la relazione tra ogni fase del ciclo di vita dello sviluppo del software e la sua fase di testing.
+
+        \subsection*{Multi AZ RDS} 
+        In una implementazione di Amazon RDS Multi-AZ, Amazon RDS crea automaticamente un’istanza del database primario (DB) e replica in maniera sincrona i dati su un’istanza in una zona di disponibilità differente.
+
+        \subsection*{MVP}
+        Minimum viable product ossia prodotto minimo funzionante. \\
+        È la versione di un prodotto con caratteristiche appena sufficienti per essere utilizzabile dai primi clienti, che possono fornire un feedback sullo sviluppo futuro del prodotto stesso.
 
         \subsection*{MySQL}
         Sistema di gestione di database relazionali gratuito ed open source che utilizza SQL.
@@ -172,28 +248,46 @@
         Network Address Translation, metodo con il quale si può modificare l'indirizzo sorgente/destinatario di un pacchetto nella comunicazione tra due client posti in reti diverse.
 
         \subsection*{Norme di Progetto (NdP)} 
-
+        E' un documento interno che serve a istituire un Way Of Woking. Esso è un documento incrementale, perchè aggiungo regole ogni qualvolta ne necessito.
+        
         \subsection*{Neptune}
+        Amazon Neptune è un servizio di database a grafo rapido, affidabile e completamente gestito che semplifica la creazione e l'esecuzione di applicazioni.
 
         \subsection*{Network}
         Sostanzialmente una rete di host collegati e in grado di comunicare tra loro.
+
+        \subsection*{Natural Language Processing (NLP)}
+        Analisi del linguaggio naturale, solitamente rappresentato attraverso testo, con l'obiettivo di estrarne informazioni.
+
         \subsection*{NodeJS}
         Ambiente di esecuzione che permette di eseguire codice Javascript come un qualsiasi linguaggio di programmazione.
         \newpage  
     \section{O}
         \subsection*{Open Source}
-        Programma del quale è disponibile pubblico il codice sorgente 
+        Programma del quale è disponibile pubblico il codice sorgente.
         \newpage  
     \section{P}
         \subsection*{Piano di progetto (PdP)}
+        Documento che fornisce in maniera dettagliata la pianificazione delle attività di progetto, con i rispettivi obiettivi da raggiungere. 
 
         \subsection*{Piano di qualifica (PdQ)} 
+        Documento che definisce e documenta le strategie inerenti a V\&V (verifica e validazione) necessarie ad assicurare qualità di processo e qualità di prodotto.
 
         \subsection*{Pipeline}
         Indica una catena di montaggio, in particolare dei componenti software collegati tra loro a cascata in modo che il risultato prodotto da un elemento sia l'ingresso di quello successivo.
+
         \subsection*{Plugin}
         Software non autonomo, interagisce con un altra applicazione per estenderne le capacità.
+
         \subsection*{PostgreSQL}
+        È un sistema di database relazionale a oggetti open source.
+
+        \subsection*{Proof of Concept (PoC)}
+        È un prototipo concettuale per valutare, in fase pre-decisionale, le potenzialità di sviluppo di un’idea e i relativi investimenti. Proof of Concept significa letteralmente “prova di concetto”, perché ciò che viene simulata è l’idea del nuovo prodotto o servizio.
+        
+        \subsection*{Processo}
+        Insieme di attività correlate che trasformano ingressi in uscite, consumando risorse nel farlo.
+
         \newpage  
     \section{Q}
     \newpage  
@@ -206,28 +300,44 @@
         
         \subsection*{React}
         Libreria Javascript indirizzata alla creazione di interfacce utente.
+
         \subsection*{REST}
-        
+        Il termine REST rappresenta un sistema di trasmissione di dati su HTTP senza ulteriori livelli. I sistemi REST non prevedono il concetto di sessione.
+
         \subsection*{RTB}
         Requirements Technology Baseline
         \newpage  
     \section{S}
         \subsection*{Scaling}       
+        Dall'inglese ridimensionare, determina la capacità di un sistema/prodotto ad aumentare a diminuire di scala in funzione delle necessità e disponibilità.
 
         \subsection*{Schedule} 
         Il termine significa organizzare, pianificare eventi.
+
         \subsection*{Schedulato}
         Il termine si utilizza per indicare un evento preventivamente organizzato e prefissato.
-        \subsection*{Secret Manager}
+        
+        \subsection*{Scraper}
+        Programma o bot per l'estrazione di dati da un sito web che simula la navigazione umana.
+        
+        \subsection*{Serverless}
+        Modello di esecuzione cloud dove il provider del servizio alloca le risorse della macchina appena queste vengono richieste. Quando un app non è in uso, nessuna risorsa viene consumata e il prezzo è basato solo sulle risorse utilizzate. I programmatori non devono più occuparsi di mantenimento o configurazione.
 
         \subsection*{Slack} 
         Applicazione che permette di inviare messaggi in tempo reale ai membri del gruppo e viene usato come strumento di collaborazione aziendale.
 
         \subsection*{Software Suite} 
         Collezione di programmi e applicativi correlati tra loro.
+        
+        \subsection*{Sprint}
+        Unità di base dello sviluppo in Scrum ed è di durata fissa, generalmente da una a quattro settimane.
+
+        \subsection*{Standard}
+        Modello in cui viene uniformata un determinata attività.
 
         \subsection*{Stakeholder} 
         Dall'inglese portatore d'interesse, si riferisce ai soggetti direttamente interessati ed altamente coinvolti nel buon andamento dell'applicazione.
+
         \subsection*{Subnet}
         E' divisione logica di rete IP, e ulteriore partizione di una vpc.
         \newpage  
@@ -236,19 +346,38 @@
         Applicazione che permette di inviare messaggi ed effettuare chiamate a più utenti contemporaneamente in tempo reale, creando anche dei gruppi privati.
 
         \subsection*{Terminal} 
-        Interfaccia a linea di comando per interagire con il sistema operativo 
+        Interfaccia a linea di comando per interagire con il sistema operativo.
+        
+        \subsection*{Tik Tok}
+        Social network cinese che permette di creare brevi clip musicali di durata variabile (dai 15 ai 180 secondi) ed eventualmente modificare la velocità di riproduzione, aggiungere filtri, effetti particolari e suoni ai loro video.
+        
         \newpage  
     \section{U}
         \subsection*{UML}
+		È un linguaggio di modellazione e di specifica basato sul paradigma orientato agli oggetti per l'architettura, la progettazione e l'implementazione di sistemi software.
 
         \subsection*{Use Cases} 
-        Si veda casi d’uso.
+        dall'inglese Casi D'uso, è un tecnica utilizzata per raccogliere requisiti, in maniera esaustiva e dettagliata, al fine di produrre software qualitativo.
+
+        \subsection*{Unit Test}
+        per unit testing si intende l'attività di testing (prova, collaudo) di singole unità software. 
+        Per unità si intende normalmente il minimo componente di un programma dotato di funzionamento autonomo; a seconda del paradigma di programmazione.
+        
         \newpage  
     \section{V}
-        \subsection*{Valutazione capitolati}
 
         \subsection*{VPC}
         Virtual Private Cloud.
+
+        \subsection*{Validazione} 
+        Conferma finale, accerta la conformità di un prodotto alle attese e coinvolge il committente.
+
+        \subsection*{Verifica}
+        Attiene alla coerenza e all completezza del prodotto. E’ un processo cche si applica ad ogni “segmento” temporale di un progetto per accertare che le attività svolte in tale segmento non abbiano introdotto errori.
+
+        \subsection*{VSC - Visual Studio Code}
+        Editor di codice sorgente sviluppato da Microsoft per Windows, Linux e macOS. È un software libero e gratuito, anche se la versione ufficiale è sotto una licenza proprietaria.
+
         \newpage  
     \section{W}
         \subsection*{WOW - Way Of Working}
@@ -258,6 +387,7 @@
     \newpage  
     \section{Y}
         \subsection*{YAML}
+        È un formato per la serializzazione di dati utilizzabile da esseri umani.
         
         \newpage  
     \section{Z}

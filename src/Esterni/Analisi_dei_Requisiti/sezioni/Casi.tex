@@ -1,13 +1,13 @@
 \subsection{Introduzione}
-Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identificati dal gruppo \teamname{} come delle potenziali funzionalità dell'applicazione.
+Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati identificati dal gruppo \teamname{} come delle potenziali funzionalità dell'applicazione.
 
 \subsection{Attori}
 \begin{itemize}
     \item \textbf{Utente non registrato}: 
-    è un utente che non ha ancora effettuato la registrazione presso l'applicativo. 
-    Non possiede credenziali per effettuare l'autenticazione presso la piattaforma e non ha accesso a nessuna funzionalità dell'applicazione.
+    è un utente che non ha ancora effettuato la registrazione presso l'applicativo.
+    Non possiede credenziali per effettuare l'autenticazione presso la piattaforma e non ha accesso a nessuna funzionalità dell'applicazione;
     \item \textbf{Utente non autenticato}: 
-    è un utente che ancora deve autenticarsi nell'applicazione. Può essere in possesso di credenziali di accesso oppure no.
+    è un utente che ancora deve autenticarsi nell'applicazione. Può essere in possesso di credenziali di accesso oppure no;
     \item \textbf{Utente autenticato}:
     è un utente che ha effettuato l'autenticazione della piattaforma ed ha accesso alle funzionalità di essa.
 \end{itemize}
@@ -43,7 +43,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
         \begin{enumerate}
             \item l'utente inserisce una mail non valida  \textbf{(UC2)};
             \item l'utente inserisce il nome utente non valido \textbf{(UC3)};
-            \item l'utente inserisce una password non valida \textbf{(UC4)};
+            \item l'utente inserisce una password non valida \textbf{(UC4)}.
         \end{enumerate}
 
     \item \textbf{Precondizioni}: l'utente non è ancora registrato nel sistema.
@@ -200,7 +200,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
 \begin{itemize}
     \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve essere notificato con un errore nel caso in cui l'email inserita sia invalida durante la fase di autenticazione.
-    \item \textbf{Scenario}: L'utente visualizza un messaggio di errore. 
+    \item \textbf{Scenario}: l'utente visualizza un messaggio di errore. 
     \item \textbf{Precondizioni}: l'utente effettua l'attività di autenticazione ed inserisce l'email non valida.
     \item \textbf{Postcondizioni}: l'utente riceve il messaggio di errore.
 \end{itemize}
@@ -209,7 +209,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
 \begin{itemize}
     \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve essere notificato con un errore nel caso in cui la password inserita sia invalida durante la fase di autenticazione.
-    \item \textbf{Scenario}: L'utente visualizza un messaggio di errore. 
+    \item \textbf{Scenario}: l'utente visualizza un messaggio di errore. 
     \item \textbf{Precondizioni}: l'utente effettua l'attività di autenticazione ed inserisce la password non valida.
     \item \textbf{Postcondizioni}: l'utente riceve il messaggio di errore.
 \end{itemize}
@@ -255,10 +255,10 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
     \item \textbf{Descrizione}: l'utente deve poter modificare l'attuale password, con la quale effettua il login.
     \item \textbf{Scenario}:
     \begin{enumerate}
-        \item Inserimento password attuale;
-        \item Inserimento nuova password;
-        \item Conferma nuova password;
-        \item Conferma modifica password.
+        \item inserimento password attuale;
+        \item inserimento nuova password;
+        \item conferma nuova password;
+        \item conferma modifica password.
     \end{enumerate}
     \textbf{Estensioni}:
     \begin{enumerate}
@@ -283,7 +283,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
     \item \textbf{Descrizione}: l'utente deve inserire la password attuale durante la sessione di “modifica password”.
     \item \textbf{Scenario}:
     \begin{enumerate}
-        \item l'utente seleziona il campo riferito alla password attuale.
+        \item l'utente seleziona il campo riferito alla password attuale;
         \item l'utente inserisce la password attuale.
     \end{enumerate}
 
@@ -449,14 +449,15 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
     \begin{enumerate}
         \item l'utente naviga nella sezione dei profili seguiti;
         \item l'utente clicca il pulsante di aggiunta profilo;
-        \item l'utente sceglie Instagram o TikTok;
+        \item l'utente sceglie Instagram\G{} o TikTok\G{};
         \item l'utente inserisce l'username da aggiungere;
         \item l'utente conferma e salva.
     \end{enumerate}
-    \item \textbf{Estensioni}:\\
-        - il profilo inserito non esiste \textbf{(UC16)};\\
-        - il profilo inserito è già stato aggiunto \textbf{(UC17)};\\
-
+    \item \textbf{Estensioni}:
+    \begin{itemize}
+    	\item il profilo inserito non esiste \textbf{(UC16)};
+    	\item il profilo inserito è già stato aggiunto \textbf{(UC17)}.
+    \end{itemize} 
     \item \textbf{Precondizioni}: l'utente vuole seguire un nuovo utente.
     \item \textbf{Postcondizioni}: l'utente ha inserito un nuovo utente da seguire.
 \end{itemize}
@@ -494,7 +495,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
     \begin{enumerate}
         \item l'utente naviga nella sezione dei profili seguiti;
         \item l'utente seleziona il profilo che vuole rimuovere;
-        \item l'utente clicca il pulsante di rimozione;
+        \item l'utente clicca il pulsante di rimozione.
     \end{enumerate}
 
     \item \textbf{Precondizioni}: l'utente vuole rimuovere un profilo social dalla lista dei seguiti.
@@ -516,7 +517,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso che sono stati identi
     \begin{enumerate}
         \item l'utente si trova nella home;
         \item l'utente preme il pulsante per entrare nella pagina di esplorazione;
-        \item l'utente vede la lista degli utenti più seguiti sia di Instagram che di Tiktok.
+        \item l'utente vede la lista degli utenti più seguiti sia di Instagram\G{} che di Tiktok\G{}.
     \end{enumerate}
 
     \item \textbf{Precondizioni}: l'utente vuole visualizzare gli utenti più seguiti.
