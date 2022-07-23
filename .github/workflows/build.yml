@@ -2,12 +2,12 @@ name: Build and upload Latex documents
 
 on:
   push:
-    branches:
-      - master
-      - dev
-    paths:
-      - src/**/*
-  workflow_dispatch:
+  #   branches:
+  #     - master
+  #     - dev
+  #   paths:
+  #     - src/**/*
+  # workflow_dispatch:
     
 jobs:
   build:
