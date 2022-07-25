@@ -125,6 +125,11 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 \end{itemize}
 
 \subsection{UC5 - Login}
+\begin{figure}[!h]
+    \includegraphics[width=15cm]{sezioni/Images/UC5-log.png}
+    \centering
+    \caption{UC5 - Login}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore}: l'utente non è autenticato.
     \item \textbf{Descrizione}: l'utente deve poter autenticarsi e accedere al proprio account.
@@ -132,19 +137,13 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \begin{enumerate}
         \item l'utente si collega al sistema;
         \item l'utente clicca sul pulsante di login;
-        \item l'utente si collega manualmente \textbf{(UC6)} oppure automaticamente \textbf{(UC7)}.
+        \item l'utente si collega manualmente \textbf{(UC6)} oppure automaticamente \textbf{(UC9)}.
     \end{enumerate}
     \item \textbf{Precondizioni}: l'utente non è ancora autenticato al sistema.
     \item \textbf{Postcondizioni}: l'utente si è autenticato al sistema.
 \end{itemize}
 
 \subsection{UC6 - Login manuale}
-
-\begin{figure}[!h]
-    \includegraphics[width=10cm]{sezioni/Images/UC5.png}
-    \centering
-    \caption{UC5 - Login manuale}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Attore}: l'utente non è autenticato.
@@ -153,9 +152,9 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \begin{enumerate}
         \item l'utente si collega al sistema;
         \item l'utente clicca sul pulsante di login;
-        \item l'utente inserisce il proprio nome utente \textbf{(UC5.1)};
-        \item l'utente inserisce la propria password \textbf{(UC5.2)};
-        \item l'utente decide se memorizzare la sessione \textbf{(UC5.3 )};
+        \item l'utente inserisce il proprio nome utente \textbf{(UC6.1)};
+        \item l'utente inserisce la propria password \textbf{(UC6.2)};
+        \item l'utente decide se memorizzare la sessione \textbf{(UC6.3 )};
         \item l'utente clicca il pulsante di conferma per proseguire.
     \end{enumerate}
     \item \textbf{Estensioni}:
@@ -169,9 +168,9 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 \end{itemize}
 
 \begin{figure}[!h]
-    \includegraphics[width=10cm]{sezioni/Images/UC5_s.png}
+    \includegraphics[width=10cm]{sezioni/Images/UC6-Manuale.png}
     \centering
-    \caption{UC5 - Login manuale}
+    \caption{UC6 - Login manuale}
 \end{figure}
 
 \subsubsection{UC6.1 - Inserimento nome utente}
