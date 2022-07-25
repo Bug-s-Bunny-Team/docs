@@ -44,7 +44,14 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       RF23 & Obbligatorio & L'utente può esplorare gli utenti più seguiti dagli altri utenti di questa piattaforma & UC19 \\
       RF24 & Obbligatorio & L'utente deve poter scegliere la vista predefinita per visualizzare la guida & UC20 \\
       RF25 & Obbligatorio & L'utente deve poter scegliere di mettere la mappa come vista predefinita & UC20, UC20.1 \\
-      RF26 & Obbligatorio & L'utente deve poter scegliere di mettere la mappa come vista predefinita & UC20, UC20.2 \\	   
+      RF26 & Obbligatorio & L'utente deve poter scegliere di mettere la mappa come vista predefinita & UC20, UC20.2 \\	
+      RF27 & Obbligatorio & La piattaforma deve fornire la possibilità di monitorare le recensioni partendo da un luogo indicato & Capitolato \\
+      RF28 & Obbligatorio & La piattaforma deve permettere di indicare profili social da seguire per creare la guida & Capitolato \\
+      RF29 & Obbligatorio & I profili social da seguire devono provenire dalle piattaforme Instagram\G{} e TikTok\G{} & Capitolato \\   
+      RF30 & Obbligatorio & Il backend\G{} deve utilizzare le informazioni testuali di post derivati da profili social per trarre informazioni su un luogo fisico & Capitolato \\
+      RF31 & Molto Desiderabile & Il backend\G{} dovrebbe utilizzare le informazioni grafiche e visuali di post derivati da profili social per trarre informazioni su un luogo fisico & Capitolato \\
+      RF32 & Obbligatorio & Deve essere costruito un crawler/scraper\G{} in grado di accedere o scaricare dati dei post da profili social & Capitolato \\
+      RF33 & Obbligatorio & Il crawler\G{} deve eludere i servizi anti-bot dei vari social & Capitolato \\
       \bottomrule
       \rowcolor{white} 
       \caption{Tabella dei requisiti funzionali}
@@ -67,17 +74,9 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       \textcolor{white}{\textbf{Fonti}}\\	
       \toprule
       \endhead
-      
-      RV1 & Obbligatorio & La piattaforma deve fornire la possibilità di monitorare le recensioni partendo da un luogo indicato & Capitolato \\
-      RV2 & Obbligatorio & La piattaforma deve permettere di indicare profili social da seguire per creare la guida & Capitolato \\
-      RV3 & Obbligatorio & I profili social da seguire devono provenire dalle piattaforme Instagram\G{} e TikTok\G{} & Capitolato \\
-      RV4 & Obbligatorio & Il backend\G{} deve essere implementato secondo un'architettura serverless\G{} & Capitolato \\
-      RV5 & Obbligatorio & Il backend\G{} deve utilizzare le funzionalità di machine learning fornite dai servizi AWS\G{} & Capitolato \\
-      RV6 & Obbligatorio & La piattaforma deve essere fruibile da web browser. In particolare dovrà essere garantita la compatibilità con le versioni più recenti dei browser \textit{Chrome} e \textit{Firefox}. & Capitolato \\
-      RV7 & Obbligatorio & Il backend\G{} deve utilizzare le informazioni testuali di post derivati da profili social per trarre informazioni su un luogo fisico & Capitolato \\
-      RV8 & Molto Desiderabile & Il backend\G{} dovrebbe utilizzare le informazioni grafiche e visuali di post derivati da profili social per trarre informazioni su un luogo fisico & Capitolato \\
-      RV9 & Obbligatorio & Deve essere costruito un crawler/scraper\G{} in grado di accedere o scaricare dati dei post da profili social & Capitolato \\
-      RV10 & Obbligatorio & Il crawler\G{} deve eludere i servizi anti-bot dei vari social & Capitolato \\
+      RV1 & Obbligatorio & Il backend\G{} deve essere implementato secondo un'architettura serverless\G{} & Capitolato \\
+      RV2 & Obbligatorio & Il backend\G{} deve utilizzare le funzionalità di machine learning fornite dai servizi AWS\G{} & Capitolato \\
+      RV3 & Obbligatorio & La piattaforma deve essere fruibile da web browser. In particolare dovrà essere garantita la compatibilità con le versioni più recenti dei browser \textit{Chrome} e \textit{Firefox}. & Capitolato \\
       \bottomrule
       \rowcolor{white} 
       \caption{Tabella dei requisiti di vincolo}
@@ -160,7 +159,7 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       \toprule
       \endhead
       
-      Capitolato & RV1, RV2, RV3, RV4, RV5, RV6, RV7, RV8, RV9, RV10,
+      Capitolato & RV1, RV2, RV3, RF27, RF28, RF29, RF30, RF31, RF32, RF33,
                    RQ3, RQ4, RQ5, RQ6, RQ7, RQ8, RQ9, RQ10,
                    RP2\\
       UC1 & RF1\\
@@ -247,17 +246,17 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       RF24 & UC20\\
       RF25 & UC20, UC20.1\\
       RF26 & UC20, UC20.2\\
+      RF27 & Capitolato\\
+      RF28 & Capitolato\\
+      RF29 & Capitolato\\
+      RF30 & Capitolato\\
+      RF31 & Capitolato\\
+      RF32 & Capitolato\\
+      RF33 & Capitolato\\
 
       RV1 & Capitolato\\
       RV2 & Capitolato\\
       RV3 & Capitolato\\
-      RV4 & Capitolato\\
-      RV5 & Capitolato\\
-      RV6 & Capitolato\\
-      RV7 & Capitolato\\
-      RV8 & Capitolato\\
-      RV9 & Capitolato\\
-      RV10 & Capitolato\\
 
       %RQ1\\
       %RQ2\\
