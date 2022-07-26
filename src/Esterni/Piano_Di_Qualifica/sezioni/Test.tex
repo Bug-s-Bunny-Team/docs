@@ -1,0 +1,402 @@
+
+Onde garantire la qualità di un prodotto software, è indispensabile stilare una suite di test
+mirati a verificarne la correttezza. \\
+Per questo motivo il gruppo \textit{Bug's Bunny} ha strutturato i test che si trovano a seguire, e ha deciso 
+di svolgere l'attività di verifica parallelamente a quella di sviluppo adottando il modello a V\G, 
+come definito nelle \NdP\G. \\
+I test si suddividono in quattro categorie:
+
+\begin{itemize}
+	\item \textbf{Test di unità}:  verificano la correttezza degli elementi atomici del sistema, come ad esempio singoli metodi o classi;
+	\item \textbf{Test di integrazione}: verificano che le parti del sistema cooperino correttamente, generalmente controllando il comportamento di gruppi omogenei di unità (che contribuiscono ad un obiettivo comune);
+	\item \textbf{Test di sistema}: verificano che l'intero prodotto software funzioni come voluto. Detto in altri termini si verifica che tutti i requisiti obbligatori siano soddisfatti. Vengono svolti alla fine dello sviluppo;
+	\item \textbf{Test di accettazione}: effettuati assieme al committente, servono a verificare che il sistema sia conforme alle aspettative. In caso di esito positivo il prodotto viene rilasciato.
+\end{itemize}
+
+\subsection{Test di accettazione}
+Questa sezione  riporta i test di accettazione del prodotto, hanno lo scopo di validare il prodotto.
+
+
+{
+    \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \setlength{\aboverulesep}{0pt}
+    \setlength{\belowrulesep}{0pt}
+    \rowcolors{2}{Arancione!10}{white}
+    \begin{longtable}{C{.1\freewidth} C{.80\freewidth} C{.1\freewidth}}
+       \toprule
+    \rowcolor{Arancione}
+    \textcolor{white}{\textbf{Codice Test}}&
+    \textcolor{white}{\textbf{Descrizione}}&
+    \textcolor{white}{\textbf{Stato}} \\	
+    \toprule
+    \endhead
+
+    TA1 & Verificare che l'utente sconosciuto durante la registrazione possa: \begin{enumerate}
+        \item inserire la propria mail;
+        \item inserire il proprio nome utente;
+        \item  inserire la propria password;
+        \item visualizzare un messaggio di errore nel caso in cui le informazioni inserite nel campo email siano invalidi;
+        \item visualizzare un messaggio di errore nel caso in cui venga inserito un nome utente non valido;
+        \item visualizzare un messaggio di errore nel caso in cui venga inserita una password  non valida.
+    \end{enumerate}  & N/I \\
+
+    TA2 & Verificare che l'utente non autenticato durante il login possa:\begin{enumerate}
+        \item  inserire il proprio nome utente;
+        \item   inserire la propria password;
+        \item   decidere se memorizzare la sezione;
+        \item   visualizzare un messaggio di errore nel caso in cui venga inserito un nome utente non valido;
+        \item  visualizzare un messaggio di errore nel caso in cui venga inserita una password  non valida.
+    \end{enumerate} & N/I  \\
+ 
+    TA3 & Verificare che l'utente non autenticato con sessione memorizzata durante il login possa:\begin{enumerate}
+        \item accedere al sistema;
+        \item autenticarsi automaticamente.
+    \end{enumerate} & N/I \\
+
+    TA4 & Verificare che l'utente autenticato possa:\begin{enumerate}
+        \item selezionare l'azione di logout;
+        \item eseguire logout.
+    \end{enumerate} & N/I  \\
+
+    TA5 & Verificare che l'utente autenticato possa:\begin{enumerate}
+        \item accedere al proprio profilo;
+        \item accedere alla pagina di modifica password;
+        \item inserire la password attuale;
+        \item inserire la nuova password;
+        \item confermare la nuova password;
+        \item confermare la modifica password;
+        \item visualizzare un messaggio di errore nel caso in cui la password sia errata;
+        \item visualizzare un messaggio di errore nel caso in cui la nuova password non coincida con la sua ripetizione;
+        \item visualizzare un messaggio di errore nel caso in cui la nuova password inserita non sia valida.
+    \end{enumerate} & N/I  \\
+
+    TA6 & Verificare che l'utente autenticato possa:\begin{enumerate}
+        \item visualizzare la guida in formato mappa se non ha nessun profilo social seguito;
+        \item visualizzare la guida in formato lista se non ha nessun profilo social seguito;
+        \item visualizzare una mappa personalizzata se ha dei social seguiti;
+        \item visualizzare una lista personalizzata se ha dei social seguiti.
+    \end{enumerate} & N/I  \\
+
+    TA7 & Verificare che l'utente autenticato possa:\begin{enumerate}
+        \item navigare nella sezione dei profili seguiti;
+        \item selezionare il pulsante aggiungi profile;
+        \item scegliere instagram o tiktok;
+        \item Inserire la username di un profilo social da seguire;
+        \item confermare e salvare;
+        \item visualizzare un messaggio di errore nel caso in cui il profilo inserito non esiste;
+        \item visualizzare un messaggio di errore nel caso in cui il profilo inserito è già stato aggiunto ai seguiti.
+    \end{enumerate} & N/I  \\
+
+    TA8 & Verificare che l'utente autenticato possa:\begin{enumerate}
+        \item navigare nella sezione dei profili seguiti;
+        \item selezionare il profilo che vuole rimuovere;
+        \item cliccare il pulsante de rimozione.
+    \end{enumerate} & N/I  \\
+
+    TA9 & Verificare che l'utente autenticato possa:\begin{enumerate}
+        \item navigare nella home;
+        \item premere il pulsante per entrare nella pagina di esplorazione;
+        \item vedere la lista degli utenti più seguiti sia di instagram che tiktok.
+    \end{enumerate} & N/I  \\
+
+    TA10 & Verificare che l'utente autenticato possa:\begin{enumerate}
+        \item navigare nella sezione impostazioni;
+        \item selezionare la voce vista predefinita;
+        \item scegliere la mappa come vista predefinita;
+        \item scegliere la lista come vista predefinita.
+    \end{enumerate} & N/I \\
+
+\bottomrule
+\rowcolor{white}
+\caption{Tabella dei test di accettazione di prodotto}
+\end{longtable}
+} 
+
+\newpage
+
+\subsection{Tracciamento di Test di Accettazione}
+
+{
+    \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \setlength{\aboverulesep}{0pt}
+    \setlength{\belowrulesep}{0pt}
+    \rowcolors{2}{Arancione!10}{white}
+    \begin{longtable}{C{.27\freewidth} C{.45\freewidth}}
+       \toprule
+    \rowcolor{Arancione}
+    \textcolor{white}{\textbf{Codice Test}}&
+    \textcolor{white}{\textbf{Codice caso d'uso}}\\
+    \toprule
+    \endhead
+
+    TA1 & \begin{itemize}
+        \item UC1
+        \item UC1.1, UC1.2
+        \item UC2
+        \item UC3
+        \item UC4
+    \end{itemize} \\
+
+    
+    TA2 & \begin{itemize}
+        \item UC5
+        \item UC5.1, UC5.2, UC5.3
+        \item UC6
+        \item UC7
+    \end{itemize} \\
+
+    
+    TA3 & \begin{itemize}
+        \item UC8
+    \end{itemize} \\
+
+    
+    TA4 & \begin{itemize}
+        \item UC9
+    \end{itemize} \\
+
+    
+    TA5 & \begin{itemize}
+        \item UC10
+        \item UC10.1, UC10.2, UC10.3, UC10.4
+        \item UC11
+        \item UC12
+        \item UC13
+    \end{itemize} \\
+
+    
+    TA6 & \begin{itemize}
+        \item UC14
+        \item UC14.1, UC14.2, UC14.3, UC14.4
+    \end{itemize} \\
+
+    
+    TA7 & \begin{itemize}
+        \item UC15
+        \item UC16
+        \item UC17
+    \end{itemize} \\
+
+    
+    TA8 & \begin{itemize}
+        \item UC18
+    \end{itemize} \\
+
+    
+    TA9 & \begin{itemize}
+        \item UC19
+    \end{itemize} \\
+
+    TA1 & \begin{itemize}
+        \item UC20
+        \item UC29.1
+        \item UC20.2
+    \end{itemize} \\
+
+\bottomrule
+\rowcolor{white}
+\caption{\centering{Tabella del tracciamento di test di accettazione}}
+\end{longtable}
+
+}
+
+\subsection{Test di Sistema}
+\raggedright{I test di sistema dimostrano la totale copertura dei requisiti identificati nel documento \AdR\G.} \\
+{
+    \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \setlength{\aboverulesep}{0pt}
+    \setlength{\belowrulesep}{0pt}
+    \rowcolors{2}{Arancione!10}{white}
+    \begin{longtable}{C{.3\freewidth} C{.5\freewidth} C{.3\freewidth}}
+       \toprule
+    \rowcolor{Arancione}
+    \textcolor{white}{\textbf{Codice Test}}&
+    \textcolor{white}{\textbf{Descrizione}}&
+    \textcolor{white}{\textbf{Stato}}\\	
+    \toprule
+    \endhead
+
+    TS1 & Verificare che l'utente possa registrarsi & N/I  \\ 
+    TS1.1 & Verificare che l'utente possa inserire un username & N/I  \\
+    TS1.2 & Verificare che l'utente possa inserire un username & N/I  \\
+    TS1.3 & Verificare che l'utente possa inserire una mail & N/I  \\
+    TS1.4 & Verificare che l'utente possa visualizzare un messaggio di errore se ha inserito delle credenziali non valide & N/I  \\
+    TS2 & Verificare che l'utente possa autenticarsi ed accedere al proprio account & N/I  \\
+    TS2.1 & Verificare che l'utente possa inserire la propria username & N/I  \\
+    TS2.2 & Verificare che l'utente possa inserire la propria password & N/I  \\
+    TS2.3 & Verificare che l'utente possa visualizzare un messaggio di errore se ha inserito credenziali non validi & N/I  \\
+    TS2.4 & Verificare che l'utente possa autenticarsi automaticamente se ha memorizzato la sessione  & N/I  \\
+    TS3 & Verificare che l'utente possa effettuare il logout & N/I  \\
+    TS4 & Verificare che l'utente possa modificare la propria password & N/I  \\
+    TS4.1 & Verificare che l'utente possa inserire la sua password attuale durante l'attività di modifica password & N/I  \\
+    TS4.2 & Verificare che l'utente possa inserire la nuova password durante l'attività di modifica password & N/I  \\
+    TS4.3 & Verificare che l'utente possa ripetere la nuova password durante l'attività di modifica password & N/I  \\
+    TS4.3 & Verificare che l'utente possa ripetere la nuova password durante l'attività di modifica password& N/I  \\
+    TS4.4 & Verificare che l'utente possa confermare la modifica della password & N/I  \\
+    TS5 & Verificare che l'utente possa visualizzare un messaggio di errore se ha inserito password attuale  non valida & N/I  \\
+    TS5.1 & Verificare che l'utente possa visualizzare un messaggio di errore se ha inserito nuova password non valida & N/I  \\
+    TS5.2 & Verificare che l'utente possa visualizzare un messaggio di errore se la ripetizione della nuova password e la nuova password non coincidono & N/I  \\
+    TS6 & Verificare che l'utente possa visualizzare la guida in formato mappa se non ha nessun profilo social seguito & N/I  \\
+    TS6.1 & Verificare che l'utente possa visualizzare la guida in formato lista se non ha nessun profilo social seguito & N/I  \\
+    TS6.2 & Verificare che l'utente possa visualizzare la mappa personalizzata se segue dei profili social & N/I  \\
+    TS6.3 & Verificare che l'utente possa visualizzare la lista personalizzata se segue dei profili social & N/I  \\
+    TS7 & Verificare che l'utente possa aggiungere dei profili social da seguire & N/I  \\
+    TS7.1 & Verificare che l'utente possa visualizzare un messaggio di errore nel caso in cui il nome utente che si vuole aggiungere non esiste nel sistema & N/I  \\
+    TS7.2 & Verificare che l'utente possa visualizzare un messaggio di errore se l'utente che si vuole seguire è già seguito & N/I  \\
+    TS8 & Verificare che l'utente possa rimuovere un profilo social già seguito & N/I  \\
+    TS9 & Verificare che l'utente possa esplorare dei profili social più seguiti & N/I  \\
+    TS10 & Verificare che l'utente possa impostare  la mappa come vista predefinita & N/I  \\
+    TS10.10 & Verificare che l'utente possa impostare  la lista come vista predefinita & N/I  \\
+    \bottomrule
+    \caption{Tabella dei test di sistema}
+\end{longtable}
+    
+}
+\subsection{Tracciamento Test di Sistema}
+
+{
+    \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \setlength{\aboverulesep}{0pt}
+    \setlength{\belowrulesep}{0pt}
+    \rowcolors{2}{Arancione!10}{white}
+    \begin{longtable}{C{.25\freewidth} C{.25\freewidth}}
+       \toprule
+    \rowcolor{Arancione}
+    \textcolor{white}{\textbf{Codice Test}}&
+    \textcolor{white}{\textbf{Codice caso d'uso}}\\
+    \toprule
+    \endhead
+
+    TS1 & RF1  \\  TS1.1 & RF4  \\   TS1.2 & RF6  \\  TS1.3 & RF4  \\
+    TS1.4 & RF4  \\  TS2 & RF2  \\   TS2.1 & RF7  \\  TS2.2 & R8  \\
+    TS2.3 & RF8  \\  TS3 & RF8  \\   TS4 & RF9  \\  TS4.1 & RF9  \\
+    TS4.2 & RF9  \\  TS4.3 & RF9  \\   TS4.4 & RF9  \\  TS5 & RF10  \\
+    TS5.1 & RF10  \\  TS5.2 & RF11  \\   TS6 & RF12  \\  TS6.1 & RF12  \\
+    TS6.2 & RF12  \\  TS6.3 & RF12  \\   TS7 & RF15  \\  TS7.1 & RF15  \\
+    TS7.2 & RF20  \\  TS8 & RF21  \\      TS9 & RF22  \\    TS10 & RF23  \\
+    TS10.1 & RF23  \\
+    
+    \bottomrule
+    \caption{Tabella del tracciamento dei test di sistema}
+\end{longtable}
+}
+
+\subsection{Struttura dei documenti}
+{
+    \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \setlength{\aboverulesep}{0pt}
+    \setlength{\belowrulesep}{0pt}
+    \rowcolors{2}{Arancione!10}{white}
+    \begin{longtable}{C{.5\freewidth} C{.5\freewidth}}
+       \toprule
+    \rowcolor{Arancione}
+    \textcolor{white}{\textbf{Aspetto}}&
+    \textcolor{white}{\textbf{Spiegazione}} \\
+    \toprule
+    \endhead
+    Sezioni fantasma & Le sezioni vuote residue devono essere cancellate \\
+    Caption assente &  Tutte le immagini e tabelle devono avere la caption \\
+    A capo & Non bisogna spezzare la frasi andando a capo : complica la lettura del documento su \textit{Github}\G\\
+    Documento spezzato & Ogni documento deve essere spezzato su più file ".tex", uno per sezione \\
+    Ordine alfabetico & I nomi devono essere scritti in ordine alfabetico \\
+    
+    \bottomrule
+    \caption{Tabella riguardo la struttura dei documenti}
+\end{longtable}    
+    
+}
+\subsection{Errori ortografici di lingua italiana e di forma}
+{
+    \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \setlength{\aboverulesep}{0pt}
+    \setlength{\belowrulesep}{0pt}
+    \rowcolors{2}{Arancione!10}{white}
+    \begin{longtable}{C{.5\freewidth} C{.5\freewidth}}
+       \toprule
+    \rowcolor{Arancione}
+    \textcolor{white}{\textbf{Aspetto}}&
+    \textcolor{white}{\textbf{Spiegazione}}\\
+    \toprule
+    \endhead
+
+    Errori di battitura & Sono spesso presenti errori di battitura o di distrazione \\
+    Discordanza soggetto-verbo & La coniugazione verbale non è coerente con il soggetto \\
+    Accenti invertiti & Invertire l'accento acuto con il grave o viceversa \\
+    D eufonica & La d eufonica deve essere usata esclusivamente se la vocale della parola successiva è la stessa o in forma quali “ad esempio” e “ ad hoc” \\
+    Forma di verbi & Il presente indicativo è da preferire \\
+    Forme non concise & Forme come “l'obiettivo è quello di [...]” sono da evitare preferendo versioni concise come "l'obiettivo è [...]”\\
+    Forme impersonali & Forme come “ si è deciso di ….” sono da evitare: il soggetto deve essere esplicito \\  
+    
+    \bottomrule
+    \caption{Tabella riguardo gli errori ortografici}
+\end{longtable}
+}
+
+\newpage
+
+\subsection{Non conformità con le Norme di Progetto}
+{
+    \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \setlength{\aboverulesep}{0pt}
+    \setlength{\belowrulesep}{0pt}
+    \rowcolors{2}{Arancione!10}{white}
+    \begin{longtable}{C{.5\freewidth} C{.5\freewidth}}
+       \toprule
+    \rowcolor{Arancione}
+    \textcolor{white}{\textbf{Aspetto}}&
+    \textcolor{white}{\textbf{Spiegazione}} \\
+    \toprule
+    \endhead
+    Punteggiatura scorretta negli elenchi & Ogni voce di un elenco deve terminare con “;” , a eccezione dell'ultima che termina con “.” \\
+    Grassetto negli elenchi & Gli elenchi puntati nella forma “termine: testo” devono avere il termine in grassetto, ma non i “:” \\
+    Maiuscolo negli titoli & La maiuscola deve essere usata solo per la prima lettere ed evitata ove non necessaria \\
+    Maiuscolo nei elenchi & Le iniziali delle singole voci degli elenchi puntati o numerati vanno in maiuscolo, a meno che la frase che lo precede non finisca con un punto \\
+    Ruoli in minuscolo & I ruoli rivestiti nel corso del progetto devono essere in minuscolo \\
+    Versione del documento mancante & Quando si riferisce ad un documento va valutato se ci si sta riferendo a una versione in particolare, in quel caso, riportare insieme al nome anche il numero di versione di cui si fa riferimento\\
+    
+    \bottomrule
+    \rowcolor{white}
+    \caption{Tabella delle non conformità con le NdP}
+\end{longtable}
+}
+\subsection{Analisi dei Requisiti}
+{
+    \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \setlength{\aboverulesep}{0pt}
+    \setlength{\belowrulesep}{0pt}
+    \rowcolors{2}{Arancione!10}{white}
+    \begin{longtable}{C{.5\freewidth} C{.5\freewidth}}
+       \toprule
+    \rowcolor{Arancione}
+    \textcolor{white}{\textbf{Aspetto}}&
+    \textcolor{white}{\textbf{Spiegazione}}\\
+    \toprule
+    \endhead
+
+    Tracciamento UC-R & Ogni caso d'uso deve essere associato a uno o più requisiti \\
+    Requisiti & I requisiti devono essere scritti nella forma “[soggetto]” deve/devono [verbo/all'infinito]  \\
+    Numerazione UC & La numerazione dei casi d'usi di errore deve appartenere allo stesso livello del caso di successo, che estendono.\\
+    UML degli UC & Le estensioni di un caso d'uso vanno nello stesso diagramma UML\G{} del caso d'uso\G{} stesso \\
+    
+    \bottomrule
+    \rowcolor{white}
+    \caption{Tabella riguardo l'Analisi dei Requisiti}
+\end{longtable}
+    
+}
