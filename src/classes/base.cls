@@ -17,6 +17,7 @@
 \RequirePackage{array}
 \RequirePackage{listings}   % formattazione e highlight codice
 \RequirePackage[hidelinks]{hyperref}
+\RequirePackage{eurosym}
 
 % colorazione e sottolineatura url
 % \hypersetup{
