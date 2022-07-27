@@ -36,6 +36,7 @@
     \input{common/titlepage}
 }
 
+\newcommand*{\versione}[1]{\gdef\@versione{#1}}
 \newcommand*{\verificatore}[1]{\gdef\@verificatore{#1}}
 \newcommand*{\approvatore}[1]{\gdef\@approvatore{#1}}
 \newcommand*{\uso}[1]{\gdef\@uso{#1}}
