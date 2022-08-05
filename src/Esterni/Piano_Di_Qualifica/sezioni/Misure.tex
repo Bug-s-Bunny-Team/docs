@@ -1,0 +1,81 @@
+\subsection{Introduzione}
+Per garantire la qualità dei processi sono stati usati come riferimento gli standards 
+ISO/IEC 12207:1995\G, ISO/IEC 15504\G{} noto anche come SPICE e ISO/IEC 25000:2005\G.
+Il gruppo ha scelto un sottoinsieme dei processi elencati dai modelli e li ha adattati alle 
+necessità del progetto.
+
+\subsection{Qualità di processo}
+{
+
+    \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \setlength{\aboverulesep}{0pt}
+    \setlength{\belowrulesep}{0pt}
+    \rowcolors{2}{Arancione!10}{white}
+    \begin{longtable}{C{.257\freewidth} C{.257\freewidth} C{.257\freewidth} C{.257\freewidth}}
+       \toprule
+    \rowcolor{Arancione}
+    \textcolor{white}{\textbf{Metrica}}&
+    \textcolor{white}{\textbf{Nome}}&
+    \textcolor{white}{\textbf{Valore accettabile}}&
+    \textcolor{white}{\textbf{Valore preferibile}}\\	
+    \toprule
+    \endhead
+    
+    
+    MPP1 & Schedule variance & $\geq$ -20\% & 0\% \\
+    MPP2 & Budget variance & $\geq$ -10\% & 0\% \\
+    MPP3 & Budgeted Cost of Work Performed & $\geq$ 0 & $\geq$ 0 \\
+    MPP4 & Budgeted Cost of Work Sceduled & $\geq$ 0 & $\geq$ 0 \\
+    MPP5 & SPICE Capability & $\geq$ 2 & $\geq$ 4 \\
+    MPP6 & Requirements Stabilty Index & 70\% & 100\% \\
+    MPP7 & Non-calculated Risk & $\leq$ 5 & 0 \\	   
+    \bottomrule
+    \caption{Tabella riguardo la qualità di processo}
+    \end{longtable}
+}
+
+\subsection{Qualità di prodotto}
+{
+
+    \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \setlength{\aboverulesep}{0pt}
+    \setlength{\belowrulesep}{0pt}
+    \rowcolors{2}{Arancione!10}{white}
+    \begin{longtable}{C{.257\freewidth} C{.257\freewidth} C{.257\freewidth} C{.257\freewidth}}
+       \toprule
+    \rowcolor{Arancione}
+    \textcolor{white}{\textbf{Metrica}}&
+    \textcolor{white}{\textbf{Nome}}&
+    \textcolor{white}{\textbf{Valore accettabile}}&
+    \textcolor{white}{\textbf{Valore preferibile}}\\	
+    \toprule
+    \endhead
+    
+    
+    MPR1 & Indice di Gulpease & $\geq$ 40 & $\geq$ 80 \\
+    MPR2 & Percentuale Requisiti Obbligatori Soddisfatti & 100\% & 100\% \\
+    MPR3 & Code Coverage & $\geq$ 70\% & 100\% \\
+    MPR4 & Branch Coverage & $\geq$ 70\% & 100\% \\
+    MPR5 & Accoppiamento tra Classi & $\leq$ 4 & $\leq$ 2 \\
+    MPR6 & Profondità Gerarchie & $\leq$ 5 & $\leq$ 3 \\
+    MPR7 & Numero Attributi per Classe & $\leq$ 10 & $\leq$ 6 \\
+    MPR8 & Numero Parametri per Metodo & $\leq$ 8 & $\leq$ 4 \\
+    MPR9 & Linee Codice per Metodo & $\leq$ 50 & $\leq$ 20 \\
+    MPR10 & Linee Commento per Codice & $\geq$ 0.2 & $\geq$ 0.4 \\
+    MPR11 & Densità Errori & $\leq$ 20\% & 0\% \\
+    MPR12 & Facilità Utilizzo  & $\leq$ 3 & 1 \\
+    MPR13 & Errori Ortografici & 5\% & 0\% \\
+    MPR14 & Complessità Ciclomatica Media & $\leq$ 20 & $\leq$ 10 \\
+    MPR15 & Tempo medio risposta WebApp & $\leq$ 3 s & $\leq$ 1 s \\
+    MPR16 & Percentuale test passati & $\geq$ 80\% & 100\% \\
+    MPR17 & Percentuale test falliti & $\leq$ 10\% & 0\% \\
+    MPR18 & Metriche di qualità soddisfatte & $\geq$ 80\% & 100\% \\	   
+    \bottomrule
+    \rowcolor{white}
+    \caption{Tabella riguardo la qualità di prodotto}
+    \end{longtable}
+}

@@ -1,24 +1,49 @@
 \documentclass{classes/base}
-\usepackage{hyperref}
+
+
+\renewcommand{\listfigurename}{Indice delle figure}
+\renewcommand{\listtablename}{Indice delle tabelle}
 
 \title{Piano di Progetto}
-\author{\ruth}
-\verificatore{\angela}
+\versione{1.0.1}
+\author{\angela, \\ \marcob}
+\verificatore{\matteo, \\ \marcob}
 \approvatore{\giulio}
 \uso{Esterno}
 
 \begin{document}
 	\maketitle
 	\newpage
-	\tableofcontents
-	
+	\input{sezioni/Registro_Mod}
 	\newpage
+	\tableofcontents
+	\newpage
+	\listoftables
+	\newpage
+	\listoffigures
+	\newpage
+
 	\section{Introduzione}
 	\input{sezioni/Intro}
 	
     \newpage
 	\section{Analisi Dei Rischi}
 	\input{sezioni/Rischi}
+	\newpage
 
+	\section{Modello Di Sviluppo}
+	\input{sezioni/Dev_Model}
+
+	\newpage
+	\section{Pianificazione}
+	\input{sezioni/Pianificazione}
+
+	\newpage
+	\section{Preventivo}
+	\input{sezioni/Prev}
+
+	\newpage
+	\section{Consuntivo}
+	\input{sezioni/Consuntivo}
 	
-\end{document}
+\end{document} 
