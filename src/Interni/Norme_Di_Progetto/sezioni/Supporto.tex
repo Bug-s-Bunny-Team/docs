@@ -95,14 +95,14 @@
 			
 		\paragraph*{Registro delle modifiche}
 		\aCapo{}  
-			Ogni documento formale presenta subito dopo il frontespizio il registro modifiche, dove ogni componente del gruppo è tenuto alla stesura, pressochè immediata, delle modifiche apportate.
+			Ogni documento formale presenta subito dopo il frontespizio il registro modifiche, che viene aggiornato alla chiusura di una \textit{Issue\G{}} da parte di un verificatore.
 			Esso è una tabella che traccia tutte le modifiche significative apportate al documento durante il suo ciclo di vita. Ogni voce della tabella riporta:
 				\begin{itemize}
 					\item \textbf{Versione}: numero versione documento dopo la modifica;
 					\item \textbf{Data}: data in cui è stata effettuata la modifica;
 					\item \textbf{Nominativo}: nome e cognome dell'autore della modifica;
 					\item \textbf{Ruolo}: ruolo dell'autore che ha apportato la modifica;
-					\item \textbf{Descrizione}: sintetica descrizione delle modifiche apportate;
+					\item \textbf{Descrizione}: sintetica descrizione delle modifiche apportate e nominativo del verificatore delle modifiche;
 				\end{itemize}
 	
 		\paragraph*{Corpo del documento}      
@@ -251,7 +251,7 @@
 		
 		\paragraph*{Modifiche ai repository}
 		\aCapo{}  
-		Tutti i membri del gruppo possono apportare modifiche ai file elaborati, salvo quelli presenti nel ramo \textit{master} o nel ramo \textit{dev}. \\
+		Tutti i membri del gruppo possono apportare modifiche ai file elaborati, previa assegnazione della relativa \textit{Issue\G{}}, salvo quelli presenti nel ramo \textit{master} o nel ramo \textit{dev}. \\
 		 Il ramo \textit{master} verrà aggiornato alle ultime modifiche prima di una delle revisioni tramite merge dal ramo \textit{dev}. \\
 		Mentre il ramo \textit{dev} verrà aggiornato con le ultime modifiche tramite merge dagli altri rami di lavoro, dopo la chiusura di una \textit{Issue\G{}} o al raggiungimento di una versione avanzata di un documento. \\
 		Per entrambi i rami i merge vanno effettuati tramite \textit{Pull Request}, aperta dall'autore delle modifiche, con conseguente verifica di almeno un altro elemento del gruppo e approvazione da parte di un ulteriore elemento del gruppo che chiuderà la \textit{Pull Request} e farà il merge, preferibilmente tramite sistema \textit{"Squash and Merge"}.
