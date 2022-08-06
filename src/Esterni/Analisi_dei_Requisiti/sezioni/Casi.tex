@@ -3,13 +3,10 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsection{Attori}
 \begin{itemize}
-    \item \textbf{Utente non registrato}: 
-    è un utente che non ha ancora effettuato la registrazione presso l'applicativo.
-    Non possiede credenziali per effettuare l'autenticazione presso la piattaforma e non ha accesso a nessuna funzionalità dell'applicazione;
     \item \textbf{Utente non autenticato}: 
-    è un utente che ancora deve autenticarsi nell'applicazione. Può essere in possesso di credenziali di accesso oppure no;
+    è un utente che ancora deve autenticarsi nell'applicazione. Può essere in possesso di credenziali di accesso oppure no. Ha accesso ad un sottoinsieme funzionalità dell'applicazione;
     \item \textbf{Utente autenticato}:
-    è un utente che ha effettuato l'autenticazione della piattaforma ed ha accesso alle funzionalità di essa.
+    è un utente che ha effettuato l'autenticazione della piattaforma ed ha accesso a tutte le funzionalità di essa.
 \end{itemize}
 
 \begin{figure}[!h]
@@ -28,7 +25,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve poter avere la possibilità di creare un account personale.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -58,7 +55,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsubsection{UC1.1 - Inserimento email}
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve avere la possibilità di inserire l'email.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -72,7 +69,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsubsection{UC1.2 - Inserimento nuovo nome utente}
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve avere la possibilità di creare un nuovo nome utente.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -85,7 +82,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsubsection{UC1.3 - Inserimento nuova password}
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve avere la possibilità di creare una nuova password.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -99,7 +96,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsection{UC2 - Visualizzazione errore di inserimento email in registrazione}
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve essere notificato con un errore nel caso in cui le informazioni inserite nel campo email siano invalide.
     \item \textbf{Scenario}: l'utente visualizza un messaggio di errore.
     \item \textbf{Precondizioni}: l'utente inserisce una mail non valida nell'apposito input box.
@@ -108,7 +105,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsection{UC3 - Visualizzazione errore di inserimento nome utente in registrazione}
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve essere notificato con un errore nel caso in cui venga inserito un nome utente non valido.
     \item \textbf{Scenario}: l'utente visualizza un messaggio di errore.
     \item \textbf{Precondizioni}: l'utente inserisce un nome utente non valido nell'apposito input box.
@@ -117,7 +114,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsection{UC4 - Visualizzazione errore di inserimento password in registrazione}
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve essere notificato con un errore nel caso in cui inserisca una password non valida durante la fase di registrazione.
     \item \textbf{Scenario}: l'utente visualizza un messaggio di errore.
     \item \textbf{Precondizioni}: l'utente inserisce una password non valida nell'apposito input box.
