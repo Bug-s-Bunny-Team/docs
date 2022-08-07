@@ -389,7 +389,8 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \caption{Visualizzazione guida}
 \end{figure}
 
-\subsubsection{UC15.1 - Visualizzazione mappa globale}
+%\subsubsection{UC15.1 - Visualizzazione mappa globale}
+\subsubsection{UC16 - Visualizzazione mappa globale}
 \begin{itemize}
     \item \textbf{Attore}: l'utente è autenticato.
     \item \textbf{Descrizione}: l'utente visualizza la mappa globale se non ha nessun profilo social seguito.
@@ -403,7 +404,8 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente visualizza la mappa globale.
 \end{itemize}
 
-\subsubsection{UC15.2 - Visualizzazione lista globale}
+%\subsubsection{UC15.2 - Visualizzazione lista globale}
+\subsubsection{UC17 - Visualizzazione lista globale}
 \begin{itemize}
     \item \textbf{Attore}: l'utente è autenticato.
     \item \textbf{Descrizione}: l'utente visualizza la lista globale se non ha nessun profilo social seguito.
@@ -417,7 +419,8 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente visualizza la lista globale.
 \end{itemize}
 
-\subsubsection{UC15.3 - Visualizzazione mappa personalizzata}
+%\subsubsection{UC15.3 - Visualizzazione mappa personalizzata}
+\subsubsection{UC18 - Visualizzazione mappa personalizzata}
 \begin{itemize}
     \item \textbf{Attore}: l'utente è autenticato.
     \item \textbf{Descrizione}: l'utente visualizza la mappa personalizzata se ha dei profili social seguiti.
@@ -431,7 +434,8 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente visualizza la mappa personalizzata.
 \end{itemize}
 
-\subsubsection{UC15.4 - Visualizzazione lista personalizzata}
+%\subsubsection{UC15.4 - Visualizzazione lista personalizzata}
+\subsubsection{UC19 - Visualizzazione lista personalizzata}
 \begin{itemize}
     \item \textbf{Attore}: l'utente è autenticato.
     \item \textbf{Descrizione}: l'utente visualizza la mappa personalizzata se ha dei profili social seguiti.
@@ -445,9 +449,10 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente visualizza la lista personalizzata.
 \end{itemize}
 
-\subsection{UC16 - Inserimento profili social da seguire}
+%\subsection{UC16 - Inserimento profili social da seguire}
+\subsection{UC20 - Inserimento profili social da seguire}
 \begin{figure}[H]
-    \includegraphics[width=15cm]{sezioni/Images/UC16.png}
+    \includegraphics[width=15cm]{sezioni/Images/UC20.png}
     \centering
     \caption{Inserimento profili social da seguire}
 \end{figure}
@@ -464,14 +469,17 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \end{enumerate}
     \item \textbf{Estensioni}:
     \begin{itemize}
-    	\item il profilo inserito non esiste \textbf{(UC17)};
-    	\item il profilo inserito è già stato aggiunto \textbf{(UC18)}.
+    	\item il profilo inserito non esiste \textbf{(UC21)};
+    	\item il profilo inserito è già stato aggiunto \textbf{(UC22)}.
     \end{itemize} 
     \item \textbf{Precondizioni}: l'utente vuole seguire un nuovo utente.
     \item \textbf{Postcondizioni}: l'utente ha inserito un nuovo utente da seguire.
 \end{itemize}
 
-\subsection{UC17 - Visualizzazione errore di nome utente non esistente}
+\newpage
+
+%\subsection{UC17 - Visualizzazione errore di nome utente non esistente}
+\subsection{UC21 - Visualizzazione errore di nome utente non esistente}
 \begin{itemize}
     \item \textbf{Attore}: l'utente è autenticato.
     \item \textbf{Descrizione}: durante l'attività di aggiunta di un profilo l'utente deve ricevere un messaggio d'errore se il nome utente ricercato non è presente nel sistema.
@@ -480,7 +488,8 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente ha ricevuto un messaggio d'errore.
 \end{itemize}
 
-\subsection{UC18 - Visualizzazione errore di utente già presente nel sistema}
+%\subsection{UC18 - Visualizzazione errore di utente già presente nel sistema}
+\subsection{UC22 - Visualizzazione errore di utente già presente nel sistema}
 \begin{itemize}
     \item \textbf{Attore}: l'utente è autenticato.
     \item \textbf{Descrizione}: durante l'attività di aggiunta di un profilo l'utente deve ricevere un messaggio d'errore se il nome utente ricercato è già stato inserito nei profili seguiti dall'utente.
@@ -489,10 +498,11 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente ha ricevuto un messaggio d'errore.
 \end{itemize}
 
-\subsection{UC19 - Rimozione profilo social seguito}
+%\subsection{UC19 - Rimozione profilo social seguito}
+\subsection{UC23 - Rimozione profilo social seguito}
 
 \begin{figure}[!h]
-    \includegraphics[width=10cm]{sezioni/Images/UC19.png}
+    \includegraphics[width=10cm]{sezioni/Images/UC23.png}
     \centering
     \caption{Rimozione profilo social seguito}
 \end{figure}
@@ -511,10 +521,11 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente ha rimosso il profilo social dalla lista dei seguiti.
 \end{itemize}
 
-\subsection{UC20 - Esplorazione profili social più seguiti}
+%\subsection{UC20 - Esplorazione profili social più seguiti}
+\subsection{UC24 - Esplorazione profili social più seguiti}
 
 \begin{figure}[!h]
-    \includegraphics[width=10cm]{sezioni/Images/UC20.png}
+    \includegraphics[width=10cm]{sezioni/Images/UC24.png}
     \centering
     \caption{Esplorazione profili social più seguiti}
 \end{figure}
@@ -532,9 +543,10 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: viene visualizzata all'utente la lista dei profili social più seguiti.
 \end{itemize}
 
-\subsection{UC21 - Impostazione vista predefinita guida}
+%\subsection{UC21 - Impostazione vista predefinita guida}
+\subsection{UC25 - Impostazione vista predefinita guida}
 \begin{figure}[!h]
-    \includegraphics[width=15cm]{sezioni/Images/UC20_s.png}
+    \includegraphics[width=15cm]{sezioni/Images/UC25_s.png}
     \centering
     \caption{Impostazione vista predefinita guida}
 \end{figure}
@@ -546,14 +558,15 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \begin{enumerate}
         \item l'utente naviga nella sezione impostazioni;
         \item l'utente sceglie la voce “Vista predefinita”;
-        \item l'utente sceglie tra la visulizzazione della mappa \textbf{(UC 22)} oppure della lista \textbf{(UC 23)}.
+        \item l'utente sceglie tra la visulizzazione della mappa \textbf{(UC26)} oppure della lista \textbf{(UC27)}.
     \end{enumerate}
 
     \item \textbf{Precondizioni}: l'utente vuole poter sceglie la vista predefinita.
     \item \textbf{Postcondizioni}: la scelta della lista predefinita è stata salvata.
 \end{itemize}
 
-\subsection{UC22 - Impostazione mappa come vista predefinita}
+%\subsection{UC22 - Impostazione mappa come vista predefinita}
+\subsection{UC26 - Impostazione mappa come vista predefinita}
 \begin{itemize}
     \item \textbf{Attore}: l'utente è autenticato.
     \item \textbf{Descrizione}: l'utente sceglie la mappa come vista predefinita.
@@ -563,7 +576,8 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \end{itemize}
 
-\subsection{UC23 - Impostazione lista come vista predefinita}
+%\subsection{UC23 - Impostazione lista come vista predefinita}
+\subsection{UC27 - Impostazione lista come vista predefinita}
 \begin{itemize}
     \item \textbf{Attore}: l'utente è autenticato.
     \item \textbf{Descrizione}: l'utente sceglie la lista come vista predefinita.
