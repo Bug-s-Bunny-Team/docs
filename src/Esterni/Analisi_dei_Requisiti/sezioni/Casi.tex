@@ -514,12 +514,10 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Descrizione}: l'utente deve poter aggiungere dei profili social da seguire e da cui sarà generata la guida.
     \item \textbf{Scenario}:
     \begin{enumerate}
-        \item l'utente naviga nella home;
-        \item l'utente clicca la barra di ricerca utente;
-        \item l'utente inserisce l'username da ricercare;
-        \item l'utente visualizza i risultati di ricerca;
-        \item l'utente seleziona il profilo da seguire;
-        \item l'utente clicca il pulsante di aggiunta profilo.
+        \item l'utente naviga nella sezione dei profili seguiti;
+        \item l'utente clicca il pulsante di aggiunta profilo;
+        \item l'utente inserisce l'username da aggiungere;
+        \item l'utente conferma e salva.
     \end{enumerate}
     \item \textbf{Estensioni}:
     \begin{itemize}
@@ -527,7 +525,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     	\item il profilo inserito è già stato aggiunto \textbf{(UC22)}.
     \end{itemize} 
     \item \textbf{Precondizioni}: l'utente vuole seguire un nuovo utente.
-    \item \textbf{Postcondizioni}: l'utente segue un nuovo profilo.
+    \item \textbf{Postcondizioni}: l'utente ha inserito un nuovo utente da seguire.
 \end{itemize}
 
 \newpage
@@ -692,6 +690,26 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: lista viene impostata come vista predefinita.
 \end{itemize}
 
+\subsection{UC28 - Visualizzazione lista profili seguiti}
+\begin{figure}[!h]
+    \includegraphics[width=10cm]{sezioni/Images/UC28.png}
+    \centering
+    \caption{Visualizzazione lista profili seguiti}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: l'utente visualizza la lista de profili seguiti.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente naviga nella home;
+        \item l'utente clicca il pulsante per visualizzare la lista dei profili seguiti;
+        \item l'utente visualizza la lista dei profili seguiti.
+    \end{enumerate}
+
+    \item \textbf{Precondizioni}: l'utente vuole visualizzare la lista dei profili seguiti.
+    \item \textbf{Postcondizioni}: l'utente visualizza la lista dei profili seguiti.
+\end{itemize}
 
 
 
