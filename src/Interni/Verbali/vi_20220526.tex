@@ -1,0 +1,48 @@
+\documentclass{classes/base}
+
+\title{Verbale interno}
+\date{2022/05/26}
+\author{\marcob}
+\verificatore{\angela}
+\approvatore{\marcov}
+
+\renewcommand{\maketitle}{
+    \input{common/titlepage_verbale}
+}
+
+\begin{document}
+    \maketitle
+
+    \section*{Generalità}
+    \begin{itemize}
+        \item \textbf{Ora inizio:} 14.30
+        \item \textbf{Ora fine:} 17.30
+    \end{itemize}
+
+    \section*{Presenze}
+    \begin{itemize}
+     	\item \angela
+    	\item \marcob
+        \item \tommaso
+        \item \matteo
+        \item \marcov
+        \item \giulio
+    \end{itemize}
+
+    \section*{Resoconto}
+    Deciso sistema per meglio tracciare verifica ed approvazione dei documenti: una volta 
+    che un documento è completato viene effettuata una pull request dal branch nel quale è stato
+    scritto (es: \textit{verbali} se si tratta di un verbale) verso il branch \textit{dev}. \\
+    A questo punto il verificatore controlla il documento e, una volta marchiato come verificato,
+    l'approvatore chiude la pull request completando il merge.\\
+    \\
+    Introduzione branch \textit{dev}: un \textit{master} di secondo livello, da intendersi esattamente come il
+    \textit{master} branch però con una versione contenuta al suo interno che è ufficiale ma in sviluppo.
+    Una volta arrivati alla revisione si andrà a fare il merge tra \textit{dev} e \textit{master}.\\
+    Preferibile il sistema \textit{squash and merge} così da accorpare i commits.\\
+    \\
+    Si è poi passati a discussione e stesura delle sezioni \textit{Pianificazione} e \textit{Preventivi}
+    del \PdP.\\
+    Infine il gruppo ha deciso di fermare i lavori durante la settimana appena precedente allo
+    scritto di SWE.
+\end{document}

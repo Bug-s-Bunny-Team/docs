@@ -3,6 +3,7 @@
 \LoadClass[12pt]{article}
 
 \RequirePackage[utf8]{inputenc}
+\RequirePackage[italian]{babel}	%rende figure -> figura o table -> tabella; per i caption
 \RequirePackage[a4paper,margin=2.5cm,headheight=32pt]{geometry}
 %\RequirePackage[sfdefault]{quattrocento}
 \RequirePackage{graphicx}
@@ -12,9 +13,11 @@
 \RequirePackage{longtable} %una tabella può continuare su più pagine
 \RequirePackage{booktabs} %toprule e midrule usati al posto di hline
 \RequirePackage{multirow} %utile per visualizzare una cella su più righe
-\RequirePackage{float}
+\RequirePackage{float} %per poter usare l'opzione [H] nelle figure
 \RequirePackage{array}
+\RequirePackage{listings}   % formattazione e highlight codice
 \RequirePackage[hidelinks]{hyperref}
+\RequirePackage{eurosym}
 
 % colorazione e sottolineatura url
 % \hypersetup{
@@ -33,8 +36,30 @@
     \input{common/titlepage}
 }
 
+\newcommand*{\versione}[1]{\gdef\@versione{#1}}
 \newcommand*{\verificatore}[1]{\gdef\@verificatore{#1}}
 \newcommand*{\approvatore}[1]{\gdef\@approvatore{#1}}
 \newcommand*{\uso}[1]{\gdef\@uso{#1}}
+
+% creazione e applicazione stile per formattazione e highlight codice
+\lstdefinestyle{style}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=false,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=style}
 
 \renewcommand*\contentsname{Indice}
