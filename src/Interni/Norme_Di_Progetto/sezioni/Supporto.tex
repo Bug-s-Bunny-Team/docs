@@ -182,13 +182,6 @@
 			\end{itemize}
 			\item Quarto elemento livello 1.
 		\end{itemize}
-		
-		\subsubsection{Strumenti}
-			\begin{itemize}
-				\item \textbf{\LaTeX\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
-				\item \textbf{Visual Studio Code\G:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub\G;
-				\item \textbf{Google Docs\G:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live;
-			\end{itemize}
 
 			\subsubsection{Metriche}
 			\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
@@ -213,6 +206,13 @@
 				\caption{\centering{Metriche utilizzate per la valutazione della documentazione}}
 			\end{longtable}
 			
+			\subsubsection{Strumenti}
+			\begin{itemize}
+				\item \textbf{\LaTeX\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
+				\item \textbf{Visual Studio Code\G:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub\G;
+				\item \textbf{Google Docs\G:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live;
+			\end{itemize}
+
 	\subsection{Processo di configurazione}
 	\subsubsection{Scopo}
 		Il processo di gestione della configurazione ha lo scopo di gestire in maniera ordinata e sistematica la produzione di documenti. %codice in futuro
@@ -256,6 +256,9 @@
 		Mentre il ramo \textit{dev} verrà aggiornato con le ultime modifiche tramite merge, di una \textit{Pull Request\G{}} di verifica, dagli altri rami di lavoro, dopo la chiusura di una \textit{Issue\G{}}. \\
 		Per entrambi i rami le \textit{Pull Request\G{}} vanno chiuse preferibilmente tramite sistema \textit{"Squash and Merge"}.
 		
+		\subsubsection{Metriche}
+		Il processo di configurazione non fa uso di metriche qualitative particolari.
+
 		\subsubsection{Strumenti}
 			Per la gestione della configurazione o versionamento il gruppo utilizza \emph{Visual Studio Code\G{}} o i seguenti client \emph{Git\G}:
 				
@@ -287,13 +290,6 @@
 						\item Raggiungimento della piena soddisfazione del \emph{proponente}.
 					\end{itemize}
 
-			\subsubsection{Strumenti}
-			\begin{itemize}
-				\item \textbf{LaTeX\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
-				\item \textbf{Visual Studio Code\G:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub\G;
-				\item \textbf{Google Docs:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live.
-			\end{itemize}
-
 			\subsubsection{Metriche}
 			\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
 			\renewcommand{\arraystretch}{1.5}
@@ -317,7 +313,13 @@
 				\caption{Metriche utilizzate per la valutazione della qualità}
 			\end{longtable}
 			
-		
+			\subsubsection{Strumenti}
+			\begin{itemize}
+				\item \textbf{LaTeX\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
+				\item \textbf{Visual Studio Code\G:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub\G;
+				\item \textbf{Google Docs:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live.
+			\end{itemize}
+
 			%Magari subsubsection per norme e regole per facilitare gestione della qualità da parte del gruppo: come continua comunicazione, lavoro costante, rispetto delle norme e cosi via
 	
 		\subsection{Verifica}
@@ -383,7 +385,9 @@
 						\rowcolor{white}
 						\caption{Metriche utilizzate per la verifica}
 					\end{longtable}
-			
+				\subsubsection{Strumenti}
+				Per il processo di verifica applicato ai documenti scritti in LATEX il gruppo ha deciso di utilizzare il
+				correttore automatico dell’editor Texmaker, che individua le parole grammaticalmente scorrette sottolineandole in rosso.
 		\subsection{Processo di validazione}
 			\subsubsection{Scopo}
 				Il processo di \emph{validazione}\G{} prende in esame il prodotto ottenuto dalla fase di \emph{verifica}\G{} e stabilisce se esso rispetti i requisiti e le aspettative del \emph{committente}.
@@ -394,3 +398,7 @@
 						\item Valutazione dei risultati rispetto alle attese;
 						\item Rendere tale processo automatico e riutilizzabile.
 					\end{itemize}
+			\subsubsection{Metriche}
+			Il processo di validazione non fa uso di metriche qualitative particolari
+			\subsubsection{Strumenti}
+			Non sono stati identificati degli strumenti particolari per la validazione.

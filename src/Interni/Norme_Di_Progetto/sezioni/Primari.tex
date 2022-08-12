@@ -40,6 +40,12 @@ I seguenti documenti, invece, sono forniti solo all'azienda \proponente{}:
 	\item Diagrammi UML\G{} relativi agli Use Cases\G{} di progetto.
 \end{itemize}
 
+\subsubsection{Metriche}
+Il processo di foritura non fa uso di metriche qualitative particolari.
+
+\subsubsection{Strumenti}
+Microsoft Planner: utilizzato per gestire le task che ciascun membro del gruppo deve svolgere
+
 \subsection{Sviluppo}
 \subsubsection{Descrizione e aspettative}
 Lo scopo del processo di sviluppo è descrivere i compiti e le attività da svolgere relative al prodotto \emph{software} richiesto dal \emph{proponente}.
@@ -168,30 +174,6 @@ La codifica scelta per la rappresentazione dei casi d'uso\G{} è la seguente: \a
 	\end{longtable}
 }
 
-\newpage
-
-\paragraph{Metriche}
-\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
-\renewcommand{\arraystretch}{1.5}
-\setlength{\aboverulesep}{0pt}
-\setlength{\belowrulesep}{0pt}
-\rowcolors{2}{Arancione!10}{white}
-\begin{longtable}{L{.22\freewidth} L{.4\freewidth} L{.2\freewidth}}
-	\toprule
-	\rowcolor{Arancione}
-	\textcolor{white}{\textbf{Metrica}}&
-	\textcolor{white}{\textbf{Descrizione}}&	
-	\textcolor{white}{\textbf{Riferimento}}\\	
-	\toprule
-	\endhead
-	
-	\textbf{MPR2} & Percentuale Requisiti Obbligatori Soddisfatti & \S 6.2 MPR2 \\
-	\textbf{MPP6} & Requirements Stabilty Index & \S 6.1 MPP6 \\
-	
-	\bottomrule
-	\rowcolor{white}
-	\caption{\centering{Metriche utilizzate per la valutazione di analisi dei requisiti}}
-\end{longtable}
 
 \subsubsection{Progettazione} 
 L'attività di progettazione definisce le caratteristiche che il prodotto richiesto deve avere in modo da fornire una soluzione che soddisfa i requisiti specificati nell'\AdR{}\textit{\G}.
@@ -214,7 +196,52 @@ Rappresenta la base architetturale definita coerentemente nella Technology Basel
 	\item Tracciamento dei requisiti che devono essere soddisfatti da una classe.
 \end{itemize}
 
-\paragraph{Metriche}
+
+%Diagrammi e test
+
+
+
+\subsubsection{Codifica} %Da implementare convenzioni future
+La codifica ha lo scopo di normare l'effettiva realizzazione del prodotto richiesto. I \progrs{} dovranno attenersi a queste norme durante la fase di programmazione e implementazione.
+L'uso di norme e convenzioni è fondamentale per permettere la generazione di codice leggibile e uniforme, agevolare la manutenzione e i processi di \emph{verifica}\G{} e \emph{validazione}\G.
+
+\paragraph{Stile della codifica}
+\begin{itemize}
+	\item \textbf{Classi}: il nome di una classe deve iniziare con una lettera maiuscola;
+	\item \textbf{Indentazione}: i blocchi di codice scritti dovranno avere una indentazione di 4 spazi (tab);
+	\item \textbf{Parentesi}: le parentesi devono essere sempre utilizzate alla dichiarazione di un costrutto e all'inizio di esso, anche se esso è vuoto o contiene un'istruzione sola;
+	\item \textbf{Variabili}: il nome delle variabili può essere scritto in inglese e in minuscolo, ad eccezione di un nome composto che dovrà avere il primo nome minuscolo e l'iniziale del secondo maiuscola;
+	\item \textbf{Costanti}: il nome delle costanti deve essere scritto in inglese e in maiuscolo;
+	\item \textbf{Univocità dei nomi}: classi, variabili, metodi e qualsiasi costrutto deve avere un nome significativo ed essere univocamente identificabile; 
+	\item \textbf{Commenti}: i commenti possono essere scritti in inglese o italiano, all'inizio di un blocco di codice;
+	\item \textbf{Ricorsione}: per facilitare la verifica ed evitare una eccessiva occupazione della memoria è preferibile, onde possibile, utilizzare la ricorsione.
+\end{itemize}
+
+
+\subsubsection{Metriche}
+\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\rowcolors{2}{Arancione!10}{white}
+\begin{longtable}{L{.22\freewidth} L{.4\freewidth} L{.2\freewidth}}
+	\toprule
+	\rowcolor{Arancione}
+	\textcolor{white}{\textbf{Metrica}}&
+	\textcolor{white}{\textbf{Descrizione}}&	
+	\textcolor{white}{\textbf{Riferimento}}\\	
+	\toprule
+	\endhead
+	
+	\textbf{MPR2} & Percentuale Requisiti Obbligatori Soddisfatti & \S 6.2 MPR2 \\
+	\textbf{MPP6} & Requirements Stabilty Index & \S 6.1 MPP6 \\
+	
+	\bottomrule
+	\rowcolor{white}
+	\caption{\centering{Metriche utilizzate per la valutazione di analisi dei requisiti}}
+\end{longtable}
+
+
 \setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
 \renewcommand{\arraystretch}{1.5}
 \setlength{\aboverulesep}{0pt}
@@ -236,25 +263,7 @@ Rappresenta la base architetturale definita coerentemente nella Technology Basel
 	\bottomrule
 	\caption{Metriche utilizzate per la valutazione della progettazione}
 \end{longtable}
-%Diagrammi e test
 
-\subsubsection{Codifica} %Da implementare convenzioni future
-La codifica ha lo scopo di normare l'effettiva realizzazione del prodotto richiesto. I \progrs{} dovranno attenersi a queste norme durante la fase di programmazione e implementazione.
-L'uso di norme e convenzioni è fondamentale per permettere la generazione di codice leggibile e uniforme, agevolare la manutenzione e i processi di \emph{verifica}\G{} e \emph{validazione}\G.
-
-\paragraph{Stile della codifica}
-\begin{itemize}
-	\item \textbf{Classi}: il nome di una classe deve iniziare con una lettera maiuscola;
-	\item \textbf{Indentazione}: i blocchi di codice scritti dovranno avere una indentazione di 4 spazi (tab);
-	\item \textbf{Parentesi}: le parentesi devono essere sempre utilizzate alla dichiarazione di un costrutto e all'inizio di esso, anche se esso è vuoto o contiene un'istruzione sola;
-	\item \textbf{Variabili}: il nome delle variabili può essere scritto in inglese e in minuscolo, ad eccezione di un nome composto che dovrà avere il primo nome minuscolo e l'iniziale del secondo maiuscola;
-	\item \textbf{Costanti}: il nome delle costanti deve essere scritto in inglese e in maiuscolo;
-	\item \textbf{Univocità dei nomi}: classi, variabili, metodi e qualsiasi costrutto deve avere un nome significativo ed essere univocamente identificabile; 
-	\item \textbf{Commenti}: i commenti possono essere scritti in inglese o italiano, all'inizio di un blocco di codice;
-	\item \textbf{Ricorsione}: per facilitare la verifica ed evitare una eccessiva occupazione della memoria è preferibile, onde possibile, utilizzare la ricorsione.
-\end{itemize}
-
-\paragraph{Metriche}
 \setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
 \renewcommand{\arraystretch}{1.5}
 \setlength{\aboverulesep}{0pt}
@@ -282,6 +291,7 @@ L'uso di norme e convenzioni è fondamentale per permettere la generazione di co
 \end{longtable}
 
 \subsubsection{Strumenti e linguaggi di programmazione}
+(da togliere)
 Di seguito vengono elencati e descritti i vari strumenti e linguaggi di programmazione utilizzati durante il progetto, siano essi richiesti dal \emph{proponente} o scelti autonomamente:
 \paragraph*{AWS}
 \begin{itemize}
