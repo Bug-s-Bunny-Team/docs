@@ -1,5 +1,51 @@
 \subsection{Scoring Service}
 \subsubsection{Descrizione generale}
+Le classi \verb+ScoringService+ e \verb+BasicScoringService+ (che estende ScoringService\verb++) si occupano
+del servizio di scoring di un post: \verb+ScoringService+ fornisce delle variabili di utilità che
+hanno lo scopo di essere entry point per sfruttare sia i servizi Amazon AWS Comprehend e Rekognition,
+che le funzionalità di input e output dello scoring, mentre è \verb+BasicScoringService+ che sono 
+implementate tutte le funzioni contenenti l'effettiva algoritmica di scoring.
+
+Più nello specifico, \verb+ScoringService+ fornisce:
+\begin{itemize}
+    \item \verb+__e: EventAdapter+: oggetto che si occupa di processare l'evento fornito 
+    dalla lambda;
+    \item \verb+__o: OutputStrategy+: oggetto necessario a effettuare l'output di un evento processato;
+    \item \verb+def score(self, event)+: la funzione che lancia tutte le funzioni necessarie a
+    fare uno scoring di un evento (quindi di un post Instagram) ed effettua l'output del risultato.
+\end{itemize}
+\verb+BasicScoringService+ invece definisce e implementa le seguenti funzioni:
+\begin{itemize}
+    \item \verb+process_event(self, event: LambdaEvent) -> dict+: entry point per l'intera funzione 
+    di scoring, si occupa di lanciare \verb+score()+, la funzione ereditata da \verb+ScoringService+;
+    \item \verb+_runRekognition(self, sPost: ScoringPost)+: lancia, sfruttando l'oggetto \verb+_rekognition+,
+    le funzioni \verb+detect_text+ e \verb+detect_faces+ che si occupano di ritornare dei file json
+    contenenti rispettivamente il testo a schermo (se presente) e una sentiment analysis dei volti
+    (se presenti) dell'immagine di cui si vuole ottenere uno scoring.
+    Dopodiché lancia \verb+__parse_rekognition_response+;
+    \item \verb+_runComprehend(self, sPost: ScoringPost)+: lancia, sfruttando l'oggetto \verb+_comprehend+
+    le funzioni \verb+detect_dominant_language+ e \verb+batch_detect_sentiment+, che si occupano rispettivamente
+    di: ritornare la lingua dominante di un documento e fornire una sentiment analysis di una lista di testi.
+    Dopodiché  lancia \verb+__parse_comprehend_response+;
+    \item \verb+_calcFinalScore(self, sPost: ScoringPost)+: a seconda di quali scores siano 
+    presenti (caption, volti e testo a schermo) calcola lo score del post e lo salva in \verb+sPost.finalScore+;
+    \item \verb+__parse_rekognition_response(self, sPost: ScoringPost, textResult, faceResult):+ prende
+    in input due file json (textResult e faceResult) fa lo scoring dei volti ed estrapola dal file 
+    contenente il testo rilevato dall'immagine solo gli elementi di tipo "LINE", cioè quelli che contengono
+    effettivamente il risultato voluto.
+    Salva poi i risultati in \verb+sPost.texts+ e \verb+sPost.faceScore+;
+    \item \verb+__parse_comprehend_response(self, sPost: ScoringPost, compResult)+: prende in input un
+    file json contente i risultati delle analisi testuali effettuate (sulla caption e sul testo a schermo)
+    e ne effettua uno scoring che viene poi salvato in \verb+sPost.captionScore+ e \verb+sPost.textsScore+ 
+    (quest'ultima è in realtà una lista di scores dei vari frammenti di testo rilevati);
+    
+    \item \verb+__parse_dominant_language_response(self, domResponse)+: ritorna il codice della lingua;
+    dominante, oppure (per default), 'en', cioè inglese;
+    \item \verb+__unpack_post_for_comprehend(self, sPost: ScoringPost)+: prepara il testo da dare in
+    pasto a comprehend in modo che sia correttamente analizzato.
+
+\end{itemize}
+
 \subsubsection{Diagrammi delle classi}
 \subsubsection{Diagrammi di sequenza}
 \subsubsection{Some specific function}
