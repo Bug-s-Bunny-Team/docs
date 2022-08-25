@@ -19,7 +19,7 @@ Più nello specifico, \verb+ScoringService+ fornisce:
     \item \verb+process_event(self, event: LambdaEvent) -> dict+: entry point per l'intera funzione 
     di scoring, si occupa di lanciare \verb+score()+, la funzione ereditata da \verb+ScoringService+;
     \item \verb+_runRekognition(self, sPost: ScoringPost)+: lancia, sfruttando l'oggetto \verb+_rekognition+,
-    le funzioni \verb+detect_text+ e \verb+detect_faces+ che si occupano di ritornare dei file json
+    le funzioni \verb+detect_text+ e \verb+detect_faces+ che si occupano di ritornare dei file JSON
     contenenti rispettivamente il testo a schermo (se presente) e una sentiment analysis dei volti
     (se presenti) dell'immagine di cui si vuole ottenere uno scoring.
     Dopodiché lancia \verb+__parse_rekognition_response+;
@@ -30,12 +30,12 @@ Più nello specifico, \verb+ScoringService+ fornisce:
     \item \verb+_calcFinalScore(self, sPost: ScoringPost)+: a seconda di quali scores siano 
     presenti (caption, volti e testo a schermo) calcola lo score del post e lo salva in \verb+sPost.finalScore+;
     \item \verb+__parse_rekognition_response(self, sPost: ScoringPost, textResult, faceResult):+ prende
-    in input due file json (textResult e faceResult) fa lo scoring dei volti ed estrapola dal file 
+    in input due file JSON (textResult e faceResult) fa lo scoring dei volti ed estrapola dal file 
     contenente il testo rilevato dall'immagine solo gli elementi di tipo "LINE", cioè quelli che contengono
     effettivamente il risultato voluto.
     Salva poi i risultati in \verb+sPost.texts+ e \verb+sPost.faceScore+;
     \item \verb+__parse_comprehend_response(self, sPost: ScoringPost, compResult)+: prende in input un
-    file json contente i risultati delle analisi testuali effettuate (sulla caption e sul testo a schermo)
+    file JSON contente i risultati delle analisi testuali effettuate (sulla caption e sul testo a schermo)
     e ne effettua uno scoring che viene poi salvato in \verb+sPost.captionScore+ e \verb+sPost.textsScore+ 
     (quest'ultima è in realtà una lista di scores dei vari frammenti di testo rilevati);
     
@@ -48,5 +48,193 @@ Più nello specifico, \verb+ScoringService+ fornisce:
 
 \subsubsection{Diagrammi delle classi}
 \subsubsection{Diagrammi di sequenza}
-\subsubsection{Some specific function}
+\subsubsection{Calcolo degli Scores}
+Segue una spiegazione più dettagliata degli algoritmi e delle funzioni che si occupano di calcolare
+i 4 scores necessari (faceScore, textScore, captionScore, finalScore).
+\paragraph{faceScore} \aCapo
+Il punto di partenza si trova nella funzione BasicScoringService.\_runRekognition:
+\begin{lstlisting}[language=Python]
+    Image = {
+            'S3Object': {
+                'Bucket': os.environ['ENV_BUCKET_NAME'],
+                'Name': sPost.image,
+            }
+        }
+    textResponse = self._rekognition.detect_text(Image=Image)
+    faceResponse = self._rekognition.detect_faces(Image=Image)
+    BasicScoringService.__parse_rekognition_response(
+        sPost, textResponse, faceResponse
+    )
+\end{lstlisting}
+La variabile faceResponse contiene il risultato della funzionalità
+di Rekognition chiamata \verb+detect_faces(Image=Image)+ che prende in input un'immagine contenuta
+in un bucket S3 e ritorna un file JSON contente una sentiment analysis dei vari volti presenti.
+Segue un esempio del file in questione (verranno omessi i particolari non necessari allo score):
+\begin{lstlisting}[language=JSON]
+    {
+    "FaceDetails": [
+        {
+            "BoundingBox": {},
+            "AgeRange": {},
+            "Smile": {},
+            "Eyeglasses": {},
+            "Sunglasses": {},
+            "Gender": {},
+            "Beard": {},
+            "Mustache": {},
+            "EyesOpen": {},
+            "MouthOpen": {},
+            "Emotions": [
+                {
+                    "Type": "ANGRY",
+                    "Confidence": 55.18563461303711
+                },
+                {
+                    "Type": "HAPPY",
+                    "Confidence": 37.01131820678711
+                },{},{},{},{},{},{}
+            ],
+            "Landmarks": [],
+            "Pose": {
+                "Roll": 3.602341890335083,
+                "Yaw": -82.46586608886719,
+                "Pitch": -18.774751663208008
+            },
+            "Quality": {
+                "Brightness": 92.66178894042969,
+                "Sharpness": 9.912903785705566
+            },
+            "Confidence": 99.85897064208984
+        }
+    }
+\end{lstlisting}
+Il risulto (contenuto in faceResponse), viene quindi passato come parametro alla funzione 
+BasicScoringService.\_\_parse\_rekognition\_response che si occupa di effettuare il vero
+e proprio scoring.
+I valori (contenuti in FaceDetails) che ci interessano sono:
+\begin{itemize}
+    \item Emotions: \begin{itemize}
+        \item HAPPY
+        \item CALM
+        \item DISGUSTED \end{itemize}
+    \item Pose: \begin{itemize}
+        \item Yaw
+        \item Pitch \end{itemize}
+\end{itemize}
+\verb+Quality+ non è necessario poiché, tramite test, abbiamo notato che immagini con valori di 
+\verb+Sharpness+ anche molto bassi vengono analizzate senza alcun problema. L'algoritmo perde precisione
+solo nel caso in cui i volti siano ripresi da angolazioni troppo elevate (ad esempio da di lato).
+Per quanto riguarda il campo \verb+Confidence+ delle \verb+Emotions+ può essere letto come una
+"quantità di emozione" compresa tra 0 e 100 (la somma di tutti i valori di Confidence è uguale a 100):
+in pratica una persona completamente felice avrà una Confidence dell'emozione HAPPY pari a 100 
+(e tutte le altri pari a 0), una persona completamente arrabbiata avrà una Confidence 
+dell'emozione ANGRY pari a 100 (e tutte le altre pari a 0) e così via.\\
+Segue l'algoritmo: 
+\begin{lstlisting}[language=Python]
+    faceCount = 0
+        scoreSum = 0
+        if len(faceResult['FaceDetails']) > 0:
+            for face in faceResult['FaceDetails']:
+                pose = face['Pose']
+                # SE VOLTO DRITTO
+                if (abs(pose['Yaw']) <= 50) and (
+                    abs(pose['Pitch']) <= 50
+                ):  # abs() perche' deve essere -50<pose<50
+                    # CALCOLARE SCORE EMOZIONI
+                    faceCount = faceCount + 1
+                    faceSum = 0
+                    disgusted = False
+                    for emotion in face['Emotions']:
+                        if emotion['Type'] == 'HAPPY':
+                            faceSum = faceSum + emotion['Confidence']
+                        if emotion['Type'] == 'CALM':
+                            faceSum = (
+                                faceSum + emotion['Confidence'] * 0.5
+                            )  # ha peso minore di happy
+                        if emotion['Type'] == 'DISGUSTED':
+                            if (
+                                emotion['Confidence'] >= 50
+                            ):  # se disgust troppo elevato azzera il punteggio della faccia
+                                disgusted = True
+                    if not disgusted:
+                        scoreSum = (
+                            scoreSum + faceSum
+                        )  # se volto disgusted value >= allora face value = 0
+                # UN VOLTO STORTO VIENE IGNORATO NEL CALCOLO
+            faceScore = scoreSum / faceCount  # =[0,100]
+            if faceScore < 0 or faceScore > 100:
+                raise Exception('faceScore invalid')
+            sPost.faceScore = faceScore / 100  # normalizzato a [0,1]
+        else:
+            sPost.faceScore = None  # se num facce =0 si ignora nel calcolo di final Score
+            
+\end{lstlisting}
+Segue la formula semplificata in linguaggio semi-naturale:
+\begin{lstlisting}
+    if(volto dritto){
+        score_volto = confidence_HAPPY + confidence_CALM * 0.5 
+        if(confidence_DISGUSTED too high){
+            score_volto = 0
+        }
+    }
+    score_immagine_finale = somma_score_volti_dritti / numero_volti_dritti
+\end{lstlisting}
+Il motivo per il quale CALM viene moltiplicato $*0.5$ è per dargli, nel calcolo del punteggio, un
+peso pari alla metà di HAPPY. Infatti certamente non è un sentiment negativo, e quindi va
+valutato positivamente, però è anche vero che deve valere meno di HAPPY.
+Il controllo riguardante l'angolazione del volto (cioè se il volto sia dritto o meno) viene
+effettuato dal codice:
+\begin{lstlisting}[language=Python]
+    if (abs(pose['Yaw']) <= 50) and (
+        abs(pose['Pitch']) <= 50
+    ):
+\end{lstlisting}
+che controlla i valori d'imbardata e beccheggio del volto (in parole più semplici: Yaw è 
+la rotazione della testa sull'asse perpendicolare al terrenno, Pitch invece parallelo al 
+terreno e passante per le orecchie). Si è scelto arbitrariamente il valore massimo di 50 e minimo 
+di -50 per entrambi i valori al fine di evitare possibili errori: abbiamo riscontrato analisi del 
+sentiment corrette anche con valori leggermente superiori, tuttavia è stata data maggiore priorità
+all'affidabilità dell'analisi. \\
+La parte riguardante l'emozione DISGUSTED è stata inserita perchè ci è sembrato limitante usare
+solo le emozioni HAPPY e CALM per dare una valutazione, e soprattutto considerando che il tema
+generale del progetto è ottenere delle valutazioni di ristoranti e locali, è stato ritenuto
+fondamentale dare il giusto peso a un'emozione così negativa. Infatti un volto che abbia una
+valutazione di DISGUSTED$\geq50$ riceve uno score=0. Senza questo controllo sarebbe teoricamente
+possibile che HAPPY fosse pari a 50 e quindi che lo score del volto fosse 50 su 100.
+\begin{lstlisting}[language=Python]
+        if emotion['Type'] == 'DISGUSTED':
+        if (
+            emotion['Confidence'] >= 50
+        ):  # se disgust troppo elevato azzera il punteggio della faccia
+            disgusted = True
+    # end of for
+    if not disgusted:
+    scoreSum = (
+        scoreSum + faceSum
+    )  # se volto disgusted value >= allora face value = 0
+\end{lstlisting}
+Come si vede dal codice di cui sopra, durante il ciclo che "scorre" i vari volti presenti, viene
+controllato il valore di DISGUSTED e, in caso sia superiore a 50, viene attivato un semaforo 
+che impedisce di aggiungere lo score del volto alla somma generale (di fatto rendendo il valore
+di suddetto volto pari a zero).
+Vediamo quindi la parte terminale dell'algoritmo, che si occupa di salvare il faceScore vero e proprio:
+\begin{lstlisting}[language=Python]
+    #if len(faceResult['FaceDetails']) > 0: 
+    # corpo dell' algoritmo 
+        faceScore = scoreSum / faceCount 
+        sPost.faceScore = faceScore / 100  # normalizzato a [0,1]
+    else:
+        sPost.faceScore = None
+\end{lstlisting}
+notiamo che faceScore viene calcolato come la media degli scores dei singoli volti, e viene poi
+normalizzato. Infatti gli score sono compresi tra 0 e 100, ma è comodo avere lo score finale compreso
+tra 0 e 1 (tornerà utile nel calcolo dello score finale). 
+Viene poi salvato in \verb+sPost.faceScore+. 
+Se non sono presenti volti viene assegnato allo score il valore di controllo \verb+None+.
+\paragraph{textScore}
+
+\paragraph{captionScore}
+
+\paragraph{finalScore}
+
 \subsubsection{Some other specific function}
