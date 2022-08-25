@@ -1,39 +1,47 @@
 \subsection{Scoring Service}
 \subsubsection{Descrizione generale}
 Le classi \verb+ScoringService+ e \verb+BasicScoringService+ (che estende ScoringService\verb++) si occupano
-del servizio di scoring di un post: \verb+ScoringService+ fornisce delle variabili di utilità che
-hanno lo scopo di essere entry point per sfruttare sia i servizi Amazon AWS Comprehend e Rekognition,
-che le funzionalità di input e output dello scoring, mentre è \verb+BasicScoringService+ che sono 
-implementate tutte le funzioni contenenti l'effettiva algoritmica di scoring.
+del servizio di scoring di un post: \verb+ScoringService+ fornisce gli entry point per sfruttare 
+i servizi Amazon AWS Comprehend e Rekognition, mentre è in \verb+BasicScoringService+ che sono 
+implementate tutte le funzioni contenenti l'effettiva algoritmica di scoring e i servizi I/O.
 
-Più nello specifico, \verb+ScoringService+ fornisce:
-\begin{itemize}
-    \item \verb+__e: EventAdapter+: oggetto che si occupa di processare l'evento fornito 
-    dalla lambda;
-    \item \verb+__o: OutputStrategy+: oggetto necessario a effettuare l'output di un evento processato;
-    \item \verb+def score(self, event)+: la funzione che lancia tutte le funzioni necessarie a
-    fare uno scoring di un evento (quindi di un post Instagram) ed effettua l'output del risultato.
-\end{itemize}
+Più nello specifico, \verb+ScoringService+ implementa:
+\begin{lstlisting}[language=Python]
+    def __init__(self):
+    self._rekognition = boto3.client(service_name='rekognition')
+    self._comprehend = boto3.client(service_name='comprehend')
+\end{lstlisting}
+che si occupa di fornire degli handle sotto forma di oggetti per accedere ai servizi AWS di Rekognition
+e Comprehend (\verb+self._rekognition+ e \verb+self._comprehend+).
 \verb+BasicScoringService+ invece definisce e implementa le seguenti funzioni:
 \begin{itemize}
     \item \verb+process_event(self, event: LambdaEvent) -> dict+: entry point per l'intera funzione 
-    di scoring, si occupa di lanciare \verb+score()+, la funzione ereditata da \verb+ScoringService+;
+    di scoring, si occupa di lanciare tutti i servizi necessari ad effettuare i vari scores e salva
+    poi il risultato nel database. Ritorna infine una lista con tutti i post analizzati e i loro scores;
+    
+    \item \verb+_save_to_db(self, db_post: models.Post, scoring_post: ScoringPost)+: salva nel database
+    i post con il relativo score;
+
     \item \verb+_runRekognition(self, sPost: ScoringPost)+: lancia, sfruttando l'oggetto \verb+_rekognition+,
     le funzioni \verb+detect_text+ e \verb+detect_faces+ che si occupano di ritornare dei file JSON
     contenenti rispettivamente il testo a schermo (se presente) e una sentiment analysis dei volti
     (se presenti) dell'immagine di cui si vuole ottenere uno scoring.
     Dopodiché lancia \verb+__parse_rekognition_response+;
+    
     \item \verb+_runComprehend(self, sPost: ScoringPost)+: lancia, sfruttando l'oggetto \verb+_comprehend+
     le funzioni \verb+detect_dominant_language+ e \verb+batch_detect_sentiment+, che si occupano rispettivamente
     di: ritornare la lingua dominante di un documento e fornire una sentiment analysis di una lista di testi.
     Dopodiché  lancia \verb+__parse_comprehend_response+;
+    
     \item \verb+_calcFinalScore(self, sPost: ScoringPost)+: a seconda di quali scores siano 
     presenti (caption, volti e testo a schermo) calcola lo score del post e lo salva in \verb+sPost.finalScore+;
+    
     \item \verb+__parse_rekognition_response(self, sPost: ScoringPost, textResult, faceResult):+ prende
     in input due file JSON (textResult e faceResult) fa lo scoring dei volti ed estrapola dal file 
     contenente il testo rilevato dall'immagine solo gli elementi di tipo "LINE", cioè quelli che contengono
     effettivamente il risultato voluto.
     Salva poi i risultati in \verb+sPost.texts+ e \verb+sPost.faceScore+;
+    
     \item \verb+__parse_comprehend_response(self, sPost: ScoringPost, compResult)+: prende in input un
     file JSON contente i risultati delle analisi testuali effettuate (sulla caption e sul testo a schermo)
     e ne effettua uno scoring che viene poi salvato in \verb+sPost.captionScore+ e \verb+sPost.textsScore+ 
@@ -41,6 +49,7 @@ Più nello specifico, \verb+ScoringService+ fornisce:
     
     \item \verb+__parse_dominant_language_response(self, domResponse)+: ritorna il codice della lingua;
     dominante, oppure (per default), 'en', cioè inglese;
+    
     \item \verb+__unpack_post_for_comprehend(self, sPost: ScoringPost)+: prepara il testo da dare in
     pasto a comprehend in modo che sia correttamente analizzato.
 
@@ -50,7 +59,7 @@ Più nello specifico, \verb+ScoringService+ fornisce:
 \subsubsection{Diagrammi di sequenza}
 \subsubsection{Calcolo degli Scores}
 Segue una spiegazione più dettagliata degli algoritmi e delle funzioni che si occupano di calcolare
-i 4 scores necessari (faceScore, textScore, captionScore, finalScore).
+i quattro scores necessari (faceScore, textScore, captionScore, finalScore).
 \paragraph{faceScore} \aCapo
 Il punto di partenza si trova nella funzione BasicScoringService.\_runRekognition:
 \begin{lstlisting}[language=Python]
@@ -162,8 +171,6 @@ Segue l'algoritmo:
                         )  # se volto disgusted value >= allora face value = 0
                 # UN VOLTO STORTO VIENE IGNORATO NEL CALCOLO
             faceScore = scoreSum / faceCount  # =[0,100]
-            if faceScore < 0 or faceScore > 100:
-                raise Exception('faceScore invalid')
             sPost.faceScore = faceScore / 100  # normalizzato a [0,1]
         else:
             sPost.faceScore = None  # se num facce =0 si ignora nel calcolo di final Score
