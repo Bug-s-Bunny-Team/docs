@@ -66,7 +66,6 @@
 \lstdefinelanguage{JSON}{
     numbers=left,
     numberstyle=\small,
-    frame=single,
     rulecolor=\color{black},
     showspaces=false,
     showtabs=false,
