@@ -65,15 +65,20 @@
 %formattazione e higlight per files.json
 \lstdefinelanguage{JSON}{
     numbers=left,
-    numberstyle=\small,
+    numberstyle=\tiny\color{codegray},,
     rulecolor=\color{black},
     showspaces=false,
     showtabs=false,
     breaklines=true,
     postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{gray}\hookrightarrow\space}},
     breakatwhitespace=true,
-    basicstyle=\ttfamily\small,
+    basicstyle=\ttfamily\footnotesize,
     upquote=true,
+    captionpos=b,
+    numbersep=5pt,
+    keepspaces=false,
+    tabsize=2,
+    showstringspaces=false,
     morestring=[b]",
     stringstyle=\color{string},
     literate=
