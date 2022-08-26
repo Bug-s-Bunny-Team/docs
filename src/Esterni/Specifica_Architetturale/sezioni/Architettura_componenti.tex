@@ -10,51 +10,83 @@ def __init__(self):
     self._rekognition = boto3.client(service_name='rekognition')
     self._comprehend = boto3.client(service_name='comprehend')
 \end{lstlisting}
-che si occupa di fornire degli handle sotto forma di oggetti per accedere ai servizi AWS di Rekognition
+che si occupa di fornire degli handle sotto forma di oggetti per accedere ai servizi AWS Rekognition
 e Comprehend (\verb+self._rekognition+ e \verb+self._comprehend+).\\
 \verb+BasicScoringService+ invece definisce e implementa le seguenti funzioni:
-\begin{comment}
+
 \begin{itemize}
-    \item \verb+process_event(self, event: LambdaEvent) -> dict+: entry point per l'intera funzione 
-    di scoring, si occupa di lanciare tutti i servizi necessari ad effettuare i vari scores e salva
-    poi il risultato nel database. Ritorna infine una lista con tutti i post analizzati e i loro scores;
-    
-    \item \verb+_save_to_db(self, db_post: models.Post, scoring_post: ScoringPost)+: salva nel database
-    i post con il relativo score;
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def process_event(self, event: ScoringEvent) -> dict:
+\end{lstlisting}
+Entry point per l'intera funzione di scoring, si occupa di lanciare tutti i servizi 
+necessari ad effettuare i vari scores e salva poi il risultato nel database. 
+Ritorna infine una lista con tutti i post analizzati e i loro scores;
 
-    \item \verb+_runRekognition(self, sPost: ScoringPost)+: lancia, sfruttando l'oggetto \verb+_rekognition+,
-    le funzioni \verb+detect_text+ e \verb+detect_faces+ che si occupano di ritornare dei file JSON
-    contenenti rispettivamente il testo a schermo (se presente) e una sentiment analysis dei volti
-    (se presenti) dell'immagine di cui si vuole ottenere uno scoring.
-    Dopodiché lancia \verb+__parse_rekognition_response+;
-    
-    \item \verb+_runComprehend(self, sPost: ScoringPost)+: lancia, sfruttando l'oggetto \verb+_comprehend+
-    le funzioni \verb+detect_dominant_language+ e \verb+batch_detect_sentiment+, che si occupano rispettivamente
-    di: ritornare la lingua dominante di un documento e fornire una sentiment analysis di una lista di testi.
-    Dopodiché  lancia \verb+__parse_comprehend_response+;
-    
-    \item \verb+_calcFinalScore(self, sPost: ScoringPost)+: a seconda di quali scores siano 
-    presenti (caption, volti e testo a schermo) calcola lo score del post e lo salva in \verb+sPost.finalScore+;
-    
-    \item \verb+__parse_rekognition_response(self, sPost: ScoringPost, textResult, faceResult):+ prende
-    in input due file JSON (textResult e faceResult) fa lo scoring dei volti ed estrapola dal file 
-    contenente il testo rilevato dall'immagine solo gli elementi di tipo "LINE", cioè quelli che contengono
-    effettivamente il risultato voluto.
-    Salva poi i risultati in \verb+sPost.texts+ e \verb+sPost.faceScore+;
-    
-    \item \verb+__parse_comprehend_response(self, sPost: ScoringPost, compResult)+: prende in input un
-    file JSON contente i risultati delle analisi testuali effettuate (sulla caption e sul testo a schermo)
-    e ne effettua uno scoring che viene poi salvato in \verb+sPost.captionScore+ e \verb+sPost.textsScore+ 
-    (quest'ultima è in realtà una lista di scores dei vari frammenti di testo rilevati);
-    
-    \item \verb+__parse_dominant_language_response(self, domResponse)+: ritorna il codice della lingua;
-    dominante, oppure (per default), 'en', cioè inglese;
-    
-    \item \verb+__unpack_post_for_comprehend(self, sPost: ScoringPost)+: prepara il testo da dare in
-    pasto a comprehend in modo che sia correttamente analizzato.
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def _save_to_db(self, db_post: models.Post, scoring_post: ScoringPost):
+\end{lstlisting}
+Salva nel database lo score assegnandolo ai relativi post;
 
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def _runRekognition(self, sPost: ScoringPost):
+\end{lstlisting}
+Lancia, tramite l'oggetto \verb+_rekognition+, le funzioni \verb+detect_text+ e 
+\verb+detect_faces+ che si occupano di ritornare dei file JSON contenenti rispettivamente 
+il testo a schermo (se presente) e una sentiment analysis dei volti (se presenti) 
+dell'immagine di cui si vuole ottenere uno scoring. 
+Dopodiché lancia \verb+__parse_rekognition_response+;
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def _runComprehend(self, sPost: ScoringPost):
+\end{lstlisting}
+Lancia, sfruttando l'oggetto \verb+_comprehend+ le funzioni \verb+detect_dominant_language+ 
+e \verb+batch_detect_sentiment+, che si occupano rispettivamente di ritornare la lingua 
+dominante di un documento e fornire una sentiment analysis di una lista di testi.
+Dopodiché  lancia \verb+__parse_comprehend_response+;
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def _calcFinalScore(self, sPost: ScoringPost):
+\end{lstlisting}
+A seconda di quali scores siano presenti (caption, volti e testo a schermo), calcola 
+lo score del post e lo salva in \verb+sPost.finalScore+;
+   
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def __parse_rekognition_response(self, sPost: ScoringPost, textResult, faceResult):
+\end{lstlisting}
+Prende in input due file JSON (textResult e faceResult), fa lo scoring dei volti ed estrapola 
+da textResult (che contiene il testo rilevato dall'immagine) solo gli elementi di tipo "LINE", 
+cioè quelli che contengono effettivamente il risultato voluto.
+Salva poi i risultati in \verb+sPost.texts+ e \verb+sPost.faceScore+;
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def __parse_comprehend_response(self, sPost: ScoringPost, compResult):
+\end{lstlisting}
+Prende in input un file JSON contente i risultati delle sentiment analysis effettuate 
+sulla caption e sul testo a schermo e ne effettua uno scoring che viene poi salvato 
+in \verb+sPost.captionScore+ e \verb+sPost.textsScore+ (quest'ultima è in realtà una lista 
+di scores dei vari frammenti di testo rilevati);
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def __parse_dominant_language_response(self, domResponse):
+\end{lstlisting}
+Ritorna il codice della lingua dominante, oppure 'en' di default (cioè inglese);
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def __unpack_post_for_comprehend(self, sPost: ScoringPost)
+\end{lstlisting}
+Prepara il testo da fornire a Comprehend in modo che sia correttamente analizzato.
 \end{itemize}
-\end{comment}
+
 \subsubsection{Diagrammi delle classi}
 \subsubsection{Diagrammi di sequenza}
 \subsubsection{Calcolo degli Scores}
