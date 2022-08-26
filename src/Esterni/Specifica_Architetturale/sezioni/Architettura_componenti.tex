@@ -3,17 +3,17 @@
 Le classi \verb+ScoringService+ e \verb+BasicScoringService+ (che estende ScoringService\verb++) si occupano
 del servizio di scoring di un post: \verb+ScoringService+ fornisce gli entry point per sfruttare 
 i servizi Amazon AWS Comprehend e Rekognition, mentre è in \verb+BasicScoringService+ che sono 
-implementate tutte le funzioni contenenti l'effettiva algoritmica di scoring e i servizi I/O.
-
+implementate tutte le funzioni contenenti l'effettiva algoritmica di scoring e i servizi I/O.\\
 Più nello specifico, \verb+ScoringService+ implementa:
 \begin{lstlisting}[language=Python]
-    def __init__(self):
+def __init__(self):
     self._rekognition = boto3.client(service_name='rekognition')
     self._comprehend = boto3.client(service_name='comprehend')
 \end{lstlisting}
 che si occupa di fornire degli handle sotto forma di oggetti per accedere ai servizi AWS di Rekognition
-e Comprehend (\verb+self._rekognition+ e \verb+self._comprehend+).
+e Comprehend (\verb+self._rekognition+ e \verb+self._comprehend+).\\
 \verb+BasicScoringService+ invece definisce e implementa le seguenti funzioni:
+\begin{comment}
 \begin{itemize}
     \item \verb+process_event(self, event: LambdaEvent) -> dict+: entry point per l'intera funzione 
     di scoring, si occupa di lanciare tutti i servizi necessari ad effettuare i vari scores e salva
@@ -54,7 +54,7 @@ e Comprehend (\verb+self._rekognition+ e \verb+self._comprehend+).
     pasto a comprehend in modo che sia correttamente analizzato.
 
 \end{itemize}
-
+\end{comment}
 \subsubsection{Diagrammi delle classi}
 \subsubsection{Diagrammi di sequenza}
 \subsubsection{Calcolo degli Scores}
