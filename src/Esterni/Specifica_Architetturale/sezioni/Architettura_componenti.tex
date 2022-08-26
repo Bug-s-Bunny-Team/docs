@@ -256,16 +256,16 @@ Senza questo controllo sarebbe teoricamente
 possibile che HAPPY fosse pari a 50 (contemporaneamente a DISGUSTED=50) e quindi che lo score 
 del volto fosse 50 su 100.
 \begin{lstlisting}[language=Python]
-if emotion['Type'] == 'DISGUSTED':
-if (
-    emotion['Confidence'] >= 50
-):  # se disgust troppo elevato azzera il punteggio della faccia
-    disgusted = True
+    if emotion['Type'] == 'DISGUSTED':
+        if (
+            emotion['Confidence'] >= 50
+        ):  
+            disgusted = True
 # end of for
 if not disgusted:
-scoreSum = (
-    scoreSum + faceSum
-)  # se volto disgusted value >=50 allora face value = 0
+    scoreSum = (
+        scoreSum + faceSum
+    )  # se volto disgusted value >=50 allora face value = 0
 \end{lstlisting}
 Come si vede dal codice soprastante, durante il ciclo che "scorre" i vari volti presenti viene
 controllato il valore di DISGUSTED e, in caso sia superiore a 50, viene attivato un semaforo 
