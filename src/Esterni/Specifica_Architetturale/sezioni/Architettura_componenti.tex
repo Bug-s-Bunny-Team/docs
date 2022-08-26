@@ -392,7 +392,187 @@ Segue gli stessi passi di textsScore: in \verb+__parse_comprehend_response+ abbi
 \end{lstlisting}
 e lo score che viene calcolato per id==0 del risultato di Comprehend è proprio lo score della
 caption, che viene salvato in \verb+sPost.captionScore+.
+Tuttavia, per comodità di lettura, riportiamo a seguito comunque la spiegazione:
+Il punto di partenza si trova nella funzione BasicScoringService.\_runComprehend
+\begin{lstlisting}[language=Python]
+    dominantLanguageResponse = self._comprehend.detect_dominant_language(
+        Text=sPost.caption
+    )
+    response = self._comprehend.batch_detect_sentiment(
+        TextList=BasicScoringService.__unpack_post_for_comprehend(sPost),
+        LanguageCode=BasicScoringService.__parse_dominant_language_response(
+            dominantLanguageResponse
+        ),
+    )
+    BasicScoringService.__parse_comprehend_response(sPost, response)
+\end{lstlisting}
+ciò che interessa a noi è la variabile \verb+TextList+, ritornata dalla funzione \verb+__unpack+ 
+(LanguageCode infatti è semplicemente una stringa che indica la lingua dominante della caption).
+TextList infatti contiene sia la caption che la lista di testi rilevati a schermo, uniti in un
+unica variabile dalla funzione \verb+__unpack+:
+\begin{lstlisting}[language=Python]
+def __unpack_post_for_comprehend(self, sPost: ScoringPost):
+    if not sPost.caption:
+        sPost.caption = ' '  # empty caption diventa maneggiabile da comprehend
+    return list([sPost.caption, *sPost.texts.values()])
+\end{lstlisting}
+Se la caption è un file vuoto la sostituisce con uno spazio, così da renderla accettabile in input
+da Comprehend, e il risultato della funzione (cioè quindi ciò su cui viene lanciata la funzione di
+sentiment detection di Comprehend) è il seguente (sempre prendendo ad esempio i file di cui sopra):
+\begin{lstlisting}[language=JSON]
+    TextList = [
+        'Caption',
+        'PIZZA LAB',
+        'Buon Ferragasta'
+    ]
+\end{lstlisting}
+A questo punto TextList viene inoltrata a Comprehend tramite l'oggetto \verb+_comprehend+ e la sua
+funzione \verb+batch_detect_sentiment+, che ritorna nella variabile \verb+response+ un file JSON
+contenete la sentiment analysis per i vari pezzi di testo. 
+L'output di Comprehend è strutturato come segue:
+\begin{lstlisting}[language=JSON]
+{
+    'ResultList': [
+        {
+            'Index': 0, 
+            'Sentiment': 'POSITIVE', 
+            'SentimentScore': {
+                'Positive': 0.9763978719711304, 
+                'Negative': 9.167650568997487e-05, 
+                'Neutral': 0.02348191849887371, 
+                'Mixed': 2.8541926440084353e-05
+                }
+        }, {}, {}
+    ], 
+    'ErrorList': [], 
+    'ResponseMetadata': {}
+}
+\end{lstlisting}
+Anche in questo caso lo scoring vero e proprio avviene nella funzione di parsing, vediamo quindi
+l'algoritmo di scoring:
+\begin{lstlisting}[language=Python]
+for item in compResult['ResultList']:
+idx = item['Index']
+score = Score(item["Sentiment"])
+float_score = (
+    item["SentimentScore"]["Positive"] - item["SentimentScore"]["Negative"]
+    if (score != Score.MIXED)
+    else 0.0
+)
+if idx == 0:
+    sPost.captionScore = float_score
+else:
+    sPost.textsScore[idx - 1] = float_score
+\end{lstlisting}
+la parte che si occupa di effettuare lo score vero e proprio è \verb+float_score+, che si limita
+a dare come score la differenza tra i sentiment "Positive" e "Negative", oppure ignora la score se 
+il valore di sentiment "Mixed" è troppo elevato (questa accortezza serve a filtrare almeno in parte
+dei dati non rilevanti).
+L'algoritmo riconosce la differenza tra caption e text-on-screen grazie agli id
+della ResultList: infatti ci premuriamo di fare in modo che all'id=0 ci sia sempre la sentiment 
+analysis di Caption che viene quindi salvata in \verb+sPost.captionScore+.
 
 \paragraph{finalScore}
+È questa la funzione che si occupa di calcolare lo score del post vero e proprio, e lo fa
+mettendo assieme tutte e tre le scores precedenti (ovvero captionScore, faceScore e textsScore)
+per poi salvare il risultato in \verb+sPost.finalScore+.
+La formula generale è la seguente:
+\begin{lstlisting}[language=Python]
+    sPost.finalScore = (
+        normalizedCaptionScore * 2  #=[0,2]
+        + sPost.faceScore * 2       #=[0,2]
+        + normalizedTextScore       #=[0,1]
+    )
+\end{lstlisting}
+Si noti che gli scores per caption e texts non vengono prese direttamente da sPost, a differenza
+di faceScore. 
+Il motivo è il seguente: finalScore è stato scelto sia sempre compreso tra 0 e 5,
+così da agevolarne la visualizzazione nel frontend. Segli scores che lo compongno sono tutti
+compresi tra 0 e 1 diventa semplice dar loro dei pesi nel calcolo del punteggio: si è deciso
+infatti di dare peso uguale a caption e analisi facciale, mentre il testo a schermo pesa molto meno.
+Il motivo è che nei post di instagram il testo a schermo viene usato molto di rado, e quasi sempre
+per presentare locandine di eventi o locali (o ancora per lanciare messaggi com "Ferragosto Aperti").
+È altamente improbabile che un utente normale usi del testo ad immagine per veicolare qualcosa,
+soprattutto quando esiste un'alternativa che richiede molto meno impegno, ovvero la caption.
+Si è deciso di dare comunque stesso peso anche all'analisi facciale poiché nella caption spesso
+non si trovano informazioni particolarmente rilevanti riguardo al locale (es: serata al ristorante,
+la caption potrebbe essere "Cena con gli zii"), e quindi i volti delle persone sono una fonte di
+informazione riguardo al sentiment importante.
+Riportiamo ora l'algoritmo di normalizzazione:
+\begin{lstlisting}[language=Python]
+    # se presente del text on screen normalizzo la sua (loro) score
+    if len(sPost.textsScore) != 0:
+        textScore = sum(sPost.textsScore.values()) / len(
+            sPost.textsScore
+        )  # =[-1,1]
+        normalizedTextScore = (textScore + 1) / 2  # =[0,1]
+
+    # se presente la caption normalizzo la sua score
+    if sPost.caption and not sPost.caption.isspace():
+        normalizedCaptionScore = (sPost.captionScore + 1) / 2  # =[0,1]
+
+    # face score e' gia' =[0,1]
+\end{lstlisting}
+salviamo in \verb+textScore+ la media di tutti gli score dei pezzi di testo analizzati, e otteniamo
+un valore compreso tra -1 e 1, a questo punto non ci resta che normalizzarlo per renderlo compreso
+tra 0 e 1. 
+La captionScore invece, anch'essa compresa tra -1 e 1, può essere normalizzata direttamente portandola
+quindi ad avere un valore compreso tra 0 e 1.
+Come riportato anche nel codice sotto forma di commenti gli scores vengono normalizzati solo se presenti.
+Riportiamo ora l'algoritmo di scoring:
+\begin{lstlisting}[language=Python]
+# CALCOLO DI FINAL SCORE
+# F,T,C = faceScore, textScore, captionScore
+# vuote = post analizzato non contiene: volti(F), testo a schermo(T), caption(C)
+# SE TUTTE VUOTE
+if (
+    not (sPost.caption and not sPost.caption.isspace())
+    and len(sPost.textsScore) == 0
+    and sPost.faceScore is None
+):
+    sPost.finalScore = None
+# SE F,T VUOTE
+elif sPost.faceScore is None and len(sPost.textsScore) == 0:
+    sPost.finalScore = normalizedCaptionScore * 5
+# SE C,T VUOTE
+elif (
+    not (sPost.caption and not sPost.caption.isspace())
+    and len(sPost.textsScore) == 0
+):
+    sPost.finalScore = sPost.faceScore * 5
+# SE F,C VUOTE
+elif sPost.faceScore is None and not (
+    sPost.caption and not sPost.caption.isspace()
+):
+    sPost.finalScore = normalizedTextScore * 5
+# SE T VUOTA
+elif len(sPost.textsScore) == 0:
+    sPost.finalScore = sPost.faceScore * 2.5 
+                       + normalizedCaptionScore * 2.5
+# SE F VUOTA
+elif sPost.faceScore is None:
+    sPost.finalScore = normalizedTextScore * 2 
+                       + normalizedCaptionScore * 3
+# SE C VUOTA
+elif not (sPost.caption and not sPost.caption.isspace()):
+    sPost.finalScore = sPost.faceScore * 3 
+                       + normalizedTextScore * 2
+# SE NESSUNA VUOTA
+else:
+    sPost.finalScore = (
+        normalizedCaptionScore * 2 
+        + sPost.faceScore * 2 
+        + normalizedTextScore
+    )
+\end{lstlisting}
+l'algoritmo considera tutti i possibili casi, dando i pesi corretti di volta in volta, e calcola
+sempre un finalScore compreso tra 0 e 5: se c'è solo uno dei tre score, il suo punteggio aqusisce
+peso pari a 5 diventando di fatto il finalScore; se manca uno dei tre score gli altri due vengono
+pesati a modo per ottenere il risultato finale, sempre tenendo faceScore e captionScore con peso
+uguale e textScore con peso minore.
+Infine se nessuno degli scores è presente viene assenato a \verb+sPost.finalScore+ il valore di
+controllo \verb+None+.
+
+
 
 \subsubsection{Some other specific function}
