@@ -86,7 +86,13 @@ def __unpack_post_for_comprehend(self, sPost: ScoringPost)
 \end{lstlisting}
 Prepara il testo da fornire a Comprehend in modo che sia correttamente analizzato.
 \end{itemize}
-
+In linea generale lo scoring funziona come segue:
+\verb+process_event+ chiama le funzioni \verb+_runRekognition+, \verb+_runComprehend+,
+\verb+_calcFinalScore+ e \verb+_save_to_db+.\\
+\verb+_runRekognition+ riconosce il testo a schermo ed effettua uno scoring dei volti;\\
+\verb+_runComprehend+ effettua uno scoring del testo a schermo e della caption;\\
+\verb+_calcFinalScore+ somma, secondo un certo criterio, i vari scores per ottenere lo score
+finale del post, che viene quindi salvato nel corrispettivo post nel database da \verb+_save_to_db+.
 \subsubsection{Diagrammi delle classi}
 \subsubsection{Diagrammi di sequenza}
 \subsubsection{Calcolo degli Scores}
