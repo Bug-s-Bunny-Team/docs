@@ -628,7 +628,7 @@ Più nello specifico, \verb+SorterService+ implementa:
     service_name='rekognition', region_name=aws_region
     )
 \end{lstlisting} 
-che si occupa di fornire un handle sotto forma di oggetto per accedere al servizio AWS di Rekognition
+che si occupa di fornire un handle sotto forma di oggetto per accedere al servizio AWS Rekognition
 (\verb+self._rekognition+). 
 Poi definisce e implementa le seguenti funzioni:
 \begin{itemize}
@@ -637,6 +637,76 @@ Poi definisce e implementa le seguenti funzioni:
 	\item \verb+_delete_post(self, post: SortingPost)+: si occupa di eliminare il post inutilizzabile e di rimuovere le sua immagini dal bucket di S3 su cui erano state salvate;
 	\item \verb+calculate_image_score(self, post: SortingPost)+: si occupa inizialmente di calcolare lo score di ogni singola immagine di un post e dopo di che calcola lo score finale dell'insieme di immagini del post;
 	\item \verb+analyze_image(self, name_image: str)+: verifica che siano presenti persone nella foto(\verb+detect_person+) ed emozioni(\verb+detect_sentiment_person+). Ritorna, se presenti, un dizionario di emozioni e un dizionario dei rispettivi valori numerici;
-	\item \verb+detect_sentiment_person(self, name_image: str)+: utilizza il servizio AWS di Rekognition per riconoscere le facce ed emozioni correlate in un immagine. Controllerà che le emozioni siano valide(devono avere un valore pari o superiore al 90 su 100 per essere considerate influenti sullo score finale) e verrà poi creato e ritornato a \verb+analyze_image+ un dizionario dei sentimenti, un dizionario dei rispettivi valori numerici e un booleano per segnalare di aver trovato o meno emozioni;
-	\item \verb+detect_person(self, name_image: str)+: utilizza il servizio di AWS di Rekognition per analizzare l'immagine e riconoscere delle labels; queste labels verranno controllate per verificare la presenza di persone. Verrà ritornato un booleano per segnalare la presenza o meno di persone.
+	\item \verb+detect_sentiment_person(self, name_image: str)+: utilizza il servizio AWS Rekognition per riconoscere le facce ed emozioni correlate in un immagine. Controllerà che le emozioni siano valide(devono avere un valore pari o superiore al 90\% per essere considerate influenti sullo score finale) e verrà poi creato e ritornato a \verb+analyze_image+ un dizionario dei sentimenti, un dizionario dei rispettivi valori numerici e un booleano per segnalare di aver trovato o meno emozioni;
+	\item \verb+detect_person(self, name_image: str)+: utilizza il servizio di AWS Rekognition per analizzare l'immagine e riconoscere delle labels; queste labels verranno controllate per verificare la presenza di persone. Verrà ritornato un booleano per segnalare la presenza o meno di persone.
 \end{itemize}
+\subsubsection{Diagrammi delle classi}
+\subsubsection{Diagrammi di sequenza}
+\subsubsection{Calcolo dell'imageScore}
+Segue una spiegazione più dettagliata del processo per il calcolo di imageScore necessario al sort dei post.
+\paragraph{Inizio Processo} \aCapo{}
+Il processo inizia con \verb+process_event(self, event: SortEvent) -> dict+ che si occupa di prendere dal database i post sui quali chiamerà la funzione \verb+sort+.
+\begin{lstlisting}[language=Python]
+        for p in event.posts:
+        db_post = self._session.query(models.Post).filter_by(id=p['id']).first()
+        sorting_post = SortingPost.fromPost(db_post)
+        sorting_post = self.sort(sorting_post)
+\end{lstlisting} 
+Essa chiamerà a sua volta \verb+calculate_image_score+ che con un dizionario di emozioni e un dizionario sulla confidenza di tali emozioni permette il calcolo di imageScore.
+\begin{lstlisting}[language=Python]
+        self.calculate_image_score(post)
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+        image.set_emotions(emotions)
+        image.set_emotions_confidence(emotions_confidence)
+
+        post.calculate_and_set_image_score())
+\end{lstlisting} 
+\paragraph{Creazione e uso dei dizionari} \aCapo{}
+Per creare tale dizionari si utilizza la funzione \verb+detect_sentiment_person+ che utilizzerà a sua volta il servizio AWS Rekognition per il riconoscimento delle facce ed eseguirà poi un analisi sulla risposta ritornata dal servizio. Attraverso tale analisi si salveranno solo le emozioni valide ossia con una confidenza pari o superiore al 90\%. Verranno ritornati i dizionari a \verb+calculate_image_score+ dove verranno usati per salvare le emozioni valide nell'oggetto "Image" nel seguente modo:
+\begin{lstlisting}[language=Python]
+    def set_emotions(self, emotions: dict):
+        self.emotions = emotions
+
+    def set_emotions_confidence(self, emotions_confid: List[dict]):
+        self.emotions_confidence = emotions_confid
+\end{lstlisting}
+\paragraph{Calcolo Finale} \aCapo{}
+Il calcolo finale di imageScore avviene con il seguente algoritmo chiamato \verb+calculate_and_set_image_score+: 
+\begin{lstlisting}[language=Python]
+        if self.list_images:
+            count = 0
+            for image in self.list_images:
+                score = image.calculate_score()
+                if score is not None:
+                    count += 1
+                    self.imageScore = (
+                        (self.imageScore + score)
+                        if self.imageScore is not None
+                        else score
+                    )
+            if self.imageScore:
+                self.imageScore = self.imageScore / count
+\end{lstlisting}
+dove lo score delle singole immagini viene calcolato con l'algoritmo chiamato \verb+calculate_score+:
+\begin{lstlisting}[language=Python]
+        if self.emotions:
+            value_sum = 0.0
+            sum_weights = 0.0
+            for emotion, num in self.emotions.items():
+                value_sum += Emotions[emotion].value * num
+                sum_weights += num
+            return 100 * value_sum / sum_weights
+        else:
+            return None
+\end{lstlisting}
+\paragraph{Conclusione processo} \aCapo{}
+Se l'imageScore sarà stato calcolato il post è valido e verrà tenuto; se invece non è stato calcolato significa che il post non è valido e sarà eliminato insieme alle sua immagini salvate su un bucket S3 tramite la funzione \verb+_delete_post+:
+\begin{lstlisting}[language=Python]
+        for img in post.list_images:
+            s3_delete_file(self._bucket_name, img.name)
+        self._session.delete(
+            self._session.query(models.Post).filter_by(id=post.id).first()
+        )
+        self._session.commit()
+\end{lstlisting}
