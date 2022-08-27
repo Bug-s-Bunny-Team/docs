@@ -1,7 +1,5 @@
 \subsubsection{Descrizione generale}
-La classe \verb+SorterService+  si occupa
-del servizio di sorting di uno o più post: innanzitutto fornisce l'entry point per sfruttare 
-il servizio Amazon AWS Rekognition, dopo di che sono implementate tutte le funzioni contenenti l'effettiva algoritmica di sorting per il calcolo del punteggio del post dalle sue immagini.
+La classe \verb+SorterService+ si occupa del servizio di sorting di uno o più post: innanzitutto fornisce l'entry point per sfruttare il servizio Amazon AWS Rekognition, dopo di che sono implementate tutte le funzioni contenenti l'effettiva algoritmica di sorting per il calcolo del punteggio del post dalle sue immagini.
 
 Più nello specifico, \verb+SorterService+ implementa:
 \begin{lstlisting}[language=Python]
@@ -50,7 +48,12 @@ def detect_person(self, name_image: str):
 	\end{lstlisting}	
 Utilizza il servizio di AWS Rekognition per analizzare l'immagine e riconoscere delle labels; queste labels verranno controllate per verificare la presenza di persone. Verrà ritornato un booleano per segnalare la presenza o meno di persone.
 \end{itemize}
-\subsubsection{Diagrammi delle classi}
+\newpage
+\subsubsection{Diagramma delle classi}
+\begin{figure}[!h]
+    \includegraphics[width=15cm]{sezioni/images/cd_sorting.png}
+    \caption{Sorting Service - Diagramma delle classi}
+\end{figure}
 \subsubsection{Diagrammi di sequenza}
 \subsubsection{Calcolo dell'imageScore}
 Segue una spiegazione più dettagliata del processo per il calcolo di imageScore necessario al sort dei post.

@@ -34,7 +34,7 @@ Salva nel database lo score assegnandolo ai relativi post;
 def _runRekognition(self, sPost: ScoringPost):
 \end{lstlisting}
 Lancia, tramite l'oggetto \verb+_rekognition+, le funzioni \verb+detect_text+ e 
-\verb+detect_faces+ che si occupano di ritornare dei file JSON contenenti rispettivamente 
+\verb+detect_faces+ che si occupano di ritornare dei file JSON\G{} contenenti rispettivamente 
 il testo a schermo (se presente) e una sentiment analysis dei volti (se presenti) 
 dell'immagine di cui si vuole ottenere uno scoring. 
 Dopodiché lancia \verb+__parse_rekognition_response+;
@@ -60,7 +60,7 @@ lo score del post e lo salva in \verb+sPost.finalScore+;
 \begin{lstlisting}[language=Python, numbers=none]
 def __parse_rekognition_response(self, sPost: ScoringPost, textResult, faceResult):
 \end{lstlisting}
-Prende in input due file JSON (\verb+textResult+ e \verb+faceResult+), fa lo scoring dei volti 
+Prende in input due file JSON\G{} (\verb+textResult+ e \verb+faceResult+), fa lo scoring dei volti 
 ed estrapola 
 da \verb+textResult+ (che contiene il testo rilevato dall'immagine) solo gli elementi 
 di tipo \verb+"LINE"+, 
@@ -71,7 +71,7 @@ Salva poi i risultati in \verb+sPost.texts+ e \verb+sPost.faceScore+;
 \begin{lstlisting}[language=Python, numbers=none]
 def __parse_comprehend_response(self, sPost: ScoringPost, compResult):
 \end{lstlisting}
-Prende in input un file JSON contente i risultati delle sentiment analysis effettuate 
+Prende in input un file JSON\G{} contente i risultati delle sentiment analysis effettuate 
 sulla caption e sul testo a schermo e ne effettua uno scoring che viene poi salvato 
 in \verb+sPost.captionScore+ e \verb+sPost.textsScore+ (quest'ultima è in realtà una lista 
 di scores dei vari frammenti di testo rilevati);
@@ -118,7 +118,7 @@ BasicScoringService.__parse_rekognition_response(
 \end{lstlisting}
 La variabile \verb+faceResponse+ contiene il risultato della funzionalità
 di Rekognition chiamata \verb+detect_faces+ che prende in input un'immagine contenuta
-in un bucket S3 e ritorna un file JSON contente una sentiment analysis dei vari volti presenti.\\
+in un bucket S3 e ritorna un file JSON\G{} contente una sentiment analysis dei vari volti presenti.\\
 Segue un esempio del file in questione (lasciando implicito ciò che non serve):
 \begin{lstlisting}[language=JSON]
 {
@@ -306,7 +306,7 @@ BasicScoringService.__parse_rekognition_response(
 \end{lstlisting}
 La variabile \verb+textResponse+ contiene il risultato della funzionalità
 di Rekognition chiamata \verb+detect_text+ che prende in input un'immagine contenuta
-in un bucket S3 e ritorna un file JSON contente il testo presente nell'immagine.\\
+in un bucket S3 e ritorna un file JSON\G{} contente il testo presente nell'immagine.\\
 Segue un esempio del file in questione (lasciando implicito ciò che non serve):
 \begin{lstlisting}[language=JSON]
 {
@@ -340,7 +340,7 @@ for line in textResult['TextDetections']:
 Ogni "pezzo" di testo rilevato nell'immagine viene salvato in un dizionario e viene
 identificato dal suo \verb+Id+. Il dizionario in
 questione è \verb+sPost.texts+.\\
-Rispetto al JSON di esempio di cui sopra, il risultato di \verb+sPost.texts+ sarebbe il seguente:
+Rispetto al JSON\G{} di esempio di cui sopra, il risultato di \verb+sPost.texts+ sarebbe il seguente:
 \begin{lstlisting}[language=JSON]
 {
     0: 'PIZZA LAB', 
@@ -383,7 +383,7 @@ TextList = [
 ]
 \end{lstlisting}
 \verb+TextList+ viene quindi inoltrata a Comprehend tramite l'oggetto \verb+_comprehend+ e la sua
-funzione \verb+batch_detect_sentiment+, che ritorna nella variabile \verb+response+ un file JSON
+funzione \verb+batch_detect_sentiment+, che ritorna nella variabile \verb+response+ un file JSON\G{}
 contenete la sentiment analysis per i vari pezzi di testo.\\
 L'output di Comprehend è strutturato come segue:
 \begin{lstlisting}[language=JSON]
@@ -481,7 +481,7 @@ TextList = [
 ]
 \end{lstlisting}
 A questo punto \verb+TextList+ viene inoltrata a Comprehend tramite l'oggetto \verb+_comprehend+ e la sua
-funzione \verb+batch_detect_sentiment+, che ritorna nella variabile \verb+response+ un file JSON
+funzione \verb+batch_detect_sentiment+, che ritorna nella variabile \verb+response+ un file JSON\G{}
 contenete la sentiment analysis per i vari pezzi di testo. \\
 L'output di Comprehend è strutturato come segue:
 \begin{lstlisting}[language=JSON]
