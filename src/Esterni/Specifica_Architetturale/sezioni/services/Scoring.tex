@@ -1,0 +1,852 @@
+\subsubsection{Descrizione generale}
+Le classi \verb+ScoringService+ e \verb+BasicScoringService+ (che estende ScoringService\verb++) si occupano
+del servizio di scoring di un post: \verb+ScoringService+ fornisce gli entry point per sfruttare 
+i servizi Amazon AWS Comprehend e Rekognition, mentre è in \verb+BasicScoringService+ che sono 
+implementate tutte le funzioni contenenti l'effettiva algoritmica di scoring e i servizi I/O.\\
+Più nello specifico, \verb+ScoringService+ implementa:
+\begin{lstlisting}[language=Python]
+def __init__(self):
+    self._rekognition = boto3.client(service_name='rekognition')
+    self._comprehend = boto3.client(service_name='comprehend')
+\end{lstlisting}
+che si occupa di fornire degli handle sotto forma di oggetti per accedere ai servizi AWS Rekognition
+e Comprehend (\verb+self._rekognition+ e \verb+self._comprehend+).\\
+\verb+BasicScoringService+ invece definisce e implementa le seguenti funzioni:
+
+\begin{itemize}
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def process_event(self, event: ScoringEvent) -> dict:
+\end{lstlisting}
+Entry point per l'intera funzione di scoring, si occupa di lanciare tutti i servizi 
+necessari ad effettuare i vari scores e salva poi il risultato nel database. 
+Ritorna infine una lista con tutti i post analizzati e i loro scores;
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def _save_to_db(self, db_post: models.Post, scoring_post: ScoringPost):
+\end{lstlisting}
+Salva nel database lo score assegnandolo ai relativi post;
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def _runRekognition(self, sPost: ScoringPost):
+\end{lstlisting}
+Lancia, tramite l'oggetto \verb+_rekognition+, le funzioni \verb+detect_text+ e 
+\verb+detect_faces+ che si occupano di ritornare dei file JSON\G{} contenenti rispettivamente 
+il testo a schermo (se presente) e una sentiment analysis dei volti (se presenti) 
+dell'immagine di cui si vuole ottenere uno scoring. 
+Dopodiché lancia \verb+__parse_rekognition_response+;
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def _runComprehend(self, sPost: ScoringPost):
+\end{lstlisting}
+Lancia, sfruttando l'oggetto \verb+_comprehend+ le funzioni \verb+detect_dominant_language+ 
+e \verb+batch_detect_sentiment+, che si occupano rispettivamente di ritornare la lingua 
+dominante di un documento e fornire una sentiment analysis di una lista di testi.
+Dopodiché  lancia \verb+__parse_comprehend_response+;
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def _calcFinalScore(self, sPost: ScoringPost):
+\end{lstlisting}
+A seconda di quali scores siano presenti (caption, volti e testo a schermo), calcola 
+lo score del post e lo salva in \verb+sPost.finalScore+;
+   
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def __parse_rekognition_response(self, sPost: ScoringPost, textResult, faceResult):
+\end{lstlisting}
+Prende in input due file JSON\G{} (textResult e faceResult), fa lo scoring dei volti ed estrapola 
+da textResult (che contiene il testo rilevato dall'immagine) solo gli elementi di tipo "LINE", 
+cioè quelli che contengono effettivamente il risultato voluto.
+Salva poi i risultati in \verb+sPost.texts+ e \verb+sPost.faceScore+;
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def __parse_comprehend_response(self, sPost: ScoringPost, compResult):
+\end{lstlisting}
+Prende in input un file JSON\G{} contente i risultati delle sentiment analysis effettuate 
+sulla caption e sul testo a schermo e ne effettua uno scoring che viene poi salvato 
+in \verb+sPost.captionScore+ e \verb+sPost.textsScore+ (quest'ultima è in realtà una lista 
+di scores dei vari frammenti di testo rilevati);
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def __parse_dominant_language_response(self, domResponse):
+\end{lstlisting}
+Ritorna il codice della lingua dominante, oppure 'en' di default (cioè inglese);
+
+\item 
+\begin{lstlisting}[language=Python, numbers=none]
+def __unpack_post_for_comprehend(self, sPost: ScoringPost)
+\end{lstlisting}
+Prepara il testo da fornire a Comprehend in modo che sia correttamente analizzato.
+\end{itemize}
+In linea generale lo scoring funziona come segue:
+\verb+process_event+ chiama le funzioni \verb+_runRekognition+, \verb+_runComprehend+,
+\verb+_calcFinalScore+ e \verb+_save_to_db+.\\
+\verb+_runRekognition+ riconosce il testo a schermo ed effettua uno scoring dei volti;\\
+\verb+_runComprehend+ effettua uno scoring del testo a schermo e della caption;\\
+\verb+_calcFinalScore+ somma, secondo un certo criterio, i vari scores per ottenere lo score
+finale del post, che viene quindi salvato nel corrispettivo post nel database da \verb+_save_to_db+.
+\subsubsection{Diagrammi delle classi}
+\subsubsection{Diagrammi di sequenza}
+\subsubsection{Calcolo degli scores}
+Segue una spiegazione più dettagliata degli algoritmi e delle funzioni che si occupano di calcolare
+i quattro scores necessari (faceScore, textScore, captionScore, finalScore).
+\paragraph{faceScore} \aCapo
+Il punto di partenza si trova nella funzione BasicScoringService.\_runRekognition:
+\begin{lstlisting}[language=Python]
+    Image = {
+            'S3Object': {
+                'Bucket': os.environ['ENV_BUCKET_NAME'],
+                'Name': sPost.image,
+            }
+        }
+    textResponse = self._rekognition.detect_text(Image=Image)
+    faceResponse = self._rekognition.detect_faces(Image=Image)
+    BasicScoringService.__parse_rekognition_response(
+        sPost, textResponse, faceResponse
+    )
+\end{lstlisting}
+La variabile faceResponse contiene il risultato della funzionalità
+di Rekognition chiamata \verb+detect_faces(Image=Image)+ che prende in input un'immagine contenuta
+in un bucket S3 e ritorna un file JSON\G{} contente una sentiment analysis dei vari volti presenti.
+Segue un esempio del file in questione (verranno omessi i particolari non necessari allo score):
+\begin{lstlisting}[language=JSON]
+    {
+    "FaceDetails": [
+        {
+            "BoundingBox": {},
+            "AgeRange": {},
+            "Smile": {},
+            "Eyeglasses": {},
+            "Sunglasses": {},
+            "Gender": {},
+            "Beard": {},
+            "Mustache": {},
+            "EyesOpen": {},
+            "MouthOpen": {},
+            "Emotions": [
+                {
+                    "Type": "ANGRY",
+                    "Confidence": 55.18563461303711
+                },
+                {
+                    "Type": "HAPPY",
+                    "Confidence": 37.01131820678711
+                },{},{},{},{},{},{}
+            ],
+            "Landmarks": [],
+            "Pose": {
+                "Roll": 3.602341890335083,
+                "Yaw": -82.46586608886719,
+                "Pitch": -18.774751663208008
+            },
+            "Quality": {
+                "Brightness": 92.66178894042969,
+                "Sharpness": 9.912903785705566
+            },
+            "Confidence": 99.85897064208984
+        }
+    }
+\end{lstlisting}
+Il risulto (contenuto in faceResponse), viene quindi passato come parametro alla funzione 
+BasicScoringService.\_\_parse\_rekognition\_response che si occupa di effettuare il vero
+e proprio scoring.
+I valori (contenuti in FaceDetails) che ci interessano sono:
+\begin{itemize}
+    \item Emotions: \begin{itemize}
+        \item HAPPY
+        \item CALM
+        \item DISGUSTED \end{itemize}
+    \item Pose: \begin{itemize}
+        \item Yaw
+        \item Pitch \end{itemize}
+\end{itemize}
+\verb+Quality+ non è necessario poiché, tramite test, abbiamo notato che immagini con valori di 
+\verb+Sharpness+ anche molto bassi vengono analizzate senza alcun problema. L'algoritmo perde precisione
+solo nel caso in cui i volti siano ripresi da angolazioni troppo elevate (ad esempio da di lato).
+Per quanto riguarda il campo \verb+Confidence+ delle \verb+Emotions+ può essere letto come una
+"quantità di emozione" compresa tra 0 e 100 (la somma di tutti i valori di Confidence è uguale a 100):
+in pratica una persona completamente felice avrà una Confidence dell'emozione HAPPY pari a 100 
+(e tutte le altri pari a 0), una persona completamente arrabbiata avrà una Confidence 
+dell'emozione ANGRY pari a 100 (e tutte le altre pari a 0) e così via.\\
+Segue l'algoritmo: 
+\begin{lstlisting}[language=Python]
+    faceCount = 0
+        scoreSum = 0
+        if len(faceResult['FaceDetails']) > 0:
+            for face in faceResult['FaceDetails']:
+                pose = face['Pose']
+                # SE VOLTO DRITTO
+                if (abs(pose['Yaw']) <= 50) and (
+                    abs(pose['Pitch']) <= 50
+                ):  # abs() perche' deve essere -50<pose<50
+                    # CALCOLARE SCORE EMOZIONI
+                    faceCount = faceCount + 1
+                    faceSum = 0
+                    disgusted = False
+                    for emotion in face['Emotions']:
+                        if emotion['Type'] == 'HAPPY':
+                            faceSum = faceSum + emotion['Confidence']
+                        if emotion['Type'] == 'CALM':
+                            faceSum = (
+                                faceSum + emotion['Confidence'] * 0.5
+                            )  # ha peso minore di happy
+                        if emotion['Type'] == 'DISGUSTED':
+                            if (
+                                emotion['Confidence'] >= 50
+                            ):  # se disgust troppo elevato azzera il punteggio della faccia
+                                disgusted = True
+                    if not disgusted:
+                        scoreSum = (
+                            scoreSum + faceSum
+                        )  # se volto disgusted value >= allora face value = 0
+                # UN VOLTO STORTO VIENE IGNORATO NEL CALCOLO
+            faceScore = scoreSum / faceCount  # =[0,100]
+            sPost.faceScore = faceScore / 100  # normalizzato a [0,1]
+        else:
+            sPost.faceScore = None  # se num facce =0 si ignora nel calcolo di final Score
+            
+\end{lstlisting}
+Segue la formula semplificata in linguaggio semi-naturale:
+\begin{lstlisting}
+    if(volto dritto){
+        score_volto = confidence_HAPPY + confidence_CALM * 0.5 
+        if(confidence_DISGUSTED too high){
+            score_volto = 0
+        }
+    }
+    score_immagine_finale = somma_score_volti_dritti / numero_volti_dritti
+\end{lstlisting}
+Il motivo per il quale CALM viene moltiplicato $*0.5$ è per dargli, nel calcolo del punteggio, un
+peso pari alla metà di HAPPY. Infatti certamente non è un sentiment negativo, e quindi va
+valutato positivamente, però è anche vero che deve valere meno di HAPPY.
+Il controllo riguardante l'angolazione del volto (cioè se il volto sia dritto o meno) viene
+effettuato dal codice:
+\begin{lstlisting}[language=Python]
+    if (abs(pose['Yaw']) <= 50) and (
+        abs(pose['Pitch']) <= 50
+    ):
+\end{lstlisting}
+che controlla i valori d'imbardata e beccheggio del volto (in parole più semplici: Yaw è 
+la rotazione della testa sull'asse perpendicolare al terrenno, Pitch invece parallelo al 
+terreno e passante per le orecchie). Si è scelto arbitrariamente il valore massimo di 50 e minimo 
+di -50 per entrambi i valori al fine di evitare possibili errori: abbiamo riscontrato analisi del 
+sentiment corrette anche con valori leggermente superiori, tuttavia è stata data maggiore priorità
+all'affidabilità dell'analisi. \\
+La parte riguardante l'emozione DISGUSTED è stata inserita perchè ci è sembrato limitante usare
+solo le emozioni HAPPY e CALM per dare una valutazione, e soprattutto considerando che il tema
+generale del progetto è ottenere delle valutazioni di ristoranti e locali, è stato ritenuto
+fondamentale dare il giusto peso a un'emozione così negativa. Infatti un volto che abbia una
+valutazione di DISGUSTED$\geq50$ riceve uno score=0. Senza questo controllo sarebbe teoricamente
+possibile che HAPPY fosse pari a 50 e quindi che lo score del volto fosse 50 su 100.
+\begin{lstlisting}[language=Python]
+        if emotion['Type'] == 'DISGUSTED':
+        if (
+            emotion['Confidence'] >= 50
+        ):  # se disgust troppo elevato azzera il punteggio della faccia
+            disgusted = True
+    # end of for
+    if not disgusted:
+    scoreSum = (
+        scoreSum + faceSum
+    )  # se volto disgusted value >= allora face value = 0
+\end{lstlisting}
+Come si vede dal codice di cui sopra, durante il ciclo che "scorre" i vari volti presenti, viene
+controllato il valore di DISGUSTED e, in caso sia superiore a 50, viene attivato un semaforo 
+che impedisce di aggiungere lo score del volto alla somma generale (di fatto rendendo il valore
+di suddetto volto pari a zero).
+Vediamo quindi la parte terminale dell'algoritmo, che si occupa di salvare il faceScore vero e proprio:
+\begin{lstlisting}[language=Python]
+    #if len(faceResult['FaceDetails']) > 0: 
+    # corpo dell' algoritmo 
+        faceScore = scoreSum / faceCount 
+        sPost.faceScore = faceScore / 100  # normalizzato a [0,1]
+    else:
+        sPost.faceScore = None
+\end{lstlisting}
+notiamo che faceScore viene calcolato come la media degli scores dei singoli volti, e viene poi
+normalizzato. Infatti gli score sono compresi tra 0 e 100, ma è comodo avere lo score finale compreso
+tra 0 e 1 (tornerà utile nel calcolo dello score finale). 
+Viene poi salvato in \verb+sPost.faceScore+. 
+Se non sono presenti volti viene assegnato allo score il valore di controllo \verb+None+.
+\paragraph{textScore}
+Il punto di partenza si trova nella funzione BasicScoringService.\_runRekognition:
+\begin{lstlisting}[language=Python]
+    Image = {
+            'S3Object': {
+                'Bucket': os.environ['ENV_BUCKET_NAME'],
+                'Name': sPost.image,
+            }
+        }
+    textResponse = self._rekognition.detect_text(Image=Image)
+    faceResponse = self._rekognition.detect_faces(Image=Image)
+    BasicScoringService.__parse_rekognition_response(
+        sPost, textResponse, faceResponse
+    )
+\end{lstlisting}
+La variabile textResponse contiene il risultato della funzionalità
+di Rekognition chiamata \verb+detect_text(Image=Image)+ che prende in input un'immagine contenuta
+in un bucket S3 e ritorna un file JSON\G{} contente il testo presente nell'immagine.
+Segue un esempio del file in questione (verranno omessi i particolari non necessari allo score):
+\begin{lstlisting}[language=JSON]
+    {
+    "TextDetections": [
+        {
+            "DetectedText": "PIZZA LAB",
+            "Type": "LINE",
+            "Id": 0,
+            "Confidence": 99.8796615600586,
+            "Geometry": {}
+        },
+        {
+            "DetectedText": "Buon Ferragasta",
+            "Type": "LINE",
+            "Id": 1,
+            "Confidence": 67.9867935180664,
+            "Geometry": {}
+        },{},{},{}
+        ],
+        "TextModelVersion": "3.0"
+    }        
+\end{lstlisting}
+Ciò che andremo a considerare in questo caso sarà il contenuto di \verb+DetectedText+
+per ogni elemento di tipo LINE. 
+Vediamo il codice: 
+\begin{lstlisting}[language=Python]
+    for line in textResult['TextDetections']:
+        if line['Type'] == 'LINE':
+            sPost.texts[line['Id']] = line['DetectedText']
+\end{lstlisting}
+Ogni "pezzo" di testo rilevato nell'immagine viene salvato in un dizionario e viene
+identificato dall'id che ha nel risultato di TextDetections. Il dizionario in
+questione è \verb+sPost.texts+.
+Rispetto al JSON\G{} di esempio di cui sopra, il risultato di sPost.texts sarebbe il seguente:
+\begin{lstlisting}[language=JSON]
+    {
+        0: 'PIZZA LAB', 
+        1: 'Buon Ferragasta'
+    }
+\end{lstlisting}
+A questo punto è Comprehend che deve occuparsi di dare degli effettivi sentiment
+scores a queste stringhe di testo.
+Il punto di partenza si trova nella funzione BasicScoringService.\_runComprehend:
+\begin{lstlisting}[language=Python]
+    dominantLanguageResponse = self._comprehend.detect_dominant_language(
+        Text=sPost.caption
+    )
+    response = self._comprehend.batch_detect_sentiment(
+        TextList=BasicScoringService.__unpack_post_for_comprehend(sPost),
+        LanguageCode=BasicScoringService.__parse_dominant_language_response(
+            dominantLanguageResponse
+        ),
+    )
+    BasicScoringService.__parse_comprehend_response(sPost, response)
+\end{lstlisting}
+ciò che interessa a noi è la variabile \verb+TextList+, ritornata dalla funzione \verb+__unpack+ 
+(LanguageCode infatti è semplicemente una stringa che indica la lingua dominante della caption).
+TextList infatti contiene sia la caption che la lista di testi rilevati a schermo, uniti in un
+unica variabile dalla funzione \verb+__unpack+:
+\begin{lstlisting}[language=Python]
+def __unpack_post_for_comprehend(self, sPost: ScoringPost):
+    if not sPost.caption:
+        sPost.caption = ' '  # empty caption diventa maneggiabile da comprehend
+    return list([sPost.caption, *sPost.texts.values()])
+\end{lstlisting}
+Se la caption è un file vuoto la sostituisce con uno spazio, così da renderla accettabile in input
+da Comprehend, e il risultato della funzione (cioè quindi ciò su cui viene lanciata la funzione di
+sentiment detection di Comprehend) è il seguente (sempre prendendo ad esempio i file di cui sopra):
+\begin{lstlisting}[language=JSON]
+    TextList = [
+        'Caption',
+        'PIZZA LAB',
+        'Buon Ferragasta'
+    ]
+\end{lstlisting}
+A questo punto TextList viene inoltrata a Comprehend tramite l'oggetto \verb+_comprehend+ e la sua
+funzione \verb+batch_detect_sentiment+, che ritorna nella variabile \verb+response+ un file JSON\G{}
+contenete la sentiment analysis per i vari pezzi di testo. 
+L'output di Comprehend è strutturato come segue:
+\begin{lstlisting}[language=JSON]
+{
+    'ResultList': [
+        {
+            'Index': 0, 
+            'Sentiment': 'POSITIVE', 
+            'SentimentScore': {
+                'Positive': 0.9763978719711304, 
+                'Negative': 9.167650568997487e-05, 
+                'Neutral': 0.02348191849887371, 
+                'Mixed': 2.8541926440084353e-05
+                }
+        }, {}, {}
+    ], 
+    'ErrorList': [], 
+    'ResponseMetadata': {}
+}
+\end{lstlisting}
+Anche in questo caso lo scoring vero e proprio avviene nella funzione di parsing, vediamo quindi
+l'algoritmo di scoring:
+\begin{lstlisting}[language=Python]
+for item in compResult['ResultList']:
+idx = item['Index']
+score = Score(item["Sentiment"])
+float_score = (
+    item["SentimentScore"]["Positive"] - item["SentimentScore"]["Negative"]
+    if (score != Score.MIXED)
+    else 0.0
+)
+if idx == 0:
+    sPost.captionScore = float_score
+else:
+    sPost.textsScore[idx - 1] = float_score
+\end{lstlisting}
+la parte che si occupa di effettuare lo score vero e proprio è \verb+float_score+, che si limita
+a dare come score la differenza tra i sentiment "Positive" e "Negative", oppure ignora la score se 
+il valore di sentiment "Mixed" è troppo elevato (questa accortezza serve a filtrare almeno in parte
+dei dati non rilevanti).
+Notiamo infine che l'algoritmo riconosce la differenza tra caption e text-on-screen grazie agli id
+della ResultList: infatti ci premuriamo di fare in modo che all'id=0 ci sia sempre la sentiment 
+analysis di Caption, e negli altri i vari pezzi che compongono il testo rilevato a schermo.
+Il risultato di questo scoring è salvato come una lista di valori in \verb+sPost.textScore+.
+\paragraph{captionScore}
+Segue gli stessi passi di textsScore: in \verb+__parse_comprehend_response+ abbiamo:
+\begin{lstlisting}[language=Python]
+    float_score = (
+        item["SentimentScore"]["Positive"] - item["SentimentScore"]["Negative"]
+        if (score != Score.MIXED)
+        else 0.0
+    )
+    if idx == 0:
+        sPost.captionScore = float_score
+    else:
+        sPost.textsScore[idx - 1] = float_score
+\end{lstlisting}
+e lo score che viene calcolato per id==0 del risultato di Comprehend è proprio lo score della
+caption, che viene salvato in \verb+sPost.captionScore+.
+Tuttavia, per comodità di lettura, riportiamo a seguito comunque la spiegazione:
+Il punto di partenza si trova nella funzione BasicScoringService.\_runComprehend
+\begin{lstlisting}[language=Python]
+    dominantLanguageResponse = self._comprehend.detect_dominant_language(
+        Text=sPost.caption
+    )
+    response = self._comprehend.batch_detect_sentiment(
+        TextList=BasicScoringService.__unpack_post_for_comprehend(sPost),
+        LanguageCode=BasicScoringService.__parse_dominant_language_response(
+            dominantLanguageResponse
+        ),
+    )
+    BasicScoringService.__parse_comprehend_response(sPost, response)
+\end{lstlisting}
+ciò che interessa a noi è la variabile \verb+TextList+, ritornata dalla funzione \verb+__unpack+ 
+(LanguageCode infatti è semplicemente una stringa che indica la lingua dominante della caption).
+TextList infatti contiene sia la caption che la lista di testi rilevati a schermo, uniti in un
+unica variabile dalla funzione \verb+__unpack+:
+\begin{lstlisting}[language=Python]
+def __unpack_post_for_comprehend(self, sPost: ScoringPost):
+    if not sPost.caption:
+        sPost.caption = ' '  # empty caption diventa maneggiabile da comprehend
+    return list([sPost.caption, *sPost.texts.values()])
+\end{lstlisting}
+Se la caption è un file vuoto la sostituisce con uno spazio, così da renderla accettabile in input
+da Comprehend, e il risultato della funzione (cioè quindi ciò su cui viene lanciata la funzione di
+sentiment detection di Comprehend) è il seguente (sempre prendendo ad esempio i file di cui sopra):
+\begin{lstlisting}[language=JSON]
+    TextList = [
+        'Caption',
+        'PIZZA LAB',
+        'Buon Ferragasta'
+    ]
+\end{lstlisting}
+A questo punto TextList viene inoltrata a Comprehend tramite l'oggetto \verb+_comprehend+ e la sua
+funzione \verb+batch_detect_sentiment+, che ritorna nella variabile \verb+response+ un file JSON\G{}
+contenete la sentiment analysis per i vari pezzi di testo. 
+L'output di Comprehend è strutturato come segue:
+\begin{lstlisting}[language=JSON]
+{
+    'ResultList': [
+        {
+            'Index': 0, 
+            'Sentiment': 'POSITIVE', 
+            'SentimentScore': {
+                'Positive': 0.9763978719711304, 
+                'Negative': 9.167650568997487e-05, 
+                'Neutral': 0.02348191849887371, 
+                'Mixed': 2.8541926440084353e-05
+                }
+        }, {}, {}
+    ], 
+    'ErrorList': [], 
+    'ResponseMetadata': {}
+}
+\end{lstlisting}
+Anche in questo caso lo scoring vero e proprio avviene nella funzione di parsing, vediamo quindi
+l'algoritmo di scoring:
+\begin{lstlisting}[language=Python]
+for item in compResult['ResultList']:
+idx = item['Index']
+score = Score(item["Sentiment"])
+float_score = (
+    item["SentimentScore"]["Positive"] - item["SentimentScore"]["Negative"]
+    if (score != Score.MIXED)
+    else 0.0
+)
+if idx == 0:
+    sPost.captionScore = float_score
+else:
+    sPost.textsScore[idx - 1] = float_score
+\end{lstlisting}
+la parte che si occupa di effettuare lo score vero e proprio è \verb+float_score+, che si limita
+a dare come score la differenza tra i sentiment "Positive" e "Negative", oppure ignora la score se 
+il valore di sentiment "Mixed" è troppo elevato (questa accortezza serve a filtrare almeno in parte
+dei dati non rilevanti).
+L'algoritmo riconosce la differenza tra caption e text-on-screen grazie agli id
+della ResultList: infatti ci premuriamo di fare in modo che all'id=0 ci sia sempre la sentiment 
+analysis di Caption che viene quindi salvata in \verb+sPost.captionScore+.
+
+\paragraph{finalScore}
+È questa la funzione che si occupa di calcolare lo score del post vero e proprio, e lo fa
+mettendo assieme tutte e tre le scores precedenti (ovvero captionScore, faceScore e textsScore)
+per poi salvare il risultato in \verb+sPost.finalScore+.
+La formula generale è la seguente:
+\begin{lstlisting}[language=Python]
+    sPost.finalScore = (
+        normalizedCaptionScore * 2  #=[0,2]
+        + sPost.faceScore * 2       #=[0,2]
+        + normalizedTextScore       #=[0,1]
+    )
+\end{lstlisting}
+Si noti che gli scores per caption e texts non vengono prese direttamente da sPost, a differenza
+di faceScore. 
+Il motivo è il seguente: finalScore è stato scelto sia sempre compreso tra 0 e 5,
+così da agevolarne la visualizzazione nel frontend. Segli scores che lo compongno sono tutti
+compresi tra 0 e 1 diventa semplice dar loro dei pesi nel calcolo del punteggio: si è deciso
+infatti di dare peso uguale a caption e analisi facciale, mentre il testo a schermo pesa molto meno.
+Il motivo è che nei post di instagram il testo a schermo viene usato molto di rado, e quasi sempre
+per presentare locandine di eventi o locali (o ancora per lanciare messaggi com "Ferragosto Aperti").
+È altamente improbabile che un utente normale usi del testo ad immagine per veicolare qualcosa,
+soprattutto quando esiste un'alternativa che richiede molto meno impegno, ovvero la caption.
+Si è deciso di dare comunque stesso peso anche all'analisi facciale poiché nella caption spesso
+non si trovano informazioni particolarmente rilevanti riguardo al locale (es: serata al ristorante,
+la caption potrebbe essere "Cena con gli zii"), e quindi i volti delle persone sono una fonte di
+informazione riguardo al sentiment importante.
+Riportiamo ora l'algoritmo di normalizzazione:
+\begin{lstlisting}[language=Python]
+    # se presente del text on screen normalizzo la sua (loro) score
+    if len(sPost.textsScore) != 0:
+        textScore = sum(sPost.textsScore.values()) / len(
+            sPost.textsScore
+        )  # =[-1,1]
+        normalizedTextScore = (textScore + 1) / 2  # =[0,1]
+
+    # se presente la caption normalizzo la sua score
+    if sPost.caption and not sPost.caption.isspace():
+        normalizedCaptionScore = (sPost.captionScore + 1) / 2  # =[0,1]
+
+    # face score e' gia' =[0,1]
+\end{lstlisting}
+salviamo in \verb+textScore+ la media di tutti gli score dei pezzi di testo analizzati, e otteniamo
+un valore compreso tra -1 e 1, a questo punto non ci resta che normalizzarlo per renderlo compreso
+tra 0 e 1. 
+La captionScore invece, anch'essa compresa tra -1 e 1, può essere normalizzata direttamente portandola
+quindi ad avere un valore compreso tra 0 e 1.
+Come riportato anche nel codice sotto forma di commenti gli scores vengono normalizzati solo se presenti.
+Riportiamo ora l'algoritmo di scoring:
+\begin{lstlisting}[language=Python]
+# CALCOLO DI FINAL SCORE
+# F,T,C = faceScore, textScore, captionScore
+# vuote = post analizzato non contiene: volti(F), testo a schermo(T), caption(C)
+# SE TUTTE VUOTE
+if (
+    not (sPost.caption and not sPost.caption.isspace())
+    and len(sPost.textsScore) == 0
+    and sPost.faceScore is None
+):
+    sPost.finalScore = None
+# SE F,T VUOTE
+elif sPost.faceScore is None and len(sPost.textsScore) == 0:
+    sPost.finalScore = normalizedCaptionScore * 5
+# SE C,T VUOTE
+elif (
+    not (sPost.caption and not sPost.caption.isspace())
+    and len(sPost.textsScore) == 0
+):
+    sPost.finalScore = sPost.faceScore * 5
+# SE F,C VUOTE
+elif sPost.faceScore is None and not (
+    sPost.caption and not sPost.caption.isspace()
+):
+    sPost.finalScore = normalizedTextScore * 5
+# SE T VUOTA
+elif len(sPost.textsScore) == 0:
+    sPost.finalScore = sPost.faceScore * 2.5 
+                       + normalizedCaptionScore * 2.5
+# SE F VUOTA
+elif sPost.faceScore is None:
+    sPost.finalScore = normalizedTextScore * 2 
+                       + normalizedCaptionScore * 3
+# SE C VUOTA
+elif not (sPost.caption and not sPost.caption.isspace()):
+    sPost.finalScore = sPost.faceScore * 3 
+                       + normalizedTextScore * 2
+# SE NESSUNA VUOTA
+else:
+    sPost.finalScore = (
+        normalizedCaptionScore * 2 
+        + sPost.faceScore * 2 
+        + normalizedTextScore
+    )
+\end{lstlisting}
+l'algoritmo considera tutti i possibili casi, dando i pesi corretti di volta in volta, e calcola
+sempre un finalScore compreso tra 0 e 5: se c'è solo uno dei tre score, il suo punteggio aqusisce
+peso pari a 5 diventando di fatto il finalScore; se manca uno dei tre score gli altri due vengono
+pesati a modo per ottenere il risultato finale, sempre tenendo faceScore e captionScore con peso
+uguale e textScore con peso minore.
+Infine se nessuno degli scores è presente viene assenato a \verb+sPost.finalScore+ il valore di
+controllo \verb+None+.
+
+
+
+\subsubsection{Some other specific function}
+
+\subsection{Sorter service}
+\subsubsection{Descrizione generale}
+La classe \verb+SorterService+  si occupa
+del servizio di sorting di uno o più post: innanzitutto fornisce l'entry point per sfruttare 
+il servizio Amazon AWS Rekognition, dopo di che sono implementate tutte le funzioni contenenti l'effettiva algoritmica di sorting per il calcolo del punteggio del post dalle sue immagini.
+
+Più nello specifico, \verb+SorterService+ implementa:
+\begin{lstlisting}[language=Python]
+    def __init__(self):
+    self._rekognition = boto3.client(
+    service_name='rekognition', region_name=aws_region
+    )
+\end{lstlisting} 
+che si occupa di fornire un handle sotto forma di oggetto per accedere al servizio AWS Rekognition
+(\verb+self._rekognition+). 
+Poi definisce e implementa le seguenti funzioni:
+\begin{itemize}
+	\item 
+	\begin{lstlisting}[language=Python, numbers=none]
+def process_event(self, event: SortEvent) -> dict:
+	\end{lstlisting}
+Entry point per la funzione di sorting; si occupa di lanciare il servizio di sorting sui post salvati. Ritorna infine una lista con tutti i post validi;
+	\item 
+	\begin{lstlisting}[language=Python, numbers=none]
+def sort(self, post: SortingPost) -> Optional[SortingPost]:
+	\end{lstlisting}
+Chiama una funzione per calcolare lo score di un post dalle sue immagini. Se è possibile calcolare lo score di un post esso viene ritornato a \verb+process_event+; Se invece non è possibile viene evocato la funzione \verb+_delete_post+ a cui viene passato il post da eliminare;
+	\item 
+	\begin{lstlisting}[language=Python, numbers=none]
+def _delete_post(self, post: SortingPost):
+	\end{lstlisting}		
+Si occupa di eliminare il post inutilizzabile e di rimuovere le sua immagini dal bucket di S3 su cui erano state salvate;
+	\item 
+	\begin{lstlisting}[language=Python, numbers=none]
+def calculate_image_score(self, post: SortingPost):
+	\end{lstlisting}	
+Si occupa inizialmente di calcolare lo score di ogni singola immagine di un post e dopo di che calcola lo score finale dell'insieme di immagini del post;
+	\item
+	\begin{lstlisting}[language=Python, numbers=none]
+def analyze_image(self, name_image: str):
+	\end{lstlisting}	
+Verifica che siano presenti persone nella foto(\verb+detect_person+) ed emozioni(\verb+detect_sentiment_person+). Ritorna, se presenti, un dizionario di emozioni e un dizionario dei rispettivi valori numerici;
+	\item 
+	\begin{lstlisting}[language=Python, numbers=none]
+def detect_sentiment_person(self, name_image: str):
+	\end{lstlisting}	
+Utilizza il servizio AWS Rekognition per riconoscere le facce ed emozioni correlate in un immagine. Controllerà che le emozioni siano valide(devono avere un valore pari o superiore al 90\% per essere considerate influenti sullo score finale) e verrà poi creato e ritornato a \verb+analyze_image+ un dizionario dei sentimenti, un dizionario dei rispettivi valori numerici e un booleano per segnalare di aver trovato o meno emozioni;
+	\item
+	\begin{lstlisting}[language=Python, numbers=none]	
+def detect_person(self, name_image: str):
+	\end{lstlisting}	
+Utilizza il servizio di AWS Rekognition per analizzare l'immagine e riconoscere delle labels; queste labels verranno controllate per verificare la presenza di persone. Verrà ritornato un booleano per segnalare la presenza o meno di persone.
+\end{itemize}
+\subsubsection{Diagrammi delle classi}
+\subsubsection{Diagrammi di sequenza}
+\subsubsection{Calcolo dell'imageScore}
+Segue una spiegazione più dettagliata del processo per il calcolo di imageScore necessario al sort dei post.
+\paragraph{Inizio processo} \aCapo{}
+Il processo inizia con \verb+process_event(self, event: SortEvent) -> dict+ che si occupa di prendere dal database i post sui quali chiamerà la funzione \verb+sort+.
+\begin{lstlisting}[language=Python]
+        for p in event.posts:
+        db_post = self._session.query(models.Post).filter_by(id=p['id']).first()
+        sorting_post = SortingPost.fromPost(db_post)
+        sorting_post = self.sort(sorting_post)
+\end{lstlisting} 
+Essa chiamerà a sua volta \verb+calculate_image_score+ che con un dizionario di emozioni e un dizionario sulla confidenza di tali emozioni permette il calcolo di imageScore.
+\begin{lstlisting}[language=Python]
+        self.calculate_image_score(post)
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+        image.set_emotions(emotions)
+        image.set_emotions_confidence(emotions_confidence)
+
+        post.calculate_and_set_image_score())
+\end{lstlisting} 
+\paragraph{Creazione e uso dei dizionari} \aCapo{}
+Per creare tale dizionari si utilizza la funzione \verb+detect_sentiment_person+ che utilizzerà a sua volta il servizio AWS Rekognition per il riconoscimento delle facce ed eseguirà poi un analisi sulla risposta ritornata dal servizio. Attraverso tale analisi si salveranno solo le emozioni valide ossia con una confidenza pari o superiore al 90\%. Verranno ritornati i dizionari a \verb+calculate_image_score+ dove verranno usati per salvare le emozioni valide nell'oggetto "Image" nel seguente modo:
+\begin{lstlisting}[language=Python]
+    def set_emotions(self, emotions: dict):
+        self.emotions = emotions
+
+    def set_emotions_confidence(self, emotions_confid: List[dict]):
+        self.emotions_confidence = emotions_confid
+\end{lstlisting}
+\paragraph{Calcolo finale} \aCapo{}
+Il calcolo finale di imageScore avviene con il seguente algoritmo chiamato \verb+calculate_and_set_image_score+: 
+\begin{lstlisting}[language=Python]
+        if self.list_images:
+            count = 0
+            for image in self.list_images:
+                score = image.calculate_score()
+                if score is not None:
+                    count += 1
+                    self.imageScore = (
+                        (self.imageScore + score)
+                        if self.imageScore is not None
+                        else score
+                    )
+            if self.imageScore:
+                self.imageScore = self.imageScore / count
+\end{lstlisting}
+dove lo score delle singole immagini viene calcolato con l'algoritmo chiamato \verb+calculate_score+:
+\begin{lstlisting}[language=Python]
+        if self.emotions:
+            value_sum = 0.0
+            sum_weights = 0.0
+            for emotion, num in self.emotions.items():
+                value_sum += Emotions[emotion].value * num
+                sum_weights += num
+            return 100 * value_sum / sum_weights
+        else:
+            return None
+\end{lstlisting}
+\paragraph{Conclusione processo} \aCapo{}
+Se l'imageScore sarà stato calcolato il post è valido e verrà tenuto; se invece non è stato calcolato significa che il post non è valido e sarà eliminato insieme alle sua immagini salvate su un bucket S3 tramite la funzione \verb+_delete_post+:
+\begin{lstlisting}[language=Python]
+        for img in post.list_images:
+            s3_delete_file(self._bucket_name, img.name)
+        self._session.delete(
+            self._session.query(models.Post).filter_by(id=post.id).first()
+        )
+        self._session.commit()
+\end{lstlisting}
+\subsubsection{Variabili}
+Segue una spiegazione più dettagliata di alcune variabili usate dagli algoritmi spiegati precedentemente:
+\paragraph{Response from detect\textunderscore{}faces} \aCapo{}
+	\begin{lstlisting}[language=Python]
+response = self._rekognition.detect_faces(
+            Image={'S3Object': {'Bucket': self._bucket_name, 'Name': name_image}},
+            Attributes=['ALL'],
+        )
+	\end{lstlisting}
+	La variabile response riceve il risultato della funzione \verb+detect_faces+ del servizio AWS Rekognition; tale funzione prende in input un'immagine presente in un bucket di S3 e ritorna come risultato un file JSON\G{} contente  una sentiment analysis dei volti presenti nell'immagine. Segue un esempio ove presenti solo i dati necessari al nostro caso:
+	\begin{lstlisting}[language=JSON]
+    {
+    "FaceDetails": [
+        {
+        	....
+        	....
+            "Emotions": [
+                {
+                    "Type": "ANGRY",
+                    "Confidence": 55.18563461303711
+                },
+                {
+                    "Type": "HAPPY",
+                    "Confidence": 37.01131820678711
+                },{},{},{},{},{},{}
+            ],
+            ....
+            ....
+            ....
+            ....
+        }
+    }
+	\end{lstlisting}
+	Tale risultato sarà usato dalla funzione \verb+detect_sentiment_person+ per creare  un dizionario di emozioni e
+un dizionario sulla confidenza di tali emozioni nel seguente modo:
+	\begin{lstlisting}[language=Python]
+		contain_emotion = False
+        emotions_dict = {}
+        emotions_confid = []
+
+        for faceDetail in response['FaceDetails']:
+            emotions = faceDetail['Emotions']
+            confid_single_face = {}
+            for emotion in emotions:
+                emotion_name = emotion['Type']
+                emotion_confid_value = emotion['Confidence']
+                if emotion_name != 'UNKNOWN':
+                    confid_single_face[emotion_name] = emotion_confid_value
+
+                    if emotion_confid_value >= 90:
+                        if emotion_name in emotions_dict:
+                            emotions_dict[emotion_name] += 1
+                        else:
+                            emotions_dict[emotion_name] = 1
+                        contain_emotion = True
+            emotions_confid.append(confid_single_face)
+        return emotions_dict, contain_emotion, emotions_confid
+	\end{lstlisting}
+\paragraph{Response from detect\textunderscore{}labels} \aCapo{}
+	\begin{lstlisting}[language=Python]
+response = self._rekognition.detect_labels(
+            Image={'S3Object': {'Bucket': self._bucket_name, 'Name': name_image}},
+            MaxLabels=10,
+        )
+	\end{lstlisting}
+La variabile response riceve il risultato della funzione \verb+detect_labels+ del servizio AWS Rekognition; tale funzione prende in input un'immagine presente in un bucket di S3 e ritorna come risultato un file JSON\G{} contente una labels analysis delle istanze di entità del mondo reale presenti nell'immagine. Segue un esempio ove presenti solo i dati necessari al nostro caso:
+\begin{lstlisting}[language=JSON]
+	{
+		"Labels": [
+
+			{
+				"Name": "Person",
+                "Confidence": 99.88428497314453,
+                "Instances": [
+                	{
+                    	"BoundingBox": {
+                        "Width": 0.27858132123947144,
+                        "Height": 0.44550982117652893,
+                        "Left": 0.2236727923154831,
+                        "Top": 0.35303789377212524
+                         },
+                     "Confidence": 99.88428497314453
+                    },
+					{
+                        "BoundingBox": {
+                        "Width": 0.20297367870807648,
+                        "Height": 0.6778767108917236,
+                        "Left": 0.5247262716293335,
+                        "Top": 0.10922279208898544
+                      	 },
+                    "Confidence": 99.81658172607422
+					}
+				]
+                ....
+                ....
+                ....
+                ....
+            	....
+		}]
+	}
+	\end{lstlisting}
+Tale risultato sarà usato dalla funzione \verb+detect_person+ per verificare la presenza di persone nel seguente modo:
+\begin{lstlisting}[language=Python]
+		contain_person = False
+
+        for label in response['Labels']:
+            if label['Confidence'] >= 90:
+                if label['Name'] == 'Person':
+                    contain_person = True
+
+        return contain_person
+\end{lstlisting}
+In questo nostro esempio possiamo vedere, nel file JSON\G{}, che sono presenti due persone indicate dal parametro "BoundingBox". La funzione sopra vedrà la presenza di queste due persone e tornerà un risultato positivo alla funzione \verb+analyze_image+ che quindi saprà di poter chiamare la funzione \verb+detect_sentiment_person+ il cui scopo è descritto sopra.
