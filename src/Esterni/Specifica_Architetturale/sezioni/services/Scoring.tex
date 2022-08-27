@@ -428,7 +428,7 @@ quelli non rilevanti).\\
 L'algoritmo riconosce la differenza tra caption e text-on-screen grazie agli id dei vari risultati contenuti in
 \verb+ResultList+: infatti ci premuriamo di fare in modo che all'id pari a zero ci sia sempre la sentiment 
 analysis della caption, e per gli altri valori di id ci siano i vari pezzi che compongono il testo rilevato a schermo.\\
-Il risultato di questo scoring è salvato come una lista di valori in \verb+sPost.textScore+.
+Il risultato di questo scoring è salvato come una lista di valori in \verb+sPost.textsScore+.
 
 \paragraph{captionScore} \aCapo
 Segue gli stessi passi di \verb+textsScore+. In \verb+__parse_comprehend_response+ abbiamo:
