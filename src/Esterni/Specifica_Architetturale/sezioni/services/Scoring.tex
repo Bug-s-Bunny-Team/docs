@@ -429,11 +429,13 @@ L'algoritmo riconosce la differenza tra caption e text-on-screen grazie agli id 
 \verb+ResultList+: infatti ci premuriamo di fare in modo che all'id pari a zero ci sia sempre la sentiment 
 analysis della caption, e per gli altri valori di id ci siano i vari pezzi che compongono il testo rilevato a schermo.\\
 Il risultato di questo scoring è salvato come una lista di valori in \verb+sPost.textScore+.
-\paragraph{captionScore}
-Segue gli stessi passi di textsScore: in \verb+__parse_comprehend_response+ abbiamo:
+
+\paragraph{captionScore} \aCapo
+Segue gli stessi passi di \verb+textsScore+. In \verb+__parse_comprehend_response+ abbiamo:
 \begin{lstlisting}[language=Python]
 float_score = (
-    item["SentimentScore"]["Positive"] - item["SentimentScore"]["Negative"]
+    item["SentimentScore"]["Positive"] 
+    - item["SentimentScore"]["Negative"]
     if (score != Score.MIXED)
     else 0.0
 )
@@ -442,10 +444,10 @@ if idx == 0:
 else:
     sPost.textsScore[idx - 1] = float_score
 \end{lstlisting}
-E lo score che viene calcolato per \verb+idx==0+ del risultato di Comprehend è proprio lo score della
-caption, che viene salvato in \verb+sPost.captionScore+.
-Tuttavia, per comodità di lettura, riportiamo a seguito comunque la spiegazione:
-Il punto di partenza si trova nella funzione \verb+BasicScoringService._runComprehend+
+E lo score che viene calcolato per \verb+idx==0+ è lo score della
+caption, che viene salvato in \verb+sPost.captionScore+.\aCapo
+Tuttavia, per comodità di lettura, riportiamo a seguito comunque la spiegazione.\\
+Il punto di partenza si trova nella funzione \verb+BasicScoringService._runComprehend+:
 \begin{lstlisting}[language=Python]
 dominantLanguageResponse = self._comprehend.detect_dominant_language(
     Text=sPost.caption
@@ -458,14 +460,14 @@ response = self._comprehend.batch_detect_sentiment(
 )
 BasicScoringService.__parse_comprehend_response(sPost, response)
 \end{lstlisting}
-ciò che interessa a noi è la variabile \verb+TextList+, ritornata dalla funzione \verb+__unpack+ 
-(\verb+LanguageCode+ infatti è semplicemente una stringa che indica la lingua dominante della caption).
-\verb+TextList+ infatti contiene sia la caption che la lista di testi rilevati a schermo, uniti in un
+Ciò che interessa a noi è la variabile \verb+TextList+, ritornata dalla funzione \verb+__unpack+ 
+(la variabile \verb+LanguageCode+ infatti è semplicemente una stringa che indica la lingua dominante della caption).\\
+\verb+TextList+ contiene sia la caption che la lista di testi rilevati a schermo, uniti in un
 unica variabile dalla funzione \verb+__unpack+:
 \begin{lstlisting}[language=Python]
 def __unpack_post_for_comprehend(self, sPost: ScoringPost):
     if not sPost.caption:
-        sPost.caption = ' '  # empty caption diventa maneggiabile da comprehend
+        sPost.caption = ' '  
     return list([sPost.caption, *sPost.texts.values()])
 \end{lstlisting}
 Se la caption è un file vuoto la sostituisce con uno spazio, così da renderla accettabile in input
@@ -480,7 +482,7 @@ TextList = [
 \end{lstlisting}
 A questo punto \verb+TextList+ viene inoltrata a Comprehend tramite l'oggetto \verb+_comprehend+ e la sua
 funzione \verb+batch_detect_sentiment+, che ritorna nella variabile \verb+response+ un file JSON
-contenete la sentiment analysis per i vari pezzi di testo. 
+contenete la sentiment analysis per i vari pezzi di testo. \\
 L'output di Comprehend è strutturato come segue:
 \begin{lstlisting}[language=JSON]
 {
@@ -504,27 +506,28 @@ Anche in questo caso lo scoring vero e proprio avviene nella funzione di parsing
 l'algoritmo di scoring:
 \begin{lstlisting}[language=Python]
 for item in compResult['ResultList']:
-idx = item['Index']
-score = Score(item["Sentiment"])
-float_score = (
-    item["SentimentScore"]["Positive"] - item["SentimentScore"]["Negative"]
-    if (score != Score.MIXED)
-    else 0.0
-)
-if idx == 0:
-    sPost.captionScore = float_score
-else:
-    sPost.textsScore[idx - 1] = float_score
+    idx = item['Index']
+    score = Score(item["Sentiment"])
+    float_score = (
+        item["SentimentScore"]["Positive"] 
+        - item["SentimentScore"]["Negative"]
+        if (score != Score.MIXED)
+        else 0.0
+    )
+    if idx == 0:
+        sPost.captionScore = float_score
+    else:
+        sPost.textsScore[idx - 1] = float_score
 \end{lstlisting}
-la parte che si occupa di effettuare lo score vero e proprio è \verb+float_score+, che si limita
+La parte che si occupa di effettuare lo score vero e proprio è \verb+float_score+, che si limita
 a dare come score la differenza tra i sentiment \verb+"Positive"+ e \verb+"Negative"+, oppure ignora la score se 
-il valore di sentiment \verb+"Mixed"+ è troppo elevato (questa accortezza serve a filtrare almeno in parte
-dei dati non rilevanti).
-L'algoritmo riconosce la differenza tra caption e text-on-screen grazie agli id
+il valore di sentiment \verb+"Mixed"+ è troppo elevato (questo serve a filtrare i dati,
+ignorando quelli non rilevant).\\
+L'algoritmo discrimina tra caption e text-on-screen grazie agli id
 della \verb+ResultList+: infatti ci premuriamo di fare in modo che all'id pari a zero ci sia sempre la sentiment 
 analysis di Caption che viene quindi salvata in \verb+sPost.captionScore+.
 
-\paragraph{finalScore}
+\paragraph{finalScore} \aCapo
 È questa la funzione che si occupa di calcolare lo score del post vero e proprio, e lo fa
 mettendo assieme tutte e tre le scores precedenti (ovvero \verb+captionScore+, \verb+faceScore+ e \verb+textsScore+)
 per poi salvare il risultato in \verb+sPost.finalScore+.
