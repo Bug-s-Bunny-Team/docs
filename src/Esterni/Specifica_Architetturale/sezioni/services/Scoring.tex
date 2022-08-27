@@ -10,7 +10,7 @@ def __init__(self):
     self._rekognition = boto3.client(service_name='rekognition')
     self._comprehend = boto3.client(service_name='comprehend')
 \end{lstlisting}
-che si occupa di fornire degli handle sotto forma di oggetti per accedere ai servizi AWS Rekognition
+che si occupa di fornire degli handles sotto forma di oggetti per accedere ai servizi AWS Rekognition
 e Comprehend (\verb+self._rekognition+ e \verb+self._comprehend+).\\
 \verb+BasicScoringService+ invece definisce e implementa le seguenti funzioni:
 
@@ -20,7 +20,7 @@ e Comprehend (\verb+self._rekognition+ e \verb+self._comprehend+).\\
 def process_event(self, event: ScoringEvent) -> dict:
 \end{lstlisting}
 Entry point per l'intera funzione di scoring, si occupa di lanciare tutti i servizi 
-necessari ad effettuare i vari scores e salva poi il risultato nel database. 
+necessari a effettuare i vari scores e salva poi il risultato nel database. 
 Ritorna infine una lista con tutti i post analizzati e i loro scores;
 
 \item 
@@ -242,13 +242,13 @@ if (abs(pose['Yaw']) <= 50) and (
 ):
 \end{lstlisting}
 Che controlla i valori d'imbardata e beccheggio del volto (in parole più semplici: \verb+Yaw+ è 
-la rotazione della testa sull'asse perpendicolare al terrenno, \verb+Pitch+ invece dell'asse parallelo al 
+la rotazione della testa sull'asse perpendicolare al terreno, \verb+Pitch+ invece dell'asse parallelo al 
 terreno e passante per le orecchie). \\
 Si è scelto arbitrariamente il valore massimo di 50 e minimo 
 di -50 per entrambi i valori al fine di evitare possibili errori: abbiamo riscontrato analisi del 
 sentiment corrette anche con valori leggermente superiori, tuttavia è stata data maggiore priorità
 all'affidabilità dell'analisi. \\
-La parte riguardante l'emozione \verb+DISGUSTED+ è stata inserita perchè ci è sembrato limitante usare
+La parte riguardante l'emozione \verb+DISGUSTED+ è stata inserita perché ci è sembrato limitante usare
 solo le emozioni \verb+HAPPY+ e \verb+CALM+ per dare una valutazione, soprattutto considerando che il tema
 generale del progetto riguarda ristoranti e locali. Abbiamo quindi ritenuto
 fondamentale dare il giusto peso a un'emozione così negativa. \\
@@ -522,7 +522,7 @@ for item in compResult['ResultList']:
 La parte che si occupa di effettuare lo score vero e proprio è \verb+float_score+, che si limita
 a dare come score la differenza tra i sentiment \verb+"Positive"+ e \verb+"Negative"+, oppure ignora la score se 
 il valore di sentiment \verb+"Mixed"+ è troppo elevato (questo serve a filtrare i dati,
-ignorando quelli non rilevant).\\
+ignorando quelli non rilevanti).\\
 L'algoritmo discrimina tra caption e text-on-screen grazie agli id
 della \verb+ResultList+: infatti ci premuriamo di fare in modo che all'id pari a zero ci sia sempre la sentiment 
 analysis di Caption che viene quindi salvata in \verb+sPost.captionScore+.
@@ -530,7 +530,7 @@ analysis di Caption che viene quindi salvata in \verb+sPost.captionScore+.
 \paragraph{finalScore} \aCapo
 È questa la funzione che si occupa di calcolare lo score del post vero e proprio, e lo fa
 mettendo assieme tutte e tre le scores precedenti (ovvero \verb+captionScore+, \verb+faceScore+ e \verb+textsScore+)
-per poi salvare il risultato in \verb+sPost.finalScore+.
+per poi salvare il risultato in \verb+sPost.finalScore+.\\
 La formula generale è la seguente:
 \begin{lstlisting}[language=Python]
 sPost.finalScore = (
@@ -540,19 +540,20 @@ sPost.finalScore = (
 )
 \end{lstlisting}
 Si noti che gli scores per \verb+caption+ e \verb+texts+ non vengono prese direttamente da \verb+sPost+, a differenza
-di \verb+faceScore+. 
+di \verb+faceScore+. \\
 Il motivo è il seguente: \verb+finalScore+ è stato scelto sia sempre compreso tra 0 e 5,
-così da agevolarne la visualizzazione nel frontend. Segli scores che lo compongno sono tutti
+così da agevolarne la visualizzazione nel frontend. \\
+Se gli scores che lo compongono sono tutti
 compresi tra 0 e 1 diventa semplice dar loro dei pesi nel calcolo del punteggio: si è deciso
-infatti di dare peso uguale a caption e analisi facciale, mentre il testo a schermo pesa molto meno.
-Il motivo è che nei post di Instagram il testo a schermo viene usato molto di rado, e quasi sempre
-per presentare locandine di eventi o locali (o ancora per lanciare messaggi com "Ferragosto Aperti").
-È altamente improbabile che un utente normale usi del testo a immagine per veicolare qualcosa,
-soprattutto quando esiste un'alternativa che richiede molto meno impegno, ovvero la caption.
-Si è deciso di dare comunque stesso peso anche all'analisi facciale poiché nella caption spesso
+infatti di dare peso uguale a caption e analisi facciale, mentre il testo a schermo pesa molto meno.\\
+Il motivo è che nei post di Instagram il testo a schermo viene usato di rado, e quasi sempre
+per presentare locandine di eventi o locali (o ancora per lanciare messaggi come "Ferragosto Aperti").
+È altamente improbabile che un utente normale usi del testo a immagine per veicolare informazioni,
+soprattutto quando esiste un'alternativa che richiede molto meno impegno, ovvero la caption.\\
+Si è deciso di dare all'analisi facciale peso pari a quello della caption, poiché in quest'ultima spesso
 non si trovano informazioni particolarmente rilevanti riguardo al locale (es: serata al ristorante,
-la caption potrebbe essere "Cena con gli zii"), e quindi i volti delle persone sono una fonte di
-informazione riguardo al sentiment importante.
+la caption potrebbe essere "Cena con gli zii"), e quindi la sentiment analysis dei volti delle persone 
+è una fonte d'informazioni non trascurabile.\\
 Riportiamo ora l'algoritmo di normalizzazione:
 \begin{lstlisting}[language=Python]
 # se presente del text on screen normalizzo la sua (loro) score
@@ -568,17 +569,18 @@ if sPost.caption and not sPost.caption.isspace():
 
 # face score e' gia' =[0,1]
 \end{lstlisting}
-salviamo in \verb+textScore+ la media di tutti gli score dei pezzi di testo analizzati, e otteniamo
-un valore compreso tra -1 e 1, a questo punto non ci resta che normalizzarlo per renderlo compreso
-tra 0 e 1. 
+Salviamo in \verb+textScore+ la media di tutti gli scores dei pezzi di testo analizzati, e otteniamo
+un valore compreso tra -1 e 1.\\ 
+A questo punto non ci resta che normalizzarlo per renderlo compreso tra 0 e 1.\\ 
 La \verb+captionScore+ invece, anch'essa compresa tra -1 e 1, può essere normalizzata direttamente portandola
-quindi ad avere un valore compreso tra 0 e 1.
-Come riportato anche nel codice sotto forma di commenti gli scores vengono normalizzati solo se presenti.
+quindi ad avere un valore compreso tra 0 e 1.\\
+Come riportato anche nel codice sotto forma di commenti, gli scores vengono normalizzati solo se presenti.\\
 Riportiamo ora l'algoritmo di scoring:
 \begin{lstlisting}[language=Python]
 # CALCOLO DI FINAL SCORE
 # F,T,C = faceScore, textScore, captionScore
-# vuote = post analizzato non contiene: volti(F), testo a schermo(T), caption(C)
+# vuote = post analizzato non contiene: volti(F), testo a schermo(T)
+#                                                        ,caption(C)
 # SE TUTTE VUOTE
 if (
     not (sPost.caption and not sPost.caption.isspace())
@@ -620,13 +622,19 @@ else:
         + normalizedTextScore
     )
 \end{lstlisting}
-l'algoritmo considera tutti i possibili casi, dando i pesi corretti di volta in volta, e calcola
-sempre un \verb+finalScore+ compreso tra 0 e 5: se c'è solo uno dei tre score, il suo punteggio acqusisce
-peso pari a 5 diventando di fatto il \verb+finalScore+; se manca uno dei tre score gli altri due vengono
-pesati a modo per ottenere il risultato finale, sempre tenendo gli scores di volti e caption con peso
-uguale e lo score per il testo a schermo con peso minore.
-Infine se nessuno degli scores è presente viene assenato a \verb+sPost.finalScore+ il valore di
-controllo \verb+None+.
+L'algoritmo considera tutti i possibili casi, dando pesi corretti di volta in volta, e calcola
+sempre un \verb+finalScore+ compreso tra 0 e 5: 
+\begin{itemize}
+    \item Se c'è solo uno dei tre score, il suo punteggio accqusisce
+    peso pari a 5 diventando di fatto il \verb+finalScore+;
+    
+    \item Se manca uno dei tre scores, gli altri due vengono
+    pesati a modo per ottenere il risultato finale, sempre tenendo peso uguale 
+    per volti e caption e minore per testo a schermo;
+    
+    \item Se nessuno degli scores è presente viene assegnato a \verb+sPost.finalScore+ 
+    il valore di controllo \verb+None+.
+\end{itemize}
 
 
 
