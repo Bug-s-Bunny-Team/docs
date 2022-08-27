@@ -51,6 +51,12 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       RF30 & Molto Desiderabile & Il backend\G{} dovrebbe utilizzare le informazioni grafiche e visuali di post derivati da profili social per trarre informazioni su un luogo fisico & Capitolato \\
       RF31 & Obbligatorio & Deve essere costruito un crawler/scraper\G{} in grado di accedere o scaricare dati dei post da profili social & Capitolato \\
       RF32 & Obbligatorio & Il crawler\G{} deve eludere i servizi anti-bot dei vari social & Capitolato \\
+      RF33 & Obbligatorio & L'utente deve poter visualizzare la lista di profili che segue & UC28 \\
+      RF34 & Obbligatorio & L'utente, inserendo il proprio username, codice di verifica inviato all'email personale, una nuova password e la ripetizione di essa, deve poter cambiare la password nel caso in cui l'avesse dimenticata & UC29, UC 29.1, UC29.2, UC29.3, UC29.4 \\
+      RF35 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se lo username inserito non esiste & UC30 \\
+      RF36 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se il codice inserito non corrisponde a quello inviato all'email & UC31 \\
+      RF37 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se la nuova password inserita non rispetta le specifiche richieste & UC32 \\
+      RF38 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se la ripetizione della nuova password non corrisponde alla password inserita precedentemente & UC33 \\
       \bottomrule
       \rowcolor{white} 
       \caption{Tabella dei requisiti funzionali}
@@ -204,7 +210,16 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       UC25 & RF23 \\
       UC26 & RF24 \\
       UC27 & RF25 \\
-
+      UC28 & RF33 \\
+      UC29 & RF34 \\
+      UC29.1 & RF34 \\
+      UC29.2 & RF34 \\
+      UC29.3 & RF34 \\
+      UC29.4 & RF34 \\
+      UC30 & RF35 \\
+      UC31 & RF36 \\
+      UC32 & RF37\\
+      UC33 & RF38\\
       \bottomrule
       \rowcolor{white} 
       \caption{Tabella fonte - requisiti}
@@ -259,7 +274,12 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       RF30 & Capitolato\\
       RF31 & Capitolato\\
       RF32 & Capitolato\\
-
+      RF33 & UC28\\
+      RF34 & UC29, UC29.1, UC29.2, UC29.3, UC29.4\\
+      RF35 & UC30\\
+      RF36 & UC31\\
+      RF37 &UC32\\
+      RF38 &UC33\\
       RV1 & Capitolato\\
       RV2 & Capitolato\\
       RV3 & Capitolato\\

@@ -784,7 +784,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente ha inserito la nuova password.
 \end{itemize}
 
-\subsubsection{UC29.3 - Inserimento ripetizione nuova password}
+\subsubsection{UC29.4 - Inserimento ripetizione nuova password}
 \begin{itemize}
     \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: durante l'attività di password dimenticata l'utente deve poter inserire la ripetizione della nuova password.
@@ -798,7 +798,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente ha inserito la ripetizione della nuova password.
 \end{itemize}
 
-\subsubsection{UC29.4 - Conferma modifica password}
+\subsubsection{UC29.5 - Conferma modifica password}
 \begin{itemize}
     \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: durante l'attività di password dimenticata l'utente deve poter confermare la nuova password.
@@ -807,7 +807,16 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente ha cambiato la propria password.
 \end{itemize}
 
-\subsection{UC30 - Visualizzazione errore di inserimento codice}
+\subsection{UC30 - Visualizzazione errore di inserimento username}
+\begin{itemize}
+    \item \textbf{Attore}: utente non autenticato.
+    \item \textbf{Descrizione}: durante l'attività di password dimenticata l'utente deve ricevere un messaggio d'errore se lo username inserito non esiste.
+    \item \textbf{Scenario}: l'utente legge un messaggio d'errore. 
+    \item \textbf{Precondizioni}: l'utente svolge la sessione di password dimenticata e lo username inserito non esiste.
+    \item \textbf{Postcondizioni}: l'utente ha ricevuto un messaggio d'errore.
+\end{itemize}
+
+\subsection{UC31 - Visualizzazione errore di inserimento codice}
 \begin{itemize}
     \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: durante l'attività di password dimenticata l'utente deve ricevere un messaggio d'errore se l'inserimento codice non è andato a buon fine.
@@ -816,16 +825,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente ha ricevuto un messaggio d'errore.
 \end{itemize}
 
-\subsection{UC31 - Visualizzazione errore di inserimento nuova password}
-\begin{itemize}
-    \item \textbf{Attore}: utente non autenticato.
-    \item \textbf{Descrizione}: durante l'attività di password dimenticata l'utente deve ricevere un messaggio d'errore se l'inserimento della nuova password attuale non è andato a buon fine.
-    \item \textbf{Scenario}: l'utente legge un messaggio d'errore. 
-    \item \textbf{Precondizioni}: l'utente svolge la sessione di password dimenticata e la nuova password attuale inserita non è valida.
-    \item \textbf{Postcondizioni}: l'utente ha ricevuto un messaggio d'errore.
-\end{itemize}
-
-\subsection{UC32 - Visualizzazione errore di inserimento nuova password non valida}
+\subsection{UC32 - Visualizzazione errore di inserimento nuova password}
 \begin{itemize}
     \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: durante l'attività dipassword dimenticata l'utente deve ricevere un messaggio d'errore se l'inserimento di una nuova password non è valida.
