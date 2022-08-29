@@ -1,0 +1,16 @@
+\subsubsection{Descrizione generale}
+Questo servizio ha l'importante compito di far partire automaticamente,
+ogni intervallo di tempo predefinito, l'esecuzione del gruppo di servizi \textbf{S4}.
+La funzione di timer, che andrà a notificare la funzione Lambda responsabile vera e propria dello
+scheduling, è affidata ad una regola di Amazon EventBridge.
+
+\subsubsection{Diagramma delle classi}
+
+\subsubsection{Intervallo temporale}
+L'intervallo temporale scelto, sulla base del quale poi eseguire ad intervalli regolari lo scheduling,
+è stato impostato a 30 minuti.
+
+\subsubsection{Regole di scheduling}
+La scelta di quali profili social sottoporre ad una esecuzione di \textbf{S4}, avviene sulla base del
+campo \verb|SocialProfile.last_scraped|, memorizzato nel database. Verranno quindi scelti per l'esecuzione
+i profili social dove la differenza fra data e ora attuali e \verb|last_scraped| è di 12 ore.
