@@ -491,3 +491,4 @@ cython_debug/
 *.pdf
 
 *.bkp
+*.dtmp
