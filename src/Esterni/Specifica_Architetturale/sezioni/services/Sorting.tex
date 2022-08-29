@@ -55,6 +55,42 @@ Utilizza il servizio di AWS Rekognition per analizzare l'immagine e riconoscere 
     \caption{Sorting Service - Diagramma delle classi}
 \end{figure}
 \subsubsection{Diagrammi di sequenza}
+
+\subsubsection{Schemi I/O}
+\paragraph*{Input} esempio di evento in input, in formato JSON\G{}.
+\begin{lstlisting}[language=JSON]
+{
+    "posts_count": 4,
+    "posts": [
+        {"id": 1},
+        {"id": 2},
+        {"id": 3},
+        {"id": 4}
+    ]
+}
+\end{lstlisting}
+Descrizione:
+\begin{itemize}
+    \item \verb|posts_count|: numero di post di cui effettuare il sorting;
+    \item \verb|posts|: array di post. 
+\end{itemize}
+
+\paragraph*{Output} esempio di risposta in output, in formato JSON\G{}.
+\begin{lstlisting}[language=JSON]
+{
+    "posts_count": 2,
+    "posts": [
+        {"id": 2},
+        {"id": 4}
+    ]
+}
+\end{lstlisting}
+Descrizione:
+\begin{itemize}
+    \item \verb|posts_count|: numero di post tenuto dopo il sorting;
+    \item \verb|posts|: array di post. 
+\end{itemize}
+
 \subsubsection{Calcolo dell'imageScore}
 Segue una spiegazione più dettagliata del processo per il calcolo di imageScore necessario al sort dei post.
 \paragraph{Inizio processo} \aCapo{}

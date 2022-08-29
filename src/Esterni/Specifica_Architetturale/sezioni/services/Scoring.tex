@@ -102,6 +102,46 @@ finale del post, che viene quindi salvato nel corrispettivo post nel database da
     \caption{Scoring Service - Diagramma delle classi}
 \end{figure}
 \subsubsection{Diagrammi di sequenza}
+
+\subsubsection{Schemi I/O}
+\paragraph*{Input} esempio di evento in input, in formato JSON\G{}.
+\begin{lstlisting}[language=JSON]
+{
+    "posts_count": 2,
+    "posts": [
+        {"id": 4},
+        {"id": 5}
+    ]
+}
+\end{lstlisting}
+Descrizione:
+\begin{itemize}
+    \item \verb|posts_count|: numero di post di cui effetture lo scoring;
+    \item \verb|posts|: array di post. 
+\end{itemize}
+
+\paragraph*{Output} esempio di risposta in output, in formato JSON\G{}.
+\begin{lstlisting}[language=JSON]
+{
+    "scored_posts_count": 8,
+    "scored_posts": [
+        {
+            "id": 4,
+            "score": 4.830453701069928
+        },
+        {
+            "id": 5,
+            "score": 2.562992335879244
+        },
+    ]
+}
+\end{lstlisting}
+Descrizione:
+\begin{itemize}
+    \item \verb|scored_posts_count|: numero di post di cui è stato effettuato lo score;
+    \item \verb|scored_posts|: array di post con relativo score ottenuto. 
+\end{itemize}
+
 \subsubsection{Calcolo degli Scores}
 Segue una spiegazione più dettagliata degli algoritmi e delle funzioni che si occupano di calcolare
 i quattro scores necessari (\verb+faceScore+, \verb+textScore+, \verb+captionScore+, \verb+finalScore+).
