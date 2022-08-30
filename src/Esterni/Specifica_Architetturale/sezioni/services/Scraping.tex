@@ -62,8 +62,57 @@ def _get_profile_url(self, username: str) -> str:
     return self._PROFILE_URL.format(username=username)
 \end{lstlisting}
 
+\aCapo{}
 Lo scraping vero e proprio avviene tramite parsing\G{} del contenuto HTML\G{} delle pagine web
 fornite dai \textit{viewer}.
+\begin{lstlisting}[language=Python, caption=Estrazioni dati tramite parsing\G{}]
+def _extract_post_data(self, post_result: Tag) -> ScrapedPost:
+    location_name = post_result.find(attrs={'class': 'photo-location'}).get_text(
+        strip=True
+    )
+    location_name = location_name if location_name else None
+
+    location_data = None
+    if location_name:
+        location_data = self._get_location_data(location_name)
+
+    details_url = post_result.find('a').get('href')
+    shortcode = self._get_shortcode(details_url)
+
+    return ScrapedPost(
+        image_url=post_result.find('img').get('src'),
+        caption=post_result.find(attrs={'class': 'photo-description'}).get_text(
+            strip=True
+        ),
+        description='',
+        location_name=location_name,
+        location_data=location_data,
+        shortcode=shortcode,
+    )
+\end{lstlisting}
+
+\subsubsection{Ottenimento informazioni relative alle posizioni}
+Correlare i post ottenuto a precise posizioni reali è necessario ai fini del progetto.
+I dati relativi alla posizione, nelle piattaforme sopracitate, comprendono solo il nome del
+particolare punto di interesse, non le coordinate esatte in latitudine e longitudine.
+Per estrapolare questi due valori, viene utilizzato il servizio Amazon Location Service.\aCapo{}
+La classe \verb|AWSLocationProvider|, che concretizza \verb|BaseLocationProvider|, ha il compito
+di ottenere informazioni specifiche relative ad un punto di interesse, a partire dal nome.
+
+\begin{lstlisting}[language=Python, caption=Metodo principale]
+def search_location(self, query: str) -> Optional[LocationData]:
+    response = self._client.search_place_index_for_text(
+        IndexName='explore.place', MaxResults=1, Text=query
+    )
+    results = response['Results']
+    
+    if len(results) == 0:
+        return None
+    
+    coords = results[0]['Place']['Geometry']['Point']
+    return LocationData(long=coords[0], lat=coords[1])
+\end{lstlisting}
+    
 
 \subsubsection{Salvataggio dei dati}
 I dati relativi ai post ottenuti e le relative posizioni, vengonono salvati nel database.
