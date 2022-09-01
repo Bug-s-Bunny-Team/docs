@@ -367,9 +367,9 @@
 													"font": "Arial;13;1",
 													"left": 1181,
 													"top": 47,
-													"width": 140.0380859375,
+													"width": 143.65625,
 													"height": 13,
-													"text": "AWSLocationService"
+													"text": "MapsLocationService"
 												},
 												{
 													"_type": "LabelView",
@@ -400,7 +400,7 @@
 											"font": "Arial;13;0",
 											"left": 1176,
 											"top": 40,
-											"width": 150.0380859375,
+											"width": 153.65625,
 											"height": 40,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGC9GpgaMaArHU="
@@ -425,7 +425,7 @@
 												"$ref": "AAAAAAGC9GpgZ8Z9WZo="
 											},
 											"font": "Arial;13;0",
-											"left": 1251,
+											"left": 1253,
 											"top": 80,
 											"width": 1,
 											"height": 1001
@@ -434,7 +434,7 @@
 									"font": "Arial;13;0",
 									"left": 1176,
 									"top": 40,
-									"width": 150.0380859375,
+									"width": 153.65625,
 									"height": 1041,
 									"nameCompartment": {
 										"$ref": "AAAAAAGC9GpgaMZ/+gA="
@@ -1578,7 +1578,7 @@
 												"$ref": "AAAAAAGC9HBn7sgcKBY="
 											},
 											"font": "Arial;13;0",
-											"left": 1003,
+											"left": 1004,
 											"top": 528,
 											"width": 116.3525390625,
 											"height": 13,
@@ -1601,7 +1601,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 1061,
+											"left": 1062,
 											"top": 513,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -1622,7 +1622,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 1061,
+											"left": 1062,
 											"top": 548,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -1642,7 +1642,7 @@
 												"$ref": "AAAAAAGC9HBn7sgcKBY="
 											},
 											"font": "Arial;13;0",
-											"left": 1244,
+											"left": 1246,
 											"top": 544,
 											"width": 14,
 											"height": 41
@@ -1655,7 +1655,7 @@
 									"tail": {
 										"$ref": "AAAAAAGC9GoX/MZiLdg="
 									},
-									"points": "878:544;1244:544",
+									"points": "878:544;1246:544",
 									"nameLabel": {
 										"$ref": "AAAAAAGC9HBn7sge/3Y="
 									},
@@ -1689,7 +1689,7 @@
 												"$ref": "AAAAAAGC9HFG6cg09xQ="
 											},
 											"font": "Arial;13;0",
-											"left": 1051,
+											"left": 1052,
 											"top": 588,
 											"width": 25.29541015625,
 											"height": 13,
@@ -1712,7 +1712,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 1063,
+											"left": 1064,
 											"top": 603,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -1733,7 +1733,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 1064,
+											"left": 1065,
 											"top": 568,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -1767,7 +1767,7 @@
 									"tail": {
 										"$ref": "AAAAAAGC9GpgaMaElVE="
 									},
-									"points": "1251:584;878:584",
+									"points": "1253:584;878:584",
 									"nameLabel": {
 										"$ref": "AAAAAAGC9HFG6cg2tSQ="
 									},
@@ -3315,7 +3315,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGC9GiU+MYg46w="
 							},
-							"name": "AWSLocationService",
+							"name": "MapsLocationService",
 							"represent": {
 								"$ref": "AAAAAAGC9GpgZ8Z8hKU="
 							},
@@ -3407,8 +3407,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGC9GiU98Yfe2k="
 					},
-					"name": "Role3",
-					"type": ""
+					"name": "Role3"
 				},
 				{
 					"_type": "UMLAttribute",
