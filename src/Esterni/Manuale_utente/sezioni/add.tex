@@ -17,23 +17,31 @@
     \end{itemize}
 
     \begin{figure}[H]
-        \includegraphics[width=12cm]{sezioni/images/add.png}
+        \includegraphics[width=12cm]{sezioni/images/risultato-add.png}
         \centering
         \caption{Risultato del profilo social cercato}
     \end{figure}
 
     \subsection{Errore nome utente} {
-        Se il campo di compilazione rimane vuoto, il sistema rileverà un errore, mostrando il seguente messaggio: FOTO
+    \begin{enumerate}
+        \item Se il campo di compilazione rimane vuoto, il sistema rileverà un errore, mostrando il seguente messaggio: 
         \begin{figure}[H]
             \includegraphics[width=12cm]{sezioni/images/err1-add.png}
             \centering
             \caption{Errore - non è stato scritto nessun nomeutente}
         \end{figure}
-        Se invece il nomeutente non è scritto correttamente, il sistema non riuscirà a trovare il profilo. Infatti la ricerca avviene puramente sul contenuto scritto all'interno della barra di ricerca.
+        \item Se invece il nomeutente non è scritto correttamente, il sistema non riuscirà a trovare il profilo. Infatti la ricerca avviene puramente sul contenuto scritto all'interno della barra di ricerca.
         \begin{figure}[H]
             \includegraphics[width=12cm]{sezioni/images/err2-add.png}
             \centering
             \caption{Errore - il nomeutente cercato non esiste}
         \end{figure}
+        \item Se invece il nomeutente cercato è già tra i profili seguiti, comparirà un errore di questo tipo:
+        \begin{figure}[H]
+            \includegraphics[width=12cm]{sezioni/images/err3-add.png}
+            \centering
+            \caption{Errore - il nomeutente cercato è già seguito}
+        \end{figure}
+    \end{enumerate}
     }
 }
