@@ -102,22 +102,34 @@ def _extract_post_data(self, post_result: Tag) -> ScrapedPost:
 Correlare i post ottenuto a precise posizioni reali è necessario ai fini del progetto.
 I dati relativi alla posizione, nelle piattaforme sopracitate, comprendono solo il nome del
 particolare punto di interesse, non le coordinate esatte in latitudine e longitudine.
-Per estrapolare questi due valori, viene utilizzato il servizio Amazon Location Service.\aCapo{}
-La classe \verb|AWSLocationProvider|, che concretizza \verb|BaseLocationProvider|, ha il compito
+Per estrapolare questi due valori, viene utilizzato il servizio \textit{Google Maps API}.\aCapo{}
+La classe \verb|MapsLocationProvider|, che concretizza \verb|BaseLocationProvider|, ha il compito
 di ottenere informazioni specifiche relative ad un punto di interesse, a partire dal nome.
 
-\begin{lstlisting}[language=Python, caption=Metodo principale]
+\begin{lstlisting}[language=Python, caption=Ottenimento informazioni da \textit{Google Maps API}]
 def search_location(self, query: str) -> Optional[LocationData]:
-    response = self._client.search_place_index_for_text(
-        IndexName='explore.place', MaxResults=1, Text=query
-    )
-    results = response['Results']
-    
-    if len(results) == 0:
+    geocode_result = self._maps.geocode(query)
+
+    if not geocode_result:
         return None
-    
-    coords = results[0]['Place']['Geometry']['Point']
-    return LocationData(long=coords[0], lat=coords[1])
+
+    geocode_result = geocode_result[0]
+    coords = geocode_result['geometry']['location']
+    maps_place_id = geocode_result.get('place_id')
+
+    place = self._maps.place(place_id=maps_place_id)
+    address = place['result']['formatted_address']
+    name = place['result']['name']
+    types = place['result']['types']
+
+    return LocationData(
+        lat=coords['lat'],
+        long=coords['lng'],
+        address=address,
+        maps_name=name,
+        maps_place_id=maps_place_id,
+        types=types
+    )
 \end{lstlisting}
     
 
