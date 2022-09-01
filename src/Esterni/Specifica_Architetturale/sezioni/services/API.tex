@@ -3,6 +3,13 @@ Questo servizio svolge l'importante funzione di fornire delle API RESTful al Fro
 Queste permettono di svolgere le azioni richieste dall'utente, soprattutto l'ottenimento di dati dal database.
 Per l'implementazione del servizio è stato scelto il framework FastAPI e l'esecuzione avviene in AWS Fargate.
 
+\subsubsection{Diagramma delle classi}
+\begin{figure}[H]
+    \includegraphics[width=16cm]{sezioni/images/cd_api.png}
+    \centering
+    \caption{API Service - Diagramma delle classi}
+\end{figure}
+
 \subsubsection{Framework FastAPI}
 FastAPI è un framework Python moderno, performante e facile da utilizzare per lo sviluppo di API.
 
@@ -12,3 +19,11 @@ Le API vengono documentate automaticamente dal framework, seguendo lo standard O
 \subsubsection{AWS Fargate}
 
 \subsubsection{Autenticazione}
+L'autenticazione degli utenti avviene tramite JWT\G{}. Il token è memorizzato nell'header HTTP \verb|Authentication|,
+e viene impostato dopo il login dall'interfaccia di Cognito. La verifica della validità avviene nella classe \verb|JWTBearer|.
+Tale verifica avviene dopo ogni chiamata ad endpoint che necessitano di autenticazione.
+\begin{figure}[H]
+    \includegraphics[width=8cm]{sezioni/images/sd_api_auth.png}
+    \centering
+    \caption{Autenticazione - Diagramma di sequenza}
+\end{figure}
