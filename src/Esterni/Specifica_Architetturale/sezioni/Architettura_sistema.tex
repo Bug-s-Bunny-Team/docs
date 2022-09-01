@@ -23,3 +23,13 @@ Il lavoro di analisi e progettazione ha permesso di individuare i seguenti servi
     \item \textbf{Scheduler Service}: programma l'esecuzione di \textbf{S4} ogni intervallo di tempo predefinito.
 \end{itemize}
 
+\subsection{Servizi S4}
+I servizi di scraping, sorting e scoring formano un raggruppamento logico chiamato \textbf{S4}.
+Essi vengono eseguiti in funzioni Lambda, le quali sono orchestrate attraverso \textit{AWS Step Functions}.
+\begin{figure}[H]
+    \includegraphics[width=8cm]{sezioni/images/stepfunctions_graph.png}
+    \centering
+    \caption{Visualizzazione macchina a stati}
+\end{figure}
+L'orchestratore permette di definire il flusso di esecuzione come una macchina a stati.
+
