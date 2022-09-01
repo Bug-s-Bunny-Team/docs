@@ -19,3 +19,11 @@ Le API vengono documentate automaticamente dal framework, seguendo lo standard O
 \subsubsection{AWS Fargate}
 
 \subsubsection{Autenticazione}
+L'autenticazione degli utenti avviene tramite JWT\G{}. Il token è memorizzato nell'header HTTP \verb|Authentication|,
+e viene impostato dopo il login dall'interfaccia di Cognito. La verifica della validità avviene nella classe \verb|JWTBearer|.
+Tale verifica avviene dopo ogni chiamata ad endpoint che necessitano di autenticazione.
+\begin{figure}[H]
+    \includegraphics[width=8cm]{sezioni/images/sd_api_auth.png}
+    \centering
+    \caption{Autenticazione - Diagramma di sequenza}
+\end{figure}
