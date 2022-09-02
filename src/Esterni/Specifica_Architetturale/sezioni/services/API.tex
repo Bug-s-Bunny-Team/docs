@@ -1,7 +1,7 @@
 \subsubsection{Descrizione generale}
 Questo servizio svolge l'importante funzione di fornire delle API RESTful al Frontend della piattaforma.
 Queste permettono di svolgere le azioni richieste dall'utente, soprattutto l'ottenimento di dati dal database.
-Per l'implementazione del servizio è stato scelto il framework FastAPI e l'esecuzione avviene in AWS Fargate.
+Il servizio viene eseguito in ambiente container, gestito da AWS Fargate.
 
 \subsubsection{Diagramma delle classi}
 \begin{figure}[H]
@@ -10,13 +10,32 @@ Per l'implementazione del servizio è stato scelto il framework FastAPI e l'esec
     \caption{API Service - Diagramma delle classi}
 \end{figure}
 
-\subsubsection{Framework FastAPI}
-FastAPI è un framework Python moderno, performante e facile da utilizzare per lo sviluppo di API.
+\subsubsection{Implementazione}
+Per l'implementazione del servizio è stato scelto FastAPI, un framework Python per lo sviluppo di API.\\
+Essendo Python un linguaggio multiparadigma, ed il framework non increntrato sul paradigma ad oggetti, non sono state definite gerarchie di classi particolarmente complesse.
+Degne di nota sono le classi derivanti da \verb|BaseCRUD|, che si occupano di gestire operazioni
+di lettura e scrittura dal database, quindi buona parte della \textit{business logic}.\\
+La gestione degli \textit{endpoint} delle API avviene tramite decoratori a funzioni.
+I dati delle richieste, sia essi di percorso o nel \textit{body} della richiesta stessa, vengono passati alla funzione come dei normali parametri grazie al funzionamento interno di FastAPI.
+
+\begin{lstlisting}[language=Python, caption=Esempio di gestione di un \textit{endpoint}]
+@router.get(
+    '/locations/{location_id}',
+    response_model=schemas.Location,
+    response_model_exclude_unset=True,
+)
+def get_location(
+    location_id: int,
+    locations: LocationsCRUD = Depends(get_locations_crud),
+):
+    location = locations.get_by_id(location_id)
+    if not location:
+        raise HTTPException(status_code=HTTP_404_NOT_FOUND, detail='Location not found')
+    return location
+\end{lstlisting}
 
 \paragraph{Documentazione automatica}\aCapo
 Le API vengono documentate automaticamente dal framework, seguendo lo standard OpenAPI.
-
-\subsubsection{AWS Fargate}
 
 \subsubsection{Autenticazione}
 L'autenticazione degli utenti avviene tramite JWT\G{}. Il token è memorizzato nell'header HTTP \verb|Authentication|,
