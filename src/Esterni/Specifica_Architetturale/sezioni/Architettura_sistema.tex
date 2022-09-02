@@ -20,16 +20,19 @@ Il lavoro di analisi e progettazione ha permesso di individuare i seguenti servi
             uno spreco di risorse nelle fasi successive di analisi;
             \item \textbf{Scoring Service}: esegue analisi approfondite su dati testuali e multimediali, producendo una valutazione numerica; 
         \end{itemize}
-    \item \textbf{Scheduler Service}: programma l'esecuzione di \textbf{S4} ogni intervallo di tempo predefinito.
+    \item \textbf{Scheduler Service}: programma l'esecuzione di \textbf{S4} secondo un intervallo di tempo predefinito.
 \end{itemize}
 
 \subsection{Servizi S4}
-I servizi di scraping, sorting e scoring formano un raggruppamento logico chiamato \textbf{S4}.
+I servizi di scraping, sorting e scoring formano un raggruppamento logico chiamato \textbf{S4} (\textbf{S}craping \textbf{S}orting \textbf{S}coring \textbf{S}ervices).
 Essi vengono eseguiti in funzioni Lambda, le quali sono orchestrate attraverso \textit{AWS Step Functions}.
 \begin{figure}[H]
     \includegraphics[width=8cm]{sezioni/images/stepfunctions_graph.png}
     \centering
     \caption{Visualizzazione macchina a stati}
 \end{figure}
-L'orchestratore permette di definire il flusso di esecuzione come una macchina a stati.
-
+L'orchestratore permette di definire il flusso di esecuzione come una macchina a stati, dove l'output di uno stato
+diventa l'input di quello successivo.\\
+Uno stato può anche controllare il flusso dell'esecuzione, per esempio se dopo
+l'operazione di sorting non restano post da analizzare e quindi da passare in input al servizio di scoring, si arriva
+subito ad uno stato terminale che quindi termina l'esecuzione senza sprecare risorse.
