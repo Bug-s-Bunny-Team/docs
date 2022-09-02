@@ -37,7 +37,7 @@ Si occupa inizialmente di calcolare lo score di ogni singola immagine di un post
 	\begin{lstlisting}[language=Python, numbers=none]
 def analyze_image(self, name_image: str):
 	\end{lstlisting}	
-Verifica che siano presenti persone nella foto(\verb+detect_person+) ed emozioni(\verb+detect_sentiment_person+). Ritorna, se presenti, un dizionario di emozioni e un dizionario dei rispettivi valori numerici;
+Verifica che siano presenti persone nella foto (tramite \verb+detect_person+) e ne estrapola le emozioni (servendosi di \verb+detect_sentiment_person+). Ritorna, se presenti, un dizionario di emozioni e un dizionario dei rispettivi valori numerici;
 	\item 
 	\begin{lstlisting}[language=Python, numbers=none]
 def detect_sentiment_person(self, name_image: str):
@@ -126,7 +126,7 @@ def set_emotions_confidence(self, emotions_confid: List[dict]):
     self.emotions_confidence = emotions_confid
 \end{lstlisting}
 \paragraph{Calcolo finale} \aCapo{}
-Il calcolo finale di imageScore avviene con il seguente algoritmo chiamato \verb+calculate_and_set_image_score+: 
+Il calcolo finale di imageScore avviene con nell'algoritmo di seguito riportato, identificato come \verb+calculate_and_set_image_score+: 
 \begin{lstlisting}[language=Python]
 if self.list_images:
     count = 0
@@ -142,7 +142,7 @@ if self.list_images:
     if self.imageScore:
         self.imageScore = self.imageScore / count
 \end{lstlisting}
-dove lo score delle singole immagini viene calcolato con l'algoritmo chiamato \verb+calculate_score+:
+dove lo score delle singole immagini viene calcolato da \verb+calculate_score+:
 \begin{lstlisting}[language=Python]
 if self.emotions:
     value_sum = 0.0
@@ -272,7 +272,7 @@ for label in response['Labels']:
     if label['Confidence'] >= 90:
         if label['Name'] == 'Person':
             contain_person = True
-            
+
 return contain_person
 \end{lstlisting}
 In questo nostro esempio possiamo vedere, nel file JSON\G{}, che sono presenti due persone indicate dal parametro "BoundingBox". La funzione sopra vedrà la presenza di queste due persone e tornerà un risultato positivo alla funzione \verb+analyze_image+ che quindi saprà di poter chiamare la funzione \verb+detect_sentiment_person+ il cui scopo è descritto sopra.
