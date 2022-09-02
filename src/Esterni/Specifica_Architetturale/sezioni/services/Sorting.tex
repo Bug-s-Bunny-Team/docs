@@ -3,9 +3,10 @@ La classe \verb+SorterService+ si occupa del servizio di sorting di uno o più p
 
 Più nello specifico, \verb+SorterService+ implementa:
 \begin{lstlisting}[language=Python]
-    def __init__(self):
+def __init__(self):
     self._rekognition = boto3.client(
-    service_name='rekognition', region_name=aws_region
+        service_name='rekognition', 
+        region_name=aws_region
     )
 \end{lstlisting} 
 che si occupa di fornire un handle sotto forma di oggetto per accedere al servizio AWS Rekognition
@@ -100,179 +101,178 @@ Segue una spiegazione più dettagliata del processo per il calcolo di imageScore
 \paragraph{Inizio processo} \aCapo{}
 Il processo inizia con \verb+process_event(self, event: SortEvent) -> dict+ che si occupa di prendere dal database i post sui quali chiamerà la funzione \verb+sort+.
 \begin{lstlisting}[language=Python]
-        for p in event.posts:
-        db_post = self._session.query(models.Post).filter_by(id=p['id']).first()
-        sorting_post = SortingPost.fromPost(db_post)
-        sorting_post = self.sort(sorting_post)
+for p in event.posts:
+    db_post = self._session.query(models.Post).filter_by(id=p['id']).first()
+    sorting_post = SortingPost.fromPost(db_post)
+    sorting_post = self.sort(sorting_post)
 \end{lstlisting} 
 Essa chiamerà a sua volta \verb+calculate_image_score+ che con un dizionario di emozioni e un dizionario sulla confidenza di tali emozioni permette il calcolo di imageScore.
 \begin{lstlisting}[language=Python]
-        self.calculate_image_score(post)
+self.calculate_image_score(post)
 \end{lstlisting}
 \begin{lstlisting}[language=Python]
-        image.set_emotions(emotions)
-        image.set_emotions_confidence(emotions_confidence)
+image.set_emotions(emotions)
+image.set_emotions_confidence(emotions_confidence)
 
-        post.calculate_and_set_image_score())
+post.calculate_and_set_image_score())
 \end{lstlisting} 
 \paragraph{Creazione e uso dei dizionari} \aCapo{}
 Per creare tale dizionari si utilizza la funzione \verb+detect_sentiment_person+ che utilizzerà a sua volta il servizio AWS Rekognition per il riconoscimento delle facce ed eseguirà poi un analisi sulla risposta ritornata dal servizio. Attraverso tale analisi si salveranno solo le emozioni valide ossia con una confidenza pari o superiore al 90\%. Verranno ritornati i dizionari a \verb+calculate_image_score+ dove verranno usati per salvare le emozioni valide nell'oggetto "Image" nel seguente modo:
 \begin{lstlisting}[language=Python]
-    def set_emotions(self, emotions: dict):
-        self.emotions = emotions
+def set_emotions(self, emotions: dict):
+    self.emotions = emotions
 
-    def set_emotions_confidence(self, emotions_confid: List[dict]):
-        self.emotions_confidence = emotions_confid
+def set_emotions_confidence(self, emotions_confid: List[dict]):
+    self.emotions_confidence = emotions_confid
 \end{lstlisting}
 \paragraph{Calcolo finale} \aCapo{}
 Il calcolo finale di imageScore avviene con il seguente algoritmo chiamato \verb+calculate_and_set_image_score+: 
 \begin{lstlisting}[language=Python]
-        if self.list_images:
-            count = 0
-            for image in self.list_images:
-                score = image.calculate_score()
-                if score is not None:
-                    count += 1
-                    self.imageScore = (
-                        (self.imageScore + score)
-                        if self.imageScore is not None
-                        else score
-                    )
-            if self.imageScore:
-                self.imageScore = self.imageScore / count
+if self.list_images:
+    count = 0
+    for image in self.list_images:
+        score = image.calculate_score()
+        if score is not None:
+            count += 1
+            self.imageScore = (
+                (self.imageScore + score)
+                if self.imageScore is not None
+                else score
+            )
+    if self.imageScore:
+        self.imageScore = self.imageScore / count
 \end{lstlisting}
 dove lo score delle singole immagini viene calcolato con l'algoritmo chiamato \verb+calculate_score+:
 \begin{lstlisting}[language=Python]
-        if self.emotions:
-            value_sum = 0.0
-            sum_weights = 0.0
-            for emotion, num in self.emotions.items():
-                value_sum += Emotions[emotion].value * num
-                sum_weights += num
-            return 100 * value_sum / sum_weights
-        else:
-            return None
+if self.emotions:
+    value_sum = 0.0
+    sum_weights = 0.0
+    for emotion, num in self.emotions.items():
+        value_sum += Emotions[emotion].value * num
+        sum_weights += num
+    return 100 * value_sum / sum_weights
+else:
+    return None
 \end{lstlisting}
 \paragraph{Conclusione processo} \aCapo{}
 Se l'imageScore sarà stato calcolato il post è valido e verrà tenuto; se invece non è stato calcolato significa che il post non è valido e sarà eliminato insieme alle sua immagini salvate su un bucket S3 tramite la funzione \verb+_delete_post+:
 \begin{lstlisting}[language=Python]
-        for img in post.list_images:
-            s3_delete_file(self._bucket_name, img.name)
-        self._session.delete(
-            self._session.query(models.Post).filter_by(id=post.id).first()
-        )
-        self._session.commit()
+for img in post.list_images:
+    s3_delete_file(self._bucket_name, img.name)
+self._session.delete(
+    self._session.query(models.Post).filter_by(id=post.id).first()
+)
+self._session.commit()
 \end{lstlisting}
 \subsubsection{Variabili}
 Segue una spiegazione più dettagliata di alcune variabili usate dagli algoritmi spiegati precedentemente:
 \paragraph{Response from detect\textunderscore{}faces} \aCapo{}
-	\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python]
 response = self._rekognition.detect_faces(
             Image={'S3Object': {'Bucket': self._bucket_name, 'Name': name_image}},
             Attributes=['ALL'],
         )
-	\end{lstlisting}
-	La variabile response riceve il risultato della funzione \verb+detect_faces+ del servizio AWS Rekognition; tale funzione prende in input un'immagine presente in un bucket di S3 e ritorna come risultato un file JSON\G{} contente  una sentiment analysis dei volti presenti nell'immagine. Segue un esempio ove presenti solo i dati necessari al nostro caso:
-	\begin{lstlisting}[language=JSON]
+\end{lstlisting}
+La variabile response riceve il risultato della funzione \verb+detect_faces+ del servizio AWS Rekognition; tale funzione prende in input un'immagine presente in un bucket di S3 e ritorna come risultato un file JSON\G{} contente  una sentiment analysis dei volti presenti nell'immagine. Segue un esempio ove presenti solo i dati necessari al nostro caso:
+\begin{lstlisting}[language=JSON]
+{
+"FaceDetails": [
     {
-    "FaceDetails": [
-        {
-        	....
-        	....
-            "Emotions": [
-                {
-                    "Type": "ANGRY",
-                    "Confidence": 55.18563461303711
-                },
-                {
-                    "Type": "HAPPY",
-                    "Confidence": 37.01131820678711
-                },{},{},{},{},{},{}
-            ],
-            ....
-            ....
-            ....
-            ....
-        }
+    	....
+    	....
+        "Emotions": [
+            {
+                "Type": "ANGRY",
+                "Confidence": 55.18563461303711
+            },
+            {
+                "Type": "HAPPY",
+                "Confidence": 37.01131820678711
+            },{},{},{},{},{},{}
+        ],
+        ....
+        ....
+        ....
+        ....
     }
-	\end{lstlisting}
-	Tale risultato sarà usato dalla funzione \verb+detect_sentiment_person+ per creare  un dizionario di emozioni e
+}
+\end{lstlisting}
+Tale risultato sarà usato dalla funzione \verb+detect_sentiment_person+ per creare  un dizionario di emozioni e
 un dizionario sulla confidenza di tali emozioni nel seguente modo:
-	\begin{lstlisting}[language=Python]
-		contain_emotion = False
-        emotions_dict = {}
-        emotions_confid = []
+\begin{lstlisting}[language=Python]
+contain_emotion = False
+emotions_dict = {}
+emotions_confid = []
 
-        for faceDetail in response['FaceDetails']:
-            emotions = faceDetail['Emotions']
-            confid_single_face = {}
-            for emotion in emotions:
-                emotion_name = emotion['Type']
-                emotion_confid_value = emotion['Confidence']
-                if emotion_name != 'UNKNOWN':
-                    confid_single_face[emotion_name] = emotion_confid_value
+for faceDetail in response['FaceDetails']:
+    emotions = faceDetail['Emotions']
+    confid_single_face = {}
+    for emotion in emotions:
+        emotion_name = emotion['Type']
+        emotion_confid_value = emotion['Confidence']
+        if emotion_name != 'UNKNOWN':
+            confid_single_face[emotion_name] = emotion_confid_value
 
-                    if emotion_confid_value >= 90:
-                        if emotion_name in emotions_dict:
-                            emotions_dict[emotion_name] += 1
-                        else:
-                            emotions_dict[emotion_name] = 1
-                        contain_emotion = True
-            emotions_confid.append(confid_single_face)
-        return emotions_dict, contain_emotion, emotions_confid
-	\end{lstlisting}
+            if emotion_confid_value >= 90:
+                if emotion_name in emotions_dict:
+                    emotions_dict[emotion_name] += 1
+                else:
+                    emotions_dict[emotion_name] = 1
+                contain_emotion = True
+    emotions_confid.append(confid_single_face)
+return emotions_dict, contain_emotion, emotions_confid
+\end{lstlisting}
 \paragraph{Response from detect\textunderscore{}labels} \aCapo{}
-	\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python]
 response = self._rekognition.detect_labels(
             Image={'S3Object': {'Bucket': self._bucket_name, 'Name': name_image}},
             MaxLabels=10,
         )
-	\end{lstlisting}
+\end{lstlisting}
 La variabile response riceve il risultato della funzione \verb+detect_labels+ del servizio AWS Rekognition; tale funzione prende in input un'immagine presente in un bucket di S3 e ritorna come risultato un file JSON\G{} contente una labels analysis delle istanze di entità del mondo reale presenti nell'immagine. Segue un esempio ove presenti solo i dati necessari al nostro caso:
 \begin{lstlisting}[language=JSON]
-	{
-		"Labels": [
-
-			{
-				"Name": "Person",
-                "Confidence": 99.88428497314453,
-                "Instances": [
-                	{
-                    	"BoundingBox": {
-                        "Width": 0.27858132123947144,
-                        "Height": 0.44550982117652893,
-                        "Left": 0.2236727923154831,
-                        "Top": 0.35303789377212524
-                         },
-                     "Confidence": 99.88428497314453
-                    },
-					{
-                        "BoundingBox": {
-                        "Width": 0.20297367870807648,
-                        "Height": 0.6778767108917236,
-                        "Left": 0.5247262716293335,
-                        "Top": 0.10922279208898544
-                      	 },
-                    "Confidence": 99.81658172607422
-					}
-				]
-                ....
-                ....
-                ....
-                ....
-            	....
-		}]
-	}
-	\end{lstlisting}
+{
+	"Labels": [
+		{
+			"Name": "Person",
+            "Confidence": 99.88428497314453,
+            "Instances": [
+            	{
+                	"BoundingBox": {
+                    "Width": 0.27858132123947144,
+                    "Height": 0.44550982117652893,
+                    "Left": 0.2236727923154831,
+                    "Top": 0.35303789377212524
+                     },
+                 "Confidence": 99.88428497314453
+                },
+				{
+                    "BoundingBox": {
+                    "Width": 0.20297367870807648,
+                    "Height": 0.6778767108917236,
+                    "Left": 0.5247262716293335,
+                    "Top": 0.10922279208898544
+                  	 },
+                "Confidence": 99.81658172607422
+				}
+			]
+            ....
+            ....
+            ....
+            ....
+        	....
+	}]
+}
+\end{lstlisting}
 Tale risultato sarà usato dalla funzione \verb+detect_person+ per verificare la presenza di persone nel seguente modo:
 \begin{lstlisting}[language=Python]
-		contain_person = False
+contain_person = False
 
-        for label in response['Labels']:
-            if label['Confidence'] >= 90:
-                if label['Name'] == 'Person':
-                    contain_person = True
-
-        return contain_person
+for label in response['Labels']:
+    if label['Confidence'] >= 90:
+        if label['Name'] == 'Person':
+            contain_person = True
+            
+return contain_person
 \end{lstlisting}
 In questo nostro esempio possiamo vedere, nel file JSON\G{}, che sono presenti due persone indicate dal parametro "BoundingBox". La funzione sopra vedrà la presenza di queste due persone e tornerà un risultato positivo alla funzione \verb+analyze_image+ che quindi saprà di poter chiamare la funzione \verb+detect_sentiment_person+ il cui scopo è descritto sopra.
