@@ -48,12 +48,12 @@ Il database è gestito dal servizio \textit{Amazon RDS}.
     \caption{Schema ER database}
 \end{figure}
 
-\paragraph{Interfacciamento}\aCapo{}
+\subsubsection{Interfacciamento}
 L'interfacciamento con il database, da parte dei vari servizi, è affidato alla libreria Python \textit{SQLAlchemy}.
 Essendo una libreria ORM\G{}, vengono definiti dei modelli che permettono l'interazione con le entità e le relazioni
 interne al database come dei normali oggetti.
 
-\paragraph{Versionamento}\aCapo{}
+\subsubsection{Versionamento}
 Il versionamento della schemo relazione del database è affidato allo strumento \textit{alembic}, che in
 sintonia con la libreria sopracitata \textit{SQLAlchemy}, gestisce in automatico i cambiamenti apportati allo schema.
 Questi cambiamenti vengono raggruppati in operazioni atomiche dette migrazioni.
