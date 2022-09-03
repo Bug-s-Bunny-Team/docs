@@ -67,7 +67,37 @@ Questa sezione riporta i test di unità pianificati e/o implementati nei vari co
         \caption{Tabella dei test di unità del frontend}
         \end{longtable}
     }
-    
+ 
+\subsection{Test di integrazione}
+    Questa sezione riporta i test di integrazione tra i vari componenti dell'applicazione
+
+    {
+        \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+        \renewcommand{\arraystretch}{1.5}
+        \centering
+        \setlength{\aboverulesep}{0pt}
+        \setlength{\belowrulesep}{0pt}
+        \rowcolors{2}{Arancione!10}{white}
+        \begin{longtable}{C{.3\freewidth} C{.5\freewidth} C{.3\freewidth}}
+        \toprule
+        \rowcolor{Arancione}
+        \textcolor{white}{\textbf{Codice Test}}&
+        \textcolor{white}{\textbf{Descrizione}}&
+        \textcolor{white}{\textbf{Stato}}\\	
+        \toprule
+        \endhead
+
+        TI01 & Verificare che l'integrazione tra la componente Frontend e la pagina di login/registrazione gestita da Cognito (e viceversa) 
+            sia gestita in modo corretto & Non implementato \\
+
+        TI02 & Verificare che l'integrazione tra le classi in frontend/src/models/ e i relativi endpoint dell'API backend siano
+            gestiti in modo corretto, gestendo tutte le risposte possibili del backend & Non implementato \\
+
+        \bottomrule
+        \rowcolor{white}
+        \caption{Tabella dei test di unità del frontend}
+        \end{longtable}
+    }
 
 \subsection{Test di accettazione}
 Questa sezione  riporta i test di accettazione del prodotto, hanno lo scopo di validare il prodotto.
