@@ -1,5 +1,5 @@
 \subsubsection{Descrizione generale}
-La classe \verb+SorterService+ si occupa del servizio di sorting di uno o più post: innanzitutto fornisce l'entry point per sfruttare il servizio Amazon AWS Rekognition, dopo di che sono implementate tutte le funzioni contenenti l'effettiva algoritmica di sorting per il calcolo del punteggio del post dalle sue immagini.
+La classe \verb+SorterService+ si occupa del servizio di sorting di uno o più post: innanzitutto fornisce l'entry point per sfruttare il servizio Amazon AWS Rekognition\G, dopo di che sono implementate tutte le funzioni contenenti l'effettiva algoritmica di sorting per il calcolo del punteggio del post dalle sue immagini.
 
 Più nello specifico, \verb+SorterService+ implementa:
 \begin{lstlisting}[language=Python]
@@ -27,7 +27,7 @@ Chiama una funzione per calcolare lo score di un post dalle sue immagini. Se è 
 	\begin{lstlisting}[language=Python, numbers=none]
 def _delete_post(self, post: SortingPost):
 	\end{lstlisting}		
-Si occupa di eliminare il post inutilizzabile e di rimuovere le sua immagini dal bucket di S3 su cui erano state salvate;
+Si occupa di eliminare il post inutilizzabile e di rimuovere le sua immagini dal bucket\G{} di S3 su cui erano state salvate;
 	\item 
 	\begin{lstlisting}[language=Python, numbers=none]
 def calculate_image_score(self, post: SortingPost):
@@ -42,12 +42,12 @@ Verifica che siano presenti persone nella foto (tramite \verb+detect_person+) e 
 	\begin{lstlisting}[language=Python, numbers=none]
 def detect_sentiment_person(self, name_image: str):
 	\end{lstlisting}	
-Utilizza il servizio AWS Rekognition per riconoscere le facce ed emozioni correlate in un immagine. Controllerà che le emozioni siano valide(devono avere un valore pari o superiore al 90\% per essere considerate influenti sullo score finale) e verrà poi creato e ritornato a \verb+analyze_image+ un dizionario dei sentimenti, un dizionario dei rispettivi valori numerici e un booleano per segnalare di aver trovato o meno emozioni;
+Utilizza il servizio AWS Rekognition\G{} per riconoscere le facce ed emozioni correlate in un immagine. Controllerà che le emozioni siano valide (devono avere un valore pari o superiore al 90\% per essere considerate influenti sullo score finale) e verrà poi creato e ritornato a \verb+analyze_image+ un dizionario dei sentimenti, un dizionario dei rispettivi valori numerici e un booleano per segnalare di aver trovato o meno emozioni;
 	\item
 	\begin{lstlisting}[language=Python, numbers=none]	
 def detect_person(self, name_image: str):
 	\end{lstlisting}	
-Utilizza il servizio di AWS Rekognition per analizzare l'immagine e riconoscere delle labels; queste labels verranno controllate per verificare la presenza di persone. Verrà ritornato un booleano per segnalare la presenza o meno di persone.
+Utilizza il servizio di AWS Rekognition\G{} per analizzare l'immagine e riconoscere delle labels; queste labels verranno controllate per verificare la presenza di persone. Verrà ritornato un booleano per segnalare la presenza o meno di persone.
 \end{itemize}
 \newpage
 \subsubsection{Diagramma delle classi}
@@ -155,7 +155,7 @@ else:
     return None
 \end{lstlisting}
 \paragraph{Conclusione processo} \aCapo{}
-Se l'imageScore sarà stato calcolato il post è valido e verrà tenuto; se invece non è stato calcolato significa che il post non è valido e sarà eliminato insieme alle sua immagini salvate su un bucket S3 tramite la funzione \verb+_delete_post+:
+Se l'imageScore sarà stato calcolato il post è valido e verrà tenuto; se invece non è stato calcolato significa che il post non è valido e sarà eliminato insieme alle sua immagini salvate su un bucket\G{} S3 tramite la funzione \verb+_delete_post+:
 \begin{lstlisting}[language=Python]
 for img in post.list_images:
     s3_delete_file(self._bucket_name, img.name)
@@ -173,7 +173,7 @@ response = self._rekognition.detect_faces(
             Attributes=['ALL'],
         )
 \end{lstlisting}
-La variabile response riceve il risultato della funzione \verb+detect_faces+ del servizio AWS Rekognition; tale funzione prende in input un'immagine presente in un bucket di S3 e ritorna come risultato un file JSON\G{} contente  una sentiment analysis dei volti presenti nell'immagine. Segue un esempio ove presenti solo i dati necessari al nostro caso:
+La variabile response riceve il risultato della funzione \verb+detect_faces+ del servizio AWS Rekognition\G; tale funzione prende in input un'immagine presente in un bucket\G{} di S3 e ritorna come risultato un file JSON\G{} contente  una sentiment analysis dei volti presenti nell'immagine. Segue un esempio ove presenti solo i dati necessari al nostro caso:
 \begin{lstlisting}[language=JSON]
 {
 "FaceDetails": [
@@ -229,7 +229,7 @@ response = self._rekognition.detect_labels(
             MaxLabels=10,
         )
 \end{lstlisting}
-La variabile response riceve il risultato della funzione \verb+detect_labels+ del servizio AWS Rekognition; tale funzione prende in input un'immagine presente in un bucket di S3 e ritorna come risultato un file JSON\G{} contente una labels analysis delle istanze di entità del mondo reale presenti nell'immagine. Segue un esempio ove presenti solo i dati necessari al nostro caso:
+La variabile response riceve il risultato della funzione \verb+detect_labels+ del servizio AWS Rekognition\G; tale funzione prende in input un'immagine presente in un bucket\G di S3 e ritorna come risultato un file JSON\G{} contente una labels analysis delle istanze di entità del mondo reale presenti nell'immagine. Segue un esempio ove presenti solo i dati necessari al nostro caso:
 \begin{lstlisting}[language=JSON]
 {
 	"Labels": [

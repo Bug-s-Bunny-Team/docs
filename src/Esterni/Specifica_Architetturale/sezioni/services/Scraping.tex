@@ -1,5 +1,5 @@
 \subsubsection{Descrizione generale}
-Questo servizio implementa le funzionalità di scraping ed in generale ottenimento dati da Instagram e altre piattaforme ad esso correlate.
+Questo servizio implementa le funzionalità di scraping\G{} ed in generale ottenimento dati da Instagram\G{} e altre piattaforme ad esso correlate.
 
 \subsubsection{Diagramma delle classi}
 \begin{figure}[H]
@@ -25,8 +25,8 @@ Questo servizio implementa le funzionalità di scraping ed in generale ottenimen
 \end{lstlisting}
 Descrizione:
 \begin{itemize}
-    \item \verb|username|: username del profilo social da cui effettuare lo scraping;
-    \item \verb|posts_limit|: numero massimo di post di cui effettuare lo scraping. 
+    \item \verb|username|: username del profilo social da cui effettuare lo scraping\G;
+    \item \verb|posts_limit|: numero massimo di post di cui effettuare lo scraping\G. 
 \end{itemize}
 
 \paragraph*{Output} esempio di risposta in output, in formato JSON\G{}.
@@ -46,11 +46,11 @@ Descrizione:
 \end{itemize}
 
 \subsubsection{Strategie di scraping}
-Le azioni di scraping non avvengono direttamente su Instagram, questo perchè comporterebbe il
-rischio di incorrere in \textit{rate limiting} o addirittura l'impossibilità totale di usufruire del servizio dall'infrastruttura cloud di AWS.
-Per aggirare queste problematiche, lo scraping avviene da piattaforme chiamate \textit{viewer},
-che propongono in larga parte gli stessi contenuti di Instagram, ma in un formato molto più semplice da trattare automaticamente.\aCapo
-Le classi \verb|SoupScraper| e più in generale \verb|BaseScraper|, si occupano di fornire interfacce comuni per gli scraper che andranno implementati.
+Le azioni di scraping\G{} non avvengono direttamente su Instagram\G, questo perchè comporterebbe il
+rischio di incorrere in \textit{rate limiting} o addirittura l'impossibilità totale di usufruire del servizio dall'infrastruttura cloud di AWS\G.
+Per aggirare queste problematiche, lo scraping\G{} avviene da piattaforme chiamate \textit{viewer},
+che propongono in larga parte gli stessi contenuti di Instagram\G, ma in un formato molto più semplice da trattare automaticamente.\aCapo
+Le classi \verb|SoupScraper| e più in generale \verb|BaseScraper|, si occupano di fornire interfacce comuni per gli scraper\G{} che andranno implementati.
 Le classi \verb|GramhirScraper| e \verb|PicukiScraper| si occupano di effettuare lo scraping 
 rispettivamente dai viewer \textit{Gramhir} (\url{https://www.gramhir.com}) e \textit{Picuki} (\url{https://www.picuki.com}). Gli algoritmi e le tecniche utilizzate dalle due classi, sono sostanzialmente identiche.
 Infatti, \verb|PicukiScraper| eredita direttamente da \verb|GramhirScraper|.
@@ -102,7 +102,7 @@ def _extract_post_data(self, post_result: Tag) -> ScrapedPost:
 Correlare i post ottenuto a precise posizioni reali è necessario ai fini del progetto.
 I dati relativi alla posizione, nelle piattaforme sopracitate, comprendono solo il nome del
 particolare punto di interesse, non le coordinate esatte in latitudine e longitudine.
-Per estrapolare questi due valori, viene utilizzato il servizio \textit{Google Maps API}.\aCapo{}
+Per estrapolare questi due valori, viene utilizzato il servizio \textit{Google Maps API}\G.\aCapo{}
 La classe \verb|MapsLocationProvider|, che concretizza \verb|BaseLocationProvider|, ha il compito
 di ottenere informazioni specifiche relative ad un punto di interesse, a partire dal nome.
 
@@ -135,4 +135,4 @@ def search_location(self, query: str) -> Optional[LocationData]:
 
 \subsubsection{Salvataggio dei dati}
 I dati relativi ai post ottenuti e le relative posizioni, vengonono salvati nel database.
-Le immagini o altri contenuti multimediali vengonono salvati nell'apposito bucket in S3.
+Le immagini o altri contenuti multimediali vengonono salvati nell'apposito bucket\G in S3.

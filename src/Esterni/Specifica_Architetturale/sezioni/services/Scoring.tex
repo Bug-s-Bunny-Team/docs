@@ -1,7 +1,7 @@
 \subsubsection{Descrizione generale}
 Le classi \verb+ScoringService+ e \verb+BasicScoringService+ (che estende ScoringService\verb++) si occupano
 del servizio di scoring di un post: \verb+ScoringService+ fornisce gli entry point per sfruttare 
-i servizi Amazon AWS Comprehend e Rekognition, mentre è in \verb+BasicScoringService+ che sono 
+i servizi Amazon AWS Comprehend\G{} e Rekognition\G, mentre è in \verb+BasicScoringService+ che sono 
 implementate tutte le funzioni contenenti l'effettiva algoritmica di scoring e i servizi I/O.\\
 Più nello specifico, \verb+ScoringService+ implementa:
 \begin{lstlisting}[language=Python]
@@ -9,8 +9,8 @@ def __init__(self):
     self._rekognition = boto3.client(service_name='rekognition')
     self._comprehend = boto3.client(service_name='comprehend')
 \end{lstlisting}
-che si occupa di fornire degli handles sotto forma di oggetti per accedere ai servizi AWS Rekognition
-e Comprehend (\verb+self._rekognition+ e \verb+self._comprehend+).\\
+che si occupa di fornire degli handles sotto forma di oggetti per accedere ai servizi AWS Rekognition\G{}
+e Comprehend\G{} (\verb+self._rekognition+ e \verb+self._comprehend+).\\
 \verb+BasicScoringService+ invece definisce e implementa le seguenti funzioni:
 
 \begin{itemize}
@@ -165,8 +165,8 @@ BasicScoringService.__parse_rekognition_response(
 )
 \end{lstlisting}
 La variabile \verb+faceResponse+ contiene il risultato della funzionalità
-di Rekognition chiamata \verb+detect_faces+ che prende in input un'immagine contenuta
-in un bucket S3 e ritorna un file JSON\G{} contente una sentiment analysis dei vari volti presenti.\\
+di Rekognition\G{} chiamata \verb+detect_faces+ che prende in input un'immagine contenuta
+in un bucket\G{} S3 e ritorna un file JSON\G{} contente una sentiment analysis dei vari volti presenti.\\
 Segue un esempio del file in questione (lasciando implicito ciò che non serve):
 \begin{lstlisting}[language=JSON]
 {
@@ -353,8 +353,8 @@ BasicScoringService.__parse_rekognition_response(
 )
 \end{lstlisting}
 La variabile \verb+textResponse+ contiene il risultato della funzionalità
-di Rekognition chiamata \verb+detect_text+ che prende in input un'immagine contenuta
-in un bucket S3 e ritorna un file JSON\G{} contente il testo presente nell'immagine.\\
+di Rekognition\G{} chiamata \verb+detect_text+ che prende in input un'immagine contenuta
+in un bucket\G{} S3 e ritorna un file JSON\G{} contente il testo presente nell'immagine.\\
 Segue un esempio del file in questione (lasciando implicito ciò che non serve):
 \begin{lstlisting}[language=JSON]
 {
@@ -395,7 +395,7 @@ Rispetto al JSON\G{} di esempio di cui sopra, il risultato di \verb+sPost.texts+
     1: 'Buon Ferragasta'
 }
 \end{lstlisting}
-A questo punto è Comprehend che deve occuparsi di dare degli effettivi sentiment
+A questo punto è Comprehend\G{} che deve occuparsi di dare degli effettivi sentiment
 scores a queste stringhe di testo.\\
 Il punto di partenza si trova nella funzione \verb+BasicScoringService._runComprehend+:
 \begin{lstlisting}[language=Python]
@@ -421,8 +421,8 @@ def __unpack_post_for_comprehend(self, sPost: ScoringPost):
     return list([sPost.caption, *sPost.texts.values()])
 \end{lstlisting}
 Se la caption è un file vuoto la sostituisce con uno spazio, così da renderla accettabile in input
-da Comprehend, e il risultato della funzione (cioè quindi ciò su cui viene lanciata la funzione di
-sentiment detection di Comprehend) è il seguente (sempre prendendo ad esempio i file di cui sopra):
+da Comprehend\G, e il risultato della funzione (cioè quindi ciò su cui viene lanciata la funzione di
+sentiment detection di Comprehend\G) è il seguente (sempre prendendo ad esempio i file di cui sopra):
 \begin{lstlisting}[language=JSON]
 TextList = [
     'Caption',
@@ -430,10 +430,10 @@ TextList = [
     'Buon Ferragasta'
 ]
 \end{lstlisting}
-\verb+TextList+ viene quindi inoltrata a Comprehend tramite l'oggetto \verb+_comprehend+ e la sua
+\verb+TextList+ viene quindi inoltrata a Comprehend\G tramite l'oggetto \verb+_comprehend+ e la sua
 funzione \verb+batch_detect_sentiment+, che ritorna nella variabile \verb+response+ un file JSON\G{}
 contenete la sentiment analysis per i vari pezzi di testo.\\
-L'output di Comprehend è strutturato come segue:
+L'output di Comprehend\G è strutturato come segue:
 \begin{lstlisting}[language=JSON]
 {
     'ResultList': [
@@ -519,8 +519,8 @@ def __unpack_post_for_comprehend(self, sPost: ScoringPost):
     return list([sPost.caption, *sPost.texts.values()])
 \end{lstlisting}
 Se la caption è un file vuoto la sostituisce con uno spazio, così da renderla accettabile in input
-da Comprehend, e il risultato della funzione (cioè quindi ciò su cui viene lanciata la funzione di
-sentiment detection di Comprehend) è il seguente (sempre prendendo ad esempio i file di cui sopra):
+da Comprehend\G, e il risultato della funzione (cioè quindi ciò su cui viene lanciata la funzione di
+sentiment detection di Comprehend\G) è il seguente (sempre prendendo ad esempio i file di cui sopra):
 \begin{lstlisting}[language=JSON]
 TextList = [
     'Caption',
@@ -528,10 +528,10 @@ TextList = [
     'Buon Ferragasta'
 ]
 \end{lstlisting}
-A questo punto \verb+TextList+ viene inoltrata a Comprehend tramite l'oggetto \verb+_comprehend+ e la sua
+A questo punto \verb+TextList+ viene inoltrata a Comprehend\G{} tramite l'oggetto \verb+_comprehend+ e la sua
 funzione \verb+batch_detect_sentiment+, che ritorna nella variabile \verb+response+ un file JSON\G{}
 contenete la sentiment analysis per i vari pezzi di testo. \\
-L'output di Comprehend è strutturato come segue:
+L'output di Comprehend\G è strutturato come segue:
 \begin{lstlisting}[language=JSON]
 {
     'ResultList': [
@@ -594,7 +594,7 @@ così da agevolarne la visualizzazione nel frontend. \\
 Se gli scores che lo compongono sono tutti
 compresi tra 0 e 1 diventa semplice dar loro dei pesi nel calcolo del punteggio: si è deciso
 infatti di dare peso uguale a caption e analisi facciale, mentre il testo a schermo pesa molto meno.\\
-Il motivo è che nei post di Instagram il testo a schermo viene usato di rado, e quasi sempre
+Il motivo è che nei post di Instagram\G{} il testo a schermo viene usato di rado, e quasi sempre
 per presentare locandine di eventi o locali (o ancora per lanciare messaggi come "Ferragosto Aperti").
 È altamente improbabile che un utente normale usi del testo a immagine per veicolare informazioni,
 soprattutto quando esiste un'alternativa che richiede molto meno impegno, ovvero la caption.\\
