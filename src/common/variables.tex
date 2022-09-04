@@ -1,4 +1,5 @@
 \newcommand{\teamname}{\emph{Bug's Bunny}}
+\newcommand{\platform}{\emph{BunnyFood}}
 \newcommand{\progetto}{Guida Michelin Social}
 \newcommand{\proponente}{Zero12}
 \newcommand{\github}{https://github.com/Bug-s-Bunny-Team/docs}
@@ -41,16 +42,6 @@
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash}m{#1}}
 \newcommand{\aCapo}{ ~ \vspace{0.25cm} \\} %magari fare renewcommand di paragraph 
 
-% commandi presi da package tabularx, serve a impostare le varie opzioni delle tabelle senza doverle riscrivere ogni volta;
-% anche se basterebbe la colonna centrale si scrivono comunque tutte e tre per buona norma;
-% \raggedright, \centering o \raggedleft per avere l'allineamento orizzontale voluto;
-% Dichiara \let\newline\\ per consentire l'uso di \newline per interruzioni di riga manuali; all'interno di una cella in modo coerente con il resto ( da notare che \centering e simili cambiano il significato di \\ );
-% \arraybackslash per consentire di utilizzare \\ per le righe finali nelle tabelle;
-% m{} serve a specificare larghezza colonna, in questo modo si può modificare 
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash}m{#1}}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash}m{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash}m{#1}}
-
 \definecolor{Arancione}{RGB}{245,100,0}
 
 % colori per highlighting
@@ -58,3 +49,6 @@
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{delim}{RGB}{20,105,176}
+\definecolor{numb}{RGB}{106, 109, 32}
+\definecolor{string}{rgb}{0.64,0.08,0.08}
