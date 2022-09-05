@@ -1,0 +1,69 @@
+\documentclass{classes/base}
+
+\title{Verbale interno}
+\date{2022/08/23}
+\author{\angela}
+\verificatore{\giulio}
+\approvatore{Nome o comando Latex}
+
+\renewcommand{\maketitle}{
+    \input{common/titlepage_verbale}
+}
+
+\begin{document}
+    \maketitle
+
+    \section*{Generalità}
+    \begin{itemize}
+        \item \textbf{Ora inizio:} 14.30
+        \item \textbf{Ora fine:} 15.00
+    \end{itemize}
+
+    \section*{Assenze}
+    \begin{itemize}
+        \item \marcob{} (malattia)
+        \item \ruth{} (motivi personali)
+    \end{itemize}
+
+    \section*{Agenda}
+    Chiarire il punto del gruppo backend e frontend, con i rispettivi documenti
+
+    \section*{Resoconto}
+    Il gruppo ha cercato di capire la natura di alcuni bug della piattaforma, pensando a delle possibili soluzioni. 
+    Quindi ogni sottogruppo (backend e frontend) lavorerà per risolvere tali problemi. 
+    Si è fatto un punto della situazione sui seguenti documenti:
+    \begin{itemize}
+        \item \PdP: quando le ore di ogni componente saranno terminate verrà steso il consuntivo di periodo;
+        \item \NdP: stendere le norme di codifica; 
+        \item \PdQ: aggiornare i test eseguiti;
+        \item \textit{Manuale Utente}: inserire le foto per spiegare i casi in modo più dettagliato e ampio;
+        \item \textit{Specifica Architetturale}: concluderlo, aggiungendo gli ultimi dati mancanti.
+    \end{itemize}
+ 
+
+
+    \section*{Issues aperte}
+    {
+        
+        \newlength{\freewidth}
+        \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+        \renewcommand{\arraystretch}{1.5}
+        \centering
+        \setlength{\aboverulesep}{0pt}
+        \setlength{\belowrulesep}{0pt}
+        \rowcolors{2}{Arancione!10}{white}
+        \begin{longtable}{C{.13\freewidth} C{\freewidth}}
+            \toprule
+        \rowcolor{Arancione}
+        \textcolor{white}{\textbf{Codice}}&
+        \textcolor{white}{\textbf{Descrizione}}\\	
+        \toprule
+        \endhead
+        
+        \#116 & Stesura verbale 31 agosto \\
+
+        \bottomrule
+        \end{longtable}
+    }
+
+\end{document}
