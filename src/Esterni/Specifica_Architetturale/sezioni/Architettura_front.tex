@@ -55,4 +55,6 @@ Quest'ultima risulta un punto chiave perchè permette di facilitare il testing r
     \subsubsection{View}
         Le View sono dei componenti bene o male passivi, in quanto il codice scritto si limita alla delegazione degli eventi verso il Presenter, ed alla visualizzazione di dati statici o dinamici (tipo Writable). 
         Questi file vengono compilati automaticamente dalla libreria Svelte per diventare delle View funzionali e responsive ai cambiamenti.
+        Il codice asincrono viene gestito anch'esso nativamente, infatti quando la View visualizza un membro che ha dei dati non ancora pronti (per esempio in fase di download o di loading di una libreria) mostra invece una barra di caricamento e,
+        a seconda del successo o meno del caricamento dei dati, visualizza i dati stessi oppure un errore con maggiori informazioni (se utili).
 
