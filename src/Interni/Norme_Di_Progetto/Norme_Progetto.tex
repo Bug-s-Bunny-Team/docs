@@ -3,13 +3,58 @@
 \usepackage{titlesec}
 
 \title{Norme di Progetto}
-\author{\matteo, \\ \marcov, \\ \giulio, \\ \marcob}
-\verificatore{\marcob, \\ \marcov, \\ \matteo}
-\approvatore{\angela}
+\versione{2.0.0}
+\author{\angela, \\ \matteo, \\ \giulio}
+\verificatore{\angela, \\ \marcob}
+\approvatore{\tommaso}
 \uso{Esterno}
 
 \begin{document}
-	\maketitle
+	\begin{titlepage}
+		\makeatletter
+		
+		\begin{minipage}[]{0.3\textwidth}
+			\includegraphics[width=3cm]{assets/unipd}
+		\end{minipage}
+		\begin{minipage}[]{0.7\textwidth}
+			\color[HTML]{B5121B}{
+				\textbf{Università degli Studi di Padova} \\
+				Ingegneria del Software \\
+				Anno Accademico: 2021/2022
+			}
+		\end{minipage}
+		\begin{center}
+			
+			\includegraphics[width=5cm]{assets/logo}
+			
+			\Huge
+			\textbf{\teamname}
+			
+			\vspace{2cm}
+			
+			\textbf{\@title}
+
+			\vspace{1cm}
+			
+			\small
+			\texttt{bugsbunnyteam@protonmail.com}
+
+			\vspace{1.5cm}
+			\Large
+			
+			\ifdefined\@versione
+			\textbf{Versione:} \@versione \\
+			\fi
+			\textbf{Redazione:} \@author \\
+			\textbf{Verifica:} \@verificatore \\
+			\textbf{Approvazione:} \@approvatore \\
+			\textbf{Uso:} \@uso \\
+			
+			\vfill
+			\makeatother
+		\end{center}
+	\end{titlepage}
+	
 	\newpage
 	\input{sezioni/Registro_Mod}
 	\newpage
@@ -22,15 +67,15 @@
 	\input{sezioni/Intro}
 	
 	\newpage
-	\section{Processi Primari}
+	\section{Processi primari}
 	\input{sezioni/Primari}
 	
 	\newpage
-	\section{Processi di Supporto}
+	\section{Processi di supporto}
 	\input{sezioni/Supporto}
 	
 	\newpage
-	\section{Processi Organizzativi}
+	\section{Processi organizzativi}
 	\input{sezioni/Organizzativi}
 
 	\newpage
