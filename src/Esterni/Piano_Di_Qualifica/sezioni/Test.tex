@@ -13,9 +13,96 @@ I test si suddividono in quattro categorie:
 	\item \textbf{Test di accettazione}: effettuati assieme al committente, servono a verificare che il sistema sia conforme alle aspettative. In caso di esito positivo il prodotto viene rilasciato.
 \end{itemize}
 
+
+\subsection{Test di unità}
+Questa sezione riporta i test di unità pianificati e/o implementati nei vari componenti dell'applicazione
+
+    \subsubsection{Frontend}
+    Qui vengono riportati i test di unità della componente Frontend\G{} dell'applicazione
+
+    {
+        \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+        \renewcommand{\arraystretch}{1.5}
+        \centering
+        \setlength{\aboverulesep}{0pt}
+        \setlength{\belowrulesep}{0pt}
+        \rowcolors{2}{Arancione!10}{white}
+        \begin{longtable}{C{.3\freewidth} C{.5\freewidth} C{.3\freewidth}}
+        \toprule
+        \rowcolor{Arancione}
+        \textcolor{white}{\textbf{Codice Test}}&
+        \textcolor{white}{\textbf{Descrizione}}&
+        \textcolor{white}{\textbf{Stato}}\\	
+        \toprule
+        \endhead
+
+        TUF01.1 & Verificare che ogni classe del file frontend/src/models.ts
+                abbia un costruttore che costruisca l'oggetto di quella classe nel modo corretto & Superato \\
+
+        TUF01.2 & Verificare che ogni classe del file frontend/src/models.ts
+                supporti nel modo corretto e non ambiguo, come si rischia nel linguaggio di Javascript,
+                gli operatori di uguaglianza e di uguaglianza stretta con oggetti della stessa classe & Superato \\
+
+        TUF01.3 & Verificare che il metodo frontend/src/models.ts/Position.distance
+                ritorni sempre un numero non negativo & Superato \\
+
+        TUF02.1 & Verificare che frontend/src/utils.ts/capitalizeFirstLetter
+                ritorni correttamente una stringa con la prima lettera maiuscola, se presente & Superato \\
+
+        TUF02.2 & Verificare che frontend/src/utils.ts/removeChildren
+                rimuova correttamente gli elementi figli da un elemento Html, se presenti & Superato \\
+
+        TUF03.1 & Verificare che il costruttore di LocationPresenter chiami la funzione LocationPresenter.getInfo & Superato \\
+
+        TUF03.2 & Verificare che la funzione LocationPresenter.getInfo inizializzi correttamente un oggetto Info all'interno di LocationPresenter.info 
+                formattato nel modo giusto nel caso che le API\G{} siano state caricate in tempo, altrimenti ritorna un errore di timeout & Superato \\
+
+        TUF04.1 & Verificare che il costruttore di ListPresenter chiami la funzione ListPresenter.refresh & Superato \\
+
+        TUF04.2 & Verificare che la funzione ListPresenter.refresh inizializzi correttamente una lista non vuota di Location all'interno di ListPresenter.rankedList, 
+                e che queste Location siano valide & Superato \\
+
+        \bottomrule
+        \rowcolor{white}
+        \caption{Tabella dei test di unità del frontend}
+        \end{longtable}
+    }
+ 
+\subsection{Test di integrazione}
+    Questa sezione riporta i test di integrazione tra i vari componenti dell'applicazione
+
+    {
+        \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+        \renewcommand{\arraystretch}{1.5}
+        \centering
+        \setlength{\aboverulesep}{0pt}
+        \setlength{\belowrulesep}{0pt}
+        \rowcolors{2}{Arancione!10}{white}
+        \begin{longtable}{C{.3\freewidth} C{.5\freewidth} C{.3\freewidth}}
+        \toprule
+        \rowcolor{Arancione}
+        \textcolor{white}{\textbf{Codice Test}}&
+        \textcolor{white}{\textbf{Descrizione}}&
+        \textcolor{white}{\textbf{Stato}}\\	
+        \toprule
+        \endhead
+
+        TI01 & Verificare che l'integrazione tra la componente Frontend\G{} e la pagina di login/registrazione gestita da Cognito\G{} (e viceversa) 
+            sia gestita in modo corretto & Non implementato \\
+
+        TI02 & Verificare che l'integrazione tra le classi in frontend/src/models/ e i relativi endpoint dell'API\G{} backend\G{} siano
+            gestiti in modo corretto, gestendo tutte le risposte possibili del backend\G{} & Non implementato \\
+
+        \bottomrule
+        \rowcolor{white}
+        \caption{Tabella dei test di unità del frontend}
+        \end{longtable}
+    }
+
 \subsection{Test di accettazione}
 Questa sezione  riporta i test di accettazione del prodotto, hanno lo scopo di validare il prodotto.
 
+\subsubsection{Test di accettazione}
 
 {
     \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
@@ -116,7 +203,7 @@ Questa sezione  riporta i test di accettazione del prodotto, hanno lo scopo di v
 
 \newpage
 
-\subsection{Tracciamento di Test di Accettazione}
+\subsubsection{Tracciamento di test di accettazione}
 
 {
     \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
@@ -204,8 +291,11 @@ Questa sezione  riporta i test di accettazione del prodotto, hanno lo scopo di v
 
 }
 
-\subsection{Test di Sistema}
+\subsection{Test di sistema}
 \raggedright{I test di sistema dimostrano la totale copertura dei requisiti identificati nel documento \AdR\G.} \\
+
+\subsubsection{Test di sistema}
+
 {
     \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
     \renewcommand{\arraystretch}{1.5}
@@ -258,7 +348,7 @@ Questa sezione  riporta i test di accettazione del prodotto, hanno lo scopo di v
 \end{longtable}
     
 }
-\subsection{Tracciamento Test di Sistema}
+\subsubsection{Tracciamento test di sistema}
 
 {
     \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
@@ -346,7 +436,7 @@ Questa sezione  riporta i test di accettazione del prodotto, hanno lo scopo di v
 
 \newpage
 
-\subsection{Non conformità con le Norme di Progetto}
+\subsection{Non conformità con le norme di progetto}
 {
     \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
     \renewcommand{\arraystretch}{1.5}
@@ -373,7 +463,7 @@ Questa sezione  riporta i test di accettazione del prodotto, hanno lo scopo di v
     \caption{Tabella delle non conformità con le NdP}
 \end{longtable}
 }
-\subsection{Analisi dei Requisiti}
+\subsection{Analisi dei requisiti}
 {
     \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
     \renewcommand{\arraystretch}{1.5}
@@ -396,7 +486,7 @@ Questa sezione  riporta i test di accettazione del prodotto, hanno lo scopo di v
     
     \bottomrule
     \rowcolor{white}
-    \caption{Tabella riguardo l'Analisi dei Requisiti}
+    \caption{Tabella riguardo l'analisi dei requisiti}
 \end{longtable}
     
 }
