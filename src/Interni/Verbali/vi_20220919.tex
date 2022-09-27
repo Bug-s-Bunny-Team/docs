@@ -1,0 +1,85 @@
+\documentclass{classes/base}
+
+\title{Verbale interno}
+\date{2022/09/19}
+\author{\marcob}
+\verificatore{\angela}
+\approvatore{\tommaso}
+
+\renewcommand{\maketitle}{
+    \input{common/titlepage_verbale}
+}
+
+\begin{document}
+    \maketitle
+
+    \section*{Generalità}
+    \begin{itemize}
+        \item \textbf{Ora inizio:} 10:00
+        \item \textbf{Ora fine:} 11:00
+    \end{itemize}
+
+    \section*{Presenze}
+    \begin{itemize}
+    	\item \angela
+        \item \marcob
+        \item \matteo
+        \item \marcov
+        \item \giulio
+        \item \ruth
+        \item \tommaso
+    \end{itemize}
+
+    \section*{Agenda}
+    Valutazione feedback PB e creazione e divisione compiti da svolgere in vista della CA.
+
+    \section*{Resoconto}
+    Identificate modifiche o estensioni da applicare ai documenti.\\
+    Lavoro importante da eseguire: ampliamento test di unità per backend e frontend, e tentativo di
+    implementare quanti test di integrazione, sistema e accettazione possibile (nonostante va
+    fatto notare che, considerando la natura serverless del prodotto, i test di integrazione
+    potrebbero risultare più ardui del previsto).\\
+    Richiesta riunione con l'azienda per assicurarsi di arrivare alla CA con un prodotto qualitativamente valido.
+
+    \section*{Issues aperte}
+    {
+        
+        \newlength{\freewidth}
+        \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
+        \renewcommand{\arraystretch}{1.5}
+        \centering
+        \setlength{\aboverulesep}{0pt}
+        \setlength{\belowrulesep}{0pt}
+        \rowcolors{2}{Arancione!10}{white}
+        \begin{longtable}{C{.17\freewidth} C{.13\freewidth} C{.761\freewidth}}
+            \toprule
+        \rowcolor{Arancione}
+        \textcolor{white}{\textbf{Repository}}&
+        \textcolor{white}{\textbf{Codice}}&
+        \textcolor{white}{\textbf{Descrizione}}\\	
+        \toprule
+        \endhead
+        
+        docs & \#125 & Aggiornamento Manuale Utente \\
+        docs & \#126 & Aggiornamento Specifica Architetturale \\
+        docs & \#127 & Aggiornamento Piano di Qualifica \\
+        docs & \#128 & Aggiornamento Piano di Progetto \\
+        docs & \#129 & Stesura verbale 9 settembre \\
+        docs & \#130 & Completare informazioni riferimenti \\
+        bunnyfood & \#22 & Frontend testing (collegate \#23, \#24, \#25) \\
+        bunnyfood & \#23 & Frontend unit tests (collegata \#22) \\
+        bunnyfood & \#24 & Frontend integration tests (collegata \#22) \\
+        bunnyfood & \#25 & Frontend system tests (collegata \#22) \\
+        bunnyfood & \#26 & Frontend progettare unit tests mancanti \\
+        bunnyfood & \#27 & Frontend implementare unit tests \\
+        bunnyfood & \#28 & Frontend V\&V unit tests \\
+        bunnyfood & \#29 & Backend: unit test scoring \\
+        bunnyfood & \#30 & Backend: unit test sorting \\
+        bunnyfood & \#31 & Backend: migliorare docs api \\
+        bunnyfood & \#32 & Frontend: incapsulamento \\
+
+        \bottomrule
+        \end{longtable}
+    }
+
+\end{document}

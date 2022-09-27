@@ -61,12 +61,121 @@ Questa sezione riporta i test di unità pianificati e/o implementati nei vari co
 
         TUF04.2 & Verificare che la funzione ListPresenter.refresh inizializzi correttamente una lista non vuota di Location all'interno di ListPresenter.rankedList, 
                 e che queste Location siano valide & Superato \\
+        
+        TUF05.1 & Verificare che il costruttore di NavPresenter inizializzi correttamente le routes accessibili all'utente in base allo 
+                stato di login & Superato \\
+        
+        TUF06.1 & Verificare che il costruttore di AppPresenter inizializzi correttamente le routes definite all'interno dell'applicazione 
+                indipendentemente dallo stato di login & Superato \\
+
+        TUF07.1 & Verificare che il costruttore di HomePresenter inizializzi correttamente la visualizzazione in base alle preferenze 
+                dell'utente loggato & Superato \\
+
+        TUF08.1 & Verificare che il costruttore di FollowedPresenter chiami una volta la funzione FollowedPresenter.refresh & Superato \\
+
+        TUF08.2 & Verificare che la funzione FollowedPresenter.refresh modifichi correttamente la lista di profili da visualizzare 
+                e che disabiliti correttamente gli input & Superato \\
+
+        TUF08.3 & Verificare che la funzione FollowedPresenter.removeFollowed gestisca correttamente situazioni di successo 
+                e di errore e che aggiorni la lista di profili da visualizzare dopo che viene eseguita & Superato \\
+
+        TUF08.4 & Verificare che alla distruzione FollowedPresenter cancelli correttamente i timer ancora in esecuzione 
+                e gli errori da esso visualizzati & Superato \\
+
+        TUF09.1 & Verificare che il costruttore di ExplorePresenter chiami una volta la funzione ExplorePresenter.refresh & Superato \\
+
+        TUF09.2 & Verificare che la funzione ExplorePresenter.refresh modifichi correttamente la lista di profili da visualizzare 
+                e che disabiliti correttamente gli input & Superato \\
+
+        TUF09.3 & Verificare che la funzione ExplorePresenter.addProfile gestisca correttamente situazioni di successo 
+                e di errore e che aggiorni la lista di profili da visualizzare dopo che viene eseguita & Superato \\
+
+        TUF09.4 & Verificare che alla distruzione ExplorePresenter cancelli correttamente i timer ancora in esecuzione 
+                e gli errori da esso visualizzati & Superato \\
+
+        TUF10.1 & Verificare che la funzione AddProfilePresenter.search modifichi correttamente il profilo da visualizzare 
+                e che disabiliti correttamente gli input & Superato \\
+
+        TUF10.2 & Verificare che la funzione AddProfilePresenter.addProfile gestisca correttamente situazioni di successo 
+                e di errore e che rimuova i dati della ricerca precedente dopo che viene eseguita & Superato \\
+
+        TUF10.3 & Verificare che alla distruzione AddProfilePresenter cancelli correttamente i timer ancora in esecuzione 
+                e gli errori da esso visualizzati & Superato \\
+
+        TUF11.1 & Verificare che il costruttore di AccountPresenter inizializzi correttamente i dati dell'account da visualizzare & Superato \\
+
+        TUF11.2 & Verificare che AccountPresenter sia responsive ai cambiamenti nei dati dell'account e dello stato di login & Superato \\
+
+        TUF11.3 & Verificare che AccountPresenter.logout effettui il logout locale nel modo corretto 
+                e che reindirizzi alla pagina corretta per il logout della sessione di AWS Cognito\G{} & Non implementabile con l'environment `JSDOM' \\
+
+        TUF11.4 & Verificare che AccountPresenter.changePreference gestisca correttamente situazioni di successo 
+                e di errore mentre disabilita gli input nel modo corretto & Superato \\
+
+        TUF11.5 & Verificare che alla distruzione AccountPresenter cancelli correttamente i timer ancora in esecuzione 
+                e gli errori da esso visualizzati & Superato \\
+
+        TUF12.x & Verificare il corretto funzionamento di MapPresenter & Non Implementato \\
+
+        TUF13.1 & Verificare che locationModel.getInfo ritorni i risultati o gli errori corretti in tutti i casi & Superato \\
+
+        TUF14.1 & Verificare che profilesModel.getFollowed ritorni i risultati o gli errori corretti in tutti i casi & Superato \\
+
+        TUF14.2 & Verificare che profilesModel.removeFollowed ritorni i risultati o gli errori corretti in tutti i casi & Superato \\
+
+        TUF14.3 & Verificare che profilesModel.getMostPopularProfiles ritorni i risultati o gli errori corretti in tutti i casi & Superato \\
+
+        TUF14.4 & Verificare che profilesModel.getProfile ritorni i risultati o gli errori corretti in tutti i casi & Superato \\
+
+        TUF14.5 & Verificare che profilesModel.followProfile ritorni i risultati o gli errori corretti in tutti i casi & Superato \\
+
+        TUF15.1 & Verificare che RequestOptions.getRequestOptions ritorni correttamente le opzioni di ricerca 
+                in ogni caso possibile di login o di parametro account & Superato \\
+
+        TUF15.2 & Verificare che RequestOptions.postRequestOptions ritorni correttamente le opzioni di ricerca 
+                in ogni caso possibile di login o di parametro account & Superato \\
+
+        TUF16.1 & Verificare che resultsModel aggiorni correttamente il SessionStorage al cambiamento della lista di luoghi & Superato \\
+
+        TUF16.2 & Verificare che resultsModel.getRankedList ritorni i risultati o gli errori corretti in tutti i casi & Superato \\
+
+        TUF16.3 & Verificare che resultsModel.getById trovi correttamente tutti i luoghi presenti nella lista 
+                e che ritorni un valore nullo in caso che non sia presente & Superato \\
+
+        TUF17.1 & Verificare che accountModel aggiorni correttamente il SessionStorage al cambiamento dell'account & Superato \\
+
+        TUF17.2 & Verificare che accountModel.createAccount inizializzi correttamente l'account a partire dai token cifrati 
+                ritornati dalla pagina gestita di AWS Cognito\G{} & Superato \\
+
+        TUF17.3 & Verificare che accountModel.getAccount ritorni correttamente l'account sia in caso 
+                che l'utente sia loggato che non (ritorna null in questo caso) & Superato \\
+
+        TUF17.4 & Verificare che accountModel.cambiaPreferenza ritorni i risultati o gli errori corretti in tutti i casi & Superato \\
+
+        TUF17.5 & Verificare che accountModel.logout effettui correttamente il logout locale, 
+                cancellando l'account dalla memoria & Superato \\
 
         \bottomrule
         \rowcolor{white}
         \caption{Tabella dei test di unità del frontend}
         \end{longtable}
     }
+    \subsubsection{Backend}
+    I test effettuati nel backend sono stati primariamente incentrati sulla verifica
+    delle singole funzionalità atomiche.\\
+    Si è raggiunto un buon grado di percentuale di tests passati e una discreta code coverage:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale = 0.4]{sezioni/Images/backend_test_passed.png}
+        \caption{Percentuale test passati}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale = 0.3]{sezioni/Images/backend_code_coverage.png}
+        \caption{Code coverage}
+    \end{figure}
+    
  
 \subsection{Test di integrazione}
     Questa sezione riporta i test di integrazione tra i vari componenti dell'applicazione
@@ -91,13 +200,22 @@ Questa sezione riporta i test di unità pianificati e/o implementati nei vari co
             sia gestita in modo corretto & Non implementato \\
 
         TI02 & Verificare che l'integrazione tra le classi in frontend/src/models/ e i relativi endpoint dell'API\G{} backend\G{} siano
-            gestiti in modo corretto, gestendo tutte le risposte possibili del backend\G{} & Non implementato \\
+            gestiti in modo corretto, gestendo tutte le risposte possibili del backend\G{} & Superato assieme ai TUF dal 13.x al 17.x (test separati e paralleli a questi) \\
 
         \bottomrule
         \rowcolor{white}
         \caption{Tabella dei test di unità del frontend}
         \end{longtable}
     }
+
+    Una nota sul TI02 è che ogni unit test che testa una funzione che fa una richiesta al server passa automaticamente per un mock server implementato nella cartella dedicata agli integration test `frontend/src/test/integration'
+    che fa automaticamente i controlli sulla richiesta inviata dal model utilizzando la specifica OpenApi scaricata dinamicamente all'ultima versione dal server statico del Frontend.
+
+    Controllando il fatto che la richiesta aderisca alla specifica API del backend (e successivamente anche la risposta, garantendo così risposte veritiere nonostante siano `falsificate'), si può testare con molto buona fedeltà
+    l'integrazione tra Frontend e Backend tramite l'API. 
+    
+    Stessa cosa avviene falsificando le Google Maps API, garantendo così un integration testing locale (eccetto il download della specifica API) e un developement server 
+    gratuito e veritiero utilizzando quasi lo stesso mock server utilizzato per il testing.
 
 \subsection{Test di accettazione}
 Questa sezione  riporta i test di accettazione del prodotto, hanno lo scopo di validare il prodotto.

@@ -9,7 +9,7 @@ def __init__(self):
     self._rekognition = boto3.client(service_name='rekognition')
     self._comprehend = boto3.client(service_name='comprehend')
 \end{lstlisting}
-che si occupa di fornire degli handles sotto forma di oggetti per accedere ai servizi AWS Rekognition\G{}
+Che si occupa di fornire degli handles sotto forma di oggetti per accedere ai servizi AWS Rekognition\G{}
 e Comprehend\G{} (\verb+self._rekognition+ e \verb+self._comprehend+).\\
 \verb+BasicScoringService+ invece definisce e implementa le seguenti funzioni:
 
