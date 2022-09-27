@@ -1,0 +1,120 @@
+\documentclass{articoletteracdp}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+\usepackage{eurosym}
+\usepackage{tabularx} %tabelle larghe
+
+\input{common/variables}
+
+\address{
+	\begin{figure}[t!]
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=.5\linewidth]{assets/unipd}
+		\end{minipage}%
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=.5\linewidth]{assets/logo}
+		\end{minipage}
+	\end{figure}
+	\vspace{0.2cm}
+	Ingegneria del Software\\
+	Gruppo: \textit{\teamname} \\
+	Email: \href{mailto:bugsbunnyteam@protonmail.com}{\textit{\email}}
+}
+
+\begin{document}
+	\begin{letter}{
+			Prof. Tullio Vardanega \\
+			Prof. Riccardo Cardin \\
+			Università degli Studi di Padova \\
+			Dipartimento di Matematica \\
+			Via Trieste, 63 \\
+			35121 Padova
+		}
+
+		\opening{Egregio Professore Tullio Vardanega, \newline Egregio Professore Riccardo Cardin,}
+
+		\begin{quotation}
+			\noindent
+			Con la presente il gruppo \textit{\teamname} intende comunicarVi ufficialmente la partecipazione
+			alla terza Revisione di Avanzamento (\textit{CA}), con lo scopo di presentare il
+			prodotto da Voi commissionato e proposto dall'azienda \textit{\proponente}. \newline
+			Al seguente link: \href{\github}{\textit{\github}} è presente la documentazione necessaria,
+			di seguito esplicitamente catalogata: 
+			\vspace{0.3cm}
+
+			\begin{center}
+				\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+				\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+				\textbf{Documenti Esterni}\\ \vspace{0.25cm}
+				\begin{tabular}{L{4.2cm} | R{5cm}}
+					\PdP{} \textit{v3.0.0} & \PdQ{} \textit{v3.0.0} \\
+					\MU{} \textit{v2.0.0} & \SA{} \textit{v2.0.0} \\
+					\Glo & Verbale Esterno 23-09-2022 \\
+				\end{tabular} 
+
+				\vspace{0.5cm}
+				\textbf{Documenti Interni}\\ \vspace{0.25cm}
+				\begin{tabular}{L{4.2cm} | R{4.2cm}}
+					\NdP{} \textit{v2.0.0} & Verbale Interno 19-09-2022 \\
+				\end{tabular}
+			\end{center}
+        \end{quotation}
+
+		\begin{quotation}
+			Nel seguente repository è possibile trovare il codice sorgente del prodotto:
+			\begin{center}
+				\href{https://github.com/Bug-s-Bunny-Team/bunnyfood}{\textit{https://github.com/Bug-s-Bunny-Team/bunnyfood}}
+			\end{center}
+		\end{quotation}
+		
+		\newpage
+
+        \begin{quotation}
+			\noindent
+			Di seguito si riportano i nomi dei componenti del gruppo e i rispettivi numeri di matricola:
+
+				\begin{center}
+					\setlength{\extrarowheight}{.75ex}
+					\begin{tabular}{ c | c }
+						\textbf{Nominativo}           & \textbf{Matricola} \\
+						\hline
+
+						Arena Angela{}                & 1226299{}          \\
+						Bellò Marco{}                 & 1142874{}          \\
+						Bousapnamene Ruth Genevieve{} & 1192088{}          \\
+						Di Fant Tommaso{}             & 1217932{}          \\
+						Tossuto Matteo{}              & 1193493{}          \\
+						Volpato Marco{}               & 1224826{}          \\
+						Zanatta Giulio{}              & 1163163{}          \\
+
+						\hline
+					\end{tabular}
+				\end{center}
+			
+		\end{quotation}
+
+		\begin{quotation}
+			\noindent
+			Il gruppo consegna il prodotto il
+			2022-09-27 come indicato nel \PdP{} \textit{v3.0.0}.
+		\end{quotation}
+
+		\vspace{0.5cm}
+		Rimaniamo a Vostra completa disposizione per qualsiasi chiarimento.
+
+		\vspace{0.5cm}
+		\closing{Cordiali Saluti,}
+		\begin{figure}[!h]
+			\begin{flushright}
+				%\includegraphics[width=0.2\linewidth]{sezioni/firma_mv.png}
+			\end{flushright}
+			\begin{flushright}
+				\rule{100pt}{0.1pt}\\
+				Firma Responsabile
+			\end{flushright}
+		\end{figure}
+	\end{letter}
+\end{document}
