@@ -1,6 +1,6 @@
 In questa sezione sono classificati ed assegnati i requisiti seguendo la nomenclatura specificata nelle \NdP\G{}.
 
-\subsection{Requisiti Funzionali}
+\subsection{Requisiti funzionali}
 
 {
       \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
@@ -20,37 +20,49 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       \endhead
       
       RF1 & Obbligatorio & L'utente deve poter registrarsi inserendo i suoi dati personali (email, nome utente e password) & UC1 \\
-      RF2 & Obbligatorio & L'utente deve poter effettuare il login inserendo i dati personali richiesti (nome utente e password) & UC5 \\
-      RF3 & Obbligatorio & L'utente deve poter effettuare il logout e uscire dalla sessione & UC9 \\
+      RF2 & Obbligatorio & L'utente deve poter effettuare il login inserendo i dati personali richiesti (nome utente e password, con possibilità di memorizzare la sessione) & UC6, UC6.1, UC6.2, UC6.3 \\
+      RF3 & Obbligatorio & L'utente deve poter effettuare il logout e uscire dalla sessione & UC10 \\
       RF4 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se la mail inserita durante la fase di registrazione è già presente nel sistema  & UC1.1 \\
       RF5 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se il nome utente inserito durante la fase di registrazione è già presente nel sistema & UC1.2 \\
       RF6 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se la password inserita durante la fase di registrazione non presenta le specifiche richieste & UC1.3 \\
-      RF7 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se il nome utente inserito durante la fase di autenticazione è errato & UC5, UC5.1 \\
-      RF8 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se la email inserita durante la fase di autenticazione è errata & UC6\\
-      RF9 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se la password inserita durante la fase di autenticazione è errata & UC5, UC5.2 \\
-      RF10 & Obbligatorio & L'utente deve poter modificare la propria password inserendo la vecchia password e confermando la nuova & UC10 \\
-      RF11 & Obbligatorio & All'utente compare un messaggio d'errore se durante il cambio password, la password attuale inserita non è corretta & UC11 \\
-      RF12 & Obbligatorio & All'utente compare un messaggio d'errore se durante il cambio password, la nuova password inserita non rispetta le specifiche & UC12 \\
-      RF13 & Obbligatorio & All'utente compare un messaggio d'errore se durante il cambio password, la ripetizione della nuova password inserita non è uguale alla password del campo precedente & UC13 \\
-      RF14 & Obbligatorio & L'utente deve poter autenticarsi automaticamente, senza inserire le credenziali & UC8\\
-      RF15 & Obbligatorio & L'utente deve poter visualizzare la guida in formato mappa o formato lista & UC14, UC14.1, UC14.2, UC14.3, UC14.4 \\
-      RF16 & Obbligatorio & L'utente deve poter visualizzare la mappa globale se non ha nessun profilo social seguito & UC14, UC14.1 \\
-      RF17 & Obbligatorio & L'utente deve poter visualizzare la lista personalizzata se segue dei profili social & UC14, UC14.4 \\
-      RF18 & Obbligatorio & L'utente deve poter visualizzare la mappa personalizzata se segue dei profili social & UC14, UC14.3 \\
-      RF19 & Obbligatorio & L'utente deve poter aggiungere dei profili social da seguire, dai quali verrà generata la guida & UC15 \\
-      RF20 & Obbligatorio & L'utente deve poter visualizzare un messaggio di errore nel caso in cui il nome del profilo utente inserito non esista nel sistema & UC16 \\
-      RF21 & Obbligatorio & L'utente deve poter visualizzare un messaggio di errore nel caso in cui il nome del profilo utente ricercato si trova già nei profili seguiti & UC17 \\
-      RF22 & Obbligatorio & L'utente deve poter rimuovere un profilo dalla lista di quelli che segue & UC18 \\
-      RF23 & Obbligatorio & L'utente può esplorare gli utenti più seguiti dagli altri utenti di questa piattaforma & UC19 \\
-      RF24 & Obbligatorio & L'utente deve poter scegliere la vista predefinita per visualizzare la guida & UC20 \\
-      RF25 & Obbligatorio & L'utente deve poter scegliere di mettere la mappa come vista predefinita & UC20, UC20.1 \\
-      RF26 & Obbligatorio & L'utente deve poter scegliere di mettere la mappa come vista predefinita & UC20, UC20.2 \\	   
+      RF7 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se la email inserita durante la fase di autenticazione è errata & UC7\\
+      RF8 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se la password inserita durante la fase di autenticazione è errata & UC8 \\
+      RF9 & Obbligatorio & L'utente deve poter modificare la propria password inserendo la vecchia password, ripetendo la nuova password e confermando la modifica & UC11, UC11.1, UC11.2, UC11.3, UC11.4\\
+      RF10 & Obbligatorio & All'utente compare un messaggio d'errore se durante il cambio password, la password attuale inserita non è corretta & UC12 \\
+      RF11 & Obbligatorio & All'utente compare un messaggio d'errore se durante il cambio password, la nuova password inserita non rispetta le specifiche & UC13 \\
+      RF12 & Obbligatorio & All'utente compare un messaggio d'errore se durante il cambio password, la ripetizione della nuova password inserita non è uguale alla password del campo precedente & UC14 \\
+      RF13 & Obbligatorio & L'utente deve poter autenticarsi automaticamente, senza inserire le credenziali & UC9\\
+      RF14 & Obbligatorio & L'utente deve poter visualizzare la guida in formato mappa o formato lista & UC15, UC15.1, UC15.2, UC15.3, UC15.4 \\
+      RF15 & Obbligatorio & L'utente deve poter visualizzare la mappa o lista globale se non ha nessun profilo social seguito & UC15, UC16, UC17 \\
+      RF16 & Obbligatorio & L'utente deve poter visualizzare la lista personalizzata se segue dei profili social & UC15, UC19 \\
+      RF17 & Obbligatorio & L'utente deve poter visualizzare la mappa personalizzata se segue dei profili social & UC15, UC18 \\
+      RF18 & Obbligatorio & L'utente deve poter aggiungere dei profili social da seguire, dai quali verrà generata la guida & UC20 \\
+      RF19 & Obbligatorio & L'utente deve poter visualizzare un messaggio di errore nel caso in cui il nome del profilo utente inserito per seguirlo, non esista nel sistema & UC21 \\
+      RF20 & Obbligatorio & L'utente deve poter visualizzare un messaggio di errore nel caso in cui il nome del profilo utente ricercato si trova già nei profili seguiti & UC22 \\
+      RF21 & Obbligatorio & L'utente deve essere in grado di rimuovere (smettere di seguire) un qualsiasi profilo tra i presenti nella lista di quelli che sta seguendo  & UC23 \\
+      RF22 & Obbligatorio & L'utente può visualizzare quali sono gli utenti più seguiti dagli altri profili della piattaforma & UC24, UC24.1, UC24.2, UC24.3 \\
+      RF23 & Obbligatorio & L'utente deve essere in grado di settare il metodo di visualizzazione predefinita per visionare la guida & UC25 \\
+      RF24 & Obbligatorio & L'utente deve essere in grado di settare la mappa come vista predefinita della guida & UC26 \\
+      RF25 & Obbligatorio & L'utente deve essere in grado di settare la lista come vista predefinita della guida & UC27 \\	
+      RF26 & Obbligatorio & La piattaforma deve fornire la possibilità di monitorare le recensioni partendo da un luogo indicato & Capitolato \\
+      RF27 & Obbligatorio & La piattaforma deve permettere di indicare profili social da seguire per creare la guida & Capitolato \\
+      RF28 & Obbligatorio & I profili social da seguire devono provenire dalla piattaforma Instagram\G{} & Capitolato \\   
+      RF29 & Obbligatorio & Il backend\G{} deve utilizzare le informazioni testuali di post derivati da profili social per trarre informazioni su un luogo fisico & Capitolato \\
+      RF30 & Molto Desiderabile & Il backend\G{} dovrebbe utilizzare le informazioni grafiche e visuali di post derivati da profili social per trarre informazioni su un luogo fisico & Capitolato \\
+      RF31 & Obbligatorio & Deve essere costruito un crawler/scraper\G{} in grado di accedere o scaricare dati dei post da profili social & Capitolato \\
+      RF32 & Obbligatorio & Il crawler\G{} deve eludere i servizi anti-bot dei vari social & Capitolato \\
+      RF33 & Obbligatorio & L'utente deve poter visualizzare la lista di profili che segue & UC28 \\
+      RF34 & Obbligatorio & L'utente, inserendo il proprio username, codice di verifica inviato all'email personale, una nuova password e la ripetizione di essa, deve poter cambiare la password nel caso in cui l'avesse dimenticata & UC29, UC 29.1, UC29.2, UC29.3, UC29.4 \\
+      RF35 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se lo username inserito non esiste & UC30 \\
+      RF36 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se il codice inserito non corrisponde a quello inviato all'email & UC31 \\
+      RF37 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se la nuova password inserita non rispetta le specifiche richieste & UC32 \\
+      RF38 & Obbligatorio & All'utente viene mostrato un messaggio d'errore se la ripetizione della nuova password non corrisponde alla password inserita precedentemente & UC33 \\
       \bottomrule
       \rowcolor{white} 
       \caption{Tabella dei requisiti funzionali}
       \end{longtable}
 }
-\subsection{Requisiti di Vincolo}
+\subsection{Requisiti di vincolo}
 {
       \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
       \renewcommand{\arraystretch}{1.5}
@@ -67,23 +79,15 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       \textcolor{white}{\textbf{Fonti}}\\	
       \toprule
       \endhead
-      
-      RV1 & Obbligatorio & La piattaforma deve fornire la possibilità di monitorare le recensioni partendo da un luogo indicato & Capitolato \\
-      RV2 & Obbligatorio & La piattaforma deve permettere di indicare profili social da seguire per creare la guida & Capitolato \\
-      RV3 & Obbligatorio & I profili social da seguire devono provenire dalle piattaforme Instagram\G{} e TikTok\G{} & Capitolato \\
-      RV4 & Obbligatorio & Il backend\G{} deve essere implementato secondo un'architettura serverless\G{} & Capitolato \\
-      RV5 & Obbligatorio & Il backend\G{} deve utilizzare le funzionalità di machine learning fornite dai servizi AWS\G{} & Capitolato \\
-      RV6 & Obbligatorio & La piattaforma deve essere fruibile da web browser. In particolare dovrà essere garantita la compatibilità con le versioni più recenti dei browser \textit{Chrome} e \textit{Firefox}. & Capitolato \\
-      RV7 & Obbligatorio & Il backend\G{} deve utilizzare le informazioni testuali di post derivati da profili social per trarre informazioni su un luogo fisico & Capitolato \\
-      RV8 & Molto Desiderabile & Il backend\G{} dovrebbe utilizzare le informazioni grafiche e visuali di post derivati da profili social per trarre informazioni su un luogo fisico & Capitolato \\
-      RV9 & Obbligatorio & Deve essere costruito un crawler/scraper\G{} in grado di accedere o scaricare dati dei post da profili social & Capitolato \\
-      RV10 & Obbligatorio & Il crawler\G{} deve eludere i servizi anti-bot dei vari social & Capitolato \\
+      RV1 & Obbligatorio & Il backend\G{} deve essere implementato secondo un'architettura serverless\G{} & Capitolato \\
+      RV2 & Obbligatorio & Il backend\G{} deve utilizzare le funzionalità di machine learning fornite dai servizi AWS\G{} & Capitolato \\
+      RV3 & Obbligatorio & La piattaforma deve essere fruibile da web browser. In particolare dovrà essere garantita la compatibilità con le versioni più recenti dei browser \textit{Chrome} e \textit{Firefox}. & Capitolato \\
       \bottomrule
       \rowcolor{white} 
       \caption{Tabella dei requisiti di vincolo}
       \end{longtable}
 }
-\subsection{Requisiti di Qualità}
+\subsection{Requisiti di qualità}
 {
       \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
       \renewcommand{\arraystretch}{1.5}
@@ -118,7 +122,7 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
 }
 
 \newpage
-\subsection{Requisiti Prestazionali}
+\subsection{Requisiti prestazionali}
 {
       \setlength{\freewidth}{\dimexpr\textwidth-10\tabcolsep}
       \renewcommand{\arraystretch}{1.5}
@@ -137,14 +141,14 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       \endhead
       
       RP1 & Desiderabile & Scegliere i servizi di AWS\G{} che richiedono scambio dati nelle stesse zone geografiche & ve\_20220516 \\
-      RP2 & Desiderabile & Il crawler\G/scraper\G{} dovrebbe essere efficiente e sfruttare al meglio vari servizi, come l'architettura serverless\G{} e lo spazio di archiviazione Amazon S3\G{} & Capitolato \\	   
+      RP2 & Desiderabile & Il crawler\G/scraper\G{} deve impiegare un tempo inferiore ad 1 minuto per eseguire le proprie operazioni & Capitolato \\	   
       \bottomrule
       \rowcolor{white} 
       \caption{Tabella dei requisiti prestazionali}
       \end{longtable}
 }
 \subsection{Tracciamento}
-\subsubsection{Fonte - Requisiti}
+\subsubsection{Fonte - requisiti}
 {
       \setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
       \renewcommand{\arraystretch}{1.5}
@@ -160,7 +164,7 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       \toprule
       \endhead
       
-      Capitolato & RV1, RV2, RV3, RV4, RV5, RV6, RV7, RV8, RV9, RV10,
+      Capitolato & RV1, RV2, RV3, RF27, RF28, RF29, RF30, RF31, RF32, RF33,
                    RQ3, RQ4, RQ5, RQ6, RQ7, RQ8, RQ9, RQ10,
                    RP2\\
       UC1 & RF1\\
@@ -170,42 +174,59 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       UC2 & Verbale interno 20/05/2022\\
       UC3 & Verbale interno 20/05/2022\\
       UC4 & Verbale interno 20/05/2022\\
-      UC5 & RF2, RF7, RF9\\
-      UC5.1 & RF7\\
-      UC5.2 & RF9\\
-      UC5.3 & Discussione interna\\
-      UC6 & RF8\\
-      UC7 & RF14\\
-      UC8 & RF14\\
-      UC9 & RF3\\
-      UC10 & RF10\\
-      %UC10.1 & BOH\\
-      %UC10.2 & BOH\\
-      %UC10.3 & BOH\\
-      %UC10.4 & BOH\\
-      UC11 & RF11\\
-      UC12 & RF12\\
-      UC13 & RF13\\
-      UC14 & RF15, RF16, RF17, RF18\\
-      UC14.1 & RF15, RF16\\
-      UC14.2 & RF15, RF16\\
-      UC14.3 & RF15, RF18\\
-      UC14.4 & RF15, RF17\\
-      UC15 & RF19\\
-      UC16 & RF20\\
-      UC17 & RF21\\
-      UC18 & RF22\\
-      UC19 & RF23\\
-      UC20 & RF24, RF25, RF26\\
-      UC20.1 & RF25\\
-      UC20.2 & RF26\\		
+      UC5 & RF2, RF13\\
+      UC6 & RF2 \\
+      UC6.1 & RF2\\
+      UC6.2 & RF2\\
+      UC6.3 & RF2\\
+      UC7 & RF7 \\
+      UC8 & RF8 \\
+      UC10 & RF3 \\
+      UC11 & RF9\\
+      UC11.1 & RF9 \\
+      UC11.2 & RF9 \\
+      UC11.3 & RF9 \\
+      UC11.4 & RF9 \\
+      UC12 & RF10\\
+      UC13 & RF11\\
+      UC14 & RF12\\
+      UC15 & RF14, RF15 \\
+      UC15.1 & RF14 \\
+      UC15.2 & RF14 \\
+      UC15.3 & RF14\\
+      UC15.4 & RF14\\
+      UC16 & RF15\\
+      UC17 & RF15\\
+      UC18 & RF17\\
+      UC19 & RF16\\
+      UC20 & RF18\\
+      UC21 & RF19\\
+      UC22 & RF20\\
+      UC23 & RF21\\
+      UC24 & RF22\\
+      UC24.1 & RF22\\
+      UC24.2 & RF22\\
+      UC24.3 & RF22\\
+      UC25 & RF23 \\
+      UC26 & RF24 \\
+      UC27 & RF25 \\
+      UC28 & RF33 \\
+      UC29 & RF34 \\
+      UC29.1 & RF34 \\
+      UC29.2 & RF34 \\
+      UC29.3 & RF34 \\
+      UC29.4 & RF34 \\
+      UC30 & RF35 \\
+      UC31 & RF36 \\
+      UC32 & RF37\\
+      UC33 & RF38\\
       \bottomrule
       \rowcolor{white} 
       \caption{Tabella fonte - requisiti}
       \end{longtable}
 }
 \newpage
-\subsubsection{Requisito - Fonte}
+\subsubsection{Requisito - fonte}
 {
       \setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
       \renewcommand{\arraystretch}{1.5}
@@ -222,42 +243,46 @@ In questa sezione sono classificati ed assegnati i requisiti seguendo la nomencl
       \endhead
       
       RF1 & UC1\\
-      RF2 & UC5\\
-      RF3 & UC9\\
+      RF2 & UC5, UC6, UC6.1, UC6.2, UC6.3\\
+      RF3 & UC10\\
       RF4 & UC1.1\\
       RF5 & UC1.2\\
       RF6 & UC1.3\\
-      RF7 & UC5, UC5.1\\
-      RF8 & UC6\\
-      RF9 & UC5, UC5.2\\
-      RF10 & UC10\\
-      RF11 & UC11\\
-      RF12 & UC12\\
-      RF13 & UC13\\
-      RF14 & UC7\\
-      RF15 & UC14, UC14.1, UC14.2, UC14.3, UC14.4\\
-      RF16 & UC14, UC14.1, UC14.2\\
-      RF17 & UC14, UC14.4\\
-      RF18 & UC14, UC14.3\\
-      RF19 & UC15\\
-      RF20 & UC16\\
-      RF21 & UC17\\
-      RF22 & UC18\\
-      RF23 & UC19\\
-      RF24 & UC20\\
-      RF25 & UC20, UC20.1\\
-      RF26 & UC20, UC20.2\\
-
+      RF7 & UC7\\
+      RF8 & UC8\\
+      RF9 & UC11, UC11.1, UC11.2, UC11.3, UC11.4\\
+      RF10 & UC12\\
+      RF11 & UC13\\
+      RF12 & UC14\\
+      RF13 & UC9\\
+      RF14 & UC15, UC15.1, UC15.2, UC15.3, UC15.4\\
+      RF15 & UC15, UC16, UC17 \\
+      RF16 & UC15, UC19\\
+      RF17 & UC15, UC18 \\
+      RF18 & UC20\\
+      RF19 & UC21\\
+      RF20 & UC22\\
+      RF21 & UC23\\
+      RF22 & UC24, UC24.1, UC24.2, UC24.3\\
+      RF23 & UC25\\
+      RF24 & UC26\\
+      RF25 & UC27\\
+      RF26 & Capitolato\\
+      RF27 & Capitolato\\
+      RF28 & Capitolato\\
+      RF29 & Capitolato\\
+      RF30 & Capitolato\\
+      RF31 & Capitolato\\
+      RF32 & Capitolato\\
+      RF33 & UC28\\
+      RF34 & UC29, UC29.1, UC29.2, UC29.3, UC29.4\\
+      RF35 & UC30\\
+      RF36 & UC31\\
+      RF37 &UC32\\
+      RF38 &UC33\\
       RV1 & Capitolato\\
       RV2 & Capitolato\\
       RV3 & Capitolato\\
-      RV4 & Capitolato\\
-      RV5 & Capitolato\\
-      RV6 & Capitolato\\
-      RV7 & Capitolato\\
-      RV8 & Capitolato\\
-      RV9 & Capitolato\\
-      RV10 & Capitolato\\
 
       %RQ1\\
       %RQ2\\
