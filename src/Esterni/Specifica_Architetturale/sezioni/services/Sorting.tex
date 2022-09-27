@@ -1,6 +1,5 @@
 \subsubsection{Descrizione generale}
-La classe \verb+SorterService+ si occupa del servizio di sorting di uno o più post: innanzitutto fornisce l'entry point per sfruttare il servizio Amazon AWS Rekognition\G, dopo di che sono implementate tutte le funzioni contenenti l'effettiva algoritmica di sorting per il calcolo del punteggio del post dalle sue immagini.
-
+La classe \verb+SorterService+ si occupa del servizio di sorting di uno o più post: innanzitutto fornisce l'entry point per sfruttare il servizio Amazon AWS Rekognition\G, dopo di che sono implementate tutte le funzioni contenenti l'effettiva algoritmica di sorting per il calcolo del punteggio del post dalle sue immagini.\\
 Più nello specifico, \verb+SorterService+ implementa:
 \begin{lstlisting}[language=Python]
 def __init__(self):
@@ -9,7 +8,7 @@ def __init__(self):
         region_name=aws_region
     )
 \end{lstlisting} 
-che si occupa di fornire un handle sotto forma di oggetto per accedere al servizio AWS Rekognition
+Che si occupa di fornire un handle sotto forma di oggetto per accedere al servizio AWS Rekognition
 (\verb+self._rekognition+). 
 Poi definisce e implementa le seguenti funzioni:
 \begin{itemize}
@@ -142,7 +141,7 @@ if self.list_images:
     if self.imageScore:
         self.imageScore = self.imageScore / count
 \end{lstlisting}
-dove lo score delle singole immagini viene calcolato da \verb+calculate_score+:
+Dove lo score delle singole immagini viene calcolato da \verb+calculate_score+:
 \begin{lstlisting}[language=Python]
 if self.emotions:
     value_sum = 0.0
