@@ -1,15 +1,12 @@
 \subsection{Introduzione}
-Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati identificati dal gruppo \teamname{} come delle potenziali funzionalità dell'applicazione.
+Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{}, che sono stati identificati dal gruppo \teamname{}, come potenziali funzionalità dell'applicazione.
 
 \subsection{Attori}
 \begin{itemize}
-    \item \textbf{Utente non registrato}: 
-    è un utente che non ha ancora effettuato la registrazione presso l'applicativo.
-    Non possiede credenziali per effettuare l'autenticazione presso la piattaforma e non ha accesso a nessuna funzionalità dell'applicazione;
     \item \textbf{Utente non autenticato}: 
-    è un utente che ancora deve autenticarsi nell'applicazione. Può essere in possesso di credenziali di accesso oppure no;
+    è un utente che deve ancora autenticarsi nell'applicazione. Può essere in possesso di credenziali di accesso oppure no. Ha accesso ad un sottoinsieme di funzionalità dell'applicazione;
     \item \textbf{Utente autenticato}:
-    è un utente che ha effettuato l'autenticazione della piattaforma ed ha accesso alle funzionalità di essa.
+    è un utente che ha effettuato l'autenticazione della piattaforma ed ha accesso a tutte le funzionalità di essa.
 \end{itemize}
 
 \begin{figure}[!h]
@@ -28,7 +25,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve poter avere la possibilità di creare un account personale.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -58,7 +55,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsubsection{UC1.1 - Inserimento email}
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve avere la possibilità di inserire l'email.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -72,7 +69,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsubsection{UC1.2 - Inserimento nuovo nome utente}
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve avere la possibilità di creare un nuovo nome utente.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -85,7 +82,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsubsection{UC1.3 - Inserimento nuova password}
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve avere la possibilità di creare una nuova password.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -99,7 +96,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsection{UC2 - Visualizzazione errore di inserimento email in registrazione}
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve essere notificato con un errore nel caso in cui le informazioni inserite nel campo email siano invalide.
     \item \textbf{Scenario}: l'utente visualizza un messaggio di errore.
     \item \textbf{Precondizioni}: l'utente inserisce una mail non valida nell'apposito input box.
@@ -108,7 +105,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsection{UC3 - Visualizzazione errore di inserimento nome utente in registrazione}
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve essere notificato con un errore nel caso in cui venga inserito un nome utente non valido.
     \item \textbf{Scenario}: l'utente visualizza un messaggio di errore.
     \item \textbf{Precondizioni}: l'utente inserisce un nome utente non valido nell'apposito input box.
@@ -117,7 +114,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsection{UC4 - Visualizzazione errore di inserimento password in registrazione}
 \begin{itemize}
-    \item \textbf{Attore}: utente non registrato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve essere notificato con un errore nel caso in cui inserisca una password non valida durante la fase di registrazione.
     \item \textbf{Scenario}: l'utente visualizza un messaggio di errore.
     \item \textbf{Precondizioni}: l'utente inserisce una password non valida nell'apposito input box.
@@ -131,7 +128,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \caption{UC5 - Login}
 \end{figure}
 \begin{itemize}
-    \item \textbf{Attore}: l'utente non è autenticato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente deve poter autenticarsi e accedere al proprio account.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -146,7 +143,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 \subsection{UC6 - Login manuale}
 
 \begin{itemize}
-    \item \textbf{Attore}: l'utente non è autenticato.
+    \item \textbf{Attore}: utente non autenticato.
     \item \textbf{Descrizione}: l'utente accedendo con l'account personale, deve poter autenticarsi.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -200,15 +197,6 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente ha compilato il campo relativo il nome utente.
 \end{itemize}
 
-\subsubsection{UC6.3 Memorizzazione sessione}
-\begin{itemize}
-    \item \textbf{Attore}: utente non autenticato.
-    \item \textbf{Descrizione}: l'utente deve poter memorizzare la sessione.
-    \item \textbf{Scenario}: l'utente spunta la casella per mantenere memorizzata la sessione.
-    \item \textbf{Precondizioni}: l'utente effettua l'attività di autenticazione.
-    \item \textbf{Postcondizioni}: l'utente ha chiesto che la sessione venga memorizzata.
-\end{itemize}
-
 \subsection{UC7 - Visualizzazione errore di inserimento mail in autenticazione}
 \begin{itemize}
     \item \textbf{Attore}: utente non autenticato.
@@ -243,7 +231,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsection{UC10 - Logout}
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: l'utente deve poter uscire dalla sessione.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -256,7 +244,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 \end{itemize}
 
 \subsection{UC11 - Modifica password}
-
+\textbf{Questo caso d'uso non è più implementato, è stato rimpiazzato con UC29 - Password dimenticata.}
 \begin{figure}[H]
     \includegraphics[width=15cm]{sezioni/Images/UC11.png}
     \centering
@@ -264,7 +252,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: l'utente deve poter modificare l'attuale password, con la quale effettua il login.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -292,7 +280,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsubsection{UC11.1 - Inserimento password attuale} 
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: l'utente deve inserire la password attuale durante la sessione di “modifica password”.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -307,7 +295,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsubsection{UC11.2 - Inserimento nuova password}
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: durante l'attività di modifica della password l'utente deve poter inserire la nuova password.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -321,7 +309,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsubsection{UC11.3 - Inserimento ripetizione nuova password}
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: durante l'attività di modifica password l'utente deve poter inserire la ripetizione della nuova password.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -335,7 +323,7 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \subsubsection{UC11.4 - Conferma modifica password}
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: durante l'attività di modifica password l'utente deve poter confermare la nuova password.
     \item \textbf{Scenario}: l'utente conferma la nuova password inserita. 
     \item \textbf{Precondizioni}: l'utente svolge la sessione di modifica password.
@@ -343,8 +331,10 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 \end{itemize}
 
 \subsection{UC12 - Visualizzazione errore di inserimento password attuale}
+\textbf{Questo caso d'uso non è più implementato.}
+
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: durante l'attività di modifica password l'utente deve ricevere un messaggio d'errore se l'inserimento della password attuale non è andato a buon fine.
     \item \textbf{Scenario}: l'utente legge un messaggio d'errore. 
     \item \textbf{Precondizioni}: l'utente svolge la sessione di modifica password e la password attuale inserita non è corretta.
@@ -352,8 +342,10 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 \end{itemize}
 
 \subsection{UC13 - Visualizzazione errore di inserimento nuova password non valida}
+\textbf{Questo caso d'uso non è più implementato.}
+
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: durante l'attività di modifica password l'utente deve ricevere un messaggio d'errore se l'inserimento di una nuova password non è valida.
     \item \textbf{Scenario}: l'utente legge un messaggio d'errore. 
     \item \textbf{Precondizioni}: l'utente svolge la sessione di modifica password e la nuova password inserita non è valida.
@@ -362,8 +354,10 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 \end{itemize}
 
 \subsection{UC14 - Visualizzazione errore di ripetizione nuova password}
+\textbf{Questo caso d'uso non è più implementato.}
+
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: durante l'attività di modifica password l'utente deve ricevere un messaggio d'errore se l'inserimento della ripetizione della nuova password non è uguale alla nuova password.
     \item \textbf{Scenario}: l'utente legge un messaggio d'errore. 
     \item \textbf{Precondizioni}: l'utente svolge la sessione di modifica password e la ripetizione della nuova password inserita non è corretta.
@@ -373,13 +367,13 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 \subsection{UC15 - Visualizzazione guida}
 
 \begin{figure}[H]
-    \includegraphics[width=10cm]{sezioni/Images/UC15.png}
+    \includegraphics[width=13cm]{sezioni/Images/UC15.png}
     \centering
     \caption{Visualizzazione guida}
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: l'utente deve poter visualizzare la guida in formato mappa o formato lista.
     \item \textbf{Scenario}: l'utente si trova nella home.
     \item \textbf{Precondizioni}: l'utente vuole visualizzare la guida.
@@ -387,18 +381,110 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 \end{itemize}
 
 \begin{figure}[H]
-    \includegraphics[width=13cm]{sezioni/Images/UC15_s.png}
+    \includegraphics[width=12cm]{sezioni/Images/UC15_s.png}
     \centering
-    \caption{Visualizzazione guida}
+    \caption{Sottocasi visualizzazione guida}
 \end{figure}
 
-\subsubsection{UC15.1 - Visualizzazione mappa globale}
+\subsubsection{UC15.1 - Visualizzazione nome locale}
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
-    \item \textbf{Descrizione}: l'utente visualizza la mappa globale se non ha nessun profilo social seguito.
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: durante la visualizzazione della guida, l'utente deve poter visualizzare il nome relativo ad un locale.
     \item \textbf{Scenario}:
     \begin{enumerate}
-        \item l'utente non segue nessun profilo social;
+        \item l'utente sta visualizzando la guida;
+        \item l'utente visualizza il nome relativo ad un locale.
+    \end{enumerate}
+    \item \textbf{Precondizioni}: l'utente vuole poter visualizzare il nome di un locale.
+    \item \textbf{Postcondizioni}: l'utente visualizza il nome di un locale.
+\end{itemize}
+
+\subsubsection{UC15.2 - Visualizzazione foto locale}
+\begin{itemize}
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: durante la visualizzazione della guida, l'utente deve poter visualizzare una foto illustrativa relativa ad un locale.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente sta visualizzando la guida;
+        \item l'utente visualizza l'immagine relativa ad un locale.
+    \end{enumerate}
+    \item \textbf{Precondizioni}: l'utente vuole poter visualizzare un'immagine relativa ad un locale.
+    \item \textbf{Postcondizioni}: l'utente visualizza un'immagine relativa ad un locale.
+\end{itemize}
+
+\subsubsection{UC15.3 - Visualizzazione categoria locale}
+\begin{itemize}
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: durante la visualizzazione della guida, l'utente deve poter visualizzare la categoria del locale.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente sta visualizzando la guida;
+        \item l'utente visualizza la categoria relativa ad un locale.
+    \end{enumerate}
+    \item \textbf{Precondizioni}: l'utente vuole poter visualizzare la categoria relativa ad un locale.
+    \item \textbf{Postcondizioni}: l'utente visualizza la categoria relativa ad un locale.
+\end{itemize}
+
+\subsubsection{UC15.4 - Visualizzazione luogo locale}
+\begin{itemize}
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: durante la visualizzazione della guida, l'utente deve poter visualizzare dove si trova un locale.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente sta visualizzando la guida;
+        \item l'utente visualizza il luogo di un locale.
+    \end{enumerate}
+    \item \textbf{Precondizioni}: l'utente vuole poter visualizzare il luogo di un locale.
+    \item \textbf{Postcondizioni}: l'utente visualizza il luogo di un locale.
+\end{itemize}
+
+\subsubsection{UC15.5 - Visualizzazione numero telefonico locale}
+\begin{itemize}
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: durante la visualizzazione della guida, l'utente deve poter visualizzare il numero telefonico del locale.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente sta visualizzando la guida;
+        \item l'utente visualizza il numero telefonico del locale.
+    \end{enumerate}
+    \item \textbf{Precondizioni}: l'utente vuole poter visualizzare il numero telefonico del locale.
+    \item \textbf{Postcondizioni}: l'utente visualizza il numero telefonico del locale.
+\end{itemize}
+ 
+
+\subsubsection{UC15.6 - Visualizzazione punteggio locale}
+\begin{itemize}
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: durante la visualizzazione della guida, l'utente deve poter visualizzare il punteggio di un locale.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente sta visualizzando la guida;
+        \item l'utente visualizza il punteggio di un locale.
+    \end{enumerate}
+    \item \textbf{Precondizioni}: l'utente vuole poter visualizzare il punteggio di un locale.
+    \item \textbf{Postcondizioni}: l'utente visualizza il punteggio di un locale.
+\end{itemize}
+
+\subsubsection{UC15.7 - Visualizzazione website locale}
+\begin{itemize}
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: durante la visualizzazione della guida, l'utente deve poter visualizzare il website di un locale.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente sta visualizzando la guida;
+        \item l'utente visualizza il website di un locale.
+    \end{enumerate}
+    \item \textbf{Precondizioni}: l'utente vuole poter visualizzare il website di un locale.
+    \item \textbf{Postcondizioni}: l'utente visualizza il website di un locale.
+\end{itemize}
+
+
+\subsection{UC16 - Visualizzazione mappa globale}
+\begin{itemize}
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: l'utente visualizza la mappa globale dei luoghi.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
         \item l'utente visualizza la mappa globale nella home.
     \end{enumerate}
 
@@ -406,13 +492,12 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente visualizza la mappa globale.
 \end{itemize}
 
-\subsubsection{UC15.2 - Visualizzazione lista globale}
+\subsection{UC17 - Visualizzazione lista globale}
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
-    \item \textbf{Descrizione}: l'utente visualizza la lista globale se non ha nessun profilo social seguito.
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: l'utente visualizza la lista globale dei luoghi.
     \item \textbf{Scenario}:
     \begin{enumerate}
-        \item l'utente non segue nessun profilo social;
         \item l'utente visualizza la lista globale nella home.
     \end{enumerate}
 
@@ -420,9 +505,11 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente visualizza la lista globale.
 \end{itemize}
 
-\subsubsection{UC15.3 - Visualizzazione mappa personalizzata}
+\subsection{UC18 - Visualizzazione mappa personalizzata}
+\textbf{Questo caso d'uso non è più implementato. Ogni profilo visualizza tutti i luoghi più popolari.}
+
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: l'utente visualizza la mappa personalizzata se ha dei profili social seguiti.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -434,10 +521,12 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente visualizza la mappa personalizzata.
 \end{itemize}
 
-\subsubsection{UC15.4 - Visualizzazione lista personalizzata}
+\subsection{UC19 - Visualizzazione lista personalizzata}
+\textbf{Questo caso d'uso non è più implementato. Ogni profilo visualizza tutti i luoghi più popolari.}
+
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
-    \item \textbf{Descrizione}: l'utente visualizza la mappa personalizzata se ha dei profili social seguiti.
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: l'utente visualizza la lista personalizzata se ha dei profili social seguiti.
     \item \textbf{Scenario}:
     \begin{enumerate}
         \item l'utente segue dei profilo social;
@@ -448,60 +537,61 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente visualizza la lista personalizzata.
 \end{itemize}
 
-\subsection{UC16 - Inserimento profili social da seguire}
+\subsection{UC20 - Inserimento profili social da seguire}
 \begin{figure}[H]
-    \includegraphics[width=15cm]{sezioni/Images/UC16.png}
+    \includegraphics[width=15cm]{sezioni/Images/UC20.png}
     \centering
     \caption{Inserimento profili social da seguire}
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: l'utente deve poter aggiungere dei profili social da seguire e da cui sarà generata la guida.
     \item \textbf{Scenario}:
     \begin{enumerate}
-        \item l'utente naviga nella sezione dei profili seguiti;
-        \item l'utente clicca il pulsante di aggiunta profilo;
+        \item l'utente naviga nella sezione dei profili da poter aggiungere;
         \item l'utente inserisce l'username da aggiungere;
-        \item l'utente conferma e salva.
+        \item l'utente inizia a seguire il profilo cercato.
     \end{enumerate}
     \item \textbf{Estensioni}:
     \begin{itemize}
-    	\item il profilo inserito non esiste \textbf{(UC17)};
-    	\item il profilo inserito è già stato aggiunto \textbf{(UC18)}.
+    	\item il profilo inserito non esiste \textbf{(UC21)};
+    	\item il profilo inserito è già stato aggiunto \textbf{(UC22)}.
     \end{itemize} 
     \item \textbf{Precondizioni}: l'utente vuole seguire un nuovo utente.
     \item \textbf{Postcondizioni}: l'utente ha inserito un nuovo utente da seguire.
 \end{itemize}
 
-\subsection{UC17 - Visualizzazione errore di nome utente non esistente}
+\newpage
+
+\subsection{UC21 - Visualizzazione errore di nome utente non esistente}
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: durante l'attività di aggiunta di un profilo l'utente deve ricevere un messaggio d'errore se il nome utente ricercato non è presente nel sistema.
     \item \textbf{Scenario}: l'utente legge un messaggio d'errore. 
     \item \textbf{Precondizioni}: l'utente inserisce un nome utente inesistente nella procedura di inserimento dei profili social da seguire.
     \item \textbf{Postcondizioni}: l'utente ha ricevuto un messaggio d'errore.
 \end{itemize}
 
-\subsection{UC18 - Visualizzazione errore di utente già presente nel sistema}
+\subsection{UC22 - Visualizzazione errore di utente già presente nel sistema}
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: durante l'attività di aggiunta di un profilo l'utente deve ricevere un messaggio d'errore se il nome utente ricercato è già stato inserito nei profili seguiti dall'utente.
     \item \textbf{Scenario}: l'utente legge un messaggio d'errore. 
     \item \textbf{Precondizioni}: l'utente inserisce un nome utente nella procedura di inserimento dei profili social da seguire che è già presente tra quelli seguiti.
     \item \textbf{Postcondizioni}: l'utente ha ricevuto un messaggio d'errore.
 \end{itemize}
 
-\subsection{UC19 - Rimozione profilo social seguito}
+\subsection{UC23 - Rimozione profilo social seguito}
 
 \begin{figure}[!h]
-    \includegraphics[width=10cm]{sezioni/Images/UC19.png}
+    \includegraphics[width=10cm]{sezioni/Images/UC23.png}
     \centering
     \caption{Rimozione profilo social seguito}
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: l'utente deve poter rimuovere un profilo dalla lista di quelli seguiti.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -514,16 +604,16 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: l'utente ha rimosso il profilo social dalla lista dei seguiti.
 \end{itemize}
 
-\subsection{UC20 - Esplorazione profili social più seguiti}
+\subsection{UC24 - Esplorazione profili social più seguiti}
 
 \begin{figure}[!h]
-    \includegraphics[width=10cm]{sezioni/Images/UC20.png}
+    \includegraphics[width=10cm]{sezioni/Images/UC24.png}
     \centering
     \caption{Esplorazione profili social più seguiti}
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: l'utente può esplorare i profili social più seguiti dagli altri utenti di questa piattaforma.
     \item \textbf{Scenario}:
     \begin{enumerate}
@@ -535,30 +625,81 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
     \item \textbf{Postcondizioni}: viene visualizzata all'utente la lista dei profili social più seguiti.
 \end{itemize}
 
-\subsection{UC21 - Impostazione vista predefinita guida}
+\begin{figure}[H]
+    \includegraphics[width=13cm]{sezioni/Images/UC24_s.png}
+    \centering
+    \caption{Esplorazione profili social più seguiti}
+\end{figure}
+
+\subsubsection{UC24.1 - Visualizzazione nome utente}
+\begin{itemize}
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: durante l'esplorazione dei profili social più seguiti,
+     l'utente deve poter visualizzare il nome utente relativo a tale profilo.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente sta visualizzando la lista dei profili social più seguiti;
+        \item l'utente visualizza il nome utente di ogni profilo social proposto.
+    \end{enumerate}
+    \item \textbf{Precondizioni}: l'utente vuole visualizzare il nome utente relativo ai  profili social più seguiti.
+    \item \textbf{Postcondizioni}: l'utente visualizza il nome utente relativo ai  profili social più seguiti.
+\end{itemize}
+
+\subsubsection{UC24.2 - Visualizzazione numero seguaci}
+\begin{itemize}
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: durante l'esplorazione dei profili social più seguiti,
+    l'utente deve poter visualizzare il numero di seguaci relativi a tale profilo social.
+    Per numero di seguaci, si fa riferimento al numero di utenti della nostra piattaforma
+    che seguono il profilo, all'interno di essa.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente sta visualizzando la lista dei profili social più seguiti;
+        \item l'utente visualizza il numero di seguaci di ogni profilo social proposto.
+    \end{enumerate}
+    \item \textbf{Precondizioni}: l'utente vuole visualizzare il numero di seguaci relativo ai  profili social più seguiti.
+    \item \textbf{Postcondizioni}: l'utente visualizza il numero di seguaci relativo ai  profili social più seguiti.
+\end{itemize}
+
+\subsubsection{UC24.3 - Visualizzazione tasto segui}
+\begin{itemize}
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: durante l'esplorazione dei profili social più seguiti,
+    l'utente deve poter iniziare a seguire il profilo. 
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente sta visualizzando la lista dei profili social più seguiti;
+        \item l'utente può iniziare a seguire un profilo social proposto.
+    \end{enumerate}
+    \item \textbf{Precondizioni}: l'utente vuole iniziare a seguire un profilo social tra i più seguiti.
+    \item \textbf{Postcondizioni}: l'utente inizia a seguire un profilo social tra i più seguiti.
+\end{itemize}
+
+\subsection{UC25 - Impostazione vista predefinita guida}
 \begin{figure}[!h]
-    \includegraphics[width=15cm]{sezioni/Images/UC20_s.png}
+    \includegraphics[width=15cm]{sezioni/Images/UC25_s.png}
     \centering
     \caption{Impostazione vista predefinita guida}
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: l'utente deve poter scegliere la vista predefinita per visualizzare la guida.
     \item \textbf{Scenario}:
     \begin{enumerate}
         \item l'utente naviga nella sezione impostazioni;
         \item l'utente sceglie la voce “Vista predefinita”;
-        \item l'utente sceglie tra la visulizzazione della mappa \textbf{(UC 22)} oppure della lista \textbf{(UC 23)}.
+        \item l'utente sceglie tra la visulizzazione della mappa \textbf{(UC26)} oppure della lista \textbf{(UC27)}.
     \end{enumerate}
 
     \item \textbf{Precondizioni}: l'utente vuole poter sceglie la vista predefinita.
     \item \textbf{Postcondizioni}: la scelta della lista predefinita è stata salvata.
 \end{itemize}
 
-\subsection{UC22 - Impostazione mappa come vista predefinita}
+%\subsection{UC22 - Impostazione mappa come vista predefinita}
+\subsection{UC26 - Impostazione mappa come vista predefinita}
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: l'utente sceglie la mappa come vista predefinita.
     \item \textbf{Scenario}: l'utente sceglie mappa come vista predefinita.
     \item \textbf{Precondizioni}: l'utente vuole scegliere mappa come vista predefinita.
@@ -566,16 +707,175 @@ Questa sezione ha lo scopo di descrivere i vari casi d'uso\G{} che sono stati id
 
 \end{itemize}
 
-\subsection{UC23 - Impostazione lista come vista predefinita}
+%\subsection{UC23 - Impostazione lista come vista predefinita}
+\subsection{UC27 - Impostazione lista come vista predefinita}
 \begin{itemize}
-    \item \textbf{Attore}: l'utente è autenticato.
+    \item \textbf{Attore}: utente autenticato.
     \item \textbf{Descrizione}: l'utente sceglie la lista come vista predefinita.
     \item \textbf{Scenario}: l'utente sceglie lista come vista predefinita.
     \item \textbf{Precondizioni}: l'utente vuole scegliere lista come vista predefinita.
     \item \textbf{Postcondizioni}: lista viene impostata come vista predefinita.
 \end{itemize}
 
+\subsection{UC28 - Visualizzazione lista profili seguiti}
+\begin{figure}[!h]
+    \includegraphics[width=10cm]{sezioni/Images/UC28.png}
+    \centering
+    \caption{Visualizzazione lista profili seguiti}
+\end{figure}
 
+\begin{itemize}
+    \item \textbf{Attore}: utente autenticato.
+    \item \textbf{Descrizione}: l'utente visualizza la lista de profili seguiti.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente naviga nella home;
+        \item l'utente clicca il pulsante per visualizzare la lista dei profili seguiti;
+        \item l'utente visualizza la lista dei profili seguiti.
+    \end{enumerate}
 
+    \item \textbf{Precondizioni}: l'utente vuole visualizzare la lista dei profili seguiti.
+    \item \textbf{Postcondizioni}: l'utente visualizza la lista dei profili seguiti.
+\end{itemize}
 
+% DA VALUTARE ASSIEME %
 
+\subsection{UC29 - Password dimenticata}
+
+\begin{figure}[H]
+    \includegraphics[width=15cm]{sezioni/Images/dimenticata_psw.png}
+    \centering
+    \caption{Password dimenticata}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attore}: utente non autenticato.
+    \item \textbf{Descrizione}: l'utente deve poter modificare la password attuale con la quale effettua il login.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item inserimento username;
+        \item inserimento codice;
+        \item inserimento nuova password;
+        \item conferma nuova password;
+        \item conferma modifica password.
+    \end{enumerate}
+    \textbf{Estensioni}:
+    \begin{enumerate}
+        \item l'utente inserisce lo username ma non esiste nessun utente con quest'ultimo, viene visualizzato un messaggio di errore \textbf{(UC30)};
+        \item l'utente inserisce il codice ma non coincide con quello ricevuto, viene visualizzato un messaggio di errore \textbf{(UC31)};
+        \item l'utente inserisce la nuova password ma essa non rispetta determinate condizioni quindi viene visualizzato un messaggio di errore \textbf{(UC32)};
+        \item l'utente non inserisce in modo corretto la nuova password nella conferma della stessa, quindi viene visualizzato un messaggio di errore \textbf{(UC33)};
+    \end{enumerate}
+
+    \item \textbf{Precondizioni}: l'utente si è dimenticato la password per autenticarsi.
+    \item \textbf{Postcondizioni}: l'utente è autenticato con una nuova password.
+\end{itemize}
+
+\begin{figure}[!h]
+    \includegraphics[width=15cm]{sezioni/Images/UC29_s.png}
+    \centering
+    \caption{Password dimenticata}
+\end{figure}
+
+\subsubsection{UC29.1 - Inserimento username} 
+\begin{itemize}
+    \item \textbf{Attore}: utente non autenticato.
+    \item \textbf{Descrizione}: l'utente deve inserire lo username per il quale ha dimenticato la password.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente seleziona il campo riferito allo username;
+        \item l'utente inserisce lo username.
+    \end{enumerate}
+
+    \item \textbf{Precondizioni}: l'utente svolge la sessione di password dimenticata.
+    \item \textbf{Postcondizioni}: l'utente ha inserito il nome utente per il quale ha dimenticato la password.
+
+\end{itemize}
+
+\subsubsection{UC29.2 - Inserimento codice}
+\begin{itemize}
+    \item \textbf{Attore}: utente non autenticato.
+    \item \textbf{Descrizione}: durante l'attività di password dimenticata l'utente deve inserire il codice di verifica.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente seleziona il campo riferito al codice;
+        \item l'utente inserisce il codice.
+    \end{enumerate}
+
+    \item \textbf{Precondizioni}: l'utente svolge la sessione di password dimenticata.
+    \item \textbf{Postcondizioni}: l'utente ha inserito la nuova password.
+\end{itemize}
+
+\subsubsection{UC29.3 - Inserimento nuova password}
+\begin{itemize}
+    \item \textbf{Attore}: utente non autenticato.
+    \item \textbf{Descrizione}: durante l'attività di password dimenticata l'utente deve poter inserire la nuova password.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente seleziona il campo riferito alla nuova password;
+        \item l'utente inserisce la nuova password.
+    \end{enumerate}
+
+    \item \textbf{Precondizioni}: l'utente svolge la sessione di password dimenticata.
+    \item \textbf{Postcondizioni}: l'utente ha inserito la nuova password.
+\end{itemize}
+
+\subsubsection{UC29.4 - Inserimento ripetizione nuova password}
+\begin{itemize}
+    \item \textbf{Attore}: utente non autenticato.
+    \item \textbf{Descrizione}: durante l'attività di password dimenticata l'utente deve poter inserire la ripetizione della nuova password.
+    \item \textbf{Scenario}:
+    \begin{enumerate}
+        \item l'utente seleziona il campo riferito alla ripetizione della nuova password;
+        \item l'utente inserisce la ripetizione della nuova password.
+    \end{enumerate}
+
+    \item \textbf{Precondizioni}: l'utente svolge la sessione di password dimenticata.
+    \item \textbf{Postcondizioni}: l'utente ha inserito la ripetizione della nuova password.
+\end{itemize}
+
+\subsubsection{UC29.5 - Conferma modifica password}
+\begin{itemize}
+    \item \textbf{Attore}: utente non autenticato.
+    \item \textbf{Descrizione}: durante l'attività di password dimenticata l'utente deve poter confermare la nuova password.
+    \item \textbf{Scenario}: l'utente conferma la nuova password inserita. 
+    \item \textbf{Precondizioni}: l'utente svolge la sessione di password dimenticata.
+    \item \textbf{Postcondizioni}: l'utente ha cambiato la propria password.
+\end{itemize}
+
+\subsection{UC30 - Visualizzazione errore di inserimento username}
+\begin{itemize}
+    \item \textbf{Attore}: utente non autenticato.
+    \item \textbf{Descrizione}: durante l'attività di password dimenticata l'utente deve ricevere un messaggio d'errore se lo username inserito non esiste.
+    \item \textbf{Scenario}: l'utente legge un messaggio d'errore. 
+    \item \textbf{Precondizioni}: l'utente svolge la sessione di password dimenticata e lo username inserito non esiste.
+    \item \textbf{Postcondizioni}: l'utente ha ricevuto un messaggio d'errore.
+\end{itemize}
+
+\subsection{UC31 - Visualizzazione errore di inserimento codice}
+\begin{itemize}
+    \item \textbf{Attore}: utente non autenticato.
+    \item \textbf{Descrizione}: durante l'attività di password dimenticata l'utente deve ricevere un messaggio d'errore se l'inserimento codice non è andato a buon fine.
+    \item \textbf{Scenario}: l'utente legge un messaggio d'errore. 
+    \item \textbf{Precondizioni}: l'utente svolge la sessione di password dimenticata e il codice non è valido.
+    \item \textbf{Postcondizioni}: l'utente ha ricevuto un messaggio d'errore.
+\end{itemize}
+
+\subsection{UC32 - Visualizzazione errore di inserimento nuova password}
+\begin{itemize}
+    \item \textbf{Attore}: utente non autenticato.
+    \item \textbf{Descrizione}: durante l'attività dipassword dimenticata l'utente deve ricevere un messaggio d'errore se l'inserimento di una nuova password non è valida.
+    \item \textbf{Scenario}: l'utente legge un messaggio d'errore. 
+    \item \textbf{Precondizioni}: l'utente svolge la sessione di password dimenticata. e la nuova password inserita non è valida.
+    \item \textbf{Postcondizioni}: l'utente ha ricevuto un messaggio d'errore.
+
+\end{itemize}
+
+\subsection{UC33 - Visualizzazione errore di ripetizione nuova password}
+\begin{itemize}
+    \item \textbf{Attore}: utente non autenticato.
+    \item \textbf{Descrizione}: durante l'attività di modifica password l'utente deve ricevere un messaggio d'errore se l'inserimento della ripetizione della nuova password non è uguale alla nuova password.
+    \item \textbf{Scenario}: l'utente legge un messaggio d'errore. 
+    \item \textbf{Precondizioni}: l'utente svolge la sessione di modifica password e la ripetizione della nuova password inserita non è corretta.
+    \item \textbf{Postcondizioni}: l'utente ha ricevuto un messaggio d'errore.
+\end{itemize}

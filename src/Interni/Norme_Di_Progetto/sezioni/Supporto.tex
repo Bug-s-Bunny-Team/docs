@@ -82,7 +82,7 @@
 				\item \textbf{Approvazione}: il documento viene approvato da un \emph{Approvatore} che ne consente il rilascio.
 			\end{itemize}
 	\subsubsection{Struttura dei documenti}
-		\paragraph*{Frontespizio}
+		\paragraph{Frontespizio}
 		\aCapo{}    
 			La prima pagina di ogni documento sarà così strutturata:
 				\begin{itemize}
@@ -93,19 +93,19 @@
 					\item \textbf{Informazioni del documento}: Redattore, Verificatore, Approvatore ed Uso(interno od esterno).
 				\end{itemize}
 			
-		\paragraph*{Registro delle modifiche}
+		\paragraph{Registro delle modifiche}
 		\aCapo{}  
-			Ogni documento formale presenta subito dopo il frontespizio il registro modifiche, dove ogni componente del gruppo è tenuto alla stesura, pressochè immediata, delle modifiche apportate.
+			Ogni documento formale presenta subito dopo il frontespizio il registro modifiche, che viene aggiornato alla chiusura di una \textit{Pull Request\G{}} da parte di un verificatore.
 			Esso è una tabella che traccia tutte le modifiche significative apportate al documento durante il suo ciclo di vita. Ogni voce della tabella riporta:
 				\begin{itemize}
 					\item \textbf{Versione}: numero versione documento dopo la modifica;
 					\item \textbf{Data}: data in cui è stata effettuata la modifica;
 					\item \textbf{Nominativo}: nome e cognome dell'autore della modifica;
 					\item \textbf{Ruolo}: ruolo dell'autore che ha apportato la modifica;
-					\item \textbf{Descrizione}: sintetica descrizione delle modifiche apportate;
+					\item \textbf{Descrizione}: sintetica descrizione delle modifiche apportate e nominativo del verificatore delle modifiche;
 				\end{itemize}
 	
-		\paragraph*{Corpo del documento}      
+		\paragraph{Corpo del documento}      
 		\aCapo{}   
 			Tutte le pagine del corpo del documento contengono un intestazione composta da:
 				\begin{itemize}
@@ -114,8 +114,7 @@
 				\end{itemize}
 			e un piè di pagina al cui centro c'è la pagina corrente del documento.
 			
-		\paragraph*{Verbali} %spiegare nomenclatura
-		\aCapo{}  
+		\paragraph{Verbali} 
 			I verbali, sia interni che esterni, presentano una struttura fissa e a differenza degli altri documenti, essendo informali, non sono soggetti a versionamento e non riportano il registro delle modifiche.
 			La struttura sarà quindi la seguente:
 				\begin{itemize}
@@ -124,21 +123,22 @@
 					\item \textbf{Data}: data della riunione;
 					\item \textbf{Informazioni del documento}: Redattore, Verificatore ed Approvatore;
 					\item \textbf{Orari:} ora di inizio e ora di fine della riunione;
-					\item \textbf{Resoconto della riunione:} Riporta l'esito della discussione dei singoli argomenti trattati.								
+					\item \textbf{Agenda:} contiene la motivazione per cui si è deciso di fissare la riunione;
+					\item \textbf{Resoconto della riunione:} riporta l'esito della discussione dei singoli argomenti trattati;
+					\item \textbf{Issue aperte:} vengono elencate le issue\G{} che sono state aperte su Github\G{} durante il verbale.		
 				\end{itemize}
 	
 	\subsubsection{Norme tipografiche}
-		\paragraph*{Convenzioni di denominazione}   % serve ?
+		\paragraph{Convenzioni di denominazione} 
 		\aCapo{}  
 			I nomi dei file relativi alla documentazione presentano l'iniziale della prima e terza parola che lo compone in maiuscolo e presenta separazione tra le parole. 
-		\paragraph*{Stili di testo} % Ha senso?
+		\paragraph{Stili di testo} 
 			\begin{itemize}
 				\item \textbf{Grassetto}: viene usato nei titoli delle sezioni e dei paragrafi e per enfatizzare parole;
 				\item \textbf{Corsivo}: viene usato per i nomi propri (membri del gruppo,  proponente e committenti) e per citare il nome di un documento.
 			\end{itemize}
 	
-		%Aggiungere Paragrafo Tabelle?
-		\paragraph*{Convenzioni scrittura liste puntante} \aCapo{}
+		\paragraph{Convenzioni scrittura liste puntante} \aCapo{}
 		In una lista senza ulteriori liste innestate gli elementi si scrivono con la prima lettera
 		maiuscola, sia che siano in \textbf{grassetto}, sia che siano in \textit{corsivo}, sia che non
 		abbiano alcun tipo di formattazione. Gli elementi vanno separati con un \textit{punto e virgola}, e 
@@ -155,13 +155,13 @@
 		leggibilità o comprensione (ne sono un esempio le liste dei riferimenti normativi e informativi),
 		si lascia quindi a discrezione di relatori e verificatori un certo grado di libertà.\\
 		Di seguito viene mostrato un esempio per chiarezza. 
-		\paragraph*{Lista senza nested lists, diverse formattazioni}
+		\paragraph{Lista senza nested lists, diverse formattazioni}
 		\begin{itemize}
 			\item \textbf{Elemento Livello 1 Grassetto}: descrizione;
 			\item \textit{Elemento Livello 1 Corsivo}: descrizione;
 			\item Elemento Livello 1: descrizione.
 		\end{itemize}
-		\paragraph*{Lista con nested lists}
+		\paragraph{Lista con nested lists}
 		\begin{itemize}
 			\item Primo elemento livello 1:
 			\begin{itemize}
@@ -182,13 +182,6 @@
 			\end{itemize}
 			\item Quarto elemento livello 1.
 		\end{itemize}
-		
-		\subsubsection{Strumenti}
-			\begin{itemize}
-				\item \textbf{\LaTeX\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
-				\item \textbf{Visual Studio Code\G:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub\G;
-				\item \textbf{Google Docs\G:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live;
-			\end{itemize}
 
 			\subsubsection{Metriche}
 			\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
@@ -213,25 +206,33 @@
 				\caption{\centering{Metriche utilizzate per la valutazione della documentazione}}
 			\end{longtable}
 			
-	\subsection{Processo di Configurazione}
+			\subsubsection{Strumenti}
+			\begin{itemize}
+				\item \textbf{\LaTeX\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
+				\item \textbf{Visual Studio Code\G:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub\G;
+				\item \textbf{Google Docs\G:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live;
+			\end{itemize}
+
+	\subsection{Processo di configurazione}
 	\subsubsection{Scopo}
 		Il processo di gestione della configurazione ha lo scopo di gestire in maniera ordinata e sistematica la produzione di documenti. %codice in futuro
 		 In particolare, un elemento sottoposto a configurazione ha una collocazione, una denominazione e uno stato definiti, oltre a norme e versionamento. 
  	
 	\subsubsection{Versionamento}
-		\paragraph*{Tecnologie adottate}
+		\paragraph{Tecnologie adottate}
 		\aCapo{}  
 			Per gestire il versionamento del codice sorgente, viene utilizzato il sistema di versionamento distribuito \emph{Git\G}, con un \emph{repository\G{}} remoto presente su \emph{GitHub\G}.
 			
-		\paragraph*{Repository}
+		\paragraph{Repository}
 		\aCapo{}
 			Il gruppo \teamname{} ha scelto di creare i seguenti \emph{repository\G{}} per il progetto:
 			\begin{itemize}
 				\item \href{https://github.com/Bug-s-Bunny-Team/docs}{\textbf{docs}}: per il versionamento dei documenti.
 				\item \href{https://github.com/Bug-s-Bunny-Team/poc}{\textbf{poc}}: per la gestione e il versionamento del \textit{POC\G}.
+				\item \href{https://github.com/Bug-s-Bunny-Team/bunnyfood}{\textbf{bunnyfood}: per la gestione della piattaforma e del versionamento del codice}.
 			\end{itemize}
 
-		\paragraph*{Struttura dei repository} %inserire struttura cartelle e disposizione file
+		\paragraph{Struttura dei repository} 
 		\aCapo{}  
 		Il gruppo mantiene diversi repository\G{} separati, ognuno con struttura e fini propri.
 		Di base, ogni repository\G{} conterrà i seguenti file:
@@ -241,21 +242,37 @@
 			\item \verb#.editorconfig#: descrive regole di formattazione, quali indentazione e stile dei fine riga. Viene utilizzato dai formattatori automatici degli \textit{IDE} ed editor di testo. Segue il formato \href{https://editorconfig.org/}{\textit{EditorConfig}}.
 		\end{itemize}
 
-		\paragraph*{Norme di branching}
+		\paragraph{Norme di branching}
 		\aCapo{}  
 			Il \emph{repository\G{}} inerente alla documentazione sarà composto da diversi \textit{branch\G}:
 			\begin{itemize}
 				\item \verb#master#: \emph{branch}\G{} principale che viene aggiornato quando un documento è approvato o per introdurre nuove funzionalità; 
 				\item un \textit{branch}\G{} per ogni documento o tipologia di documento.
 			\end{itemize}
+			Il \emph{repository\G{}} inerente alla realizzazione della piattaforma sarà composto da diversi \textit{branch\G}:
+			\begin{itemize}
+				\item \verb#master#:\emph{branch}\G{} principale che viene aggiornato quando la piattaforma è realizzata o per introdurre nuove funzionalità; 
+				\item \emph{frontend}\G{}: \emph{branch}\G{} è stato utilizzato il framework\G{} Svelte per la realizzazione del Frontend\G{};
+				\item \emph{dev}\G{}: \emph{branch}\G{} è stato utilizzato il linguaggio Python\G{}.
+			\end{itemize}
+
 		
-		\paragraph*{Modifiche ai repository}
+		\paragraph{Modifiche alla repository del codice}
 		\aCapo{}  
-		Tutti i membri del gruppo possono apportare modifiche ai file elaborati, salvo quelli presenti nel ramo \textit{master} o nel ramo \textit{dev}. \\
-		 Il ramo \textit{master} verrà aggiornato alle ultime modifiche prima di una delle revisioni tramite merge dal ramo \textit{dev}. \\
-		Mentre il ramo \textit{dev} verrà aggiornato con le ultime modifiche tramite merge dagli altri rami di lavoro, dopo la chiusura di una \textit{Issue\G{}} o al raggiungimento di una versione avanzata di un documento. \\
-		Per entrambi i rami i merge vanno effettuati tramite \textit{Pull Request}, aperta dall'autore delle modifiche, con conseguente verifica di almeno un altro elemento del gruppo e approvazione da parte di un ulteriore elemento del gruppo che chiuderà la \textit{Pull Request} e farà il merge, preferibilmente tramite sistema \textit{"Squash and Merge"}.
+		Tutti i membri del gruppo possono apportare modifiche ai file elaborati, previa assegnazione della relativa \textit{Issue\G{}}, salvo quelli presenti nel ramo \textit{master} o nel ramo \textit{dev}. \\
+		 Il ramo \textit{master} verrà aggiornato alle ultime modifiche tramite merge di una \textit{Pull Request\G{}} di approvazione dal ramo \textit{dev} prima del rilascio di una versione finale.\\
+		Mentre il ramo \textit{dev} verrà aggiornato con le ultime modifiche tramite merge, di una \textit{Pull Request\G{}} di verifica, dagli altri rami di lavoro, dopo la chiusura di una \textit{Issue\G{}}. \\
+		Per entrambi i rami le \textit{Pull Request\G{}} vanno chiuse preferibilmente tramite sistema \textit{"Squash and Merge"}.
 		
+		\paragraph{Modifiche alla repository per la realizzazione della piattaforma}
+		\aCapo{}  
+		Tutti i membri del gruppo possono apportare modifiche ai file elaborati, salvo quelli presenti nel ramo \textit{master} \\
+		Il ramo \textit{master} verrà aggiornato alle ultime modifiche tramite merge dal ramo \textit{dev} prima del rilascio di una versione finale.\\
+		Mentre il ramo \textit{dev} verrà aggiornato con le ultime modifiche tramite merge, dall'altro ramo di lavoro. \\
+		
+		\subsubsection{Metriche}
+		Il processo di configurazione non fa uso di metriche qualitative particolari.
+
 		\subsubsection{Strumenti}
 			Per la gestione della configurazione o versionamento il gruppo utilizza \emph{Visual Studio Code\G{}} o i seguenti client \emph{Git\G}:
 				
@@ -277,7 +294,18 @@
 				\end{itemize}
 				Queste attività mirano soprattutto all'\emph{Auto-Miglioramento} del processo, facendo un'analisi dei risultati ottenuti con lo scopo di migliorare e/o correggere eventuali attività
 				che non raggiungono obiettivi prefissati.
-			
+
+			\subsubsection{Controllo della qualità}
+				Ogni componente deve contribuire a rendere buona la qualità, uguagliandola a quella auspicata. Per farlo è necessario seguire questi punti:
+				\begin{itemize}
+					\item Gli obiettivi devono essere compresi, in caso di dubbi bisogna chiarirli con gli altri componenti;
+					\item Trovare dei possibili errori, proponendo una soluzione;
+					\item Riuscire a stimare la complessità di una task, organizzandosi per terminarla;
+					\item Cercare di migliorare progressivamente la conoscenza dell'argomento;
+					\item Rispettare le regole che vengono adotatte dal team;
+					\item Produrre i risultati desiderati e concreti. 
+				\end{itemize}
+
 			\subsubsection{Aspettative}
 				 Le aspettative di questo processo sono:
 					\begin{itemize}
@@ -286,13 +314,6 @@
 						\item Conseguimento della qualità nell'organizzazione delle attività del gruppo e dei processi;
 						\item Raggiungimento della piena soddisfazione del \emph{proponente}.
 					\end{itemize}
-
-			\subsubsection{Strumenti}
-			\begin{itemize}
-				\item \textbf{LaTeX\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
-				\item \textbf{Visual Studio Code\G:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub\G;
-				\item \textbf{Google Docs:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live.
-			\end{itemize}
 
 			\subsubsection{Metriche}
 			\setlength{\freewidth}{\dimexpr\textwidth-0\tabcolsep}
@@ -317,8 +338,13 @@
 				\caption{Metriche utilizzate per la valutazione della qualità}
 			\end{longtable}
 			
-		
-			%Magari subsubsection per norme e regole per facilitare gestione della qualità da parte del gruppo: come continua comunicazione, lavoro costante, rispetto delle norme e cosi via
+			\subsubsection{Strumenti}
+			\begin{itemize}
+				\item \textbf{LaTeX\G:} stesura in bella copia dei documenti caricati poi sul repository\G{} del gruppo;
+				\item \textbf{Visual Studio Code\G:} usato per la scrittura di codice e documenti, e visione del versioning tramite collegamento a GitHub\G;
+				\item \textbf{Google Docs:} cartella condivisa contenente documenti in brutta copia, permette scrittura collaborativa contemporanea da parte di tutti i membri con visualizzazione delle modifiche in live.
+			\end{itemize}
+
 	
 		\subsection{Verifica}
 			\subsubsection{Scopo}
@@ -331,20 +357,22 @@
 						\item La verifica\G{} deve garantire che il prodotto si trovi in uno stato stabile;
 						\item La verifica\G{} deve risultare più automatica possibile.
 					\end{itemize}
+			\subsubsection{Verifica del codice}
+				Il codice, derivante dai requisiti da soddisfare e dalla progettazione effetuata, verrà vericato tramite test automatici. Inoltre sono presenti all'interno del \PdQ{} le metriche e varie misurazioni.  
 				
 				\subsubsection{Analisi}
 					Il processo di analisi si suddivide in Analisi statica e Analisi dinamica:
-						\paragraph*{Analisi statica}
+						\paragraph{Analisi statica}
 						\aCapo{}  
 							L'analisi statica permette di effettuare controlli su documenti e codice, verificando così l'assenza di errori e difetti. Esistono due metodologie per applicarla:
 								\begin{itemize}
 									\item \textbf{Walkthrough:} consiste nella lettura da parte del \emph{team} dell'intero documento o codice in cerca di anomalie. Viene applicata quando non si conosce in modo chiaro la sorgente dei difetti. Questa tecnica risulta molto onerosa in termini di efficienza ed efficacia.
 									\item \textbf{Inspection:} consiste in una lettura mirata del documento o del codice nei punti in cui si sa già che possano essere presenti degli errori. Risulta meno dispendiosa in termini di tempo ma richiede una buona conoscenza della situazione.
 								\end{itemize}
-						\paragraph*{Analisi dinamica}
+						\paragraph{Analisi dinamica}
 						\aCapo{}  
 							L'analisi dinamica prevede l'esecuzione del prodotto \emph{software} e la sua analisi tramite l'utilizzo di \emph{test} che verificano se il prodotto funziona o se vi sono presenti anomalie
-						\paragraph*{Test}
+						\paragraph{Test}
 						\aCapo{}  
 							L'attività di testing è la base dell'analisi dinamica. I \emph{test} permettono di individuare tutti i possibili errori che possono essere stati commessi e tutti i casi limite che possono risultare problematici. \newline
 							I test sono ben progettati e scritti se e solo se:
@@ -383,7 +411,11 @@
 						\rowcolor{white}
 						\caption{Metriche utilizzate per la verifica}
 					\end{longtable}
-			
+				\subsubsection{Strumenti}
+				Per il processo di verifica applicato ai documenti scritti in LATEX il gruppo ha deciso di utilizzare il
+				correttore automatico per i documenti \LaTeX fornito dalle estensioni di VSC\G{}, che individua le parole non corrette grammaticalmente con una classica sottolineatura.
+				Per il frontend scritto in javascript il gruppo usa jest per verificare il corretto funzionamento dell'interfaccia 
+				e pytest per il backend scritto in python.
 		\subsection{Processo di validazione}
 			\subsubsection{Scopo}
 				Il processo di \emph{validazione}\G{} prende in esame il prodotto ottenuto dalla fase di \emph{verifica}\G{} e stabilisce se esso rispetti i requisiti e le aspettative del \emph{committente}.
@@ -394,3 +426,7 @@
 						\item Valutazione dei risultati rispetto alle attese;
 						\item Rendere tale processo automatico e riutilizzabile.
 					\end{itemize}
+			\subsubsection{Metriche}
+			Il processo di validazione non fa uso di metriche qualitative particolari
+			\subsubsection{Strumenti}
+			Non sono stati identificati degli strumenti particolari per la validazione.
