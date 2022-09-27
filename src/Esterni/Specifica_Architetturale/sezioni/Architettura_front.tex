@@ -37,3 +37,24 @@ Quest'ultima risulta un punto chiave perchè permette di facilitare il testing r
     \caption{Frontend - Diagramma delle classi}
 \end{figure}
 
+\subsection{Descrizione delle classi}
+    \subsubsection{Models}
+        I Models si occupano della persistenza dei dati e dell'interfacciamento con le varie API usate. Utilizzano il pattern Singleton per la creazione di un'istanza, e assieme alla creazione viene anche controllato il SessionStorage 
+        per dati utili all'inizializzazione di un certo Model, sintomo di dati fondamentali che vanno mantenuti in memoria anche a seguito del cambio di pagina. Inoltre, mettono a disposizione alcuni membri Writable a cui ci si può iscrivere per ricevere i cambiamenti.
+        Tutti i Model contengono codice asincrono che viene gestito tramite il sistema nativo delle Promesse Javascript (inclusa la sintassi async/await).
+        \begin{itemize}
+            \item AccountModel: Si occupa delle funzionalità di login, come decifrare i token ritornati dal login gestito da AWS Cognito\G{} per ottenere le informazioni sull'account. Si occupa delle funzionalità di gestione dell'account oltre a renderlo disponibile alle altre parti dell'applicazione.
+            \item ResultsModel: Si occupa della gestione delle liste dei luoghi da visualizzare all'interno dell'applicazione.
+            \item ProfilesModel: Si occupa delle funzionalità legate ai profili social, per esempio seguire o rimuovere dai seguiti un profilo, oppure ottenere le liste dei profili seguiti o più popolari.
+            \item LocationModel: Si occupa della fornitura delle informazioni dettagliate legate ad un singolo luogo, interfacciandosi con la Maps API di Google per ottenere tali informazioni.
+            \item RequestOptions: Si occupa della formattazione corretta delle opzioni di richiesta all'API, in modo da aderire alla specifica API.
+        \end{itemize}
+    \subsubsection{Presenters}
+        I Presenters in generale si occupano di collezionare dati dai vari Model di bisogno e contenerli nella formattazione corretta per la visualizzazione diretta all'interno delle View, essi presentano molti membri Writable che consentono
+        un'integrazione molto naturale con le View in quanto un membro di questo tipo visualizzato si aggiorna automaticamente in seguito ai cambiamenti. I Presenter sono attenti a sottoscriversi ai cambiamenti dei Model quando necessario per mostrare dati sempre aggiornati e rilevanti.
+    \subsubsection{View}
+        Le View sono dei componenti bene o male passivi, in quanto il codice scritto si limita alla delegazione degli eventi verso il Presenter, ed alla visualizzazione di dati statici o dinamici (tipo Writable). 
+        Questi file vengono compilati automaticamente dalla libreria Svelte\G{} per diventare delle View funzionali e responsive ai cambiamenti.
+        Il codice asincrono viene gestito anch'esso nativamente, infatti quando la View visualizza un membro che ha dei dati non ancora pronti (per esempio in fase di download o di loading di una libreria) mostra invece una barra di caricamento e,
+        a seconda del successo o meno del caricamento dei dati, visualizza i dati stessi oppure un errore con maggiori informazioni (se utili).
+
