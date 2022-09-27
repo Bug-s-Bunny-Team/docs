@@ -7,7 +7,7 @@
 
 ## Introduzione
 Questo repository mantiene gli strumenti e i sorgenti *Latex* per compilare la documentazione. 
-I documenti compilati in formato *PDF*, e in versione stabile, si trovano nella [cartella condivisa](https://drive.google.com/drive/folders/10DP1cbC-0y9jEtLmrsuktEG1M7PgSoOk).
+I documenti compilati in formato *PDF*, e in versione stabile, si trovano nella [cartella condivisa](https://drive.google.com/drive/folders/10DP1cbC-0y9jEtLmrsuktEG1M7PgSoOk) oppure nella cartella [docs](docs/).
 
 ## Prerequisiti
 ### Latex
@@ -32,7 +32,7 @@ In alternativa allo script, si possono creare nuovi documenti prendendo spunto d
 ## Struttura
 | Cartella                | Contenuto                      |
 |-------------------------|--------------------------------|
-| [~~docs~~](docs/)           | ~~Documenti in formato *PDF*~~ (la cartella e il contenuto vengono mantenuti solo per retrocompatibilità)  |
+| [docs](docs/)           | Documenti in formato *PDF*  |
 | [src](src/)             | Sorgenti dei documenti *Latex*, con suddivisione fra [interni](src/Interni/) ed [esterni](src/Esterni/) |
 | [templates](templates/) | Sorgenti dei template *Latex*  |
 

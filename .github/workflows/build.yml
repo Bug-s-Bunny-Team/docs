@@ -15,6 +15,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Add version to filenames
+        run: |
+          shopt -s extglob
+
+          VERSION_LOG_PATH="sezioni/registro_mod.tex"
+
+          for doc in src/*(Interni|Esterni)/!(Verbali)/*.tex; do
+              path="$(dirname $doc)"
+              log_path="${path}/${VERSION_LOG_PATH}"
+              if [ -f "$log_path" ]; then
+                  version="$(cat $log_path | grep -E -m 1 -o '^[0-9]+\.[0-9]+\.[0-9]+' | sed 's#\.#_#g')"
+                  versioned_doc="${doc//".tex"/"_v${version}.tex"}"
+                  mv "$doc" "$versioned_doc"
+              fi
+          done
       
       - name: Compile documents
         uses: xu-cheng/latex-action@v2
